@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="124px" height="47px" viewBox="0 0 124 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logo</title>
+    <g id="1440*900-v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="v3defiPlaza-1440*900-Home:full:color2" transform="translate(-60.000000, -32.000000)">
+            <g id="top" transform="translate(60.000000, 27.000000)">
+                <g id="logo" transform="translate(0.000000, 5.000000)">
+                    <g fill="#7C32DB" id="Group-2">
+                        <rect id="line" x="0" y="0" width="3.56060606" height="47"></rect>
+                        <rect id="line" x="7.12121212" y="0" width="3.56060606" height="47"></rect>
+                        <rect id="line" x="14.2424242" y="0" width="3.56060606" height="47"></rect>
+                        <rect id="line" x="21.3636364" y="0" width="3.56060606" height="47"></rect>
+                        <rect id="line" x="28.4848485" y="0" width="3.56060606" height="47"></rect>
+                        <rect id="line" x="35.6060606" y="0" width="3.56060606" height="47"></rect>
+                    </g>
+                    <text id="DeFiPlaza" font-family=".AppleSystemUIFont" font-size="24" font-weight="normal" line-spacing="20" letter-spacing="-0.96" fill="#23211F">
+                        <tspan x="33" y="29">defiplaza</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

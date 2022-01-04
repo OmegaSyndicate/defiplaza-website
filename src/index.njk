@@ -1,0 +1,106 @@
+---
+pagination:
+  data: posts
+  size: 7
+  alias: posts
+---
+
+{% extends 'layouts/default.njk' %}
+
+{% set title = "Posts" %}
+
+{% block content %}
+<div class="bg-fixed bg-right-top bg-no-repeat bg-contain" style="background-image: url('/assets/images/home/hercules.png');">
+    <section class="container h-[60vh] mx-auto flex flex-col justify-center items-center">
+		<h1 class="text-8xl">The <span class="italic font-serif">cheapest</span> exchange<br>on Ethereum.</h1>
+		<h2 class="text-xl mt-4">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
+		<div class="flex flex-row justify-center mt-8">
+			<button class="btn-primary">Get Started</button>
+			<button class="btn-outline ml-4">More information</button>
+			<div class="flex flex-center items-center ml-8 space-x-4">
+				<p><a href="https://twitter.com/defiplaza" target="_blank"><img src="/assets/images/socials/twitter.svg"></a></p>
+				<p><a href="https://t.me/defiplaza" target="_blank"><img src="/assets/images/socials/telegram.svg"></a></p>
+				<p><a href="https://github.com/OmegaSyndicate" target="_blank"><img src="/assets/images/socials/github.svg"></a></p>
+			</div>
+		</div>
+	</section>
+	<section class="container mx-auto flex flex-row">
+
+		<div class="w-1/2 bg-white rounded-tr-3xl rounded-br-3xl py-32 px-20 space-y-4">
+			<h2 class="text-4xl"><strong class="text-primary">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
+			<p>Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
+			<p>What makes DefiPlaza special is that it is highly optimised to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
+			<button class="btn-primary rounded-full">Read more</button>
+		</div>
+
+		<ul class="h-min flex bg-primary/80 text-white dark:text-black rounded-lg mt-32 ml-8 py-4 px-8 space-x-8 text-center">
+			<li>
+				<p class="text-3xl font-bold">
+					$5.34
+					<span class="text-base font-light align-middle">m</span>
+				</p>
+				<h3 class="text-sm">Liquidity</h3></li>
+			<li><p class="text-3xl font-bold">120</p><h3 class="text-sm">Trading pairs</h3></li>
+			<li><p class="text-3xl font-bold">0.1<span class="text-base font-light align-middle">%</span></p><h3 class="text-sm">Swapping fee</h3></li>
+			<li><p class="text-3xl font-bold">253<span class="text-base font-light align-middle">%</span></p><h3 class="text-sm">APR</h3></li>
+		</ul>
+    </section>
+</div>
+
+<section class="w-screen bg-primary-dark -mt-16 py-60">
+	<div class="container mx-auto pl-28 space-x-8">
+		<div class="flex items-center overflow-x-auto">
+			<h2 class="mr-32 text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
+
+			<div class="w-96 py-16 px-8 bg-white rounded-lg">
+				<h3 class="text-3xl text-primary">Swap</h3>
+				<p class="mt-4 text-primary">Learn how to swap tokens on DefiPlaza.</p>
+				<button class="mt-16 btn-primary rounded-full">-></button>
+			</div>
+
+			<div class="w-96 py-16 px-8 bg-white rounded-lg">
+				<h3 class="text-3xl text-primary">Swap</h3>
+				<p class="mt-4 text-primary">Learn how to swap tokens on DefiPlaza.</p>
+				<button class="mt-16 btn-primary rounded-full">-></button>
+			</div>
+
+			<div class="w-96 py-16 px-8 bg-white rounded-lg">
+				<h3 class="text-3xl text-primary">Swap</h3>
+				<p class="mt-4 text-primary">Learn how to swap tokens on DefiPlaza.</p>
+				<button class="mt-16 btn-primary rounded-full">-></button>
+			</div>
+
+			<div class="w-96 py-16 px-8 bg-white rounded-lg">
+				<h3 class="text-3xl text-primary">Swap</h3>
+				<p class="mt-4 text-primary">Learn how to swap tokens on DefiPlaza.</p>
+				<button class="mt-16 btn-primary rounded-full">-></button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="w-screen mx-auto bg-primary-dark">
+	<h2 class="text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
+
+	<div class="mt-15">
+
+	</div>
+</section>
+
+<section class="w-screen mx-auto bg-primary-dark pt-32">
+	<div class="flex justify-center space-x-8">
+		<h2 class="text-4xl text-white text-center">Latest updates from <strong>DefiPlaza</strong>.</h2>
+		<a href="/blog/" class="btn-primary rounded-full">All updates</a>
+	</div>
+	<ul class="w-3/5 mx-auto mt-10 px-8 bg-white rounded-lg divide-y divide-primary">
+		{% for post in posts %}
+		<li class="py-8">
+			<h3 class="text-primary-dark font-bold text-2xl"><a href="/blog/{{ post.slug }}">{{ post.title.rendered | safe }}</a></h3>
+			<p class="text-primary text-xs">{{ post._embedded.author[0].name }} - {{ post.date | htmlDateString }}</p>
+			{{ post.excerpt.rendered | safe }}
+		</li>
+      {% endfor %}
+	</ul>
+</section>
+
+{% endblock%}
