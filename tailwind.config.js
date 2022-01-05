@@ -1,6 +1,5 @@
 module.exports = {
 	mode: 'jit',
-	purge: ['dist/**/*.html'],
 	content: ['dist/**/*.html'],
 	theme: {
 		container: {
@@ -14,7 +13,7 @@ module.exports = {
 			colors: {
 				background: '#eeeae1',
 				primary: 'rgb(124, 50, 219)',
-				'primary-dark': '#4e1a91',
+				'primary-dark': 'rgb(64, 10, 135)',
 			},
 		},
 	},

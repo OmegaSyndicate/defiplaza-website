@@ -3,7 +3,7 @@
 {% set title = post.title.rendered %}
 
 {% block content %}
-	<article class="prose mx-auto">
+	<article class="prose dark:prose-invert mx-auto">
 		{% if post.feature_image %}
 			<figure class="post-feature-image">
 				<img src="{{ post.feature_image }}" alt="{{ title }}">

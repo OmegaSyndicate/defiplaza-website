@@ -3,54 +3,70 @@
 @tailwind utilities;
 
 @layer base {
-  h1, h2, h3, h4, h5 {
-    @apply font-light;
-  }
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		@apply font-light;
+	}
+
+	.hide-scroll-bar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	.hide-scroll-bar::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 @layer components {
-  .btn-primary {
-    @apply bg-primary text-white text-sm font-medium uppercase tracking-wider rounded py-3 px-4;
-  }
+	.btn-primary {
+		@apply bg-primary text-white text-sm font-medium leading-none uppercase tracking-wider rounded py-3 px-4 inline-flex items-center;
+	}
 
-  .btn-outline {
-	  @apply btn-primary bg-transparent text-primary border-2 border-primary;
-  }
+	.btn-outline {
+		@apply btn-primary bg-transparent text-primary border-2 border-primary;
+	}
+
+  .btn-white {
+		@apply btn-primary bg-white text-primary-dark;
+	}
 }
 
 /**
  * Custom fonts
  */
 @layer base {
-  @font-face {
-    font-family: 'NB_International_Pro';
-    src: url('/assets/fonts/NB_International_Pro_Regular.otf');
-    font-display: swap;
-    font-weight: normal;
-    font-style: normal;
-  }
+	@font-face {
+		font-family: 'NB_International_Pro';
+		src: url('/assets/fonts/NB_International_Pro_Regular.otf');
+		font-display: swap;
+		font-weight: normal;
+		font-style: normal;
+	}
 
-  @font-face {
-    font-family: 'NB_International_Pro';
-    src: url('/assets/fonts/NB_International_Pro_Bold.otf');
-    font-display: swap;
-    font-weight: bold;
-    font-style: normal;
-  }
+	@font-face {
+		font-family: 'NB_International_Pro';
+		src: url('/assets/fonts/NB_International_Pro_Bold.otf');
+		font-display: swap;
+		font-weight: bold;
+		font-style: normal;
+	}
 
-  @font-face {
-    font-family: 'NB_International_Pro';
-    src: url('/assets/fonts/NB_International_Pro_Medium.otf');
-    font-display: swap;
-    font-weight: 500;
-    font-style: normal;
-  }
+	@font-face {
+		font-family: 'NB_International_Pro';
+		src: url('/assets/fonts/NB_International_Pro_Medium.otf');
+		font-display: swap;
+		font-weight: 500;
+		font-style: normal;
+	}
 
-  @font-face {
-    font-family: 'NB_International_Pro';
-    src: url('/assets/fonts/NB_International_Pro_Light.otf');
-    font-display: swap;
-    font-weight: 300;
-    font-style: normal;
-  }
+	@font-face {
+		font-family: 'NB_International_Pro';
+		src: url('/assets/fonts/NB_International_Pro_Light.otf');
+		font-display: swap;
+		font-weight: 300;
+		font-style: normal;
+	}
 }
