@@ -1,24 +1,22 @@
 <footer class="bg-primary-dark pt-20 pb-8">	
-	<section class="container mx-auto flex justify-center items-center">
-		<a href="/"><img src="/assets/images/logo/icon.png" srcset="/assets/images/logo/icon@2x.png 2x, /assets/images/logo/icon@3x.png 3x" class="w-100 mr-8"></a>
+	<section class="container mx-auto flex flex-col md:flex-row justify-center items-center">
+		<a class="hidden md:flex" href="/"><img src="/assets/images/logo/icon.png" srcset="/assets/images/logo/icon@2x.png 2x, /assets/images/logo/icon@3x.png 3x" class="w-100 mr-8"></a>
 
-		<nav>
-			<ul class="flex justify-center text-white">
-				<li class="px-4"><a href="/">About</a></li>
-				<li class="px-4"><a href="/">Blog</a></li>
-				<li class="px-4"><a href="/">Contact</a></li>
-				<li class="px-4"><a href="/">Disclaimer</a></li>
-				<li class="px-4"><a href="/">Audit Report</a></li>
-				<li class="px-4"><a href="/">Governance</a></li>
-				<li class="px-4"><a href="/">Developer</a></li>
-				<li class="px-4"><a href="/">Roadmap</a></li>
-			</ul>
-		</nav>
+		<ul class="flex flex-wrap justify-center text-white">
+			<li class="px-4"><a href="/">About</a></li>
+			<li class="px-4"><a href="/">Blog</a></li>
+			<li class="px-4"><a href="/">Contact</a></li>
+			<li class="px-4"><a href="/">Disclaimer</a></li>
+			<li class="px-4"><a href="/">Audit Report</a></li>
+			<li class="px-4"><a href="/">Governance</a></li>
+			<li class="px-4"><a href="/">Developer</a></li>
+			<li class="px-4"><a href="/">Roadmap</a></li>
+		</ul>
 
 		{% include "partials/socials.njk" %}
 	</section>
 
-	<section class="container mx-auto mt-6 flex justify-center items-center text-white">
+	<section class="container mx-auto mt-6 flex flex-wrap justify-center items-center text-white">
 		<p>DFP2 Listed on</p>
 		<nav>
 			<ul class="flex justify-center text-white">

@@ -1,0 +1,6 @@
+{% macro button(params) %}
+  <button class="btn-primary inline-flex items-center {{ params.class }}">
+	<span class="mt-px whitespace-nowrap">{{ params.text }}</span>
+	{% include "partials/arrow-right.njk" %}
+	</button>
+{% endmacro %}
