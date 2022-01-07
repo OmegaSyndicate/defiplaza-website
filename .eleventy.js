@@ -31,6 +31,10 @@ module.exports = function (eleventyConfig) {
 	//    cacheFile: '',
 	// });
 
+	eleventyConfig.addNunjucksGlobal('version', () => {
+		return process.env.CF_PAGES_COMMIT_SHA || Date.now();
+	});
+
 	eleventyConfig.addFilter('getReadingTime', (text) => {
 		const wordsPerMinute = 200;
 		const numberOfWords = text.split(/\s/g).length;
