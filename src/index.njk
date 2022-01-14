@@ -11,171 +11,177 @@ pagination:
 {% set title = "Posts" %}
 
 {% block content %}
-	<div class="bg-fixed bg-right-top bg-no-repeat bg-contain" style="background-image: url('/assets/images/home/hercules.png');">
-		<section class="container h-[75vh] md:h-[60vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center">
-			<h1 class="text-5xl md:text-8xl text-center">The <span class="italic font-serif">cheapest</span> exchange<br>on Ethereum.</h1>
-			<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
-			<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8">
-				<button class="btn-primary inline-flex items-center">
-					<span class="mt-px whitespace-nowrap">Get started</span>
-					{% include "partials/arrow-right.njk" %}
-				</button>
-				<button class="btn-outline ml-4">
-					<span class="mt-px whitespace-nowrap">More information</span>
-				</button>
-
-				{% include "partials/socials.njk" %}
-			</div>
-		</section>
-
-		<section class="container mx-auto flex flex-col-reverse md:flex-row">
-			<div class="w-100 md:w-1/2 bg-white md:rounded-tr-3xl md:rounded-br-3xl py-11 md:py-32 px-4 md:px-20 space-y-4">
-				<h2 class="text-3xl md:text-4xl"><strong class="text-primary">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
-				<p>Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
-				<p>What makes DefiPlaza special is that it is highly optimised to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
-				<button class="btn-primary rounded-full inline-flex items-center">
-				Read more
+<div class="bg-right-top bg-no-repeat bg-contain" style="background-image: url('/assets/images/home/hercules.png');">
+	<section class="container h-[75vh] md:h-[70vh] md:max-h-[70rem] mx-auto px-4 md:px-0 flex flex-col justify-center items-center">
+		<h1 class="text-5xl md:text-8xl text-center">The <span class="italic font-serif">low-cost</span> exchange<br> on Ethereum.</h1>
+		<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
+		<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8">
+			<button class="btn-primary inline-flex items-center">
+				<span class="mt-px whitespace-nowrap">Get started</span>
 				{% include "partials/arrow-right.njk" %}
-				</button>
-			</div>
+			</button>
+			<button class="btn-outline ml-4">
+				<span class="mt-px whitespace-nowrap">More information</span>
+			</button>
 
-			<ul class="h-min flex bg-primary md:bg-primary/80 text-white md:rounded-lg md:mt-32 md:ml-8 py-4 px-4 md:px-8 space-x-8 text-center">
-				<li>
-					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
-						$5.34<span class="text-base font-light align-middle">m</span>
-					</p>
-					<h3 class="text-sm">Liquidity</h3>
-				</li>
-				<li>
-					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">120</p>
-					<h3 class="text-sm">Trading pairs</h3>
-				</li>
-				<li>
-					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">0.1<span class="text-base font-light align-middle">%</span></p>
-					<h3 class="text-sm">Swapping fee</h3>
-				</li>
-				<li>
-					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">253<span class="text-base font-light align-middle">%</span></p>
-					<h3 class="text-sm">APR</h3>
-				</li>
-			</ul>
-		</section>
-	</div>
-
-	<section class="w-screen bg-primary-dark md:-mt-16 py-20 md:py-60">
-		<div class="flex flex-col m-auto p-auto">
-
-		<h2 class="md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
-			
-			<div class="flex overflow-x-scroll mt-6 md:mt-0 pb-10 hide-scroll-bar">
-				<div class="flex flex-nowrap items-center md:pl-28">
-					<div class="hidden md:inline-block px-3">
-						<h2 class="mr-32 text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
-					</div>
-					
-					<div class="inline-block px-3">
-						<div class="w-64 py-16 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-							<h3 class="text-3xl text-primary">Swap</h3>
-							<p class="mt-4 text-primary">Learn how to swap tokens on DefiPlaza.</p>
-							<button class="mt-16 btn-primary rounded-full">
-								<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-									<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
-								</svg>
-							</button>
-						</div>
-					</div>
-
-					<div class="inline-block px-3">
-						<div class="w-64 py-16 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-							<h3 class="text-3xl text-primary">Swap</h3>
-							<p class="mt-4 text-primary">Learn how to swap tokens on DefiPlaza.</p>
-							<button class="mt-16 btn-primary rounded-full">
-								<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-									<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
-								</svg>
-							</button>
-						</div>
-					</div>
-
-					<div class="inline-block px-3">
-						<div class="w-64 py-16 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-							<h3 class="text-3xl text-primary">Swap</h3>
-							<p class="mt-4 text-primary">Learn how to swap tokens on DefiPlaza.</p>
-							<button class="mt-16 btn-primary rounded-full">
-								<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-									<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
-								</svg>
-							</button>
-						</div>
-					</div>
-
-					<div class="inline-block px-3">
-						<div class="w-64 py-16 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-							<h3 class="text-3xl text-primary">Swap</h3>
-							<p class="mt-4 text-primary">Learn how to swap tokens on DefiPlaza.</p>
-							<button class="mt-16 btn-primary rounded-full">
-								<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-									<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
-								</svg>
-							</button>
-						</div>
-					</div>
-
-					<div class="inline-block px-3">
-						<div class="w-64 py-16 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-							<h3 class="text-3xl text-primary">Swap</h3>
-							<p class="mt-4 text-primary">Learn how to swap tokens on DefiPlaza.</p>
-							<button class="mt-16 btn-primary rounded-full">
-								<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-									<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
-								</svg>
-							</button>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-
-		<div class="flex flex-wrap items-center mx-4 md:mx-0 md:ml-28 mt-15 text-white">
-			<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="w-100">
-			<div class="mx-auto md:ml-32">
-				<h3 class="text-2xl">Are you feeling lost?</h3>
-				<p class="mt-2">Make sure to check out our support section.</p>
-				<button class="btn-white rounded-full mt-4">
-					Get support
-					{% include "partials/arrow-right.njk" %}
-				</button>
-			</div>
+			{% include "partials/socials.njk" %}
 		</div>
 	</section>
 
-	<section class="w-screen mx-auto bg-primary-dark">
-		<h2 class="text-4xl text-white text-center">
-			<strong>Our roadmap.</strong> This is what keeps us busy.</h2>
-
-		<div class="mt-15"></div>
-	</section>
-
-	<section class="w-screen mx-auto bg-primary-dark pt-32">
-		<div class="flex justify-center space-x-8">
-			<h2 class="text-4xl text-white text-center">Latest updates from <strong>DefiPlaza</strong>.</h2>
-			<a href="/blog/" class="btn-primary rounded-full hidden md:inline-flex items-center">
-			All updates
+	<section class="container mx-auto flex flex-col-reverse md:flex-row">
+		<div class="w-100 md:w-1/2 z-10 bg-white md:rounded-tr-3xl md:rounded-br-3xl py-11 md:py-32 px-4 md:px-20 space-y-4">
+			<h2 class="text-3xl md:text-4xl"><strong class="text-primary">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
+			<p>Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
+			<p>What makes DefiPlaza special is that it is highly optimised to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
+			<button class="btn-primary rounded-full inline-flex items-center">
+			Read more
 			{% include "partials/arrow-right.njk" %}
-			</a>
+			</button>
 		</div>
-		<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white rounded-lg divide-y divide-primary">
-			{% for post in posts %}
-				<li class="py-8">
-					<h3 class="text-primary-dark font-bold text-2xl">
-						<a href="/blog/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
-					</h3>
-					<p class="text-primary text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | htmlDateString }}</p>
-					<div class="mt-2">{{ post.excerpt.rendered | safe }}</div>
-				</li>
-			{% endfor %}
+
+		<ul class="h-min flex bg-primary md:bg-primary/80 text-white md:rounded-lg md:mt-32 md:ml-8 py-4 px-4 md:px-8 space-x-8 text-center">
+			<li>
+				<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
+					$5.34<span class="text-base font-light align-middle">m</span>
+				</p>
+				<h3 class="text-sm">Liquidity</h3>
+			</li>
+			<li>
+				<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">120</p>
+				<h3 class="text-sm">Trading pairs</h3>
+			</li>
+			<li>
+				<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">0.1<span class="text-base font-light align-middle">%</span></p>
+				<h3 class="text-sm">Swapping fee</h3>
+			</li>
+			<li>
+				<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">253<span class="text-base font-light align-middle">%</span></p>
+				<h3 class="text-sm">APR</h3>
+			</li>
 		</ul>
 	</section>
+</div>
 
-	{% endblock%}
+<section class="w-screen h-screen bg-primary-dark md:-mt-16 py-20 md:py-60" id="usps">
+	<div class="flex flex-col m-auto p-auto">
+
+	<h2 class="md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
+		
+		<div class="flex items-stretch overflow-x-scroll mt-6 md:mt-0 pb-10 hide-scroll-bar">
+			<div class="flex flex-nowrap items-center md:pl-28" id="uspSlider">
+				<div class="hidden md:block px-3">
+					<h2 class="mr-32 text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
+				</div>
+
+				{% for section in helpsections %}
+				{# <div class="inline-block px-3"> #}
+					<div class="h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+						<h3 class="text-3xl text-primary">{{ section.name }}</h3>
+						<p class="h-max mt-4 text-primary">{{ section.description }}</p>
+						<a href="/help/{{ section.slug }}" class="mt-16 btn-primary rounded-full">
+							<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+								<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
+							</svg>
+						</a>
+					</div>
+				{# </div> #}
+				{% endfor %}
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="flex flex-wrap items-center mx-4 md:mx-0 md:ml-28 mt-15 text-white">
+		<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="w-100">
+		<div class="mx-auto md:ml-32">
+			<h3 class="text-2xl">Are you feeling lost?</h3>
+			<p class="mt-2">Make sure to check out our support section.</p>
+			<div class="flex space-between-4">
+				<button class="btn-white rounded-full mt-4">
+					Get Support
+					{% include "partials/arrow-right.njk" %}
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="w-screen mx-auto bg-primary-dark">
+	<h2 class="text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
+
+	<div class="container flex overflow-x-scroll mt-14 pb-10 hide-scroll-bar">
+			<div class="relative flex flex-nowrap items-stretch">
+				{# <p class="absolute m-auto top-0 bottom-0 text-9xl left-16 text-primary z-10">Past</p>
+				<p class="absolute">Future</p> #}
+
+			{% for roadmap in roadmaps %}
+				{% if loop.index0 % 4 == 0 %}
+					{% set margin = 'mt-8' %}
+				{% elif loop.index0 % 4 == 1 or loop.index0 % 4 == 3 %}
+					{% set margin = 'mt-80' %}
+				{% elif loop.index0 % 4 == 2 %}
+					{% set margin = 'mt-32' %}
+				{% endif %}
+
+				<div class="w-40 overflow-x-visible border-l border-dashed border-primary ml-4 pb-8">
+					<div class="relative bg-white rounded-lg w-80 min-h-40 {{ margin }} ml-6 p-6 pr-8">
+						<div class="absolute top-5 -left-10 rounded-full w-8 h-8 bg-primary"></div>
+						{% if loop.index0 % 4 == 2 %}
+						<div class="absolute w-4 h-4 bg-white -top-16 left-[93px] rounded-full"></div>
+						<div class="absolute w-0.5 h-16 bg-white -top-16 left-[100px]"></div>
+						<div class="absolute w-0.5 h-24 bg-white -bottom-24 left-[100px]"></div>
+						<div class="absolute w-4 h-4 bg-white -bottom-24 left-[93px] rounded-full"></div>
+						{% endif %}
+
+						<h3 class="text-lg text-primary-dark"><Strong>{{ roadmap.acf.roadmap_item_date }}</strong> {{ roadmap.title.rendered | safe }}</h3>
+						<p class="text-xs mt-4">{{ roadmap.excerpt.rendered | striptags }}</p>
+					</div>
+				</div>
+
+				{% if loop.index0 % 2 == 1 or loop.index0 % 4 == 2 %}
+				<div class="w-40 h-full overflow-x-visible border-l border-dashed border-primary ml-4 pb-8">&nbsp;</div>
+				{% endif %}
+
+			{% endfor %}				
+			</div>
+		</div>
+</section>
+
+<section class="w-screen mx-auto bg-primary-dark pt-32">
+	<div class="flex justify-center space-x-8">
+		<h2 class="text-4xl text-white text-center">Latest updates from <strong>DefiPlaza</strong>.</h2>
+		<a href="/blog/" class="btn-primary rounded-full hidden md:inline-flex items-center">
+		All updates
+		{% include "partials/arrow-right.njk" %}
+		</a>
+	</div>
+	<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white rounded-lg divide-y divide-primary">
+		{% for post in posts %}
+			<li class="py-8">
+				<h3 class="text-primary-dark font-bold text-2xl">
+					<a href="/blog/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
+				</h3>
+				<p class="text-primary text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | htmlDateString }}</p>
+				<div class="mt-2">{{ post.excerpt.rendered | safe }}</div>
+			</li>
+		{% endfor %}
+	</ul>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+
+<script>
+var sliderTimelineAccessoires = gsap.timeline({
+	scrollTrigger: {
+		trigger: '#usps',
+		scrub: 1,
+		stagger: 25,
+		pin: '#usps',
+		start: 'center center',
+		end: '100%'
+	}})
+sliderTimelineAccessoires.to("#uspSlider", {x: "-1450px"})
+</script>
+
+{% endblock%}
