@@ -1,17 +1,10 @@
----
-pagination:
-  data: posts
-  size: 7
-  alias: posts
----
 
 {% extends 'layouts/default.njk' %}
-{%- from "macros/button.njk" import button -%}
 
-{% set title = "Posts" %}
+{% set title = "DefiPlaza - the low-cost exchange" %}
 
 {% block content %}
-<div class="bg-right-top bg-no-repeat bg-contain" style="background-image: url('/assets/images/home/hercules.png');">
+<div class="bg-fixed bg-right-top bg-no-repeat bg-contain" style="background-image: url('/assets/images/home/hercules.png');">
 	<section class="container h-[75vh] md:h-[70vh] md:max-h-[70rem] mx-auto px-4 md:px-0 flex flex-col justify-center items-center">
 		<h1 class="text-5xl md:text-8xl text-center">The <span class="italic font-serif">low-cost</span> exchange<br> on Ethereum.</h1>
 		<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
@@ -62,13 +55,13 @@ pagination:
 	</section>
 </div>
 
-<section class="w-screen h-screen bg-primary-dark md:-mt-16 py-20 md:py-60" id="usps">
+<section class="w-screen bg-primary-dark md:-mt-16 py-20 md:py-60">
 	<div class="flex flex-col m-auto p-auto">
 
 	<h2 class="md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
 		
 		<div class="flex items-stretch overflow-x-scroll mt-6 md:mt-0 pb-10 hide-scroll-bar">
-			<div class="flex flex-nowrap items-center md:pl-28" id="uspSlider">
+			<div class="flex flex-nowrap items-center md:pl-28">
 				<div class="hidden md:block px-3">
 					<h2 class="mr-32 text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
 				</div>
@@ -106,11 +99,12 @@ pagination:
 	</div>
 </section>
 
-<section class="w-screen mx-auto bg-primary-dark">
-	<h2 class="text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
+<section class="min-h-screen w-screen mx-auto flex items-center bg-primary-dark" id="roadmapContainer">
+	<div>
+		<h2 class="mt-20 text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
 
-	<div class="container flex overflow-x-scroll mt-14 pb-10 hide-scroll-bar">
-			<div class="relative flex flex-nowrap items-stretch">
+		<div class="container flex overflow-x-scroll mt-14 pb-10 hide-scroll-bar" id="roadmap">
+			<div class="relative flex flex-nowrap items-stretch" id="roadmapItems">
 				{# <p class="absolute m-auto top-0 bottom-0 text-9xl left-16 text-primary z-10">Past</p>
 				<p class="absolute">Future</p> #}
 
@@ -145,6 +139,7 @@ pagination:
 			{% endfor %}				
 			</div>
 		</div>
+	</div>
 </section>
 
 <section class="w-screen mx-auto bg-primary-dark pt-32">
@@ -156,12 +151,12 @@ pagination:
 		</a>
 	</div>
 	<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white rounded-lg divide-y divide-primary">
-		{% for post in posts %}
+		{% for post in updates %}
 			<li class="py-8">
 				<h3 class="text-primary-dark font-bold text-2xl">
 					<a href="/blog/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
 				</h3>
-				<p class="text-primary text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | htmlDateString }}</p>
+				<p class="text-primary text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
 				<div class="mt-2">{{ post.excerpt.rendered | safe }}</div>
 			</li>
 		{% endfor %}
@@ -172,16 +167,31 @@ pagination:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
 <script>
-var sliderTimelineAccessoires = gsap.timeline({
+{# var sliderTimelineAccessoires = gsap.timeline({
 	scrollTrigger: {
-		trigger: '#usps',
+		trigger: '#roadmapContainer',
 		scrub: 1,
 		stagger: 25,
-		pin: '#usps',
+		pin: '#roadmap',
 		start: 'center center',
 		end: '100%'
 	}})
-sliderTimelineAccessoires.to("#uspSlider", {x: "-1450px"})
+sliderTimelineAccessoires.to("#roadmapItems", {x: "-1000px"}) #}
+
+gsap.to("#roadmapItems", {
+		xPercent: -100, 
+		x: () => innerWidth,
+		ease: "none",
+		scrollTrigger: {
+		trigger: "#roadmapContainer",
+		start: "center center",
+		end: () => innerWidth * 4,
+		scrub: true,
+		pin: true,
+		invalidateOnRefresh: true,
+		anticipatePin: 1
+	}
+});
 </script>
 
 {% endblock%}

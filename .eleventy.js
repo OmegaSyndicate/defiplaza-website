@@ -42,8 +42,16 @@ module.exports = function (eleventyConfig) {
 	});
 
 	// Date formatting filter
-	eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-		return new Date(dateObj).toISOString().split('T')[0];
+	eleventyConfig.addFilter('wpDateToString', (dateString) => {
+		return dateString;
+		
+		const dateTime = dateString.split('T');
+
+		const dateItems = dateTime[0].split('-');
+
+		const date = new Date(dateItems[0], dateItems[1], dateItems[2]);
+
+		return new date.toLocaleDateString('default');
 	});
 
 	// Display 404 page in BrowserSnyc
