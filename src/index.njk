@@ -4,8 +4,10 @@
 {% set title = "DefiPlaza - the low-cost exchange" %}
 
 {% block content %}
-<div class="bg-fixed bg-right-top bg-no-repeat bg-contain" style="background-image: url('/assets/images/home/hercules.png');">
-	<section class="container h-[75vh] md:h-[70vh] md:max-h-[70rem] mx-auto px-4 md:px-0 flex flex-col justify-center items-center">
+<div class="relative" id="heroSection">
+	<div class="fixed top-0 -right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0" style="background-image: url('/assets/images/home/sequence.png'); background-size: auto 90vh;" id="sequence">&nbsp;</div>
+
+	<section class="relative container h-[75vh] md:h-[70vh] md:max-h-[70rem] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10">
 		<h1 class="text-5xl md:text-8xl text-center">The <span class="italic font-serif">low-cost</span> exchange<br> on Ethereum.</h1>
 		<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
 		<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8">
@@ -21,7 +23,7 @@
 		</div>
 	</section>
 
-	<section class="container mx-auto flex flex-col-reverse md:flex-row">
+	<section class="relative container mx-auto flex flex-col-reverse md:flex-row">
 		<div class="w-100 md:w-1/2 z-10 bg-white md:rounded-tr-3xl md:rounded-br-3xl py-11 md:py-32 px-4 md:px-20 space-y-4">
 			<h2 class="text-3xl md:text-4xl"><strong class="text-primary">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
 			<p>Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
@@ -32,7 +34,8 @@
 			</button>
 		</div>
 
-		<ul class="h-min flex bg-primary md:bg-primary/80 text-white md:rounded-lg md:mt-32 md:ml-8 py-4 px-4 md:px-8 space-x-8 text-center">
+		<div class="relative md:mt-32 md:ml-8 ">
+		<ul class="fixed bottom-8 right-8 max-h-min flex bg-primary md:bg-primary/80 text-white md:rounded-lg py-4 px-4 md:px-8 space-x-8 text-center">
 			<li>
 				<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 					$5.34<span class="text-base font-light align-middle">m</span>
@@ -52,10 +55,11 @@
 				<h3 class="text-sm">APR</h3>
 			</li>
 		</ul>
+		</div>
 	</section>
 </div>
 
-<section class="w-screen bg-primary-dark md:-mt-16 py-20 md:py-60">
+<section class="relative w-screen bg-primary-dark md:-mt-16 py-20 md:py-60">
 	<div class="flex flex-col m-auto p-auto">
 
 	<h2 class="md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
@@ -99,7 +103,7 @@
 	</div>
 </section>
 
-<section class="min-h-screen w-screen mx-auto flex items-center bg-primary-dark" id="roadmapContainer">
+<section class="relative min-h-screen w-screen mx-auto flex items-center bg-primary-dark" id="roadmapContainer">
 	<div>
 		<h2 class="mt-20 text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
 
@@ -142,7 +146,7 @@
 	</div>
 </section>
 
-<section class="w-screen mx-auto bg-primary-dark pt-32">
+<section class="relative w-screen mx-auto bg-primary-dark pt-32">
 	<div class="flex justify-center space-x-8">
 		<h2 class="text-4xl text-white text-center">Latest updates from <strong>DefiPlaza</strong>.</h2>
 		<a href="/blog/" class="btn-primary rounded-full hidden md:inline-flex items-center">
@@ -177,6 +181,21 @@
 		end: '100%'
 	}})
 sliderTimelineAccessoires.to("#roadmapItems", {x: "-1000px"}) #}
+
+var frame_count  = 11,
+    offset_value = '90';
+
+gsap.to("#sequence", {
+  backgroundPosition: (-offset_value * frame_count * 2) + "vh 50%",
+  ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
+  scrollTrigger: {
+    trigger: "#heroSection",
+    start: "top top",
+    end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
+    pin: false,
+    scrub: true
+  }
+});
 
 gsap.to("#roadmapItems", {
 		xPercent: -100, 
