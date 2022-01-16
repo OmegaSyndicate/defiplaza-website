@@ -43,15 +43,9 @@ module.exports = function (eleventyConfig) {
 
 	// Date formatting filter
 	eleventyConfig.addFilter('wpDateToString', (dateString) => {
-		return dateString;
-		
-		const dateTime = dateString.split('T');
+		const date = new Date(dateString);
 
-		const dateItems = dateTime[0].split('-');
-
-		const date = new Date(dateItems[0], dateItems[1], dateItems[2]);
-
-		return new date.toLocaleDateString('default');
+		return date.toLocaleDateString('default', { year: 'numeric', month: 'long', day: 'numeric' });
 	});
 
 	// Display 404 page in BrowserSnyc
