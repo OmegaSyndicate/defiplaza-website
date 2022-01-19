@@ -1,6 +1,10 @@
-
+---
+pagination:
+  data: updates
+  size: 5
+  alias: latest_updates
+---
 {% extends 'layouts/default.njk' %}
-
 {% set title = "DefiPlaza - the low-cost exchange" %}
 
 {% block content %}
@@ -155,10 +159,12 @@
 		</a>
 	</div>
 	<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white rounded-lg divide-y divide-primary">
-		{% for post in updates %}
+		{# {% set latest_updates = updates | slice(3) %} #}
+		{# {% for post in latest_updates[0] %} #}
+		{% for post in latest_updates %}
 			<li class="py-8">
 				<h3 class="text-primary-700 font-bold text-2xl">
-					<a href="/blog/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
+					<a href="/update/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
 				</h3>
 				<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
 				<div class="mt-2">{{ post.excerpt.rendered | safe }}</div>

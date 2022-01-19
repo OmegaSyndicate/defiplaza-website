@@ -1,0 +1,24 @@
+---
+pagination:
+  data: tokens
+  addAllPagesToCollections: true
+permalink: '/tokens/'
+---
+
+<div class="flex">
+{%- for token in tokens %}
+<div class="">
+	<a href="/token/{{ token.symbol }}/">
+		<img src="/assets/images/tokens/{{ token.symbol }}/.svg">
+		<span></span>
+	</a>
+{%- endfor %}
+</ul>
+
+
+{% if pagination.href.previous %}
+  <a href="{{pagination.href.previous}}">Previous Page</a>
+{% endif %}
+{% if pagination.href.next %}
+  <a href="{{pagination.href.next}}">Next Page</a>
+{% endif %}
