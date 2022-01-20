@@ -1,14 +1,12 @@
 ---
 pagination:
-  data: updates
-  size: 5
+  data: posts
+  size: 10
   alias: posts
   addAllPagesToCollections: true
-layout: 'layouts/default.njk'
-permalink: '/update/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}/'
+permalink: '/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}/'
 ---
 
-<h1>Latest updates from DefiPlaza</h1>
 <ul>
 {%- for post in posts %}
 <li class="py-8">
@@ -28,5 +26,3 @@ permalink: '/update/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber +
 {% if pagination.href.next %}
   <a href="{{pagination.href.next}}">Next Page</a>
 {% endif %}
-
-<h2>Latest blog posts</h2>
