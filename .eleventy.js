@@ -48,6 +48,33 @@ module.exports = function (eleventyConfig) {
 		return date.toLocaleDateString('default', { year: 'numeric', month: 'long', day: 'numeric' });
 	});
 
+	eleventyConfig.addFilter('excerpt', (post) => {
+		const content = post.replace(/(<([^>]+)>)/gi, '');
+		return content.substr(0, content.lastIndexOf(' ', 200)) + '...';
+	});
+
+	/**
+	 * This filter intakes a string, such as for a page title, and
+	 * inserts a non-breaking space - nbsp; - between the last two words
+	 * to prevent a single word dangling on the last line (called an "orphan" by typographers).
+	 */
+	eleventyConfig.addFilter('addNbsp', (str) => {
+		if (!str) {
+			return;
+		}
+		let title = str.replace(/((.*)\s(.*))$/g, '$2&nbsp;$3');
+		title = title.replace(/"(.*)"/g, '\\"$1\\"');
+		return title;
+	});
+
+	/**
+	 * Return a subset of array items limited to the passed number.
+	 * Usage: | limit(3)
+	 */
+	eleventyConfig.addFilter('limit', function (arr, limit) {
+		return arr.slice(0, limit);
+	});
+
 	// Display 404 page in BrowserSnyc
 	eleventyConfig.setBrowserSyncConfig({
 		callbacks: {
