@@ -9,7 +9,7 @@ pagination:
 
 {% block content %}
 <div class="relative -mt-[70px] pt-[70px]" id="heroSection">
-	<div class="fixed top-0 right-[25%]; md:-right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0" style="background-image: url('/assets/images/home/sequence.png'); background-size: auto 90vh;" id="sequence">&nbsp;</div>
+	<div class="fixed top-0 right-[25%]; md:-right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0" style="background-image: url('/assets/images/home/sequence-2-min.png'); background-size: auto 90vh;" id="sequence">&nbsp;</div>
 
 	<section class="relative container h-[75vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10">
 		<h1 class="text-5xl md:text-8xl text-center">The <span class="italic font-serif">low-cost</span> exchange<br> on Ethereum.</h1>
@@ -64,9 +64,9 @@ pagination:
 </div>
 
 <section class="relative w-screen bg-primary-700 md:-mt-12 py-20 md:py-60">
-	<div class="flex flex-col m-auto p-auto">
+	<div class="container flex flex-col mx-auto p-auto">
 
-	<h2 class="md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
+		<h2 class="md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
 		
 		<div class="flex items-stretch overflow-x-scroll mt-6 md:mt-0 pb-10 hide-scroll-bar">
 			<div class="flex flex-nowrap items-center md:pl-28">
@@ -92,7 +92,7 @@ pagination:
 		</div>
 	</div>
 
-	<div class="flex flex-wrap items-center mx-4 md:mx-0 md:ml-28 mt-15 text-white">
+	<div class="border border-white container mx-auto flex flex-wrap items-center md:pl-28 mt-15 text-white">
 		<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="w-100">
 		<div class="mx-auto md:ml-32">
 			<h3 class="text-2xl">Are you feeling lost?</h3>
@@ -108,31 +108,31 @@ pagination:
 </section>
 
 <section class="relative min-h-screen w-screen mx-auto flex items-center bg-primary-700" id="roadmapContainer">
-	<div>
+	<div class="mx-auto border border-red-500">
 		<h2 class="mt-20 text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
 
-		<div class="container flex overflow-x-scroll mt-14 pb-10 hide-scroll-bar" id="roadmap">
-			<div class="relative flex flex-nowrap items-stretch" id="roadmapItems">
+		<div class="container mx-auto flex overflow-x-scroll mt-14 pb-10 hide-scroll-bar" id="roadmap">
+			<div class="relative flex flex-wrap md:flex-nowrap items-stretch" id="roadmapItems">
 				{# <p class="absolute m-auto top-0 bottom-0 text-9xl left-16 text-primary-500 z-10">Past</p>
 				<p class="absolute">Future</p> #}
 
 			{% for roadmap in roadmaps %}
 				{% if loop.index0 % 4 == 0 %}
-					{% set margin = 'mt-8' %}
+					{% set margin = 'md:mt-8' %}
 				{% elif loop.index0 % 4 == 1 or loop.index0 % 4 == 3 %}
-					{% set margin = 'mt-80' %}
+					{% set margin = 'md:mt-80' %}
 				{% elif loop.index0 % 4 == 2 %}
-					{% set margin = 'mt-32' %}
+					{% set margin = 'md:mt-32' %}
 				{% endif %}
 
-				<div class="w-40 overflow-x-visible border-l border-dashed border-primary-300 ml-4 pb-8">
-					<div class="relative bg-white rounded-lg w-80 min-h-40 {{ margin }} ml-6 p-6 pr-8">
+				<div class="w-100 md:w-40 overflow-x-visible border-l border-dashed border-primary-300 ml-4 md:pb-8">
+					<div class="relative bg-white rounded-lg w-80 min-h-40 mt-4 {{ margin }} ml-6 p-6 pr-8">
 						<div class="absolute top-5 -left-10 rounded-full w-8 h-8 bg-primary-300"></div>
 						{% if loop.index0 % 4 == 2 %}
-						<div class="absolute w-4 h-4 bg-white -top-16 left-[93px] rounded-full"></div>
-						<div class="absolute w-0.5 h-16 bg-white -top-16 left-[100px]"></div>
-						<div class="absolute w-0.5 h-24 bg-white -bottom-24 left-[100px]"></div>
-						<div class="absolute w-4 h-4 bg-white -bottom-24 left-[93px] rounded-full"></div>
+						<div class="hidden md:block absolute w-4 h-4 bg-white -top-16 left-[93px] rounded-full"></div>
+						<div class="hidden md:block absolute w-0.5 h-16 bg-white -top-16 left-[100px]"></div>
+						<div class="hidden md:block absolute w-0.5 h-24 bg-white -bottom-24 left-[100px]"></div>
+						<div class="hidden md:block absolute w-4 h-4 bg-white -bottom-24 left-[93px] rounded-full"></div>
 						{% endif %}
 
 						<h3 class="text-lg text-primary-700"><Strong>{{ roadmap.acf.roadmap_item_date }}</strong> {{ roadmap.title.rendered | safe }}</h3>
@@ -141,7 +141,7 @@ pagination:
 				</div>
 
 				{% if loop.index0 % 2 == 1 or loop.index0 % 4 == 2 %}
-				<div class="w-40 h-full overflow-x-visible border-l border-dashed border-primary-300 ml-4 pb-8">&nbsp;</div>
+				<div class="hidden md:block w-40 h-full overflow-x-visible border-l border-dashed border-primary-300 ml-4 pb-8">&nbsp;</div>
 				{% endif %}
 
 			{% endfor %}				
@@ -227,7 +227,7 @@ gsap.timeline({scrollTrigger: {
 }})
 
 // Roadmap horizontal scroll
-gsap.to("#roadmapItems", {
+{# gsap.to("#roadmapItems", {
 	xPercent: -100, 
 	x: () => innerWidth,
 	ease: "none",
@@ -240,7 +240,7 @@ gsap.to("#roadmapItems", {
 		invalidateOnRefresh: true,
 		anticipatePin: 1
 	}
-});
+}); #}
 </script>
 
 {% endblock%}
