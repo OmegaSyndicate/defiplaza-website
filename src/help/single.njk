@@ -1,0 +1,19 @@
+---
+layout: 'layouts/default.njk'
+pagination:
+  data: helps
+  size: 1
+  alias: post
+  addAllPagesToCollections: true
+permalink: '/help/{{ post.slug }}/'
+---
+
+<section class="container mx-auto">
+  <h2 class="text-4xl font-bold text-primary-500">{{ post._embedded["wp:term"][0].name }}</h2>
+	<h1 class="text-4xl font-light">{{ post.title.rendered | safe }}</h1>
+
+  <article class="prose mt-10">
+    {{ post.content.rendered | safe }}
+  </article>
+</section>
+

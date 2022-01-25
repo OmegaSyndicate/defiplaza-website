@@ -1,32 +1,56 @@
 ---
+layout: layouts/default.njk
 pagination:
   data: updates
-  size: 10
-  alias: posts
+  size: 9
+  alias: updates
   addAllPagesToCollections: true
-layout: 'layouts/default.njk'
 permalink: '/update/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}/'
 ---
 
-<h1>Latest updates from DefiPlaza</h1>
-<ul>
-{%- for post in posts %}
-<li class="py-8">
-	<h3 class="text-primary-700 font-bold text-2xl">
-		<a href="/update/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
-	</h3>
-	<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
-	<div class="mt-2">{{ post.excerpt.rendered | safe }}</div>
-</li>
-{%- endfor %}
-</ul>
+<section class="container mx-auto">
+	<h1 class="text-center text-6xl font-light">Latest updates from <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>
 
+	<div class="relative grid grid-cols-3 gap-4 mt-16 p-20 bg-primary-700 rounded-3xl overflow-hidden">
+		<div class="oval-gradient -top-80 -left-80"></div>
 
-{% if pagination.href.previous %}
-  <a href="{{pagination.href.previous}}">Previous Page</a>
-{% endif %}
-{% if pagination.href.next %}
-  <a href="{{pagination.href.next}}">Next Page</a>
-{% endif %}
+		{%- from "macros/card.njk" import card -%}
 
-<h2>Latest blog posts</h2>
+			{% for post in updates %}
+			{{ card({
+					title: post.title.rendered,
+					text: [post._embedded.author[0].name, " - ", post.date | wpDateToString] | join,
+					url: ["/update/", post.slug] | join
+				})
+			}}
+			{% endfor %}
+
+			<div class="mt-12 text-center">
+				{% if pagination.href.previous %}
+					<a href="{{pagination.href.previous}}" class="btn-white rounded-full">Previous Page</a>
+				{% endif %}
+				{% if pagination.href.next %}
+					<a href="{{pagination.href.next}}" class="btn-white rounded-full">Next Page</a>
+				{% endif %}
+			</div>
+
+	</div>
+</section>
+
+<section class="mt-32">
+	<h2 class="text-4xl font-light text-center">Latest blog posts</h2>
+
+	<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white rounded-lg divide-y divide-primary">
+			{# {% set latest_updates = updates | slice(3) %} #}
+			{# {% for post in latest_updates[0] %} #}
+			{% for post in posts %}
+				<li class="py-8">
+					<h3 class="text-primary-500 font-bold text-2xl">
+						<a href="/blog/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
+					</h3>
+					<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
+					<div class="mt-2">{{ post.content.rendered | excerpt | safe }}</div>
+				</li>
+			{% endfor %}
+		</ul>
+</section>

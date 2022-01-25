@@ -75,6 +75,30 @@ module.exports = function (eleventyConfig) {
 		return arr.slice(0, limit);
 	});
 
+	eleventyConfig.addFilter('category', function (arr, cat_id) {
+		var posts = [];
+
+		for (post of arr) {
+
+			
+
+			if (!post.howto_category) {
+				continue;
+			}
+			if (post.howto_category.indexOf(cat_id) == -1) {
+				continue;
+			}
+
+			posts.push(post);
+		}
+
+		console.log('***', cat_id, posts.length);
+
+		return posts;
+	});
+
+	
+
 	// Display 404 page in BrowserSnyc
 	eleventyConfig.setBrowserSyncConfig({
 		callbacks: {

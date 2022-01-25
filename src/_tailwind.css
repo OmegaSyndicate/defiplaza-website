@@ -35,8 +35,8 @@
 
 	.oval-gradient {
 		position: absolute;
-		width: 672px;
-		height: 720px;
+		width: 40rem;
+		height: 40rem;
 		opacity: 0.5;
 		-webkit-filter: blur(50px);
 		filter: blur(50px);
