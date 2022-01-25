@@ -1,8 +1,8 @@
-<footer class="pt-20 pb-8 relative">	
-	<section class="container mx-auto flex flex-col md:flex-row justify-center items-center">
+<footer class="pt-20 pb-8 relative ">	
+	<section class="container mx-auto flex flex-col md:flex-row justify-center items-center text-primary-500 {% if page.url == "/" %}text-white{% endif %}">
 		<a class="hidden md:flex" href="/"><img src="/assets/images/logo/icon.png" srcset="/assets/images/logo/icon@2x.png 2x, /assets/images/logo/icon@3x.png 3x" class="w-100 mr-8"></a>
 
-		<ul class="flex flex-wrap justify-center text-white">
+		<ul class="flex flex-wrap justify-center text-black {% if page.url == "/" %}text-white{% endif %}">
 			<li class="px-4"><a href="/">About</a></li>
 			<li class="px-4"><a href="/">Blog</a></li>
 			<li class="px-4"><a href="/">Contact</a></li>
@@ -16,7 +16,7 @@
 		{% include "partials/socials.njk" %}
 	</section>
 
-	<section class="container mx-auto mt-6 flex flex-wrap justify-center items-center text-white">
+	<section class="container mx-auto mt-6 flex flex-wrap justify-center items-center text-primary-500 {% if page.url == "/" %}text-white{% endif %}">
 		<p>DFP2 Listed on</p>
 		<nav>
 			<ul class="flex justify-center text-white">

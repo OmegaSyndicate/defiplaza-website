@@ -5,20 +5,20 @@ const fs = require('fs');
 const lazyImages = require('eleventy-plugin-lazyimages');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 
-const UpgradeHelper = require('@11ty/eleventy-upgrade-help');
-
 // Strip Ghost domain from urls
 const stripDomain = (url) => {
    return url.replace(process.env.GHOST_API_URL, '');
 };
 
 module.exports = function (eleventyConfig) {
-	eleventyConfig.addPlugin(UpgradeHelper);
 
 	eleventyConfig.addWatchTarget('./tailwind.config.js');
 	eleventyConfig.addWatchTarget('./src/assets/css/_tailwind.css');
 
 	eleventyConfig.addPassthroughCopy('./src/assets');
+
+	eleventyConfig.addLayoutAlias('default', 'layouts/default.njk');
+	eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
 
 	// Minify HTML
 	//   config.addTransform('htmlmin', htmlMinTransform);

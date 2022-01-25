@@ -1,12 +1,15 @@
 ---
-layout: layouts/bare.njk
 pagination:
   data: updates
   size: 5
   alias: latest_updates
 ---
+{% extends 'layouts/bare.njk' %}
+
+
 {% set title = "DefiPlaza - the low-cost exchange" %}
 
+{% block bare %}
 {% include "partials/header.njk" %}
 
 <div class="relative -mt-[70px] pt-[70px] bg-background-500" id="heroSection">
@@ -17,7 +20,7 @@ pagination:
 	<section class="relative container h-[75vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10">
 		<h1 class="text-5xl md:text-8xl text-center">The <span class="italic font-serif">low-cost</span> exchange<br> on Ethereum.</h1>
 		<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
-		<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8">
+		<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8 text-primary-500">
 			<button class="btn-primary inline-flex items-center">
 				<span class="mt-px whitespace-nowrap">Get started</span>
 				{% include "partials/arrow-right.njk" %}
@@ -311,3 +314,4 @@ gsap.timeline({scrollTrigger: {
 	}
 }); #}
 </script>
+{% endblock %}

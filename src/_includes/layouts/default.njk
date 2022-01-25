@@ -1,11 +1,13 @@
----
-layout: layouts/bare.njk
----
+{% extends 'layouts/bare.njk' %}
 
-{% include "partials/header.njk" %}
+{% block bare %}
+	{% include "partials/header.njk" %}
 
-<main class="mt-32">
-{{ content | safe }}
-</main>
+	<main class="mt-32">
+		{% block content %}
+		{{ content | safe }}
+		{% endblock %}
+	</main>
 
-{% include "partials/footer.njk" %}
+	{% include "partials/footer.njk" %}
+{% endblock %}
