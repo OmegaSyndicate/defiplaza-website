@@ -7,15 +7,18 @@ module.exports = {
 		},
 		fontFamily: {
 			sans: ['NB_International_Pro', 'sans-serif'],
-			serif: ['Merriweather', 'serif'],
+			serif: ['ivypresto-display', 'serif'],
 		},
 		extend: {
 			colors: {
-				background: '#eeeae1',
+				background: {
+					500: '#e1d6c5',
+					700: '#ebe7de',
+				},
 				primary: {
 					300: '#7c32db',
 					500: '#5d0fc0',
-					700: '#4e1a91',
+					700: '#3d0980',
 				},
 			},
 		},

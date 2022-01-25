@@ -8,7 +8,7 @@ pagination:
 {% set title = "DefiPlaza - the low-cost exchange" %}
 
 {% block content %}
-<div class="relative -mt-[70px] pt-[70px]" id="heroSection">
+<div class="relative -mt-[70px] pt-[70px] bg-background-500" id="heroSection">
 	<div class="fixed top-0 right-[25%]; md:-right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0" style="background-image: url('/assets/images/home/sequence-2-min.png'); background-size: auto 90vh;" id="sequence">&nbsp;</div>
 
 	<section class="relative container h-[75vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10">
@@ -28,18 +28,35 @@ pagination:
 	</section>
 
 	<section class="relative container mx-auto flex flex-col-reverse md:flex-row">
-		<div class="w-100 md:w-1/2 z-10 bg-white md:rounded-tr-3xl md:rounded-br-3xl pb-[25vh] pt-11 md:py-24 px-4 md:px-20 space-y-4">
-			<h2 class="text-3xl md:text-4xl"><strong class="text-primary-500">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
-			<p>Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
-			<p>What makes DefiPlaza special is that it is highly optimised to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
-			<button class="btn-primary rounded-full inline-flex items-center">
+		<div class="w-100 md:w-1/2 z-10 bg-white md:rounded-tr-3xl md:rounded-br-3xl pb-[25vh] pt-11 md:py-24 px-4 md:px-20">
+			<h2 class="text-3xl md:text-4xl"><strong class="font-bold text-primary-500">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
+			<p class="mt-4">Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
+			<p class="mt-4">What makes DefiPlaza special is that it is highly optimised to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
+			<button class="btn-primary rounded-full inline-flex items-center mt-4">
 			Read more
 			{% include "partials/arrow-right.njk" %}
 			</button>
+
+			<hr class="mt-16 border-background-700">
+
+			<div class="mt-16 gs_reveal gs_reveal_fromLeft">
+				<h3 class="text-3xl font-bold text-primary-500">Swap 65% cheaper</h3>
+				<p class="text-3xl font-light">than any other DEX.</p>
+			</div>
+
+			<div class="mt-16 gs_reveal gs_reveal_fromLeft">
+				<h3 class="text-3xl font-bold text-primary-500">Invest in a basket of 16 tokens</h3>
+				<p class="text-3xl font-light">like an ETF fund.</p>
+			</div>
+
+			<div class="mt-16 gs_reveal gs_reveal_fromLeft">
+				<h3 class="text-3xl font-bold text-primary-500">Stake your tokens</h3>
+				<p class="text-3xl font-light">and receive a 200% APR.</p>
+			</div>
 		</div>
 
 		<div class="relative w-full md:w-1/2 z-10">
-			<ul class="absolute z-10 top-0 md:top-24 right-8 w-full md:w-fit h-[25vh] md:h-auto max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-700 md:bg-primary-500/80 text-white md:rounded-lg text-center" id="stats">
+			<ul class="absolute z-10 top-0 md:top-24 right-8 w-full md:w-fit h-[25vh] md:h-auto max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
 				<li>
 					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 						$5.34<span class="text-base font-light align-middle">m</span>
@@ -63,137 +80,163 @@ pagination:
 	</section>
 </div>
 
-<section class="relative w-screen bg-primary-700 md:-mt-12 py-20 md:py-60">
-	<div class="container flex flex-col mx-auto p-auto">
+<div class="relative bg-primary-700 w-screen md:-mt-12 ">
+	<section class="py-20 md:py-60">
+		<div class="container flex flex-col mx-auto p-auto">
 
-		<h2 class="md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
-		
-		<div class="flex items-stretch overflow-x-scroll mt-6 md:mt-0 pb-10 hide-scroll-bar">
-			<div class="flex flex-nowrap items-center md:pl-28">
-				<div class="hidden md:block px-3">
-					<h2 class="mr-32 text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
-				</div>
-
-				{% for section in helpsections %}
-				{# <div class="inline-block px-3"> #}
-					<div class="h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-						<h3 class="text-3xl text-primary-500">{{ section.name }}</h3>
-						<p class="h-max mt-4 text-primary-500">{{ section.description }}</p>
-						<a href="/help/{{ section.slug }}" class="mt-16 btn-primary rounded-full">
-							<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-								<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
-							</svg>
-						</a>
+			<h2 class="md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
+			
+			<div class="flex items-stretch snap-x snap-mandatory overflow-x-auto mt-6 md:mt-0 pb-10 hide-scrollbar">
+				<div class="flex flex-nowrap items-center md:pl-28">
+					<div class="hidden md:block snap-start px-3">
+						<h2 class="mr-32 text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
 					</div>
-				{# </div> #}
-				{% endfor %}
-				
-			</div>
-		</div>
-	</div>
 
-	<div class="border border-white container mx-auto flex flex-wrap items-center md:pl-28 mt-15 text-white">
-		<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="w-100">
-		<div class="mx-auto md:ml-32">
-			<h3 class="text-2xl">Are you feeling lost?</h3>
-			<p class="mt-2">Make sure to check out our support section.</p>
-			<div class="flex space-between-4">
-				<button class="btn-white rounded-full mt-4">
-					Get Support
-					{% include "partials/arrow-right.njk" %}
-				</button>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="relative min-h-screen w-screen mx-auto flex items-center bg-primary-700" id="roadmapContainer">
-	<div class="mx-auto border border-red-500">
-		<h2 class="mt-20 text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
-
-		<div class="container mx-auto flex overflow-x-scroll mt-14 pb-10 hide-scroll-bar" id="roadmap">
-			<div class="relative flex flex-wrap md:flex-nowrap items-stretch" id="roadmapItems">
-				{# <p class="absolute m-auto top-0 bottom-0 text-9xl left-16 text-primary-500 z-10">Past</p>
-				<p class="absolute">Future</p> #}
-
-			{% for roadmap in roadmaps %}
-				{% if loop.index0 % 4 == 0 %}
-					{% set margin = 'md:mt-8' %}
-				{% elif loop.index0 % 4 == 1 or loop.index0 % 4 == 3 %}
-					{% set margin = 'md:mt-80' %}
-				{% elif loop.index0 % 4 == 2 %}
-					{% set margin = 'md:mt-32' %}
-				{% endif %}
-
-				<div class="w-100 md:w-40 overflow-x-visible border-l border-dashed border-primary-300 ml-4 md:pb-8">
-					<div class="relative bg-white rounded-lg w-80 min-h-40 mt-4 {{ margin }} ml-6 p-6 pr-8">
-						<div class="absolute top-5 -left-10 rounded-full w-8 h-8 bg-primary-300"></div>
-						{% if loop.index0 % 4 == 2 %}
-						<div class="hidden md:block absolute w-4 h-4 bg-white -top-16 left-[93px] rounded-full"></div>
-						<div class="hidden md:block absolute w-0.5 h-16 bg-white -top-16 left-[100px]"></div>
-						<div class="hidden md:block absolute w-0.5 h-24 bg-white -bottom-24 left-[100px]"></div>
-						<div class="hidden md:block absolute w-4 h-4 bg-white -bottom-24 left-[93px] rounded-full"></div>
-						{% endif %}
-
-						<h3 class="text-lg text-primary-700"><Strong>{{ roadmap.acf.roadmap_item_date }}</strong> {{ roadmap.title.rendered | safe }}</h3>
-						<p class="text-xs mt-4">{{ roadmap.excerpt.rendered | striptags }}</p>
-					</div>
+					{% for section in helpsections %}
+					{# <div class="inline-block px-3"> #}
+						<div class="snap-start h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+							<h3 class="text-3xl font-bold text-primary-500">{{ section.name }}</h3>
+							<p class="h-max mt-4 text-lg">{{ section.description }}</p>
+							<a href="/help/{{ section.slug }}" class="mt-16 btn-primary rounded-full">
+								<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+									<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
+								</svg>
+							</a>
+						</div>
+					{# </div> #}
+					{% endfor %}
+					
 				</div>
-
-				{% if loop.index0 % 2 == 1 or loop.index0 % 4 == 2 %}
-				<div class="hidden md:block w-40 h-full overflow-x-visible border-l border-dashed border-primary-300 ml-4 pb-8">&nbsp;</div>
-				{% endif %}
-
-			{% endfor %}				
 			</div>
 		</div>
-	</div>
-</section>
 
-<section class="relative w-screen mx-auto bg-primary-700 pt-32">
-	<div class="flex justify-center space-x-8">
-		<h2 class="text-4xl text-white text-center">Latest updates from <strong>DefiPlaza</strong>.</h2>
-		<a href="/blog/" class="btn-primary bg-primary-300 rounded-full hidden md:inline-flex items-center">
-		All updates
-		{% include "partials/arrow-right.njk" %}
-		</a>
-	</div>
-	<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white rounded-lg divide-y divide-primary">
-		{# {% set latest_updates = updates | slice(3) %} #}
-		{# {% for post in latest_updates[0] %} #}
-		{% for post in latest_updates %}
-			<li class="py-8">
-				<h3 class="text-primary-700 font-bold text-2xl">
-					<a href="/update/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
-				</h3>
-				<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
-				<div class="mt-2">{{ post.excerpt.rendered | safe }}</div>
-			</li>
-		{% endfor %}
-	</ul>
-</section>
+		<div class="container mx-auto flex flex-wrap items-center md:pl-28 mt-15 text-white">
+			<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="w-100">
+			<div class="mx-auto md:ml-32">
+				<h3 class="text-2xl">Are you feeling lost?</h3>
+				<p class="mt-2">Make sure to check out our support section.</p>
+				<div class="flex space-between-4">
+					<button class="btn-white rounded-full mt-4">
+						Get Support
+						{% include "partials/arrow-right.njk" %}
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="relative min-h-screen w-screen mx-auto flex items-center" id="roadmapContainer">
+		<div class="mx-auto">
+			<h2 class="mt-20 text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
+
+			<div class="container mx-auto flex overflow-x-scroll mt-14 pb-10 hide-scrollbar" id="roadmap">
+				<div class="relative flex flex-wrap md:flex-nowrap items-stretch" id="roadmapItems">
+					{# <p class="absolute m-auto top-0 bottom-0 text-9xl left-16 text-primary-500 z-10">Past</p>
+					<p class="absolute">Future</p> #}
+
+				{% for roadmap in roadmaps %}
+					{% if loop.index0 % 4 == 0 %}
+						{% set margin = 'md:mt-8' %}
+					{% elif loop.index0 % 4 == 1 or loop.index0 % 4 == 3 %}
+						{% set margin = 'md:mt-80' %}
+					{% elif loop.index0 % 4 == 2 %}
+						{% set margin = 'md:mt-32' %}
+					{% endif %}
+
+					<div class="w-100 md:w-40 overflow-x-visible border-l border-dashed border-primary-300 ml-4 md:pb-8">
+						<div class="relative bg-white rounded-lg w-80 min-h-40 mt-4 {{ margin }} ml-6 p-6 pr-8">
+							<div class="absolute top-5 -left-8 rounded-full w-4 h-4 bg-white"></div>
+							{% if loop.index0 % 4 == 2 %}
+							<div class="hidden md:block absolute w-0.5 h-16 bg-white -top-16 left-[100px]"></div>
+							<div class="hidden md:block absolute w-0.5 h-24 bg-white -bottom-24 left-[100px]"></div>
+							{% endif %}
+
+							<h3 class="text-lg text-primary-500"><Strong>{{ roadmap.acf.roadmap_item_date }}</strong> {{ roadmap.title.rendered | safe }}</h3>
+							<p class="text-xs mt-4">{{ roadmap.excerpt.rendered | striptags }}</p>
+						</div>
+					</div>
+
+					{% if loop.index0 % 2 == 1 or loop.index0 % 4 == 2 %}
+					<div class="hidden md:block w-40 h-full overflow-x-visible border-l border-dashed border-primary-300 ml-4 pb-8">&nbsp;</div>
+					{% endif %}
+
+				{% endfor %}				
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="relative w-screen mx-auto pt-32">
+		<div class="flex justify-center space-x-8">
+			<h2 class="text-4xl text-white text-center">Latest updates from <strong>DefiPlaza</strong>.</h2>
+			<a href="/blog/" class="btn-primary bg-primary-300 rounded-full hidden md:inline-flex items-center">
+			All updates
+			{% include "partials/arrow-right.njk" %}
+			</a>
+		</div>
+		<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white rounded-lg divide-y divide-primary">
+			{# {% set latest_updates = updates | slice(3) %} #}
+			{# {% for post in latest_updates[0] %} #}
+			{% for post in latest_updates %}
+				<li class="py-8">
+					<h3 class="text-primary-500 font-bold text-2xl">
+						<a href="/update/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
+					</h3>
+					<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
+					<div class="mt-2">{{ post.content.rendered | excerpt | safe }}</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</section>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
 <script>
-{# var sliderTimelineAccessoires = gsap.timeline({
+var sliderTimelineAccessoires = gsap.timeline({
 	scrollTrigger: {
 		trigger: '#roadmapContainer',
 		scrub: 1,
 		stagger: 25,
-		pin: '#roadmap',
+		pin: '#roadmapContainer',
 		start: 'center center',
 		end: '100%'
 	}})
-sliderTimelineAccessoires.to("#roadmapItems", {x: "-1000px"}) #}
+sliderTimelineAccessoires.to("#roadmapItems", {x: "-1300px"})
 
-var frame_count  = 11,
+function animateFrom(elem, direction) {
+	direction = direction | 1;
+
+	var x = 0,
+		y = direction * 100;
+	if(elem.classList.contains("gs_reveal_fromLeft")) {
+		x = -100;
+		y = 0;
+	} else if(elem.classList.contains("gs_reveal_fromRight")) {
+		x = 100;
+		y = 0;
+	}
+	gsap.fromTo(elem, {x: x, y: y, autoAlpha: 0}, {
+		duration: 1.25,
+		x: 0,
+		y: 0,
+		autoAlpha: 1,
+		ease: "expo",
+		overwrite: "auto"
+	});
+}
+
+function hide(elem) {
+	gsap.set(elem, {autoAlpha: 0});
+}
+
+var frame_count  = 23,
     offset_value = '90';
 
 // Hercules looking up
 gsap.to("#sequence", {
-  backgroundPosition: (-offset_value * frame_count * 2) + "vh 50%",
+  backgroundPosition: (-offset_value * frame_count) + "vh 50%",
   ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
   scrollTrigger: {
     trigger: "#heroSection",
@@ -203,6 +246,23 @@ gsap.to("#sequence", {
     scrub: true
   }
 });
+
+// USPs
+var reveals = gsap.utils.toArray(".gs_reveal");
+for(var i = 0; i < reveals.length; i++) {
+	(function () {
+		var elem = reveals[i];
+		hide(elem); // assure that the element is hidden when scrolled into view
+
+		ScrollTrigger.create({
+			trigger: elem,
+			start: "top center+=200",
+			onEnter: function() { animateFrom(elem) },
+			onEnterBack: function() { animateFrom(elem, -1) },
+			onLeave: function() { hide(elem) } // assure that the element is hidden when scrolled into view
+		});
+	})();
+}
 
 // Stats getting unstuck
 {# gsap.to("#stats", {
