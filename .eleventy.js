@@ -54,20 +54,6 @@ module.exports = function (eleventyConfig) {
 	});
 
 	/**
-	 * This filter intakes a string, such as for a page title, and
-	 * inserts a non-breaking space - nbsp; - between the last two words
-	 * to prevent a single word dangling on the last line (called an "orphan" by typographers).
-	 */
-	eleventyConfig.addFilter('addNbsp', (str) => {
-		if (!str) {
-			return;
-		}
-		let title = str.replace(/((.*)\s(.*))$/g, '$2&nbsp;$3');
-		title = title.replace(/"(.*)"/g, '\\"$1\\"');
-		return title;
-	});
-
-	/**
 	 * Return a subset of array items limited to the passed number.
 	 * Usage: | limit(3)
 	 */
@@ -79,9 +65,7 @@ module.exports = function (eleventyConfig) {
 		var posts = [];
 
 		for (post of arr) {
-
-			
-
+			console.log(post.howto_category);
 			if (!post.howto_category) {
 				continue;
 			}

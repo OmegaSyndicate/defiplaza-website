@@ -14,20 +14,20 @@ pagination:
 
 <div class="relative -mt-[70px] pt-[70px] bg-background-500" id="heroSection">
 	{# Sequence #}
-	<div class="fixed top-0 right-[25%]; md:-right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0" style="background-image: url('/assets/images/home/sequence-2-min.png'); background-size: auto 90vh;" id="sequence">&nbsp;</div>
+	<div class="fixed top-0 right-[25%]; md:-right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0 opacity-75" style="background-image: url('/assets/images/home/sequence-2-min.png'); background-size: auto 90vh;" id="sequence">&nbsp;</div>
 
 	{# Hero #}
 	<section class="relative container h-[75vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10">
 		<h1 class="text-5xl md:text-8xl text-center">The <span class="italic font-serif">low-cost</span> exchange<br> on Ethereum.</h1>
 		<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
 		<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8 text-primary-500">
-			<button class="btn-primary inline-flex items-center">
+			<a href="https://app.defiplaza.net/swap" class="btn-primary inline-flex items-center">
 				<span class="mt-px whitespace-nowrap">Get started</span>
 				{% include "partials/arrow-right.njk" %}
-			</button>
-			<button class="btn-outline ml-4">
+			</a>
+			<a ref="/help/" class="btn-outline ml-4">
 				<span class="mt-px whitespace-nowrap">More information</span>
-			</button>
+			</a>
 
 			{% include "partials/socials.njk" %}
 		</div>
@@ -35,14 +35,14 @@ pagination:
 
 	{# USPs #}
 	<section class="relative container mx-auto flex flex-col-reverse md:flex-row">
-		<div class="w-100 md:w-1/2 z-10 bg-white md:rounded-tr-3xl md:rounded-br-3xl pb-[25vh] pt-11 md:py-24 px-4 md:px-20">
+		<div class="md:w-1/2 z-10 bg-white md:rounded-tr-3xl md:rounded-br-3xl pb-[25vh] pt-11 md:py-24 px-4 md:px-20">
 			<h2 class="text-3xl md:text-4xl"><strong class="font-bold text-primary-500">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
 			<p class="mt-4">Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
-			<p class="mt-4">What makes DefiPlaza special is that it is highly optimised to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
-			<button class="btn-primary rounded-full inline-flex items-center mt-4">
-			Read more
-			{% include "partials/arrow-right.njk" %}
-			</button>
+			<p class="mt-4">What makes DefiPlaza special is a <i>single-contract</i>, <i>highly optimized DEX</i>, designed to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
+			<a href="/blog/making-defi-on-ethereum-affordable-again" class="btn-primary rounded-full inline-flex items-center mt-4">
+				<span class="mt-px whitespace-nowrap">Read more</span>
+				{% include "partials/arrow-right.njk" %}
+			</a>
 
 			<hr class="mt-16 border-background-700">
 
@@ -64,7 +64,7 @@ pagination:
 
 		{# Stats #}
 		<div class="relative w-full md:w-1/2 z-10">
-			<ul class="absolute z-10 top-0 md:top-24 right-8 w-full md:w-fit h-[25vh] md:h-auto max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
+			<ul class="absolute z-10 top-0 md:top-24 md:right-8 w-full md:w-fit h-[25vh] md:h-auto max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
 				<li>
 					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 						$5.34<span class="text-base font-light align-middle">m</span>
@@ -95,7 +95,7 @@ pagination:
 	{# Support #}
 	<section class="container flex flex-col mx-auto p-auto py-20 md:py-60 z-10">
 	
-		<h2 class="md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
+		<h2 class="relative md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
 		
 		<div class="flex items-stretch snap-x snap-mandatory overflow-x-auto mt-6 md:mt-0 pb-10 hide-scrollbar">
 			<div class="flex flex-nowrap items-center md:pl-28">
@@ -124,10 +124,10 @@ pagination:
 				<h3 class="text-2xl">Are you feeling lost?</h3>
 				<p class="mt-2">Make sure to check out our support section.</p>
 				<div class="flex space-between-4">
-					<button class="btn-white rounded-full mt-4">
-						Get Support
+					<a href="/help/" class="btn-white rounded-full mt-4">
+						<span class="mt-px whitespace-nowrap">Get Support</span>
 						{% include "partials/arrow-right.njk" %}
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -152,7 +152,7 @@ pagination:
 						{% set margin = 'md:mt-32' %}
 					{% endif %}
 
-					<div class="w-100 md:w-40 overflow-x-visible border-l border-dashed border-primary-300 ml-4 md:pb-8">
+					<div class="md:w-40 overflow-x-visible border-l border-dashed border-primary-300 ml-4 md:pb-8">
 						<div class="relative bg-white rounded-lg w-80 min-h-40 mt-4 {{ margin }} ml-6 p-6 pr-8">
 							<div class="absolute top-5 -left-8 rounded-full w-4 h-4 bg-white"></div>
 							{% if loop.index0 % 4 == 2 %}
@@ -179,8 +179,8 @@ pagination:
 	<section class="relative w-screen mx-auto pt-32">
 		<div class="flex justify-center space-x-8">
 			<h2 class="text-4xl text-white text-center">Latest updates from <strong>DefiPlaza</strong>.</h2>
-			<a href="/blog/" class="btn-primary bg-primary-300 rounded-full hidden md:inline-flex items-center">
-			All updates
+			<a href="/update/" class="btn-primary bg-primary-300 rounded-full hidden md:inline-flex items-center">
+			<span class="mt-px whitespace-nowrap">All updates</span>
 			{% include "partials/arrow-right.njk" %}
 			</a>
 		</div>
@@ -193,7 +193,7 @@ pagination:
 						<a href="/update/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
 					</h3>
 					<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
-					<div class="mt-2">{{ post.content.rendered | excerpt | safe }}</div>
+					<div class="mt-2 line-clamp-3">{{ post.content.rendered | striptags }}</div>
 				</li>
 			{% endfor %}
 		</ul>
@@ -206,19 +206,25 @@ pagination:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
 <script>
-var sliderTimelineAccessoires = gsap.timeline({
-	scrollTrigger: {
-		trigger: '#roadmapContainer',
-		scrub: 1,
-		stagger: 25,
-		pin: '#roadmapContainer',
-		start: 'center center',
-		end: '100%'
-	}})
-sliderTimelineAccessoires.to("#roadmapItems", {x: "-1300px"})
+// Only scroll roadmap on desktop
+ScrollTrigger.matchMedia({	
+  // desktop
+  "(min-width: 800px)": function() {
+		var sliderTimelineAccessoires = gsap.timeline({
+			scrollTrigger: {
+				trigger: '#roadmapContainer',
+				scrub: 1,
+				stagger: 25,
+				pin: '#roadmapContainer',
+				start: 'center center',
+				end: '100%'
+			}})
+		sliderTimelineAccessoires.to("#roadmapItems", {x: "-1300px"})
+	}
+});
 
 function animateFrom(elem, direction) {
-	direction = direction | 1;
+	direction = direction || 1;
 
 	var x = 0,
 		y = direction * 100;
@@ -290,7 +296,7 @@ for(var i = 0; i < reveals.length; i++) {
 
 gsap.timeline({scrollTrigger: {
 	trigger: "#heroSection",
-    start: "top top +=10rem",
+    start: "top top-=10rem",
     end: "bottom bottom", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
     pin: false,
     scrub: true,

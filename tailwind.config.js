@@ -1,6 +1,6 @@
 module.exports = {
 	mode: 'jit',
-	content: ['dist/**/*.html'],
+	content: ['src/**/*.njk', 'src/**/*.svg'],
 	theme: {
 		container: {
 			center: true,
@@ -23,5 +23,5 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require('@tailwindcss/typography')],
+	plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
 };

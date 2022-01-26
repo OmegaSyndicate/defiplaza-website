@@ -1,0 +1,46 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 406.48 406.48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#New_Gradient_Swatch_1);
+      }
+
+      .cls-2 {
+        fill: url(#New_Gradient_Swatch_1-2);
+      }
+
+      .cls-3 {
+        fill: url(#New_Gradient_Swatch_1-3);
+      }
+
+      .cls-4 {
+        fill: url(#New_Gradient_Swatch_1-4);
+      }
+
+      .cls-5 {
+        fill: url(#New_Gradient_Swatch_1-5);
+      }
+
+      .cls-6 {
+        fill: url(#New_Gradient_Swatch_1-6);
+      }
+    </style>
+    <linearGradient id="New_Gradient_Swatch_1" data-name="New Gradient Swatch 1" x1="88.07" y1="-48.69" x2="88.07" y2="331.85" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#27aae1"/>
+      <stop offset="1" stop-color="#2b3990"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_1-2" x1="132.94" y1="-45.66" x2="132.94" y2="331.49" xlink:href="#New_Gradient_Swatch_1"/>
+    <linearGradient id="New_Gradient_Swatch_1-3" x1="177.8" y1="-43.84" x2="177.8" y2="331.27" xlink:href="#New_Gradient_Swatch_1"/>
+    <linearGradient id="New_Gradient_Swatch_1-4" x1="222.66" y1="-42.91" x2="222.66" y2="331.16" xlink:href="#New_Gradient_Swatch_1"/>
+    <linearGradient id="New_Gradient_Swatch_1-5" x1="267.53" y1="-43.84" x2="267.53" y2="331.27" xlink:href="#New_Gradient_Swatch_1"/>
+    <linearGradient id="New_Gradient_Swatch_1-6" x1="312.39" y1="-45.66" x2="312.39" y2="331.49" xlink:href="#New_Gradient_Swatch_1"/>
+  </defs>
+  <g>
+    <polygon class="cls-1" points="99.56 319.37 99.56 161.31 76.58 182.89 76.58 314.66 99.56 319.37"/>
+    <polygon class="cls-2" points="144.43 328.57 144.43 119.2 121.45 140.77 121.45 323.86 144.43 328.57"/>
+    <polygon class="cls-3" points="189.29 337.77 189.29 77.08 166.31 98.66 166.31 333.06 189.29 337.77"/>
+    <polygon class="cls-4" points="222.66 344.61 234.15 342.26 234.15 56.54 222.66 45.75 211.17 56.54 211.17 342.26 222.66 344.61"/>
+    <polygon class="cls-5" points="279.02 333.06 279.02 98.66 256.04 77.08 256.04 337.77 279.02 333.06"/>
+    <polygon class="cls-6" points="323.88 323.86 323.88 140.77 300.9 119.2 300.9 328.57 323.88 323.86"/>
+  </g>
+</svg>

@@ -1,4 +1,5 @@
 ---
+layout: default
 pagination:
   data: tokens
   size: 24
@@ -6,20 +7,17 @@ pagination:
 permalink: '/tokens/'
 ---
 
-<div class="flex">
-{%- for token in tokens %}
-<div class="">
-	<a href="/token/{{ token.symbol }}/">
-		<img src="/assets/images/tokens/{{ token.symbol }}/.svg">
-		<span></span>
-	</a>
-{%- endfor %}
-</ul>
+<section class="container mx-auto">
+	<h1 class="text-center text-6xl font-light">Tokens on <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>
 
+    <div class="grid grid-cols-3 gap-4">
+    {%- for token in tokens %}
+    <div class="">
+      <a href="/token/{{ token.symbol | lower }}/">
+        <img src="/assets/images/tokens/{{ token.symbol | lower }}.svg">
+        <span></span>
+      </a>
+    {%- endfor %}
+    </div>
 
-{% if pagination.href.previous %}
-  <a href="{{pagination.href.previous}}">Previous Page</a>
-{% endif %}
-{% if pagination.href.next %}
-  <a href="{{pagination.href.next}}">Next Page</a>
-{% endif %}
+</section>

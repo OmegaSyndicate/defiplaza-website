@@ -1,5 +1,5 @@
 ---
-layout: layouts/default.njk
+layout: default
 pagination:
   data: updates
   size: 9
@@ -11,7 +11,7 @@ permalink: '/update/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber +
 <section class="container mx-auto">
 	<h1 class="text-center text-6xl font-light">Latest updates from <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>
 
-	<div class="relative grid grid-cols-3 gap-4 mt-16 p-20 bg-primary-700 rounded-3xl overflow-hidden">
+	<div class="relative grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 p-4 md:p-20 bg-primary-700 md:rounded-3xl overflow-hidden">
 		<div class="oval-gradient -top-80 -left-80"></div>
 
 		{%- from "macros/card.njk" import card -%}
@@ -49,7 +49,7 @@ permalink: '/update/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber +
 						<a href="/blog/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
 					</h3>
 					<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
-					<div class="mt-2">{{ post.content.rendered | excerpt | safe }}</div>
+					<div class="mt-2 line-clamp-3">{{ post.content.rendered | striptags }}</div>
 				</li>
 			{% endfor %}
 		</ul>

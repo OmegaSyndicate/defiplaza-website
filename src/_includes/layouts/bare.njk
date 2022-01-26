@@ -5,20 +5,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-		<title>
-			{%- if title -%}
-				{{ title }} – {{ site.title }}
-			{%- else -%}
-				{{ site.title }} – {{ site.description }}
-			{%- endif -%}
-		</title>
-		<meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+		
 
 		{% if site.icon %}
 			<link rel="shortcut icon" type="image/png" href="{{ site.icon }}"/>
 		{% endif %}
 
 		{%- block seo -%}
+			<title>
+				{%- if title -%}
+					{{ title }} – {{ site.title }}
+				{%- else -%}
+					{{ site.title }} – {{ site.description }}
+				{%- endif -%}
+			</title>
+			<meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+			
 			<!--Twitter Card-->
 			<meta name="twitter:site" content="{{ site.twitter }}">
 			<meta name="twitter:creator" content="{{ site.twitter }}">

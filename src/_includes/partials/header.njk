@@ -1,14 +1,16 @@
-<header class="sticky top-0 z-50 bg-white {% if page.url == "/" %}bg-background-500{% endif %}">
+<header class="sticky top-0 z-50 {% if page.url == "/" %}bg-background-500{% else %}bg-white{% endif %}">
     <nav class="container mx-auto py-4 px-4 md:px-0 flex items-center justify-between ">
-        <a href="/"><img src="/assets/images/logo/logo.png" srcset="/assets/images/logo/logo@2x.png 2x, /assets/images/logo/logo@3x.png 3x" class="w-100"></a>
+        <a href="/"><img src="/assets/images/logo/logo.png" srcset="/assets/images/logo/logo@2x.png 2x, /assets/images/logo/logo@3x.png 3x" class="w-full"></a>
 
         <ul class="hidden md:flex flex-center">
-            <li class="px-4"><a href="/update/">Updates</a></li>
-            <li class="px-4"><a href="/help/">Help</a></li>
-            <li class="px-4"><a href="/tokens/">Tokens</a></li>
-            <li class="px-4"><a href="/stats/">Analytics</a></li>
+            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/update/' in page.url }}"><a href="/update/">Updates</a></li>
+            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/help/' in page.url }}"><a href="/help/">Help</a></li>
+            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/tokens/' in page.url }}"><a href="/tokens/">Tokens</a></li>
+            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/stats/' in page.url }}"><a href="/stats/">Analytics</a></li>
         </ul>
 
-        <a href="https://app.defiplaza.net/swap/" target="_blank" class="btn-primary rounded-full">Launch App</a>
+        <a href="https://app.defiplaza.net/swap/" target="_blank" class="btn-primary rounded-full">
+            <span class="mt-px whitespace-nowrap">Launch App</span>
+        </a>
     </nav>
 </header>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 300 300"
+   style="enable-background:new 0 0 300 300;"
+   xml:space="preserve"
+   sodipodi:docname="exrd.svg"
+   inkscape:version="1.1 (c4e8f9e, 2021-05-24)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs120" /><sodipodi:namedview
+   id="namedview118"
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1.0"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   showgrid="false"
+   inkscape:zoom="2.0833333"
+   inkscape:cx="150"
+   inkscape:cy="150"
+   inkscape:window-width="1296"
+   inkscape:window-height="847"
+   inkscape:window-x="0"
+   inkscape:window-y="25"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="Layer_1" />
+<style
+   type="text/css"
+   id="style98">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:#00C389;}
+</style>
+<g
+   id="g113"
+   transform="matrix(1.3250883,0,0,1.3250883,-48.498233,-48.233216)">
+	<g
+   id="g111">
+		<linearGradient
+   id="SVGID_1_"
+   gradientUnits="userSpaceOnUse"
+   x1="149.83141"
+   y1="262.77371"
+   x2="149.83141"
+   y2="36.436401">
+			<stop
+   offset="0"
+   style="stop-color:#01263F"
+   id="stop100" />
+			<stop
+   offset="0.2266"
+   style="stop-color:#002B4B"
+   id="stop102" />
+			<stop
+   offset="0.5346"
+   style="stop-color:#002F54"
+   id="stop104" />
+			<stop
+   offset="1"
+   style="stop-color:#003057"
+   id="stop106" />
+		</linearGradient>
+		<path
+   class="st0"
+   d="m 149.8,262.8 v 0 C 87.3,262.8 36.6,212.1 36.6,149.6 v 0 C 36.6,87.1 87.3,36.4 149.8,36.4 v 0 c 62.5,0 113.2,50.7 113.2,113.2 v 0 c 0,62.5 -50.7,113.2 -113.2,113.2 z"
+   id="path109"
+   style="fill:url(#SVGID_1_)" />
+	</g>
+</g>
+<path
+   class="st1"
+   d="m 128.93109,220.49469 c -3.0477,0 -5.8304,-1.4576 -7.68551,-3.97527 L 83.745579,164.57595 H 59.231446 V 145.6272 h 29.284451 c 3.047702,0 5.962897,1.4576 7.685513,3.97526 l 30.60954,42.53535 46.77562,-106.934636 c 1.45759,-3.445228 4.90282,-5.697879 8.61308,-5.697879 h 58.43638 V 98.454058 H 188.29505 L 137.27915,214.7968 c -1.32509,3.04771 -4.24028,5.30036 -7.68551,5.56538 0,0.13251 -0.39753,0.13251 -0.66255,0.13251"
+   id="path115"
+   style="stroke-width:1.32509" />
+</svg>

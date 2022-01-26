@@ -18,6 +18,13 @@
 	.hide-scrollbar::-webkit-scrollbar {
 		display: none;
 	}
+
+	.svg-alt-color {
+		@apply fill-white;
+	}
+	.text-white .svg-alt-color {
+		@apply fill-primary-700;
+	}
 }
 
 @layer components {
