@@ -12,7 +12,7 @@ pagination:
 {% block bare %}
 {% include "partials/header.njk" %}
 
-<div class="relative -mt-[70px] pt-[70px] bg-background-500" id="heroSection">
+<div class="relative -mt-[71px] pt-[71px] bg-background-500" id="heroSection">
 	{# Sequence #}
 	<div class="fixed top-0 right-[25%]; md:-right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0 opacity-75" style="background-image: url('/assets/images/home/sequence-2-min.png'); background-size: auto 90vh;" id="sequence">&nbsp;</div>
 
@@ -296,7 +296,7 @@ for(var i = 0; i < reveals.length; i++) {
 
 gsap.timeline({scrollTrigger: {
 	trigger: "#heroSection",
-    start: "top top-=10rem",
+    start: "top top",
     end: "bottom bottom", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
     pin: false,
     scrub: true,
