@@ -64,7 +64,7 @@ pagination:
 
 		{# Stats #}
 		<div class="relative w-full md:w-1/2 z-10">
-			<ul class="absolute z-10 top-0 md:top-24 md:right-8 w-full md:w-fit h-[25vh] md:h-auto max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
+			<ul class="absolute z-10 top-0 md:top-24 md:right-0 w-full md:w-fit h-[25vh] md:h-auto max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
 				<li>
 					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 						$5.34<span class="text-base font-light align-middle">m</span>
@@ -104,10 +104,10 @@ pagination:
 				</div>
 
 				{% for section in helpsections %}
-					<div class="z-10 snap-start h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+					<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
 						<h3 class="text-3xl font-bold text-primary-500">{{ section.name }}</h3>
-						<p class="h-max mt-4 text-lg">{{ section.description }}</p>
-						<a href="/help/{{ section.slug }}" class="mt-16 btn-primary rounded-full">
+						<p class="mt-4 text-lg">{{ section.description }}</p>
+						<a href="/help/{{ section.slug }}" class="mt-16 btn-primary rounded-full w-min">
 							<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 								<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
 							</svg>
@@ -178,7 +178,7 @@ pagination:
 	{# Latest Updates #}
 	<section class="relative w-screen mx-auto pt-32">
 		<div class="flex justify-center space-x-8">
-			<h2 class="text-4xl text-white text-center">Latest updates from <strong>DefiPlaza</strong>.</h2>
+			<h2 class="text-4xl text-white text-center">Latest news from <strong>DefiPlaza</strong>.</h2>
 			<a href="/update/" class="btn-primary bg-primary-300 rounded-full hidden md:inline-flex items-center">
 			<span class="mt-px whitespace-nowrap">All updates</span>
 			{% include "partials/arrow-right.njk" %}
