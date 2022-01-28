@@ -61,6 +61,10 @@ module.exports = function (eleventyConfig) {
 		return arr.slice(0, limit);
 	});
 
+	eleventyConfig.addFilter('debug', function (arr) {
+		return JSON.stringify(arr);
+	});
+
 	eleventyConfig.addFilter('category', function (arr, cat_id) {
 		var posts = [];
 
