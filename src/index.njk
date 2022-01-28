@@ -134,7 +134,7 @@ pagination:
 	</section>
 
 	{# Roadmap #}
-	<section class="relative min-h-screen w-screen mx-auto flex items-center" id="roadmapContainer">
+	<section class="relative min-h-screen w-screen mx-auto flex items-center" id="roadmap">
 		<div class="mx-auto">
 			<h2 class="mt-20 text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
 
@@ -212,10 +212,10 @@ ScrollTrigger.matchMedia({
   "(min-width: 800px)": function() {
 		var sliderTimelineAccessoires = gsap.timeline({
 			scrollTrigger: {
-				trigger: '#roadmapContainer',
+				trigger: '#roadmap',
 				scrub: 1,
 				stagger: 25,
-				pin: '#roadmapContainer',
+				pin: '#roadmap',
 				start: 'center center',
 				end: '100%'
 			}})
@@ -310,7 +310,7 @@ gsap.timeline({scrollTrigger: {
 	x: () => innerWidth,
 	ease: "none",
 	scrollTrigger: {
-		trigger: "#roadmapContainer",
+		trigger: "#roadmap",
 		start: "center center",
 		end: () => innerWidth * 4,
 		scrub: true,
