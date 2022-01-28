@@ -5,8 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-		<meta name="theme-color" content="#5d0fc0" media="(prefers-color-scheme: light)">
+		{% if page.url == "/" %}
+		<meta name="theme-color" content="#e1d6c5" media="(prefers-color-scheme: light)">
 		<meta name="theme-color" content="#5d0fc0" media="(prefers-color-scheme: dark)">
+		{% else %}
+		<meta name="theme-color" content="#5d0fc0">
+		{% endif %}
 
 		{% if site.icon %}
 			<link rel="shortcut icon" type="image/png" href="{{ site.icon }}"/>
