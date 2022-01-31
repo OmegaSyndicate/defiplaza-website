@@ -24,7 +24,7 @@
 					{{ site.title }} – {{ site.description }}
 				{%- endif -%}
 			</title>
-			<meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+			<meta name="description" content="{{ description if description else site.description }}">
 
 			<!--Twitter Card-->
 			<meta name="twitter:site" content="{{ site.twitter }}">
@@ -55,6 +55,7 @@
 
 		{# <link rel="preload" href="/styles.css" as="style"> #}
 		<link rel="stylesheet" href="/styles.css?v={{ version() }}">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	</head>
 	<body class="bg-white text-black">
 

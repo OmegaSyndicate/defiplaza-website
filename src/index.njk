@@ -7,14 +7,15 @@ pagination:
 {% extends 'layouts/bare.njk' %}
 
 
-{% set title = "DefiPlaza - the low-cost exchange" %}
+{% set title = "DefiPlaza: The low-cost exchange on Ethereum" %}
+{% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
 
 {% block bare %}
 {% include "partials/header.njk" %}
 
 <div class="relative -mt-[71px] pt-[71px] bg-background-500" id="heroSection">
 	{# Sequence #}
-	<div class="fixed top-0 right-[25%]; md:-right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0 opacity-75" style="background-image: url('/assets/images/home/sequence-2-min.png'); background-size: auto 90vh;" id="sequence">&nbsp;</div>
+	<div class="fixed top-0 right-[25%]; md:-right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0 opacity-75" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-2-min@1x.png') 1x, url('/assets/images/home/sequence-2-min@2x.png') 2x ); background-size: auto 90vh;" id="sequence">&nbsp;</div>
 
 	{# Hero #}
 	<section class="relative container h-[75vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10">
@@ -58,7 +59,7 @@ pagination:
 
 			<div class="mt-16 gs_reveal gs_reveal_fromLeft">
 				<h3 class="text-3xl font-bold text-primary-500">Stake your tokens</h3>
-				<p class="text-3xl font-light">and receive a 200% APR.</p>
+				<p class="text-3xl font-light">and receive a <span id="aprUSP"></span> APR.</p>
 			</div>
 		</div>
 
@@ -67,21 +68,24 @@ pagination:
 			<ul class="absolute z-10 top-0 md:top-24 md:right-0 w-full md:w-fit h-[25vh] md:h-auto max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
 				<li>
 					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
-						$5.34<span class="text-base font-light align-middle">m</span>
+						<span id="tvl" class="text-primary-500">$0.00</span>
+						<span id="tvlSuffix" class="text-base font-light align-middle">&nbsp;</span>
 					</p>
-					<h3 class="text-sm">Liquidity</h3>
+					<h3 class="text-sm whitespace-nowrap">Liquidity</h3>
 				</li>
 				<li>
 					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">120</p>
-					<h3 class="text-sm">Trading pairs</h3>
+					<h3 class="text-sm whitespace-nowrap">Trading pairs</h3>
 				</li>
 				<li>
 					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">0.1<span class="text-base font-light align-middle">%</span></p>
-					<h3 class="text-sm">Swapping fee</h3>
+					<h3 class="text-sm whitespace-nowrap">Swapping fee</h3>
 				</li>
 				<li>
-					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">253<span class="text-base font-light align-middle">%</span></p>
-					<h3 class="text-sm">APR</h3>
+					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
+					<span id="apr" class="text-primary-500">000</span>
+					<span class="text-base font-light align-middle">%</span></p>
+					<h3 class="text-sm whitespace-nowrap">APR</h3>
 				</li>
 			</ul>
 		</div>
@@ -118,9 +122,9 @@ pagination:
 			</div>
 		</div>
 
-		<div class="container mx-auto flex flex-wrap items-center md:pl-28 mt-15 text-white">
-			<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="w-100">
-			<div class="mx-auto md:ml-32">
+		<div class="container mx-auto flex flex-wrap items-center mt-15 text-white">
+			<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="mx-4 md:mx-0 w-auto md:w-1/2">
+			<div class="mx-auto mt-8 md:mt-0 md:ml-32">
 				<h3 class="text-2xl">Are you feeling lost?</h3>
 				<p class="mt-2">Make sure to check out our support section.</p>
 				<div class="flex space-between-4">
@@ -246,6 +250,7 @@ function animateFrom(elem, direction) {
 }
 
 function hide(elem) {
+	console.log('hide');
 	gsap.set(elem, {autoAlpha: 0});
 }
 
@@ -320,4 +325,91 @@ gsap.timeline({scrollTrigger: {
 	}
 }); #}
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.min.js" integrity="sha512-7UzDjRNKHpQnkh1Wf1l6i/OPINS9P2DDzTwQNX79JxfbInCXGpgI1RPb3ZD+uTP3O5X7Ke4e0+cxt2TxV7n0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+jQuery(document).ready(function () { 
+	if(jQuery("#tvl").length > 0) {
+		const queryBody = JSON.stringify({
+    	query: `{
+    	    factories(first: 1) {
+    	        totalValueLockedUSD
+				xdp2TotalSupply
+				xdp2Staked
+    	    }
+    	    
+            token(id: "0x2f57430a6ceda85a67121757785877b4a71b8e6d") {
+                tokenAmount
+            } 
+    	}`
+	});
+	
+	fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: queryBody
+		})
+		.then(function(result) { return result.json() })
+		.then(function(jsonResult) {
+		    return jsonResult.data;
+		})
+	    .then(function(graphData) {
+				var tvl = graphData.factories[0].totalValueLockedUSD;
+				var size = "M";
+				var printableTVL;
+				
+				if(tvl < 1000000) {
+					printableTVL = Math.round(tvl/1000).toFixed(1);
+					size = "K"
+				} else {
+					printableTVL = (Math.round(tvl/10000)/100).toFixed(2);
+				}
+			
+				var formattedTvl = "$" + ("" + printableTVL).substring(0, 4);
+			
+ 				jQuery("#tvl").text(formattedTvl);
+ 				jQuery("#tvl").removeClass('text-primary-500');
+ 				jQuery("#tvlSuffix").text(size);
+		
+				const decimals = 2;
+				const ten = BigNumber(10);	
+				const multiplier = Math.pow(10, decimals + 2);
+				const divider = Math.pow(10, decimals);
+				const startTime = 1633514400;
+				const tsNow = Math.ceil(+new Date() / 1000);
+				const oneYear = 31536000;
+
+				const xdp2TotalSupply = BigNumber(graphData.factories[0].xdp2TotalSupply).times(ten.pow(18));
+				const xdp2Staked = BigNumber(graphData.factories[0].xdp2Staked).times(ten.pow(18));;
+				const dfp2TokenAmount = BigNumber(graphData.token.tokenAmount).times(ten.pow(18));;
+		
+				const c1 = BigNumber(100).times(ten.pow(24));
+				const c2 = BigNumber(50).times(ten.pow(24));
+				const c3 = BigNumber(994519296000000);
+
+				const t1 = BigNumber(Math.min(Math.max(tsNow - startTime, 0), oneYear));
+				const dR = c1.div(oneYear).minus(c2.div(c3).times(2).times(t1));
+
+				const aprPermyriad = xdp2TotalSupply
+					.times(dR)
+					.times(oneYear)
+					.times(multiplier)
+					.div(dfp2TokenAmount.times(16))
+					.div(xdp2Staked);
+
+				const apr = Math.round(aprPermyriad.toNumber() / divider);
+
+				jQuery("#apr").text(apr);
+				jQuery("#apr").removeClass('text-primary-500');
+
+				jQuery("#aprUSP").text(apr + '%');
+				
+ 			});
+	}
+
+});
+</script>
+
 {% endblock %}

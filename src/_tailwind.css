@@ -19,6 +19,16 @@
 		display: none;
 	}
 
+	.rot45deg {
+		transform: rotate(45deg);
+		top: 8px !important;
+	}
+
+	.rot-45deg {
+		transform: rotate(-45deg);
+		top: -8px !important;
+	}
+
 	.svg-alt-color {
 		@apply fill-white;
 	}
@@ -36,7 +46,7 @@
 		@apply btn-primary bg-transparent text-primary-500 border-2 border-primary-500;
 	}
 
-  .btn-white {
+	.btn-white {
 		@apply btn-primary bg-white text-primary-700;
 	}
 
@@ -55,8 +65,7 @@
  * Custom fonts
  */
 @layer base {
-
-	@import url("https://use.typekit.net/ihx6vgy.css");
+	@import url('https://use.typekit.net/ihx6vgy.css');
 
 	@font-face {
 		font-family: 'NB_International_Pro';
