@@ -1,11 +1,7 @@
 <footer class="pt-20 pb-8 relative ">	
 	<section class="container mx-auto flex flex-row justify-around md:justify-center items-center {% if page.url == "/" %}text-white{% else %}text-primary-500{% endif %}">
 		<a class="hidden md:flex mr-8" href="/">
-			{% if page.url == "/" %}
-            <img src="/assets/images/logo/icon.png" srcset="/assets/images/logo/icon@2x.png 2x, /assets/images/logo/icon@3x.png 3x">
-        {% else %}
-            <img src="/assets/images/logo/icon-dark.png" srcset="/assets/images/logo/icon-dark@2x.png 2x, /assets/images/logo/icon-dark@3x.png 3x">
-        {% endif %}
+			{% include 'svg/logo/icon.svg' %}
 		</a>
 
 		<ul class="md:flex md:flex-wrap justify-center {% if page.url == "/" %}text-white{% else %}text-black{% endif %} dark:text-slate-200">

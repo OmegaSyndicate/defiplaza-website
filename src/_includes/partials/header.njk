@@ -1,6 +1,9 @@
 <header class="sticky top-0 z-50 {% if page.url == "/" %}bg-background-500 dark:bg-backgroundDark-500{% else %}bg-white dark:bg-slate-800{% endif %}">
     <nav class="container mx-auto py-4 px-4 md:px-0 flex items-center justify-between">
-        <a href="/"><img src="/assets/images/logo/logo.png" srcset="/assets/images/logo/logo@2x.png 2x, /assets/images/logo/logo@3x.png 3x" class="w-full"></a>
+        <a href="/" class="flex justify-center">
+          <span class="text-primary-500 dark:text-slate-200">{% include 'svg/logo/icon.svg' %}</span>
+          <span class="font-medium text-2xl ml-2 mt-1">defiplaza</span>
+        </a>
 
         <ul class="hidden md:flex flex-center" id="menu">
             <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/update/' in page.url }}"><a href="/update/">News</a></li>
