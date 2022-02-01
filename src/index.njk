@@ -6,16 +6,16 @@ pagination:
 ---
 {% extends 'layouts/bare.njk' %}
 
-
 {% set title = "DefiPlaza: The low-cost exchange on Ethereum" %}
 {% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
+{% set backgroundSize = "140" %}
 
 {% block bare %}
 {% include "partials/header.njk" %}
 
-<div class="relative -mt-[71px] pt-[71px] bg-background-500 dark:bg-backgroundDark-500" id="heroSection">
+<div class="relative -mt-[71px] pt-[71px] bg-background-500 dark:bg-stone-800" id="heroSection">
 	{# Sequence #}
-	<div class="fixed top-0 right-[25%]; md:-right-[10vh] bg-center-top bg-no-repeat bg-static h-[90vh] w-[90vh] z-0 opacity-75" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-2-min@1x.png') 1x, url('/assets/images/home/sequence-2-min@2x.png') 2x ); background-size: auto 90vh;" id="sequence">&nbsp;</div>
+	<div class="fixed top-0 right-[25%]; md:-right-[0vh] bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0 opacity-75" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-2-min@1x.png') 1x, url('/assets/images/home/sequence-2-min@2x.png') 2x ); background-size: auto {{ backgroundSize }}vh;" id="sequence">&nbsp;</div>
 
 	{# Hero #}
 	<section class="relative container h-[75vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10">
@@ -36,7 +36,7 @@ pagination:
 
 	{# USPs #}
 	<section class="relative container mx-auto flex flex-col-reverse md:flex-row">
-		<div class="md:w-1/2 z-10 bg-white dark:bg-slate-800 md:rounded-tr-3xl md:rounded-br-3xl pb-[25vh] pt-11 md:py-24 px-4 md:px-20">
+		<div class="md:w-1/2 z-10 bg-white dark:bg-slate-900 md:rounded-tr-3xl md:rounded-br-3xl pb-[25vh] pt-11 md:py-24 px-4 md:px-20">
 			<h2 class="text-3xl md:text-4xl"><strong class="font-bold text-primary-500">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
 			<p class="mt-4">Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
 			<p class="mt-4">What makes DefiPlaza special is a <i>single-contract</i>, <i>highly optimized DEX</i>, designed to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
@@ -108,7 +108,7 @@ pagination:
 				</div>
 
 				{% for section in helpsections %}
-					<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white dark:bg-slate-800 hover:shadow-xl transition-shadow duration-300 ease-in-out">
+					<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white dark:bg-slate-900 hover:shadow-xl transition-shadow duration-300 ease-in-out">
 						<h3 class="text-3xl font-bold text-primary-500">{{ section.name }}</h3>
 						<p class="mt-4 text-lg">{{ section.description }}</p>
 						<a href="/help/{{ section.slug }}" class="mt-16 btn-primary rounded-full w-min">
@@ -157,11 +157,11 @@ pagination:
 					{% endif %}
 
 					<div class="md:w-40 overflow-x-visible border-l border-dashed border-primary-300 ml-4 md:pb-8">
-						<div class="relative  dark:bg-slate-800 rounded-lg w-80 min-h-40 mt-4 {{ margin }} ml-6 p-6 pr-8">
-							<div class="absolute top-5 -left-8 rounded-full w-4 h-4 bg-white dark:bg-slate-800"></div>
+						<div class="relative  dark:bg-slate-900 rounded-lg w-80 min-h-40 mt-4 {{ margin }} ml-6 p-6 pr-8">
+							<div class="absolute top-5 -left-8 rounded-full w-4 h-4 bg-white dark:bg-slate-900"></div>
 							{% if loop.index0 % 4 == 2 %}
-							<div class="hidden md:block absolute w-0.5 h-16 bg-white dark:bg-slate-800 -top-16 left-[100px]"></div>
-							<div class="hidden md:block absolute w-0.5 h-24 bg-white dark:bg-slate-800 -bottom-24 left-[100px]"></div>
+							<div class="hidden md:block absolute w-0.5 h-16 bg-white dark:bg-slate-900 -top-16 left-[100px]"></div>
+							<div class="hidden md:block absolute w-0.5 h-24 bg-white dark:bg-slate-900 -bottom-24 left-[100px]"></div>
 							{% endif %}
 
 							<h3 class="text-lg text-primary-500"><Strong>{{ roadmap.acf.roadmap_item_date }}</strong> {{ roadmap.title.rendered | safe }}</h3>
@@ -188,7 +188,7 @@ pagination:
 			{% include "partials/arrow-right.njk" %}
 			</a>
 		</div>
-		<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white dark:bg-slate-800 rounded-lg divide-y divide-primary">
+		<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white dark:bg-slate-900 rounded-lg divide-y divide-primary">
 			{# {% set latest_updates = updates | slice(3) %} #}
 			{# {% for post in latest_updates[0] %} #}
 			{% for post in latest_updates %}
@@ -255,7 +255,7 @@ function hide(elem) {
 }
 
 var frame_count  = 23,
-    offset_value = '90';
+    offset_value = '{{ backgroundSize }}';
 
 // Hercules looking up
 gsap.to("#sequence", {
