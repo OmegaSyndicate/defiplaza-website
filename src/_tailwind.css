@@ -11,6 +11,13 @@
 		@apply font-light;
 	}
 
+	.prose a {
+		@apply text-primary-500;
+	}
+	.prose figcaption {
+		@apply text-center;
+	}
+
 	.hide-scrollbar {
 		-ms-overflow-style: none;
 		scrollbar-width: none;

@@ -6,7 +6,7 @@ const GRAPH_ENDPOINT = 'https://api.thegraph.com/subgraphs/name/omegasyndicate/d
 
 const tokensQuery = `
 	query {
-		tokens(orderBy: symbol, orderDirection: asc) {
+		tokens(where: {tokenAmount_gt: "0"}, orderBy: symbol, orderDirection: asc) {
 			id
 			symbol
 			tokenAmount
@@ -33,7 +33,10 @@ async function sendRequest(query) {
 }
 
 module.exports = async () => {
-	const result = await sendRequest(tokensQuery);
+	// const result = await sendRequest(tokensQuery);
 
-	return result.data.tokens;
+	const res = await fetch(process.env.WORDPRESS_API_URL + 'token');
+	return await res.json();
+
+	// return result.data.tokens;
 };

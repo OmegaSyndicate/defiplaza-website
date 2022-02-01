@@ -5,14 +5,205 @@ pagination:
   size: 1
   alias: token
   addAllPagesToCollections: true
-permalink: '/token/{{ token.symbol }}/'
+permalink: '/token/{{ token.slug | lower }}/'
 ---
 
 <section class="container mx-auto">
-  <h2 class="text-4xl font-bold text-primary-500">{{ post._embedded["wp:term"][0].name }}</h2>
-	<h1 class="text-4xl font-light">{{ token.title.rendered | safe }}</h1>
+	<h1 class="text-4xl font-light">{{ token.title.rendered | safe }} ({{ token.acf.symbol | upper }})</h1>
+  <p>Launch date: {{ token.date | wpDateToString }}</p>
+  <div class="flex mt-4 space-x-2">
+    <a class="btn-outline rounded-full" href="https://etherscan.io/address/{{ token.acf.contract_address }}" target="_blank">Etherscan</a>
+    
+    {% if token.acf.website %}
+      <a class="btn-outline rounded-full" href="{{ token.acf.website }}" target="_blank">Website</a>
+    {% endif %}
+    {% if token.acf.twitter %}
+      <a class="btn-outline rounded-full" href="{{ token.acf.twitter }}" target="_blank">Twitter</a>
+    {% endif %}
+    {% if token.acf.telegram %}
+      <a class="btn-outline rounded-full" href="{{ token.acf.telegram }}" target="_blank">Telegram</a>
+    {% endif %}
+    {% if token.acf.discord %}
+      <a class="btn-outline rounded-full" href="{{ token.acf.discord }}" target="_blank">Discord</a>
+    {% endif %}
+  </div>
 
-  <article class="prose mt-10">
+  <div class="mt-8">
+    <canvas id="priceChart" width="800" height="250"></canvas>
+  </div>
+
+  <article class="prose mx-auto mt-10">
     {{ token.content.rendered | safe }}
   </article>
+
+  <div class="mx-auto mt-10">
+    <h2 class="text-4xl font-light text-center">Swap <strong class="text-primary-500">{{ token.title.rendered }}</strong> for only 0.1% fee on DefiPlaza</h2>
+    <div class="max-w-[65ch] mx-auto mt-4">
+      <p>Trade {{ token.acf.symbol | upper }} for one of the other 15 most popular DeFI tokens on DefiPlaza. DefiPlaza offers 120 direct trading pairs and you can swap for a 0,1% fee. That is 65% less fee then on UniSwap!</p>
+      <a class="btn-primary mt-2" href="https://app.defiplaza.net/swap?from={{ token.acf.symbol }}" target="_blank">Swap ${{ token.acf.symbol | upper }}</a>
+    </div>
+  </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js" integrity="sha256-bC3LCZCwKeehY6T4fFi9VfOU0gztUa+S4cnkIhVPZ5E=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+<script src="https://unpkg.com/dayjs@1.8.21/plugin/relativeTime.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function () { 
+    
+  const address = "{{ token.acf.contract_address }}";
+    
+    console.log(address);
+	const queryBody = JSON.stringify({
+    	query: `{
+    	    dailyTokens(first: 60, where: { token:\"${ address}\" }, orderBy: date, orderDirection: desc) {
+                date
+                tokenPriceUSD
+                tokenPriceMin
+                tokenPriceMax
+            }
+    	}`
+	});
+	
+	fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: queryBody
+		})
+		.then(function(result) { return result.json() })
+		.then(function(jsonResult) {
+		    return jsonResult.data;
+		})
+	    .then(function(graphData) {
+		    graphData.dailyTokens.reverse();
+		    
+		    priceChart(graphData.dailyTokens);
+ 		});
+
+});
+
+let chartScales = {
+	y: {
+		beginAtZero: true,
+		position: 'right',
+		ticks: {
+			// Include a dollar sign in the ticks
+			callback: function (value, index, values) {
+				return prettyDollar(parseFloat(value));
+			},
+		},
+		grid: {
+			borderColor: 'rgb(236, 198, 168)',
+			color: 'rgba(47, 79, 126, 0.1)',
+		},
+	},
+	x: {
+		grid: {
+			borderColor: 'rgb(236, 198, 168)',
+			color: 'rgba(47, 79, 126, 0.1)',
+		},
+	},
+};
+
+
+function prettyDollar(value) {
+    return "$" + prettyValue(value);
+}
+function prettyValue(value) {
+    var size = "M";
+	var prettyValue;
+			
+	if(value < 1) {
+		prettyValue = Math.round(value*1000)/1000;
+		size = ""
+	} else if(value < 1000) {
+		prettyValue = Math.round(value*100)/100;
+		size = ""
+	} else if(value < 10000) {
+		prettyValue = Math.round(value/10)/100;
+		size = "K"
+	} else if(value < 100000) {
+		prettyValue = Math.round(value/1000);
+		size = "K"
+	} else if(value < 1000000) {
+		prettyValue = Math.round(value/1000);
+		size = "K"
+	} else {
+		prettyValue = Math.round(value/10000)/100;
+	}
+
+    return ("" + prettyValue) + size;
+}
+
+function priceChart(dailies) {
+	lineChart('priceChart', 'Price in USD', dailies, 'tokenPriceUSD', false);
+}
+
+
+function lineChart(chartId, label, dataPoints, dataPoint, fill) {
+	let labels = [];
+	let data = [];
+	let pointBorderColors = [];
+	let pointBackgroundColors = [];
+
+	for (let point of dataPoints) {
+		let date = new Date(point.date * 1000);
+		labels.push(date.getDate() + '/' + (date.getMonth() + 1));
+		data.push(point[dataPoint]);
+		
+		pointBorderColors.push('rgb(47, 79, 126)');
+		pointBackgroundColors.push('rgba(47, 79, 126, 0.5)');
+	}
+
+	labels[labels.length - 1] = 'Today';
+	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
+	pointBackgroundColors[pointBackgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
+
+	const ctx = document.getElementById(chartId).getContext('2d');
+	const myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: labels,
+			datasets: [
+				{
+					label: label,
+					data: data,
+					backgroundColor: 'rgba(47, 79, 126, 0.5)',
+					borderColor: 'rgb(47, 79, 126)',
+					borderWidth: 1,
+					fill: fill,
+					pointBorderColor: pointBorderColors,
+					pointBackgroundColor: pointBackgroundColors,
+					tension: 0.3,
+					segment: {
+						backgroundColor: function (ctx) {
+							if (ctx.p0DataIndex == data.length - 2) {
+								return 'rgba(47, 79, 126, 0.2)';
+							}
+							return undefined;
+						},
+						borderDash: function (ctx) {
+							if (ctx.p0DataIndex == data.length - 2) {
+								return [2, 2];
+							}
+							return undefined;
+						},
+					},
+				},
+			],
+		},
+		options: {
+			plugins: {
+				legend: {
+					display: false,
+				},
+			},
+			scales: chartScales,
+		},
+	});
+}
+
+</script>

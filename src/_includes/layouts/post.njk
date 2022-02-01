@@ -3,20 +3,20 @@
 {% set title = post.title.rendered %}
 
 {% block content %}
-	<article class="prose mx-auto">
+<section class="container mx-auto">
+	<h1 class="text-center text-6xl font-light">{{ post.title.rendered }}</h1>
+	<p class="mt-4 text-center text-base text-primary-500">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
+
+	<article class="prose mx-auto mt-10">
 		{% if post.feature_image %}
 			<figure class="post-feature-image">
 				<img src="{{ post.feature_image }}" alt="{{ title }}">
 			</figure>
 		{% endif %}
 
-		<section>
-			<h1>{{ post.title.rendered }}</h1>
-			<section>
-				{{ post.content.rendered | safe }}
-			</section>
-		</section>
+		{{ post.content.rendered | safe }}
 	</article>
+</section>
 {% endblock %}
 
 {%- block seo -%}

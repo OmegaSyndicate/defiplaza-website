@@ -8,22 +8,30 @@ pagination:
 permalink: '/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}/'
 ---
 
-<ul>
-{%- for post in posts %}
-<li class="py-8">
-	<h3 class="text-primary-700 font-bold text-2xl">
-		<a href="/update/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
-	</h3>
-	<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
-	<div class="mt-2">{{ post.excerpt.rendered | safe }}</div>
-</li>
-{%- endfor %}
-</ul>
+{# Latest Updates #}
+<section class="container mx-auto">
+  <h1 class="text-center text-6xl font-light">Latest articles from <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>
 
+  <ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-0 divide-y divide-primary">
+    {# {% set latest_updates = updates | slice(3) %} #}
+    {# {% for post in latest_updates[0] %} #}
+    {% for post in posts %}
+      <li class="py-8">
+        <h3 class="text-primary-500 font-bold text-2xl">
+          <a href="/blog/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
+        </h3>
+        <p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
+        <div class="mt-2 line-clamp-3">{{ post.excerpt.rendered | striptags }}</div>
+      </li>
+    {% endfor %}
+  </ul>
 
-{% if pagination.href.previous %}
-  <a href="{{pagination.href.previous}}">Previous Page</a>
-{% endif %}
-{% if pagination.href.next %}
-  <a href="{{pagination.href.next}}">Next Page</a>
-{% endif %}
+  <div class="flex justify-center mt-4">
+    {% if pagination.href.previous %}
+      <a class="btn-outline" href="{{pagination.href.previous}}">Previous Page</a>
+    {% endif %}
+    {% if pagination.href.next %}
+      <a class="btn-outline" href="{{pagination.href.next}}">Next Page</a>
+    {% endif %}
+  </div>
+</section>
