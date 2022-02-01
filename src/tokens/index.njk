@@ -14,7 +14,7 @@ permalink: '/tokens/'
     <div class="oval-gradient -top-80 -left-80"></div>
 
     {% for token in tokens %}
-      <div class="z-10 py-16 px-8 flex flex-col justify-between rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
+      <div class="z-10 py-16 px-8 flex flex-col justify-between rounded-lg shadow-md bg-white dark:bg-slate-800 hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
         <a href="/token/{{ token.slug | lower }}/">
           <img class="w-16 h-16 mx-auto" src="/assets/images/tokens/{{ token.acf.symbol | lower }}.svg">
           <p class="text-base text-center mt-2">{{ token.title.rendered }}</p>

@@ -15,6 +15,9 @@ module.exports = {
 					500: '#e1d6c5',
 					700: '#ebe7de',
 				},
+				backgroundDark: {
+					500: '#615C55'
+				},
 				primary: {
 					300: '#7c32db',
 					500: '#5d0fc0',
