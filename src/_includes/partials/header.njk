@@ -1,7 +1,7 @@
-<header class="sticky top-0 z-50 {% if page.url == "/" %}bg-background-500 dark:bg-backgroundDark-500{% else %}bg-white dark:bg-slate-800{% endif %}">
+<header class="sticky top-0 z-50 {% if page.url == "/" %}bg-background-500 nodark:bg-backgroundDark-500{% else %}bg-white nodark:bg-slate-800{% endif %}">
     <nav class="container mx-auto py-4 px-4 md:px-0 flex items-center justify-between">
         <a href="/" class="flex justify-center">
-          <span class="text-primary-500 dark:text-slate-200">{% include 'svg/logo/icon.svg' %}</span>
+          <span class="text-primary-500 nodark:text-slate-200">{% include 'svg/logo/icon.svg' %}</span>
           <span class="font-medium text-2xl ml-2 mt-1">defiplaza</span>
         </a>
 

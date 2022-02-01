@@ -40,7 +40,7 @@ permalink: '/update/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber +
 <section class="mt-32">
 	<h2 class="text-4xl font-light text-center">Latest blog posts</h2>
 
-	<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white dark:bg-slate-800 rounded-lg divide-y divide-primary">
+	<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white nodark:bg-slate-800 rounded-lg divide-y divide-primary">
 			{# {% set latest_updates = updates | slice(3) %} #}
 			{# {% for post in latest_updates[0] %} #}
 			{% for post in posts %}

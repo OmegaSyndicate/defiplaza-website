@@ -12,7 +12,7 @@ permalink: '/help/{{ post.slug }}/'
   <h2 class="text-4xl mb-0 font-bold text-primary-500">{{ post._embedded["wp:term"][0][0].name }}</h2>
 	<h1 class="text-4xl font-light">{{ post.title.rendered | safe }}</h1>
 
-  <article class="prose dark:prose-invert mt-10">
+  <article class="prose nodark:prose-invert mt-10">
     {{ post.content.rendered | safe }}
   </article>
 
