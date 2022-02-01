@@ -15,7 +15,7 @@ pagination:
 
 <div class="relative -mt-[71px] pt-[71px] bg-background-500 dark:bg-stone-800" id="heroSection">
 	{# Sequence #}
-	<div class="fixed top-0 right-[25%]; md:-right-[0vh] bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0 opacity-75" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-2-min@1x.png') 1x, url('/assets/images/home/sequence-2-min@2x.png') 2x ); background-size: auto {{ backgroundSize }}vh;" id="sequence">&nbsp;</div>
+	<div class="fixed top-0 right-[25%]; md:-right-[0vh] bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-3.png') 1x, url('/assets/images/home/sequence-3.png') 2x ); background-size: auto {{ backgroundSize }}vh;" id="sequence">&nbsp;</div>
 
 	{# Hero #}
 	<section class="relative container h-[75vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10">
@@ -214,6 +214,9 @@ pagination:
 ScrollTrigger.matchMedia({	
   // desktop
   "(min-width: 800px)": function() {
+	  var roadmapEl = document.getElementById('roadmap');
+	  var itemsEl = document.getElementById('roadmapItems');
+
 		var sliderTimelineAccessoires = gsap.timeline({
 			scrollTrigger: {
 				trigger: '#roadmap',
@@ -223,7 +226,7 @@ ScrollTrigger.matchMedia({
 				start: 'center center',
 				end: '100%'
 			}})
-		sliderTimelineAccessoires.to("#roadmapItems", {x: "-1300px"})
+		sliderTimelineAccessoires.to("#roadmapItems", {x: `-${ itemsEl.offsetWidth - roadmapEl.offsetWidth }px`})
 	}
 });
 
