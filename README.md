@@ -26,6 +26,11 @@ You now have a completely static site pulling content from WordPress running as 
 
 To use your own install, edit the `.env` config file with your credentials. 
 
+```bash
+WORDPRESS_API_URL=https://defiplaza.net/wp-json/wp/v2/
+SITE_URL=http://localhost:8080
+```
+
 ## Deploying with Cloudflare Pages
 
 Simply commit to `main`.
