@@ -15,10 +15,10 @@ pagination:
 
 <div class="relative -mt-[71px] pt-[71px] bg-background-500 nodark:bg-stone-800" id="heroSection">
 	{# Sequence #}
-	<div class="fixed top-0 right-[25%]; md:-right-[0vh] bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-3.png') 1x, url('/assets/images/home/sequence-3.png') 2x ); background-size: auto {{ backgroundSize }}vh;" id="sequence">&nbsp;</div>
+	<div class="fixed top-0 right-0 bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-3.png') 1x, url('/assets/images/home/sequence-3.png') 2x ); background-size: auto {{ backgroundSize }}vh;" id="sequence">&nbsp;</div>
 
 	{# Hero #}
-	<section class="relative container h-[75vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10">
+	<section class="relative container h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10 bg-background-500/50 md:bg-transparent md:bg-gradient-to-b md:from-background-500">
 		<h1 class="text-5xl md:text-8xl text-center">The <span class="italic font-serif">low-cost</span> exchange<br> on Ethereum.</h1>
 		<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
 		<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8 text-primary-500">
@@ -65,7 +65,7 @@ pagination:
 
 		{# Stats #}
 		<div class="relative w-full md:w-1/2 z-10">
-			<ul class="absolute z-10 top-0 md:top-24 md:right-0 w-full md:w-fit h-[25vh] md:h-auto max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
+			<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
 				<li>
 					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 						<span id="tvl" class="text-primary-500">$0.00</span>
@@ -97,28 +97,31 @@ pagination:
 	<div class="oval-gradient -bottom-80 -left-80"></div>
 
 	{# Support #}
-	<section class="container flex flex-col mx-auto p-auto py-20 md:py-60 z-10">
+	<section class="container flex flex-col mx-auto py-20 mt-20">
 	
 		<h2 class="relative md:hidden text-center text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
 		
-		<div class="flex items-stretch snap-x snap-mandatory overflow-x-auto mt-6 md:mt-0 pb-10 hide-scrollbar">
-			<div class="flex flex-nowrap items-center md:pl-28">
-				<div class="hidden md:block snap-start px-3">
-					<h2 class="mr-32 text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
-				</div>
+		<div class="flex items-center mt-6 md:mt-0 pb-10">
 
-				{% for section in helpsections %}
-					<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white nodark:bg-slate-900 hover:shadow-xl transition-shadow duration-300 ease-in-out">
-						<h3 class="text-3xl font-bold text-primary-500">{{ section.name }}</h3>
-						<p class="mt-4 text-lg">{{ section.description }}</p>
-						<a href="/help/{{ section.slug }}" class="mt-16 btn-primary rounded-full w-min">
-							<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-								<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
-							</svg>
-						</a>
-					</div>
-				{% endfor %}
-				
+			<div class="hidden md:block snap-start px-3">
+				<h2 class="mr-32 text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
+			</div>
+
+			<div class="flex items-stretch snap-x snap-mandatory overflow-x-auto py-8 scrollable">
+				<div class="flex flex-nowrap">
+					{% for section in helpsections %}
+						<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white nodark:bg-slate-900 hover:shadow-xl transition-shadow duration-300 ease-in-out">
+							<h3 class="text-3xl font-bold text-primary-500">{{ section.name }}</h3>
+							<p class="mt-4 text-lg">{{ section.description }}</p>
+							<a href="/help/{{ section.slug }}" class="mt-16 btn-primary rounded-full w-min">
+								<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+									<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
+								</svg>
+							</a>
+						</div>
+					{% endfor %}
+					
+				</div>
 			</div>
 		</div>
 
@@ -142,7 +145,7 @@ pagination:
 		<div class="mx-auto">
 			<h2 class="mt-20 text-4xl text-white text-center"><strong>Our roadmap.</strong> This is what keeps us busy.</h2>
 
-			<div class="container mx-auto flex overflow-x-scroll mt-14 pb-10 hide-scrollbar" id="roadmap">
+			<div class="container mx-auto flex overflow-x-scroll mt-14 pb-10 md:scrollable" id="roadmap">
 				<div class="relative flex flex-wrap md:flex-nowrap items-stretch" id="roadmapItems">
 					{# <p class="absolute m-auto top-0 bottom-0 text-9xl left-16 text-primary-500 z-10">Past</p>
 					<p class="absolute">Future</p> #}
@@ -156,7 +159,7 @@ pagination:
 						{% set margin = 'md:mt-32' %}
 					{% endif %}
 
-					<div class="md:w-40 overflow-x-visible border-l border-dashed border-primary-300 ml-4 md:pb-8">
+					<div class="md:w-40 snap-start overflow-x-visible border-l border-dashed border-primary-300 ml-4 md:pb-8">
 						<div class="relative bg-white nodark:bg-slate-900 rounded-lg w-80 min-h-40 mt-4 {{ margin }} ml-6 p-6 pr-8">
 							<div class="absolute top-5 -left-8 rounded-full w-4 h-4 bg-white nodark:bg-slate-900"></div>
 							{% if loop.index0 % 4 == 2 %}
@@ -214,7 +217,7 @@ pagination:
 ScrollTrigger.matchMedia({	
   // desktop
   "(min-width: 800px)": function() {
-	  var roadmapEl = document.getElementById('roadmap');
+	  /*var roadmapEl = document.getElementById('roadmap');
 	  var itemsEl = document.getElementById('roadmapItems');
 
 		var sliderTimelineAccessoires = gsap.timeline({
@@ -226,7 +229,20 @@ ScrollTrigger.matchMedia({
 				start: 'center center',
 				end: '100%'
 			}})
-		sliderTimelineAccessoires.to("#roadmapItems", {x: `-${ itemsEl.offsetWidth - roadmapEl.offsetWidth }px`})
+		sliderTimelineAccessoires.to("#roadmapItems", {x: `-${ itemsEl.offsetWidth - roadmapEl.offsetWidth }px`}) */
+
+		// Pin stats
+		gsap.timeline({scrollTrigger: {
+			trigger: "#heroSection",
+			start: "top top",
+			end: "bottom bottom", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
+			pin: false,
+			scrub: true,
+			pinReparent: true,
+			pin: "#stats"
+		}})
+
+
 	}
 });
 
@@ -301,16 +317,6 @@ for(var i = 0; i < reveals.length; i++) {
     scrub: true
   }
 }); #}
-
-gsap.timeline({scrollTrigger: {
-	trigger: "#heroSection",
-    start: "top top",
-    end: "bottom bottom", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
-    pin: false,
-    scrub: true,
-	pinReparent: true,
-	pin: "#stats"
-}})
 
 // Roadmap horizontal scroll
 {# gsap.to("#roadmapItems", {

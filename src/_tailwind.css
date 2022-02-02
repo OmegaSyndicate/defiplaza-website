@@ -66,6 +66,18 @@
 		filter: blur(50px);
 		background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.75), #5d0fc0 41%, #5d0fc0 91%);
 	}
+
+	.scrollable::-webkit-scrollbar {
+		height: 0.4rem;
+		width: 0.4rem;
+	}
+	.scrollable::-webkit-scrollbar-track {
+		background: #5d0fc0;
+	}
+	.scrollable::-webkit-scrollbar-thumb {
+		background-color: #fff;
+		border-radius: 20px;
+	}
 }
 
 /**
