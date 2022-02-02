@@ -28,12 +28,12 @@
 
 	.rot45deg {
 		transform: rotate(45deg);
-		top: 8px !important;
+		top: 4px !important;
 	}
 
 	.rot-45deg {
 		transform: rotate(-45deg);
-		top: -8px !important;
+		top: -4px !important;
 	}
 
 	.svg-alt-color {
