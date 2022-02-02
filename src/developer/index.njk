@@ -1,0 +1,109 @@
+---
+layout: default
+permalink: '/developer/'
+---
+
+<section class="md:max-w-[65ch] mx-4 md:mx-auto">
+	<h1 class="text-center text-3xl md:text-6xl font-light"><strong class="text-primary-500">DefiPlaza's</strong> Subgraph API</h1>
+
+	<article class="prose nodark:prose-invert mt-10">
+		<p>DefiPlaza uses <a href="https://thegraph.com/docs/about/introduction#what-the-graph-is">subgraphs</a> to index and organize the data from the smart contracts. These subgraphs make the information on the Ethereum blockchain available via a GraphQL API on the web.</p>
+		<h2>Endpoints and API explorer</h2>
+		<p>
+			<strong>Github Source:</strong>
+			<a href="https://github.com/OmegaSyndicate/dex-subgraph">https://github.com/OmegaSyndicate/dex-subgraph</a>
+		</p>
+		<p>
+			<strong>Explorer page:</strong>
+			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza">https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza</a>
+		</p>
+		<p>
+			<strong>API Endpoint:</strong>
+			<a href="https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza">https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza</a>
+		</p>
+		<p>The Explorer page contains all example queries on this page for an easy way to explore and play with the subgraph API.</p>
+		<p>All USD values are derived from the average number of the three stable coins on DefiPlaza: USDC, USDT and DAI.</p>
+		<h2>Subgraph Reference</h2>
+		<h3>Factory</h3>
+		<p>The factory object contains consolidated information on the DefiPlaza dex, such as the total value locked in USD and the circulating supply of the DFP2 Governance token.</p>
+		<p>You can retrieve the data via the contract's address:</p>
+		<code>{
+  factory(id:"0xe68c1d72340aeefe5be76eda63ae2f4bc7514110") {
+    swapCount
+    totalValueLockedUSD
+    dfp2TotalSupply
+  }
+}</code>
+		<p>
+			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=Factory%20-%20DefiPlaza%20consolidated" target="_blank" rel="noreferrer noopener">
+				<strong>Try</strong>
+			</a>
+		</p>
+		<hr class="wp-block-separator">
+		<h3>Token</h3>
+		<p>The token object contains information on each of the <a href="/tokens/">16 tokens trade-able on DefiPlaza</a>.</p>
+		<p>You can query the tokens in different ways, for example by times swapped. The <code>id</code> of the Token is it’s address on the Ethereum blockchain. </p>
+		<pre class="wp-block-code"><code>{
+  tokens(orderBy:swapCount, orderDirection:desc) {
+    id
+    symbol
+    tokenAmount
+    swapCount
+  }
+}</code></pre>
+		<p>
+			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=Tokens%20on%20DefiPlaza" target="_blank" rel="noreferrer noopener">
+				<strong>Try</strong>
+			</a>
+		</p>
+		<hr class="wp-block-separator">
+		<h3>Pair</h3>
+		<p>All 120 pairs present on DefiPlaza, created alphabetically. The <code>id</code> is the base and quote symbol, for example: <em>DFP2_ETH</em>.</p>
+		<pre class="wp-block-code"><code>{
+  pairs(orderBy:id, orderDirection:asc) {
+    id
+    baseToken {
+      symbol
+    }
+    quoteToken {
+      symbol
+    }
+    swapCount
+  }
+}</code></pre>
+		<p>
+			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=Pairs%20on%20DefiPlaza" target="_blank" rel="noreferrer noopener">
+				<strong>Try</strong>
+			</a>
+		</p>
+		<hr class="wp-block-separator">
+		<h3>Swap</h3>
+		<p>Every swap on DefiPlaza is logged and available to query. It includes the pair, the input and output token, the amounts of both tokens, and the value in USD.</p>
+		<pre class="wp-block-code"><code>{
+  swaps(first:10, orderBy:timestamp, orderDirection:desc) {
+    id
+    pair {
+      id
+    }
+    inputToken {
+      symbol
+    }
+    inputAmount
+    outputToken {
+      symbol
+    }
+    outputAmount
+    swapUSD
+  }
+}</code></pre>
+		<p>
+			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=Last%2010%20swaps%20on%20DefiPlaza" target="_blank" rel="noreferrer noopener">
+				<strong>Try</strong>
+			</a>
+		</p>
+		<hr class="wp-block-separator">
+		<h3>Hourly and Daily stats</h3>
+		<p>The subgraphs also feature hourly and daily stats for both the complete dex and per token. You can <a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza" target="_blank" rel="noreferrer noopener">explore these here.</a>
+		</p>
+	</article>
+</section>
