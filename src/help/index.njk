@@ -6,7 +6,7 @@ permalink: '/help/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
 <section class="md:container mx-4 md:mx-auto">
 	<h1 class="text-center text-3xl md:text-6xl font-light">Learn how to use <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>
 
-	<div class="relative mt-16 p-4 md:p-20 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
+	<div class="relative mt-16 p-4 md:p-20 md:pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
 		<div class="oval-gradient -top-80 -left-80"></div>
 
 		{%- from "macros/card.njk" import card -%}
@@ -23,7 +23,6 @@ permalink: '/help/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
 					}}
 				{% endfor %}
 			</div>	
-		{% endfor %}
-		
+		{% endfor %}		
 	</div>
 </section>
