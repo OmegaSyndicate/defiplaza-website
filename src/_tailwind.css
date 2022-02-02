@@ -88,24 +88,8 @@
 
 	@font-face {
 		font-family: 'NB_International_Pro';
-		src: url('/assets/fonts/NB_International_Pro_Regular.otf');
-		font-display: swap;
-		font-weight: normal;
-		font-style: normal;
-	}
-
-	@font-face {
-		font-family: 'NB_International_Pro';
-		src: url('/assets/fonts/NB_International_Pro_Bold.otf');
-		font-display: swap;
-		font-weight: bold;
-		font-style: normal;
-	}
-
-	@font-face {
-		font-family: 'NB_International_Pro';
 		src: url('/assets/fonts/NB_International_Pro_Light.otf');
-		font-display: swap;
+		/* font-display: swap; */
 		font-weight: 300;
 		font-style: normal;
 	}
@@ -113,16 +97,24 @@
 	@font-face {
 		font-family: 'NB_International_Pro';
 		src: url('/assets/fonts/NB_International_Pro_Medium.otf');
-		font-display: swap;
+		/* font-display: swap; */
 		font-weight: 500;
 		font-style: normal;
 	}
 
 	@font-face {
 		font-family: 'NB_International_Pro';
-		src: url('/assets/fonts/NB_International_Pro_Light.otf');
-		font-display: swap;
-		font-weight: 300;
+		src: url('/assets/fonts/NB_International_Pro_Bold.otf');
+		/* font-display: swap; */
+		font-weight: bold;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'NB_International_Pro';
+		src: url('/assets/fonts/NB_International_Pro_Regular.otf');
+		/* font-display: swap; */
+		font-weight: normal;
 		font-style: normal;
 	}
 }
