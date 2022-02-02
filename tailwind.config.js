@@ -1,27 +1,32 @@
+const colors = require('tailwindcss/colors');
+const defaultConfig = require('tailwindcss/defaultConfig');
+
 module.exports = {
 	mode: 'jit',
 	content: ['src/**/*.njk', 'src/**/*.svg'],
 	theme: {
-		container: {
-			center: true,
+		colors: {
+			...colors,
+			black: '#23211f',
 		},
 		fontFamily: {
-			sans: ['NB_International_Pro', 'sans-serif'],
-			serif: ['ivypresto-display', 'serif'],
+			sans: ['NB_International_Pro', ...defaultConfig.theme.fontFamily.sans],
+			serif: ['ivypresto-display', ...defaultConfig.theme.fontFamily.serif],
+			...defaultConfig.theme.fontFamily.mono
 		},
 		extend: {
 			colors: {
 				background: {
-					500: '#e1d6c5',
+					500: '#f7f5f0',
 					700: '#ebe7de',
 				},
 				backgroundDark: {
-					500: '#615C55'
+					500: '#615C55',
 				},
 				primary: {
 					300: '#7c32db',
 					500: '#5d0fc0',
-					700: '#3d0980',
+					700: '#3d0283',
 				},
 			},
 		},
