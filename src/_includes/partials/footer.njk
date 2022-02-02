@@ -18,8 +18,14 @@
 			<li class="px-4"><a href="/#roadmap">Roadmap</a></li>
 		</ul>
 
-		{% include "partials/socials.njk" %}
+		<div class="flex flex-center items-center w-full md:w-min mt-8 md:mt-0 md:ml-8 space-x-4">
+			<p><a href="https://twitter.com/defiplaza" target="_blank">{% include 'svg/socials/twitter.svg' %}</a></p>
+			<p><a href="https://t.me/defiplaza" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
+			<p><a href="https://t.me/defiplaza" target="_blank">{% include 'svg/socials/telegram.svg' %}</a></p>
+			<p><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p>
+		</div>
 	</section>
+	
 
 	<section class="container mx-auto mt-6 flex flex-wrap justify-center items-center {% if page.url == "/" %}text-white nodark:text-slate-200{% else %}text-primary-500 nodark:text-primary-300{% endif %}">
 		<nav>
