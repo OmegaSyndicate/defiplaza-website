@@ -3,8 +3,8 @@
 {% set title = post.title.rendered %}
 
 {% block content %}
-<section class="container mx-auto">
-	<h1 class="text-center text-6xl font-light">{{ post.title.rendered }}</h1>
+<section class="md:container mx-4 md:mx-auto">
+	<h1 class="text-center text-3xl md:text-6xl font-light">{{ post.title.rendered }}</h1>
 	<p class="mt-4 text-center text-base text-primary-500">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
 
 	<article class="prose nodark:prose-invert mx-auto mt-10">

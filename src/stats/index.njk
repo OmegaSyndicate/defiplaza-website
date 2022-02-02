@@ -6,15 +6,15 @@ title: "DefiPlaza Analytics"
 description: "See what DefiPlaza's TVL is, the DFP2 price and market cap, the daily trade volume, and more."
 ---
 
-<section class="container mx-auto">
-	<h1 class="text-center text-6xl font-light"><strong class="font-bold text-primary-500">DefiPlaza's</strong> Analytics</h1>
+<section class="md:container mx-4 md:mx-auto">
+	<h1 class="text-center text-3xl md:text-6xl font-light"><strong class="font-bold text-primary-500">DefiPlaza's</strong> Analytics</h1>
 	<p class="text-center text-base font-bold">Last synced block <span id="lastBlock" class="font-normal">{% include "partials/loading-indicator.njk" %}</span><span id="lastBlockTime"></span></p>
 
-	<div class="relative mt-16 p-20 space-y-4 bg-primary-700 rounded-3xl overflow-hidden">
+	<div class="relative mt-16 space-y-4 p-4 md:p-20 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
 		<div class="oval-gradient -top-80 -left-80"></div>
 
 		{# TVL and DFP2 MC #}
-		<div class="relative grid grid-cols-2 gap-4">
+		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="z-10 py-16 px-8 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
 				<div id="tvl">
 					<h2 class="text-2xl">Total Value Locked</h2>
@@ -33,7 +33,7 @@ description: "See what DefiPlaza's TVL is, the DFP2 price and market cap, the da
 		</div>
 
 		{# XDP2 and DFP2 prices #}
-		<div class="relative grid grid-cols-2 gap-4">
+		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="z-10 py-16 px-8 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
 				<div id="xdp2Price">
 					<h2 class="text-2xl">XDP2 Price</h2>

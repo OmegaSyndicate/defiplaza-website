@@ -107,7 +107,7 @@ pagination:
 				<h2 class="mr-32 text-4xl text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
 			</div>
 
-			<div class="flex items-stretch snap-x snap-mandatory overflow-x-auto py-8 scrollable">
+			<div class="flex items-stretch snap-x snap-mandatory overflow-x-auto ml-4 md:ml-0 py-8 scrollable">
 				<div class="flex flex-nowrap">
 					{% for section in helpsections %}
 						<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white nodark:bg-slate-900 hover:shadow-xl transition-shadow duration-300 ease-in-out">
@@ -125,8 +125,8 @@ pagination:
 			</div>
 		</div>
 
-		<div class="container mx-auto flex flex-wrap items-center mt-15 text-white">
-			<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="mx-4 md:mx-0 w-auto md:w-1/2">
+		<div class="md:container mx-4 md:mx-auto flex flex-wrap items-center mt-15 text-white">
+			<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="w-full md:w-1/2">
 			<div class="mx-auto mt-8 md:mt-0 md:ml-32">
 				<h3 class="text-2xl">Are you feeling lost?</h3>
 				<p class="mt-2">Make sure to check out our support section.</p>
@@ -159,8 +159,8 @@ pagination:
 						{% set margin = 'md:mt-32' %}
 					{% endif %}
 
-					<div class="md:w-40 snap-start overflow-x-visible border-l border-dashed border-primary-300 ml-4 md:pb-8">
-						<div class="relative bg-white nodark:bg-slate-900 rounded-lg w-80 min-h-40 mt-4 {{ margin }} ml-6 p-6 pr-8">
+					<div class="md:w-40 snap-start overflow-x-visible border-l border-dashed border-primary-300 ml-4 mr-4 md:mr-0 md:pb-8">
+						<div class="relative bg-white nodark:bg-slate-900 rounded-lg md:w-80 min-h-40 mt-4 {{ margin }} ml-6 p-6 pr-8">
 							<div class="absolute top-5 -left-8 rounded-full w-4 h-4 bg-white nodark:bg-slate-900"></div>
 							{% if loop.index0 % 4 == 2 %}
 							<div class="hidden md:block absolute w-0.5 h-16 bg-white nodark:bg-slate-900 -top-16 left-[100px]"></div>

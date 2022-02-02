@@ -3,17 +3,17 @@ layout: default
 permalink: '/help/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}/'
 ---
 
-<section class="container mx-auto">
-	<h1 class="text-center text-6xl font-light">Learn how to use <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>
+<section class="md:container mx-4 md:mx-auto">
+	<h1 class="text-center text-3xl md:text-6xl font-light">Learn how to use <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>
 
-	<div class="relative mt-16 p-20 pt-4 bg-primary-700 rounded-3xl overflow-hidden">
+	<div class="relative mt-16 p-4 md:p-20 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
 		<div class="oval-gradient -top-80 -left-80"></div>
 
 		{%- from "macros/card.njk" import card -%}
 
 		{% for section in helpsections %}
-			<h2 class="text-4xl text-white px-8 mt-16 mb-8 relative">{{ section.name }}</h2>	
-			<div class="grid grid-cols-3 gap-4">
+			<h2 class="text-2xl md:text-4xl text-white text-center md:text-left px-0 md:px-8 my-8 md:mt-16 md:mb-8 relative">{{ section.name }}</h2>	
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 				{% for post in helps | category(section.id) %}
 					{{ card({
 							title: post.title.rendered,

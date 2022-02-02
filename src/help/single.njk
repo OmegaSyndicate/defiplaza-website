@@ -8,9 +8,9 @@ pagination:
 permalink: '/help/{{ post.slug }}/'
 ---
 
-<section class="max-w-[65ch] mx-auto">
-  <h2 class="text-4xl mb-0 font-bold text-primary-500">{{ post._embedded["wp:term"][0][0].name }}</h2>
-	<h1 class="text-4xl font-light">{{ post.title.rendered | safe }}</h1>
+<section class="md:max-w-[65ch] mx-4 md:mx-auto">
+  <h2 class="text-3xl md:text-4xl mb-0 font-bold text-primary-500">{{ post._embedded["wp:term"][0][0].name }}</h2>
+	<h1 class="text-3xl md:text-4xl font-light">{{ post.title.rendered | safe }}</h1>
 
   <article class="prose nodark:prose-invert mt-10">
     {{ post.content.rendered | safe }}
@@ -20,10 +20,10 @@ permalink: '/help/{{ post.slug }}/'
 			<a href="/help/" class="btn-outline rounded-full">
 				<span class="mt-px whitespace-nowrap">Back to support</span>
 			</a>
-      <a href="https://app.defiplaza.net/swap/" class="btn-primary rounded-full ml-4 inline-flex items-center">
+      {# <a href="https://app.defiplaza.net/swap/" class="btn-primary rounded-full ml-4 inline-flex items-center">
 				<span class="mt-px whitespace-nowrap">Launch app</span>
 				{% include "partials/arrow-right.njk" %}
-			</a>
+			</a> #}
 	</div>
 </section>
 
