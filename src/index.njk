@@ -36,7 +36,7 @@ pagination:
 
 	{# USPs #}
 	<section class="relative container mx-auto flex flex-col-reverse md:flex-row">
-		<div class="md:w-1/2 z-10 bg-white nodark:bg-slate-900 md:rounded-tr-3xl md:rounded-br-3xl pb-[25vh] pt-11 md:py-24 px-4 md:px-20">
+		<div class="md:w-1/2 z-10 bg-white nodark:bg-slate-900 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20">
 			<h2 class="text-3xl md:text-4xl"><strong class="font-bold text-primary-500">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
 			<p class="mt-4">Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
 			<p class="mt-4">What makes DefiPlaza special is a <i>single-contract</i>, <i>highly optimized DEX</i>, designed to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
@@ -246,33 +246,6 @@ ScrollTrigger.matchMedia({
 	}
 });
 
-function animateFrom(elem, direction) {
-	direction = direction || 1;
-
-	var x = 0,
-		y = direction * 100;
-	if(elem.classList.contains("gs_reveal_fromLeft")) {
-		x = -100;
-		y = 0;
-	} else if(elem.classList.contains("gs_reveal_fromRight")) {
-		x = 100;
-		y = 0;
-	}
-	gsap.fromTo(elem, {x: x, y: y, autoAlpha: 0}, {
-		duration: 1.25,
-		x: 0,
-		y: 0,
-		autoAlpha: 1,
-		ease: "expo",
-		overwrite: "auto"
-	});
-}
-
-function hide(elem) {
-	console.log('hide');
-	gsap.set(elem, {autoAlpha: 0});
-}
-
 var frame_count  = 23,
     offset_value = '{{ backgroundSize }}';
 
@@ -290,6 +263,46 @@ gsap.to("#sequence", {
 });
 
 // USPs
+function animateFrom(elem, direction) {
+	direction = direction || 1;
+
+	var startX, endX = 0, startY, endY = 0
+		startAlpha = 0,
+		endAlpha = 1;
+	
+	if(elem.classList.contains("gs_reveal_fromLeft")) {
+		startX = -100;
+		startY = 0;
+	} else if(elem.classList.contains("gs_reveal_fromRight")) {
+		startX = 100;
+		startY = 0;
+	}
+
+	if(direction == -1) {
+		startAlpha = 1;
+		endAlpha = 0;
+		
+		endX = startX;
+		startX = 0
+
+		endY = startY;
+		startY = 0;
+	}
+	
+	gsap.fromTo(elem, {x: startX, y: startY, autoAlpha: startAlpha}, {
+		duration: 1.25,
+		x: endX,
+		y: endY,
+		autoAlpha: endAlpha,
+		ease: "expo",
+		overwrite: "auto"
+	});
+}
+
+function hide(elem) {
+	gsap.set(elem, {autoAlpha: 0});
+}
+
 var reveals = gsap.utils.toArray(".gs_reveal");
 for(var i = 0; i < reveals.length; i++) {
 	(function () {
@@ -298,10 +311,11 @@ for(var i = 0; i < reveals.length; i++) {
 
 		ScrollTrigger.create({
 			trigger: elem,
-			start: "top center+=200",
-			onEnter: function() { animateFrom(elem) },
-			onEnterBack: function() { animateFrom(elem, -1) },
-			onLeave: function() { hide(elem) } // assure that the element is hidden when scrolled into view
+			start: "top 90%",
+			onEnter: function() { console.log('onEnter', elem); animateFrom(elem) },
+			//onEnterBack: function() { console.log('onEnterBack', elem); animateFrom(elem, -1) },
+			//onLeave: function() { console.log('onLeave', elem); hide(elem) }, // assure that the element is hidden when scrolled into view
+			onLeaveBack: function() { console.log('onLeaveBack', elem); animateFrom(elem, -1) }
 		});
 	})();
 }
