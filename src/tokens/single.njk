@@ -5,11 +5,12 @@ pagination:
   size: 1
   alias: token
   addAllPagesToCollections: true
-permalink: '/token/{{ token.slug | lower }}/'
+permalink: '/token/{{ token.slug }}/'
 ---
 
 <section class="container mx-auto">
 	<h1 class="text-4xl font-light">{{ token.title.rendered | safe }} ({{ token.acf.symbol | upper }})</h1>
+
   <p>Launch date: {{ token.date | wpDateToString }}</p>
   <div class="flex mt-4 space-x-2">
     <a class="btn-outline rounded-full" href="https://etherscan.io/address/{{ token.acf.contract_address }}" target="_blank">Etherscan</a>

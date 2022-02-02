@@ -35,7 +35,7 @@ async function sendRequest(query) {
 module.exports = async () => {
 	// const result = await sendRequest(tokensQuery);
 
-	const res = await fetch(process.env.WORDPRESS_API_URL + 'token');
+	const res = await fetch(process.env.WORDPRESS_API_URL + 'token?per_page=100');
 	return await res.json();
 
 	// return result.data.tokens;
