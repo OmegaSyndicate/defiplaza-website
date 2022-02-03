@@ -10,23 +10,25 @@ description: "See what DefiPlaza's TVL is, the DFP2 price and market cap, the da
 	<h1 class="text-center text-3xl md:text-6xl font-light"><strong class="font-bold text-primary-500">DefiPlaza's</strong> Analytics</h1>
 	<p class="text-center text-base font-bold">Last synced block <span id="lastBlock" class="font-normal">{% include "partials/loading-indicator.njk" %}</span><span id="lastBlockTime"></span></p>
 
-	<div class="relative mt-16 space-y-4 p-4 md:p-20 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
+	<div class="relative mt-16 space-y-4 p-4 md:p-8 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
 		<div class="oval-gradient -top-80 -left-80"></div>
 
 		{# TVL and DFP2 MC #}
 		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
-			<div class="z-10 py-16 px-8 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
+			<div class="z-10 py-8 px-4 flex flex-col justify-between rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
 				<div id="tvl">
 					<h2 class="text-2xl">Total Value Locked</h2>
 					<h3 class="text-2xl text-primary-500">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-black/70">Today</p>
 				</div>
 				<canvas id="tvlChart" width="400" height="250"></canvas>
 			</div>
 
-			<div class="z-10 py-16 px-8 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
+			<div class="z-10 py-8 px-4 flex flex-col justify-between rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
 				<div id="marketCap">
 					<h2 class="text-2xl text-right">DFP2 Market Cap</h2>
 					<h3 class="text-2xl text-primary-500 text-right">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-black/70 text-right">Today</p>
 				</div>
 				<canvas id="marketCapChart" width="400" height="250"></canvas>
 			</div>
@@ -34,18 +36,20 @@ description: "See what DefiPlaza's TVL is, the DFP2 price and market cap, the da
 
 		{# XDP2 and DFP2 prices #}
 		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
-			<div class="z-10 py-16 px-8 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
+			<div class="z-10 py-8 px-4 flex flex-col justify-between rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
 				<div id="xdp2Price">
 					<h2 class="text-2xl">XDP2 Price</h2>
 					<h3 class="text-2xl text-primary-500">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-black/70">Today</p>
 				</div>
 				<canvas id="xdp2PriceChart" width="400" height="250"></canvas>
 			</div>
 
-			<div class="z-10 py-16 px-8 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
+			<div class="z-10 py-8 px-4 flex flex-col justify-between rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
 				<div id="dfp2Price">
 					<h2 class="text-2xl text-right">DFP2 Price</h2>
 					<h3 class="text-2xl text-primary-500 text-right">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-black/70 text-right">Today</p>
 				</div>
 				<canvas id="dfp2PriceChart" width="400" height="250"></canvas>
 			</div>
@@ -54,7 +58,11 @@ description: "See what DefiPlaza's TVL is, the DFP2 price and market cap, the da
 		{# Daily Trade Volume #}
 		<div class="relative grid grid-cols-1 gap-4">
 			<div class="z-10 py-16 px-8 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
-				<h2 class="text-2xl">Daily Trade Volume</h2>
+				<div id="swap">
+					<h2 class="text-2xl">Daily Trade Volume</h2>
+					<h3 class="text-2xl text-primary-500">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-black/70">Today</p>
+				</div>
 				<canvas id="swapChart" width="800" height="250"></canvas>
 			</div>
 		</div>
@@ -97,7 +105,6 @@ description: "See what DefiPlaza's TVL is, the DFP2 price and market cap, the da
 
 	</div>
 </section>
-
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js" integrity="sha256-bC3LCZCwKeehY6T4fFi9VfOU0gztUa+S4cnkIhVPZ5E=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
@@ -180,9 +187,6 @@ jQuery(document).ready(function () {
 	        // Display TVL
 		    var tvl = graphData.factories[0].totalValueLockedUSD;
 		
- 			jQuery("#tvl h3").text(prettyDollar(tvl));
- 			jQuery("#marketCap h3").text(prettyDollar(graphData.dailies[0].dfp2MarketCap))
- 			
  			// Make last day, the first day
  			graphData.dailies.reverse();
  			graphData.dailyTokens.reverse();
@@ -202,20 +206,6 @@ jQuery(document).ready(function () {
  			tokensTable(graphData.tokens);
  			
  			transactionsTable(graphData.swaps);
- 			
- 			// Show XDP2 price
- 			var lastXDP2 = graphData.dailies[graphData.dailies.length-1];
- 			
- 			if(!lastXDP2['totalValueLockedUSD'] || !lastXDP2['xdp2TotalSupply']) {
- 			    lastXDP2 = graphData.dailies[graphData.dailies.length-2];
- 			}
- 			
- 			var xdp2Price = lastXDP2['totalValueLockedUSD']/lastXDP2['xdp2TotalSupply']
- 			jQuery("#xdp2Price h3").text(prettyDollar(xdp2Price));
- 			
- 			// Show DFP2 price
- 			var lastDFP2 = graphData.dailyTokens[graphData.dailyTokens.length-1];
- 			jQuery("#dfp2Price h3").text(prettyDollar(lastDFP2.tokenPriceUSD));
  		});
 
 });
@@ -244,21 +234,45 @@ let chartScales = {
 		beginAtZero: true,
 		position: 'right',
 		ticks: {
-			// Include a dollar sign in the ticks
+			color: "#23211f",
+			font: {
+				size: 12
+			},
+      	// Include a dollar sign in the ticks
 			callback: function (value, index, values) {
 				return prettyDollar(parseFloat(value));
 			},
 		},
-		grid: {
+		/*grid: {
 			borderColor: 'rgb(236, 198, 168)',
 			color: 'rgba(47, 79, 126, 0.1)',
+		},*/
+		grid: {
+			display: false,
+			drawBorder: false,
 		},
+		display: false
 	},
 	x: {
-		grid: {
+		/*grid: {
 			borderColor: 'rgb(236, 198, 168)',
 			color: 'rgba(47, 79, 126, 0.1)',
+		},*/
+		ticks: {
+			color: "#23211f",
+			font: {
+				size: 12
+			},
+			/*callback: function(val, index) {
+            // Hide every 2nd tick label
+            return index % 7 === 0 ? this.getLabelForValue(val) : '';
+          }*/
 		},
+		grid: {
+			display: false,
+			drawBorder: false,
+		},
+		display: false
 	},
 };
 let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -322,23 +336,23 @@ function prettyValue(v) {
 }
 
 function tvlChart(dailies) {
-   lineChart('tvlChart', 'TVL', dailies, 'totalValueLockedUSD', true); 
+   lineChart('tvl', 'Total Value Locked', dailies, 'totalValueLockedUSD', true); 
 }
 
 function marketCapChart(dailies) {
-	lineChart('marketCapChart', 'DFP2 Market Cap', dailies, 'dfp2MarketCap', true); 
-}
-
-function liquidityChart(dailies) {
-	barChart('liquidityChart', 'Daily Liquidity Change', dailies, 'liquidityUSD');
+	lineChart('marketCap', 'DFP2 Market Cap', dailies, 'dfp2MarketCap', true); 
 }
 
 function dfp2PriceChart(dailies) {
-	lineChart('dfp2PriceChart', 'DFP2 price in USD', dailies, 'tokenPriceUSD', false);
+	lineChart('dfp2Price', 'DFP2 price in USD', dailies, 'tokenPriceUSD', false);
 }
 
 function swapChart(dailies) {
-	barChart('swapChart', 'Daily Trade Volume', dailies, 'tradeVolumeUSD');
+	lineChart('swap', 'Daily Trade Volume', dailies, 'tradeVolumeUSD', true);
+}
+
+function liquidityChart(dailies) {
+	barChart('liquidity', 'Daily Liquidity Change', dailies, 'liquidityUSD');
 }
 
 function xdp2Chart(dataPoints) {
@@ -348,63 +362,12 @@ function xdp2Chart(dataPoints) {
 	let pointBackgroundColors = [];
 
 	for (let point of dataPoints) {
-		let date = new Date(point.date * 1000);
-		labels.push(weekdays[date.getDay()] + ' ' + date.getDate() + '/' + (date.getMonth() + 1));
-		let value = point['totalValueLockedUSD']/point['xdp2TotalSupply'];
+		point.tokenPriceUSD = point['totalValueLockedUSD']/point['xdp2TotalSupply'];
 		
-		console.log(point['totalValueLockedUSD'], point['xdp2TotalSupply'], value);
-		data.push(value);
-		
-		pointBorderColors.push('rgb(47, 79, 126)');
-		pointBackgroundColors.push('rgba(47, 79, 126, 0.5)');
+		data.push(point);
 	}
 
-	labels[labels.length - 1] = 'Today';
-	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
-	pointBackgroundColors[pointBackgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
-
-	const ctx = document.getElementById('xdp2PriceChart').getContext('2d');
-	const myChart = new Chart(ctx, {
-		type: 'line',
-		data: {
-			labels: labels,
-			datasets: [
-				{
-					label: 'XDP2 price in USD',
-					data: data,
-					backgroundColor: 'rgba(47, 79, 126, 0.5)',
-					borderColor: 'rgb(47, 79, 126)',
-					borderWidth: 1,
-					fill: false,
-					pointBorderColor: pointBorderColors,
-					pointBackgroundColor: pointBackgroundColors,
-					tension: 0.3,
-					segment: {
-						backgroundColor: function (ctx) {
-							if (ctx.p0DataIndex == data.length - 2) {
-								return 'rgba(47, 79, 126, 0.2)';
-							}
-							return undefined;
-						},
-						borderDash: function (ctx) {
-							if (ctx.p0DataIndex == data.length - 2) {
-								return [2, 2];
-							}
-							return undefined;
-						},
-					},
-				},
-			],
-		},
-		options: {
-			plugins: {
-				legend: {
-					display: false,
-				},
-			},
-			scales: chartScales,
-		},
-	});
+	lineChart('xdp2Price', 'XDP2 price in USD', data, 'tokenPriceUSD', false);
 }
 
 function tokensTable(tokens) {
@@ -474,7 +437,7 @@ function transactionsTable(swaps) {
     
 }
 
-function lineChart(chartId, label, dataPoints, dataPoint, fill) {
+function lineChart(id, label, dataPoints, dataPoint, fill) {
 	let labels = [];
 	let data = [];
 	let pointBorderColors = [];
@@ -484,16 +447,15 @@ function lineChart(chartId, label, dataPoints, dataPoint, fill) {
 		let date = new Date(point.date * 1000);
 		labels.push(weekdays[date.getDay()] + ' ' + date.getDate() + '/' + (date.getMonth() + 1));
 		data.push(point[dataPoint]);
-		
-		pointBorderColors.push('rgb(47, 79, 126)');
-		pointBackgroundColors.push('rgba(47, 79, 126, 0.5)');
 	}
+
+	jQuery(`#${id} h3`).text(prettyDollar(data[data.length - 1]));
 
 	labels[labels.length - 1] = 'Today';
 	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
 	pointBackgroundColors[pointBackgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
 
-	const ctx = document.getElementById(chartId).getContext('2d');
+	const ctx = document.getElementById(id + 'Chart').getContext('2d');
 	const myChart = new Chart(ctx, {
 		type: 'line',
 		data: {
@@ -502,13 +464,16 @@ function lineChart(chartId, label, dataPoints, dataPoint, fill) {
 				{
 					label: label,
 					data: data,
-					backgroundColor: 'rgba(47, 79, 126, 0.5)',
-					borderColor: 'rgb(47, 79, 126)',
-					borderWidth: 1,
+					backgroundColor: '#3d028380',
+					borderWidth: 3,
 					fill: fill,
-					pointBorderColor: pointBorderColors,
-					pointBackgroundColor: pointBackgroundColors,
-					tension: 0.3,
+					borderColor: '#3d0283',
+					pointRadius: 0,
+					pointHoverRadius: 6,
+					pointHoverBorderWidth: 2,
+					pointHoverBorderColor: '#3d0283',
+					pointHoverBackgroundColor: '#ffffff80',
+					lineTension: 0.05,
 					segment: {
 						backgroundColor: function (ctx) {
 							if (ctx.p0DataIndex == data.length - 2) {
@@ -527,17 +492,34 @@ function lineChart(chartId, label, dataPoints, dataPoint, fill) {
 			],
 		},
 		options: {
+			interaction: {
+				mode: 'index',
+				intersect: false,
+			},
 			plugins: {
 				legend: {
 					display: false,
 				},
+				tooltip: {
+					enabled: false,
+					position: 'nearest',
+					usePointStyle: true,
+					external: function(context) {
+						var raw = context.tooltip.dataPoints[0].raw;
+						var title = context.tooltip.title[0];
+						
+						jQuery(`#${id} h3`).text(prettyDollar(raw));
+						jQuery(`#${id} p`).text(title);
+
+					}
+				}			
 			},
-			scales: chartScales,
+			scales: chartScales
 		},
 	});
 }
 
-function barChart(chartId, label, dataPoints, dataPoint) {
+function barChart(id, label, dataPoints, dataPoint) {
 	let labels = [];
 	let data = [];
 	let backgroundColors = [];
@@ -547,13 +529,13 @@ function barChart(chartId, label, dataPoints, dataPoint) {
 		labels.push(weekdays[date.getDay()] + ' ' + date.getDate() + '/' + (date.getMonth() + 1));
 		data.push(point[dataPoint]);
 
-		backgroundColors.push('rgba(47, 79, 126, 0.5)');
+		backgroundColors.push('#3d028380');
 	}
 
 	labels[labels.length - 1] = 'Today';
 	backgroundColors[backgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
 
-	const ctx = document.getElementById(chartId).getContext('2d');
+	const ctx = document.getElementById(id + 'Chart').getContext('2d');
 	const myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
@@ -563,8 +545,8 @@ function barChart(chartId, label, dataPoints, dataPoint) {
 					label: label,
 					data: data,
 					backgroundColor: backgroundColors,
-					borderColor: ['rgb(47, 79, 126)'],
-					borderWidth: 1,
+					borderColor: ['#3d0283'],
+					borderWidth: 2,
 					fill: false,
 				},
 			],
