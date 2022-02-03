@@ -3,6 +3,7 @@
 		<div>
 			<h3 class="text-2xl font-bold">{{ params.title }}</h3>
 			<p class="mt-4 text-base text-primary-500">{{ params.text }}</p>
+			<p class="mt-4 text-base line-clamp-3">{{ params.description | striptags }}</p>
 		</div>
 		<a href="{{ params.url }}" class="mt-16 btn-primary rounded-full w-min">
 			<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

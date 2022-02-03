@@ -18,6 +18,7 @@ permalink: '/help/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
 					{{ card({
 							title: post.title.rendered,
 							text: [post._embedded.author[0].name, " - ", post.date | wpDateToString] | join,
+							description: post.content.rendered,
 							url: ["/help/", post.slug] | join
 						})
 					}}

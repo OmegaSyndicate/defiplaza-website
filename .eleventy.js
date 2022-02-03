@@ -69,7 +69,6 @@ module.exports = function (eleventyConfig) {
 		var posts = [];
 
 		for (post of arr) {
-			console.log(post.howto_category);
 			if (!post.howto_category) {
 				continue;
 			}
@@ -79,8 +78,6 @@ module.exports = function (eleventyConfig) {
 
 			posts.push(post);
 		}
-
-		console.log('***', cat_id, posts.length);
 
 		return posts;
 	});
