@@ -78,6 +78,41 @@
 		background-color: #fff;
 		border-radius: 20px;
 	}
+
+	@keyframes pulsar {
+		0% {
+			opacity: 1;
+			transform: scale(1);
+		}
+		50% {
+			opacity: 0;
+			transform: scale(0.75);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	.loading-dot {
+		@apply bg-primary-300;
+
+		display: inline-block;
+		height: 0.25em;
+		width: 0.25em;
+		margin-right: 0.25em;
+		border-radius: 50%;
+		animation: pulsar 1.5s infinite ease-in-out;
+		animation-delay: calc(var(--order) * 100ms);
+	}
+	.loading-indicator {
+		padding-left: 0.5rem;
+		/*padding-top: 0rem;*/
+		max-height: 0.75rem;
+		max-width: 10rem;
+		overflow-x: hidden;
+		transition: max-width 0.5s ease-in;
+	}
 }
 
 /**

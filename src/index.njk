@@ -15,7 +15,7 @@ pagination:
 
 <div class="relative -mt-[71px] pt-[71px] bg-background-500 nodark:bg-stone-800" id="heroSection">
 	{# Sequence #}
-	<div class="fixed top-0 right-0 bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-3.png') 1x, url('/assets/images/home/sequence-3.png') 2x ); background-size: auto {{ backgroundSize }}vh;" id="sequence">&nbsp;</div>
+	<div class="fixed top-0 right-0 bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-3.png') 1x, url('/assets/images/home/sequence-3.png') 2x ); background-size: auto {{ backgroundSize }}vh;" id="heroSequence">&nbsp;</div>
 
 	{# Hero #}
 	<section class="relative container h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10 bg-background-500/50 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75">
@@ -68,7 +68,7 @@ pagination:
 			<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
 				<li>
 					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
-						<span id="tvl" class="text-primary-500">$0.00</span>
+						<span id="tvl" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
 						<span id="tvlSuffix" class="text-base font-light align-middle">&nbsp;</span>
 					</p>
 					<h3 class="text-sm whitespace-nowrap">Liquidity</h3>
@@ -83,7 +83,7 @@ pagination:
 				</li>
 				<li>
 					<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
-					<span id="apr" class="text-primary-500">000</span>
+					<span id="apr" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
 					<span class="text-base font-light align-middle">%</span></p>
 					<h3 class="text-sm whitespace-nowrap">APR</h3>
 				</li>
