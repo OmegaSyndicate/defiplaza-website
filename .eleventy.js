@@ -41,6 +41,11 @@ module.exports = function (eleventyConfig) {
 		return Math.ceil(numberOfWords / wordsPerMinute);
 	});
 
+	// Replace WordPress CMS urls with frontend urls
+	eleventyConfig.addFilter('wpUrls', (content) => {
+		return content.replace(process.env.WORDPRESS_API_URL, process.env.SITE_URL);
+	});
+
 	// Date formatting filter
 	eleventyConfig.addFilter('wpDateToString', (dateString) => {
 		const date = new Date(dateString);

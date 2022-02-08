@@ -34,7 +34,7 @@ permalink: '/token/{{ token.slug }}/'
   </div>
 
   <article class="prose nodark:prose-invert mx-auto mt-10">
-    {{ token.content.rendered | safe }}
+    {{ token.content.rendered | wpUrls | safe }}
   </article>
 
   <div class="mx-auto mt-10">

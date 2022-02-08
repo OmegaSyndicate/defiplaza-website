@@ -1,6 +1,6 @@
 {% extends 'layouts/default.njk' %}
 
-{% set title = post.title.rendered %}
+{% set title = post.title.rendered | safe %}
 
 {% block content %}
 <section class="md:container mx-4 md:mx-auto">
@@ -14,11 +14,11 @@
 			</figure>
 		{% endif %}
 
-		{{ post.content.rendered | safe }}
+		{{ post.content.rendered | wpUrls | safe }}
 	</article>
 </section>
 {% endblock %}
 
 {%- block seo -%}
-	{{ post.yoast_head | safe }}
+	{{ post.yoast_head | wpUrls | safe }}
 {%- endblock -%}
