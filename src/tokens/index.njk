@@ -1,11 +1,15 @@
 ---
 layout: default
+eleventyComputed:
+  title: "Tokens listed on DefiPlaza"
 pagination:
   data: tokens
   size: 24
   addAllPagesToCollections: true
 permalink: '/tokens/'
 ---
+
+{% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
 
 <section class="container mx-auto">
   <h1 class="text-center text-6xl font-light">Tokens listed on <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>

@@ -19,9 +19,9 @@
 		{%- block seo -%}
 			<title>
 				{%- if title -%}
-					{{ title }} – {{ site.title }}
+					{{ title }} · {{ site.title }}
 				{%- else -%}
-					{{ site.title }} – {{ site.description }}
+					{{ site.title }} · {{ site.description }}
 				{%- endif -%}
 			</title>
 			<meta name="description" content="{{ description if description else site.description }}">
@@ -31,21 +31,21 @@
 			<meta name="twitter:creator" content="{{ site.twitter }}">
 			<meta name="twitter:card" content="summary_large_image">
 			<meta name="twitter:url" content="{{ site.url + page.url }}">
-			<meta name="twitter:title" content="{{ title + " – " + site.title if title else title }}">
+			<meta name="twitter:title" content="{{ title + " · " + site.title if title else title }}">
 			<meta name="twitter:description" content="{{ site.description }}">
 			<meta name="twitter:image" content="{{ site.cover_image }}">
 
 			<!--Schema-->
 			<link rel="author" href="{{ site.url }}">
 			<link rel="publisher" href="{{ site.url }}">
-			<meta itemprop="name" content="{{ title + " – " + site.title if title else title }}">
+			<meta itemprop="name" content="{{ title + " · " + site.title if title else title }}">
 			<meta itemprop="description" content="{{ site.description }}">
 			<meta itemprop="image" content="{{ site.cover_image }}">
 
 			<!-- Facebook OpenGraph -->
 			<meta property="og:url" content="{{site.url + page.url}}">
 			<meta property="og:type" content="website">
-			<meta property="og:title" content="{{ title + " – " + site.title if title else title }}">
+			<meta property="og:title" content="{{ title + " · " + site.title if title else title }}">
 			<meta property="og:image" content="{{ site.cover_image }}">
 			<meta property="og:description" content="{{ site.description }}">
 			<meta property="og:site_name" content="{{ site.title }}">
@@ -56,8 +56,20 @@
 		{# <link rel="preload" href="/styles.css" as="style"> #}
 		<link rel="stylesheet" href="/styles.css?v={{ version() }}">
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-PL6PWXZ');</script>
+		<!-- End Google Tag Manager -->
 	</head>
 	<body class="bg-white text-black nodark:bg-slate-800 nodark:text-slate-200">
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PL6PWXZ"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
 
 		{% block bare %}{% endblock %}
 		

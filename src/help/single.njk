@@ -1,5 +1,7 @@
 ---
 layout: default
+eleventyComputed:
+  title: "{{ post.title.rendered | safe }}"
 pagination:
   data: helps
   size: 1
@@ -7,6 +9,9 @@ pagination:
   addAllPagesToCollections: true
 permalink: '/help/{{ post.slug }}/'
 ---
+
+{% set title = post.title.rendered | safe %}
+{% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
 
 <section class="md:max-w-[65ch] mx-4 md:mx-auto">
   <h2 class="text-3xl md:text-4xl mb-0 font-bold text-primary-500">{{ post._embedded["wp:term"][0][0].name }}</h2>

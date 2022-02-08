@@ -114,9 +114,7 @@ pagination:
 							<h3 class="text-3xl font-bold text-primary-500">{{ section.name }}</h3>
 							<p class="mt-4 text-lg">{{ section.description }}</p>
 							<a href="/help/{{ section.slug }}/" class="mt-16 btn-primary rounded-full w-min">
-								<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-right" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-									<path fill="currentcolor" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path>
-								</svg>
+								{% include "partials/arrow-right.njk" %}
 							</a>
 						</div>
 					{% endfor %}
@@ -216,25 +214,11 @@ pagination:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
 <script>
-// Only scroll roadmap on desktop
+
 ScrollTrigger.matchMedia({	
   // desktop
   "(min-width: 800px)": function() {
-	  /*var roadmapEl = document.getElementById('roadmap');
-	  var itemsEl = document.getElementById('roadmapItems');
-
-		var sliderTimelineAccessoires = gsap.timeline({
-			scrollTrigger: {
-				trigger: '#roadmap',
-				scrub: 1,
-				stagger: 25,
-				pin: '#roadmap',
-				start: 'center center',
-				end: '100%'
-			}})
-		sliderTimelineAccessoires.to("#roadmapItems", {x: `-${ itemsEl.offsetWidth - roadmapEl.offsetWidth }px`}) */
-
-		// Pin stats
+ 		// Pin stats
 		gsap.timeline({scrollTrigger: {
 			trigger: "#heroSection",
 			start: "top top",
@@ -244,15 +228,13 @@ ScrollTrigger.matchMedia({
 			pinReparent: true,
 			pin: "#stats"
 		}})
-
-
 	}
 });
 
+// Hercules looking up
 var frame_count  = 23,
     offset_value = '{{ backgroundSize }}';
 
-// Hercules looking up
 gsap.to("#sequence", {
   backgroundPosition: (-offset_value * frame_count) + "vh 50%",
   ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
@@ -322,24 +304,9 @@ for(var i = 0; i < reveals.length; i++) {
 		});
 	})();
 }
-
-// Roadmap horizontal scroll
-{# gsap.to("#roadmapItems", {
-	xPercent: -100, 
-	x: () => innerWidth,
-	ease: "none",
-	scrollTrigger: {
-		trigger: "#roadmap",
-		start: "center center",
-		end: () => innerWidth * 4,
-		scrub: true,
-		pin: true,
-		invalidateOnRefresh: true,
-		anticipatePin: 1
-	}
-}); #}
 </script>
 
+{# Fetch stats from TheGraph #}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.min.js" integrity="sha512-7UzDjRNKHpQnkh1Wf1l6i/OPINS9P2DDzTwQNX79JxfbInCXGpgI1RPb3ZD+uTP3O5X7Ke4e0+cxt2TxV7n0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
 jQuery(document).ready(function () { 
@@ -419,10 +386,8 @@ jQuery(document).ready(function () {
 				jQuery("#apr").removeClass('text-primary-500');
 
 				jQuery("#aprUSP").text(apr + '%');
-				
  			});
 	}
-
 });
 </script>
 

@@ -1,5 +1,7 @@
 ---
 layout: default
+eleventyComputed:
+  title: "Latest articles from DefiPlaza"
 pagination:
   data: posts
   size: 10
@@ -7,6 +9,8 @@ pagination:
   addAllPagesToCollections: true
 permalink: '/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}/'
 ---
+
+{% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
 
 {# Latest Updates #}
 <section class="md:container mx-4 md:mx-auto">

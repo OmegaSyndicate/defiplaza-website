@@ -1,5 +1,7 @@
 ---
 layout: default
+eleventyComputed:
+  title: {{ (token.title.rendered | safe) + "(" + (token.acf.symbol | upper) + ")" }}
 pagination:
   data: tokens
   size: 1
@@ -7,6 +9,8 @@ pagination:
   addAllPagesToCollections: true
 permalink: '/token/{{ token.slug }}/'
 ---
+
+{% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
 
 <section class="container mx-auto">
 	<h1 class="text-4xl font-light">{{ token.title.rendered | safe }} ({{ token.acf.symbol | upper }})</h1>
