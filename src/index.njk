@@ -123,8 +123,8 @@ pagination:
 		</div>
 
 		{# Support pillar #}
-		<div class="md:container mx-4 md:mx-auto flex flex-wrap items-center mt-15 text-white">
-			<img src="/assets/images/home/pillar.png" srcset="/assets/images/home/pillar@2x.png 2x, /assets/images/home/pillar@3x.png 3x" class="w-full md:w-1/2 border border-red-500">
+		<div class="md:container mx-4 md:mx-auto flex flex-wrap items-center mt-15 text-white" id="supportSection">
+			<div class="w-full md:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence.png') 1x ); background-size: cover;" id="pillarSequence">&nbsp;</div>
 			<div class="mx-auto mt-8 md:mt-0 md:ml-32">
 				<h3 class="text-2xl">Are you feeling lost?</h3>
 				<p class="mt-2">Make sure to check out our support section.</p>
@@ -232,16 +232,35 @@ ScrollTrigger.matchMedia({
 });
 
 // Hercules looking up
-var frame_count  = 23,
-    offset_value = '{{ backgroundSize }}';
+var hero_frame_count  = 23,
+    hero_offset_value = '{{ backgroundSize }}';
 
-gsap.to("#sequence", {
-  backgroundPosition: (-offset_value * frame_count) + "vh 50%",
-  ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
+gsap.to("#heroSequence", {
+  backgroundPosition: (-hero_offset_value * hero_frame_count) + "vh 50%",
+  ease: "steps(" + hero_frame_count + ")", // use a stepped ease for the sprite sheet
   scrollTrigger: {
     trigger: "#heroSection",
     start: "top top",
     end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
+    pin: false,
+    scrub: true
+  }
+});
+
+// Pillar opening up
+var pillar_frame_count  = 23,
+    pillar_offset_value = document.querySelector('#pillarSequence').offsetHeight;
+
+	 console.log('pillar height', pillar_offset_value);
+
+gsap.to("#pillarSequence", {
+  backgroundPosition: "50% " + (-pillar_offset_value * pillar_frame_count) + "px",
+  ease: "steps(" + pillar_frame_count + ")", // use a stepped ease for the sprite sheet
+  scrollTrigger: {
+    trigger: "#supportSection",
+    start: "top 75%",
+    //end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
+	 end: "center center",
     pin: false,
     scrub: true
   }
@@ -297,10 +316,10 @@ for(var i = 0; i < reveals.length; i++) {
 		ScrollTrigger.create({
 			trigger: elem,
 			start: "top 90%",
-			onEnter: function() { console.log('onEnter', elem); animateFrom(elem) },
+			onEnter: function() { animateFrom(elem) },
 			//onEnterBack: function() { console.log('onEnterBack', elem); animateFrom(elem, -1) },
 			//onLeave: function() { console.log('onLeave', elem); hide(elem) }, // assure that the element is hidden when scrolled into view
-			onLeaveBack: function() { console.log('onLeaveBack', elem); animateFrom(elem, -1) }
+			onLeaveBack: function() { animateFrom(elem, -1) }
 		});
 	})();
 }
