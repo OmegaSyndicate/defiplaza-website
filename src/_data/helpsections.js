@@ -7,6 +7,6 @@ require('dotenv').config();
 // https://developer.wordpress.org/rest-api/using-the-rest-api/pagination/
 
 module.exports = async () => {
-	const res = await fetch(process.env.WORDPRESS_API_URL + 'howto_category');
+	const res = await fetch(process.env.WORDPRESS_API_URL + process.env.WORDPRESS_API_PATH + 'howto_category');
 	return await res.json();
 };

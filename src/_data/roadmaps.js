@@ -7,7 +7,7 @@ require('dotenv').config();
 // https://developer.wordpress.org/rest-api/using-the-rest-api/pagination/
 
 module.exports = async () => {
-	const res = await fetch(process.env.WORDPRESS_API_URL + 'roadmap');
+	const res = await fetch(process.env.WORDPRESS_API_URL + process.env.WORDPRESS_API_PATH + 'roadmap');
 	const items = await res.json();
 
 	const sortedItems = items.sort((a, b) => {
