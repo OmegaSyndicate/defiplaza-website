@@ -30,7 +30,11 @@ pagination:
 					<span class="mt-px whitespace-nowrap">More information</span>
 				</a>
 
-				{% include "partials/socials.njk" %}
+				<div class="flex justify-center items-center w-full md:w-min mt-8 md:mt-0 md:ml-8 space-x-4">
+					<p><a href="https://twitter.com/defiplaza" target="_blank">{% include 'svg/socials/twitter.svg' %}</a></p>
+					<p><a href="https://discord.gg/GjEPsst58D" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
+					<p><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p>
+				</div>
 			</div>
 		</section>
 
@@ -66,7 +70,7 @@ pagination:
 
 			{# Stats #}
 			<div class="relative w-full md:w-1/2 z-10">
-				<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 space-x-8 flex justify-center bg-primary-500 text-white md:rounded-lg text-center" id="stats">
+				<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-8 bg-primary-500 text-white md:rounded-lg text-center" id="stats">
 					<li>
 						<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 							<span id="tvl" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
@@ -124,9 +128,9 @@ pagination:
 			</div>
 
 			{# Support pillar #}
-			<div class="md:container mx-4 md:mx-auto flex flex-wrap items-center mt-15 text-white" id="supportSection">
-				<div class="w-full md:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence@1x.png') 1x, url('/assets/images/home/pillar-sequence@2x.png') 2x); background-size: cover;" id="pillarSequence">&nbsp;</div>
-				<div class="mx-auto mt-8 md:mt-0 md:ml-32">
+			<div class="md:container mx-4 md:mx-auto flex flex-wrap items-center mt-16 text-white" id="supportSection">
+				<div class="w-full lg:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence@1x.png') 1x, url('/assets/images/home/pillar-sequence@2x.png') 2x); background-size: cover;" id="pillarSequence">&nbsp;</div>
+				<div class="mx-auto mt-0 lg:ml-32">
 					<h3 class="text-2xl">Are you feeling lost?</h3>
 					<p class="mt-2">Make sure to check out our support section.</p>
 					<div class="flex space-between-4">
@@ -221,10 +225,7 @@ pagination:
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
 			// Load Hercules sequence
-			document
-				.getElementById('heroSequence')
-				.classList
-				.add('hero-sequence');
+			document.getElementById('heroSequence').classList.add('hero-sequence');
 
 			ScrollTrigger.matchMedia({
 				// desktop
@@ -234,7 +235,7 @@ pagination:
 						scrollTrigger: {
 							trigger: "#heroSection",
 							start: "top top",
-							end: "bottom bottom", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
+							end: "bottom bottom+=100px", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
 							pin: false,
 							scrub: true,
 							pinReparent: true,
@@ -262,9 +263,7 @@ pagination:
 
 			// Pillar opening up
 			var pillar_frame_count = 23,
-				pillar_offset_value = document
-					.getElementById('pillarSequence')
-					.offsetHeight;
+				pillar_offset_value = document.getElementById('pillarSequence').offsetHeight;
 
 			gsap.to("#pillarSequence", {
 				backgroundPosition: "50% " + (-pillar_offset_value * pillar_frame_count) + "px",
@@ -272,7 +271,6 @@ pagination:
 				scrollTrigger: {
 					trigger: "#supportSection",
 					start: "top 75%",
-					//end: () => innerHeight * 0.5, "+=" + (frame_count * 0.9 * offset_value),
 					end: "center center",
 					pin: false,
 					scrub: true
@@ -327,9 +325,7 @@ pagination:
 				gsap.set(elem, {autoAlpha: 0});
 			}
 
-			var reveals = gsap
-				.utils
-				.toArray(".gs_reveal");
+			var reveals = gsap.utils.toArray(".gs_reveal");
 			for (var i = 0; i < reveals.length; i++) {
 				(function () {
 					var elem = reveals[i];

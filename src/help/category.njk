@@ -21,7 +21,7 @@ permalink: '/help/{{ section.slug }}/'
 
 		{%- from "macros/card.njk" import card -%}
 
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 			{% for post in helps | category(section.id) %}
 				{{ card({
 						title: post.title.rendered,

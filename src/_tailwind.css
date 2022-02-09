@@ -130,7 +130,7 @@
 	@font-face {
 		font-family: 'NB_International_Pro';
 		src: url('/assets/fonts/NB_International_Pro_Light.otf');
-		/* font-display: swap; */
+		font-display: swap;
 		font-weight: 300;
 		font-style: normal;
 	}
