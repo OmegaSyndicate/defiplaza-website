@@ -218,12 +218,36 @@ pagination:
 		{% include "partials/footer.njk" %}
 	</div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+	<script async src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" onload="setupGsap()"></script>
+	<script async src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" onload="setupScrollTrigger()"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.min.js" integrity="sha512-7UzDjRNKHpQnkh1Wf1l6i/OPINS9P2DDzTwQNX79JxfbInCXGpgI1RPb3ZD+uTP3O5X7Ke4e0+cxt2TxV7n0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 	<script>
-		document.addEventListener("DOMContentLoaded", function () {
+		var gsapLoaded = false;
+		var scrollTriggerLoaded = false;
+
+		function setupGsap() {
+			gsapLoaded = true;
+
+			setupAnimations();
+		}
+
+		function setupScrollTrigger() {
+			scrollTriggerLoaded = true;
+
+			setupAnimations();
+		}
+
+		function setupAnimations() {
+			if(!gsapLoaded) {
+				return;
+			}
+			if(!scrollTriggerLoaded) {
+				return;
+			}
+
+			console.log('setupAnimations');
+
 			// Load Hercules sequence
 			document.getElementById('heroSequence').classList.add('hero-sequence');
 
@@ -345,7 +369,7 @@ pagination:
 					});
 				})();
 			}
-		});
+		};
 	</script>
 
 	{# Fetch stats from TheGraph #}
