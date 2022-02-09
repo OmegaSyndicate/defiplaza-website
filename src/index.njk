@@ -15,7 +15,7 @@ pagination:
 
 <div class="relative -mt-[71px] pt-[71px] bg-background-500 nodark:bg-stone-800" id="heroSection">
 	{# Sequence #}
-	<div class="fixed top-0 right-0 bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0" style="background-image: -webkit-image-set( url('/assets/images/home/sequence-3.png') 1x, url('/assets/images/home/sequence-3.png') 2x ); background-size: auto {{ backgroundSize }}vh;" id="heroSequence">&nbsp;</div>
+	<div class="fixed top-0 right-0 bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0 hero-preload" style="background-size: auto {{ backgroundSize }}vh;" id="heroSequence">&nbsp;</div>
 
 	{# Hero #}
 	<section class="relative container h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10 bg-background-500/50 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75">
@@ -124,7 +124,7 @@ pagination:
 
 		{# Support pillar #}
 		<div class="md:container mx-4 md:mx-auto flex flex-wrap items-center mt-15 text-white" id="supportSection">
-			<div class="w-full md:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence.png') 1x ); background-size: cover;" id="pillarSequence">&nbsp;</div>
+			<div class="w-full md:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence@1x.png') 1x, url('/assets/images/home/pillar-sequence@2x.png') 2x, url('/assets/images/home/pillar-sequence@3x.png') 3x ); background-size: cover;" id="pillarSequence">&nbsp;</div>
 			<div class="mx-auto mt-8 md:mt-0 md:ml-32">
 				<h3 class="text-2xl">Are you feeling lost?</h3>
 				<p class="mt-2">Make sure to check out our support section.</p>
@@ -212,202 +212,209 @@ pagination:
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.min.js" integrity="sha512-7UzDjRNKHpQnkh1Wf1l6i/OPINS9P2DDzTwQNX79JxfbInCXGpgI1RPb3ZD+uTP3O5X7Ke4e0+cxt2TxV7n0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+	// Load Hercules sequence
+	document.getElementById('heroSequence').classList.add('hero-sequence');
 
-ScrollTrigger.matchMedia({	
-  // desktop
-  "(min-width: 800px)": function() {
- 		// Pin stats
-		gsap.timeline({scrollTrigger: {
+	console.log(document.getElementById('heroSequence').classList);
+
+	ScrollTrigger.matchMedia({	
+	// desktop
+	"(min-width: 800px)": function() {
+			// Pin stats
+			gsap.timeline({scrollTrigger: {
+				trigger: "#heroSection",
+				start: "top top",
+				end: "bottom bottom", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
+				pin: false,
+				scrub: true,
+				pinReparent: true,
+				pin: "#stats"
+			}})
+		}
+	});
+
+	// Hercules looking up
+	var hero_frame_count  = 23,
+		hero_offset_value = '{{ backgroundSize }}';
+
+	gsap.to("#heroSequence", {
+		backgroundPosition: (-hero_offset_value * hero_frame_count) + "vh 50%",
+		ease: "steps(" + hero_frame_count + ")", // use a stepped ease for the sprite sheet
+		scrollTrigger: {
 			trigger: "#heroSection",
 			start: "top top",
-			end: "bottom bottom", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
+			end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
 			pin: false,
-			scrub: true,
-			pinReparent: true,
-			pin: "#stats"
-		}})
-	}
-});
-
-// Hercules looking up
-var hero_frame_count  = 23,
-    hero_offset_value = '{{ backgroundSize }}';
-
-gsap.to("#heroSequence", {
-  backgroundPosition: (-hero_offset_value * hero_frame_count) + "vh 50%",
-  ease: "steps(" + hero_frame_count + ")", // use a stepped ease for the sprite sheet
-  scrollTrigger: {
-    trigger: "#heroSection",
-    start: "top top",
-    end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
-    pin: false,
-    scrub: true
-  }
-});
-
-// Pillar opening up
-var pillar_frame_count  = 23,
-    pillar_offset_value = document.querySelector('#pillarSequence').offsetHeight;
-
-	 console.log('pillar height', pillar_offset_value);
-
-gsap.to("#pillarSequence", {
-  backgroundPosition: "50% " + (-pillar_offset_value * pillar_frame_count) + "px",
-  ease: "steps(" + pillar_frame_count + ")", // use a stepped ease for the sprite sheet
-  scrollTrigger: {
-    trigger: "#supportSection",
-    start: "top 75%",
-    //end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
-	 end: "center center",
-    pin: false,
-    scrub: true
-  }
-});
-
-// USPs
-function animateFrom(elem, direction) {
-	direction = direction || 1;
-
-	var startX, endX = 0, startY, endY = 0
-		startAlpha = 0,
-		endAlpha = 1;
-	
-	if(elem.classList.contains("gs_reveal_fromLeft")) {
-		startX = -100;
-		startY = 0;
-	} else if(elem.classList.contains("gs_reveal_fromRight")) {
-		startX = 100;
-		startY = 0;
-	}
-
-	if(direction == -1) {
-		startAlpha = 1;
-		endAlpha = 0;
-		
-		endX = startX;
-		startX = 0
-
-		endY = startY;
-		startY = 0;
-	}
-	
-	gsap.fromTo(elem, {x: startX, y: startY, autoAlpha: startAlpha}, {
-		duration: 1.25,
-		x: endX,
-		y: endY,
-		autoAlpha: endAlpha,
-		ease: "expo",
-		overwrite: "auto"
+			scrub: true
+		}
 	});
-}
 
-function hide(elem) {
-	gsap.set(elem, {autoAlpha: 0});
-}
+	// Pillar opening up
+	var pillar_frame_count  = 23,
+		pillar_offset_value = document.querySelector('#pillarSequence').offsetHeight;
 
-var reveals = gsap.utils.toArray(".gs_reveal");
-for(var i = 0; i < reveals.length; i++) {
-	(function () {
-		var elem = reveals[i];
-		hide(elem); // assure that the element is hidden when scrolled into view
+		console.log('pillar height', pillar_offset_value);
 
-		ScrollTrigger.create({
-			trigger: elem,
-			start: "top 90%",
-			onEnter: function() { animateFrom(elem) },
-			//onEnterBack: function() { console.log('onEnterBack', elem); animateFrom(elem, -1) },
-			//onLeave: function() { console.log('onLeave', elem); hide(elem) }, // assure that the element is hidden when scrolled into view
-			onLeaveBack: function() { animateFrom(elem, -1) }
+	gsap.to("#pillarSequence", {
+		backgroundPosition: "50% " + (-pillar_offset_value * pillar_frame_count) + "px",
+		ease: "steps(" + pillar_frame_count + ")", // use a stepped ease for the sprite sheet
+		scrollTrigger: {
+			trigger: "#supportSection",
+			start: "top 75%",
+			//end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
+			end: "center center",
+			pin: false,
+			scrub: true
+		}
+	});
+
+	// USPs
+	function animateFrom(elem, direction) {
+		direction = direction || 1;
+
+		var startX, endX = 0, startY, endY = 0
+			startAlpha = 0,
+			endAlpha = 1;
+		
+		if(elem.classList.contains("gs_reveal_fromLeft")) {
+			startX = -100;
+			startY = 0;
+		} else if(elem.classList.contains("gs_reveal_fromRight")) {
+			startX = 100;
+			startY = 0;
+		}
+
+		if(direction == -1) {
+			startAlpha = 1;
+			endAlpha = 0;
+			
+			endX = startX;
+			startX = 0
+
+			endY = startY;
+			startY = 0;
+		}
+		
+		gsap.fromTo(elem, {x: startX, y: startY, autoAlpha: startAlpha}, {
+			duration: 1.25,
+			x: endX,
+			y: endY,
+			autoAlpha: endAlpha,
+			ease: "expo",
+			overwrite: "auto"
 		});
-	})();
-}
+	}
+
+	function hide(elem) {
+		gsap.set(elem, {autoAlpha: 0});
+	}
+
+	var reveals = gsap.utils.toArray(".gs_reveal");
+	for(var i = 0; i < reveals.length; i++) {
+		(function () {
+			var elem = reveals[i];
+			hide(elem); // assure that the element is hidden when scrolled into view
+
+			ScrollTrigger.create({
+				trigger: elem,
+				start: "top 90%",
+				onEnter: function() { animateFrom(elem) },
+				//onEnterBack: function() { console.log('onEnterBack', elem); animateFrom(elem, -1) },
+				//onLeave: function() { console.log('onLeave', elem); hide(elem) }, // assure that the element is hidden when scrolled into view
+				onLeaveBack: function() { animateFrom(elem, -1) }
+			});
+		})();
+	}
+});
 </script>
 
-{# Fetch stats from TheGraph #}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.min.js" integrity="sha512-7UzDjRNKHpQnkh1Wf1l6i/OPINS9P2DDzTwQNX79JxfbInCXGpgI1RPb3ZD+uTP3O5X7Ke4e0+cxt2TxV7n0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	{# Fetch stats from TheGraph #}
+
 <script type="text/javascript">
-jQuery(document).ready(function () { 
-	if(jQuery("#tvl").length > 0) {
-		const queryBody = JSON.stringify({
-    	query: `{
-    	    factories(first: 1) {
-    	        totalValueLockedUSD
-				xdp2TotalSupply
-				xdp2Staked
-    	    }
-    	    
-            token(id: "0x2f57430a6ceda85a67121757785877b4a71b8e6d") {
-                tokenAmount
-            } 
-    	}`
-	});
-	
-	fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
-			method: 'post',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: queryBody
-		})
-		.then(function(result) { return result.json() })
-		.then(function(jsonResult) {
-		    return jsonResult.data;
-		})
-	    .then(function(graphData) {
-				var tvl = graphData.factories[0].totalValueLockedUSD;
-				var size = "M";
-				var printableTVL;
-				
-				if(tvl < 1000000) {
-					printableTVL = Math.round(tvl/1000).toFixed(1);
-					size = "K"
-				} else {
-					printableTVL = (Math.round(tvl/10000)/100).toFixed(2);
+	document.addEventListener("DOMContentLoaded", function() {
+		if(jQuery("#tvl").length > 0) {
+			const queryBody = JSON.stringify({
+			query: `{
+				factories(first: 1) {
+					totalValueLockedUSD
+					xdp2TotalSupply
+					xdp2Staked
 				}
-			
-				var formattedTvl = "$" + ("" + printableTVL).substring(0, 4);
-			
- 				jQuery("#tvl").text(formattedTvl);
- 				jQuery("#tvl").removeClass('text-primary-500');
- 				jQuery("#tvlSuffix").text(size);
+				
+					token(id: "0x2f57430a6ceda85a67121757785877b4a71b8e6d") {
+						tokenAmount
+					} 
+			}`
+		});
 		
-				const decimals = 2;
-				const ten = BigNumber(10);	
-				const multiplier = Math.pow(10, decimals + 2);
-				const divider = Math.pow(10, decimals);
-				const startTime = 1633514400;
-				const tsNow = Math.ceil(+new Date() / 1000);
-				const oneYear = 31536000;
+		fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: queryBody
+			})
+			.then(function(result) { return result.json() })
+			.then(function(jsonResult) {
+				return jsonResult.data;
+			})
+			.then(function(graphData) {
+					var tvl = graphData.factories[0].totalValueLockedUSD;
+					var size = "M";
+					var printableTVL;
+					
+					if(tvl < 1000000) {
+						printableTVL = Math.round(tvl/1000).toFixed(1);
+						size = "K"
+					} else {
+						printableTVL = (Math.round(tvl/10000)/100).toFixed(2);
+					}
+				
+					var formattedTvl = "$" + ("" + printableTVL).substring(0, 4);
+				
+					jQuery("#tvl").text(formattedTvl);
+					jQuery("#tvl").removeClass('text-primary-500');
+					jQuery("#tvlSuffix").text(size);
+			
+					const decimals = 2;
+					const ten = BigNumber(10);	
+					const multiplier = Math.pow(10, decimals + 2);
+					const divider = Math.pow(10, decimals);
+					const startTime = 1633514400;
+					const tsNow = Math.ceil(+new Date() / 1000);
+					const oneYear = 31536000;
 
-				const xdp2TotalSupply = BigNumber(graphData.factories[0].xdp2TotalSupply).times(ten.pow(18));
-				const xdp2Staked = BigNumber(graphData.factories[0].xdp2Staked).times(ten.pow(18));;
-				const dfp2TokenAmount = BigNumber(graphData.token.tokenAmount).times(ten.pow(18));;
-		
-				const c1 = BigNumber(100).times(ten.pow(24));
-				const c2 = BigNumber(50).times(ten.pow(24));
-				const c3 = BigNumber(994519296000000);
+					const xdp2TotalSupply = BigNumber(graphData.factories[0].xdp2TotalSupply).times(ten.pow(18));
+					const xdp2Staked = BigNumber(graphData.factories[0].xdp2Staked).times(ten.pow(18));;
+					const dfp2TokenAmount = BigNumber(graphData.token.tokenAmount).times(ten.pow(18));;
+			
+					const c1 = BigNumber(100).times(ten.pow(24));
+					const c2 = BigNumber(50).times(ten.pow(24));
+					const c3 = BigNumber(994519296000000);
 
-				const t1 = BigNumber(Math.min(Math.max(tsNow - startTime, 0), oneYear));
-				const dR = c1.div(oneYear).minus(c2.div(c3).times(2).times(t1));
+					const t1 = BigNumber(Math.min(Math.max(tsNow - startTime, 0), oneYear));
+					const dR = c1.div(oneYear).minus(c2.div(c3).times(2).times(t1));
 
-				const aprPermyriad = xdp2TotalSupply
-					.times(dR)
-					.times(oneYear)
-					.times(multiplier)
-					.div(dfp2TokenAmount.times(16))
-					.div(xdp2Staked);
+					const aprPermyriad = xdp2TotalSupply
+						.times(dR)
+						.times(oneYear)
+						.times(multiplier)
+						.div(dfp2TokenAmount.times(16))
+						.div(xdp2Staked);
 
-				const apr = Math.round(aprPermyriad.toNumber() / divider);
+					const apr = Math.round(aprPermyriad.toNumber() / divider);
 
-				jQuery("#apr").text(apr);
-				jQuery("#apr").removeClass('text-primary-500');
+					jQuery("#apr").text(apr);
+					jQuery("#apr").removeClass('text-primary-500');
 
-				jQuery("#aprUSP").text(apr + '%');
- 			});
-	}
-});
+					jQuery("#aprUSP").text(apr + '%');
+				});
+		}
+	});
 </script>
 
 {% endblock %}

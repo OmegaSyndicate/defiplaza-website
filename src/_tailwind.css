@@ -113,6 +113,14 @@
 		overflow-x: hidden;
 		transition: max-width 0.5s ease-in;
 	}
+
+	.hero-preload {
+		background-image: url('/assets/images/home/hero-preload.png'); 
+	}
+
+	.hero-sequence {
+		background-image: -webkit-image-set( url('/assets/images/home/hero-sequence@1x.png') 1x, url('/assets/images/home/hero-sequence@2x.png') 2x );
+	}
 }
 
 /**
