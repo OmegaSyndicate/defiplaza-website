@@ -220,8 +220,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('heroSequence').classList.add('hero-sequence');
 
 	ScrollTrigger.matchMedia({	
-	// desktop
-	"(min-width: 800px)": function() {
+		// desktop
+		"(min-width: 800px)": function() {
 			// Pin stats
 			gsap.timeline({scrollTrigger: {
 				trigger: "#heroSection",
@@ -253,9 +253,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// Pillar opening up
 	var pillar_frame_count  = 23,
-		pillar_offset_value = document.querySelector('#pillarSequence').offsetHeight;
-
-	console.log('pillar height', pillar_offset_value);
+		pillar_offset_value = document.getElementById('pillarSequence').offsetHeight;
 
 	gsap.to("#pillarSequence", {
 		backgroundPosition: "50% " + (-pillar_offset_value * pillar_frame_count) + "px",
@@ -330,90 +328,88 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-	{# Fetch stats from TheGraph #}
-
+{# Fetch stats from TheGraph #}
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function() {
-
-			const queryBody = JSON.stringify({
-			query: `{
-				factories(first: 1) {
-					totalValueLockedUSD
-					xdp2TotalSupply
-					xdp2Staked
-				}
-				
-					token(id: "0x2f57430a6ceda85a67121757785877b4a71b8e6d") {
-						tokenAmount
-					} 
-			}`
-		});
-		
-		fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
-				method: 'post',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: queryBody
-			})
-			.then(function(result) { return result.json() })
-			.then(function(jsonResult) {
-				return jsonResult.data;
-			})
-			.then(function(graphData) {
-					var tvl = graphData.factories[0].totalValueLockedUSD;
-					var size = "M";
-					var printableTVL;
-					
-					if(tvl < 1000000) {
-						printableTVL = Math.round(tvl/1000).toFixed(1);
-						size = "K"
-					} else {
-						printableTVL = (Math.round(tvl/10000)/100).toFixed(2);
-					}
-				
-					var formattedTvl = "$" + ("" + printableTVL).substring(0, 4);
-
-					const tvlEl = document.getElementById("tvl");
-					tvlEl.innerText = formattedTvl;
-					tvlEl.classList.remove('text-primary-500');
-					document.getElementById("tvlSuffix").innerText = size;
+		const queryBody = JSON.stringify({
+		query: `{
+			factories(first: 1) {
+				totalValueLockedUSD
+				xdp2TotalSupply
+				xdp2Staked
+			}
 			
-					const decimals = 2;
-					const ten = BigNumber(10);	
-					const multiplier = Math.pow(10, decimals + 2);
-					const divider = Math.pow(10, decimals);
-					const startTime = 1633514400;
-					const tsNow = Math.ceil(+new Date() / 1000);
-					const oneYear = 31536000;
-
-					const xdp2TotalSupply = BigNumber(graphData.factories[0].xdp2TotalSupply).times(ten.pow(18));
-					const xdp2Staked = BigNumber(graphData.factories[0].xdp2Staked).times(ten.pow(18));;
-					const dfp2TokenAmount = BigNumber(graphData.token.tokenAmount).times(ten.pow(18));;
-			
-					const c1 = BigNumber(100).times(ten.pow(24));
-					const c2 = BigNumber(50).times(ten.pow(24));
-					const c3 = BigNumber(994519296000000);
-
-					const t1 = BigNumber(Math.min(Math.max(tsNow - startTime, 0), oneYear));
-					const dR = c1.div(oneYear).minus(c2.div(c3).times(2).times(t1));
-
-					const aprPermyriad = xdp2TotalSupply
-						.times(dR)
-						.times(oneYear)
-						.times(multiplier)
-						.div(dfp2TokenAmount.times(16))
-						.div(xdp2Staked);
-
-					const apr = Math.round(aprPermyriad.toNumber() / divider);
-
-					const aprEl = document.getElementById("apr");
-					aprEl.innerText = apr;
-					aprEl.classList.remove('text-primary-500');
-
-					document.getElementById("aprUSP").innerText = apr + '%';
-				});
+				token(id: "0x2f57430a6ceda85a67121757785877b4a71b8e6d") {
+					tokenAmount
+				} 
+		}`
 	});
+	
+	fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: queryBody
+	})
+	.then(function(result) { return result.json() })
+	.then(function(jsonResult) {
+		return jsonResult.data;
+	})
+	.then(function(graphData) {
+		var tvl = graphData.factories[0].totalValueLockedUSD;
+		var size = "M";
+		var printableTVL;
+		
+		if(tvl < 1000000) {
+			printableTVL = Math.round(tvl/1000).toFixed(1);
+			size = "K"
+		} else {
+			printableTVL = (Math.round(tvl/10000)/100).toFixed(2);
+		}
+	
+		var formattedTvl = "$" + ("" + printableTVL).substring(0, 4);
+
+		const tvlEl = document.getElementById("tvl");
+		tvlEl.innerText = formattedTvl;
+		tvlEl.classList.remove('text-primary-500');
+		document.getElementById("tvlSuffix").innerText = size;
+
+		const decimals = 2;
+		const ten = BigNumber(10);	
+		const multiplier = Math.pow(10, decimals + 2);
+		const divider = Math.pow(10, decimals);
+		const startTime = 1633514400;
+		const tsNow = Math.ceil(+new Date() / 1000);
+		const oneYear = 31536000;
+
+		const xdp2TotalSupply = BigNumber(graphData.factories[0].xdp2TotalSupply).times(ten.pow(18));
+		const xdp2Staked = BigNumber(graphData.factories[0].xdp2Staked).times(ten.pow(18));;
+		const dfp2TokenAmount = BigNumber(graphData.token.tokenAmount).times(ten.pow(18));;
+
+		const c1 = BigNumber(100).times(ten.pow(24));
+		const c2 = BigNumber(50).times(ten.pow(24));
+		const c3 = BigNumber(994519296000000);
+
+		const t1 = BigNumber(Math.min(Math.max(tsNow - startTime, 0), oneYear));
+		const dR = c1.div(oneYear).minus(c2.div(c3).times(2).times(t1));
+
+		const aprPermyriad = xdp2TotalSupply
+			.times(dR)
+			.times(oneYear)
+			.times(multiplier)
+			.div(dfp2TokenAmount.times(16))
+			.div(xdp2Staked);
+
+		const apr = Math.round(aprPermyriad.toNumber() / divider);
+
+		const aprEl = document.getElementById("apr");
+		aprEl.innerText = apr;
+		aprEl.classList.remove('text-primary-500');
+
+		document.getElementById("aprUSP").innerText = apr + '%';
+	});
+});
 </script>
 
 {% endblock %}
