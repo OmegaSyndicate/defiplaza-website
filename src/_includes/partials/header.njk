@@ -1,22 +1,22 @@
-<header class="sticky top-0 z-50 {% if page.url == "/" %}bg-background-500 nodark:bg-backgroundDark-500{% else %}bg-white nodark:bg-slate-800{% endif %}">
+<header class="sticky top-0 z-50 {% if page.url == "/" %}bg-background-500 nodark:bg-backgroundDark-500{% else %}bg-white nodark:bg-slate-800{% endif %}" id="headerMenu">
     <nav class="container mx-auto py-4 px-4 md:px-0 flex flex-wrap items-center justify-between">
         <a href="/" class="flex justify-center">
           <span class="text-primary-500 nodark:text-slate-200">{% include 'svg/logo/logo.svg' %}</span>
         </a>
 
-        <ul class="hidden md:flex flex-col md:flex-row flex-center order-last md:order-none w-full md:w-min space-y-4 md:space-y-0 pt-4 md:pt-0" id="menu">
-            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/update/' in page.url }}"><a href="/update/">News</a></li>
-            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/blog/' in page.url }}"><a href="/blog/">Blog</a></li>
-            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/help/' in page.url }}"><a href="/help/">Support</a></li>
-            <li class="mx-4"><a href="https://vote.defiplaza.net/#/" target="_blank">Governance</a></li>
-            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/stats/' in page.url }}"><a href="/stats/">Analytics</a></li>
+        <ul class="absolute md:relative left-0 top-12 md:flex flex-col md:flex-row flex-center order-last md:order-none w-full md:w-min space-y-4 md:space-y-0 py-4 md:py-0 border-b md:border-0 border-primary-700 transition-transform ease-out overflow-hidden origin-top transform scale-y-0 {% if page.url == "/" %}bg-background-500 nodark:bg-backgroundDark-500{% else %}bg-white nodark:bg-slate-800{% endif %}" id="menu">
+            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/update/' in page.url }}"><a href="/update/" class="block w-full md:w-min">News</a></li>
+            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/blog/' in page.url }}"><a href="/blog/" class="block w-full md:w-min">Blog</a></li>
+            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/help/' in page.url }}"><a href="/help/" class="block w-full md:w-min">Support</a></li>
+            <li class="mx-4"><a href="https://vote.defiplaza.net/#/" target="_blank" class="block w-full md:w-min">Governance</a></li>
+            <li class="mx-4 {{ 'border-b-2 border-primary-500' if '/stats/' in page.url }}"><a href="/stats/" class="block w-full md:w-min">Analytics</a></li>
         </ul>
 
         <div class="flex items-center">
-          <div class="md:hidden w-8 h-4 mr-4 hamburger-container">
+          <div class="md:hidden w-8 h-4 mr-4" id="hamburger-container">
               <ul class="hamburger h-4 flex flex-col justify-around">
-                  <li class="relative h-0.5 bg-black duration-200 ease-in-out"></li>
-                  <li class="relative h-0.5 bg-black duration-200 ease-in-out"></li>
+                  <li id="hamburger-top" class="relative h-0.5 bg-black duration-200 ease-in-out"></li>
+                  <li id="hamburger-bottom" class="relative h-0.5 bg-black duration-200 ease-in-out"></li>
               </ul>
           </div>
 
@@ -28,30 +28,35 @@
 </header>
 
 <script>
-$(document).ready(function() {
-  //toggle menu
-  $(".hamburger-container").click(function() {
-    $("#menu").slideToggle();
-  });
-
-  //to fix issue that toggle adds style(hides) to nav
-  $(window).resize(function() {
-    if (window.innerWidth > 1024) {
-      $("#menu").removeAttr("style");
-    }
-  });
+document.addEventListener("DOMContentLoaded", function() {
 
   //icon animation
-  var topBar = $(".hamburger li:nth-child(1)"),
-    middleBar = $(".hamburger li:nth-child(2)");
+  var topBar = document.getElementById("hamburger-top"),
+    middleBar = document.getElementById("hamburger-bottom"),
+    open = false;
 
-  $(".hamburger-container").on("click", function() {
-    if (middleBar.hasClass("rot-45deg")) {
-      topBar.removeClass("rot45deg");
-      middleBar.removeClass("rot-45deg");
+  
+
+  document.getElementById("hamburger-container").addEventListener("click", function() {
+    {# if(open) {
+      document.getElementById('menu').style.height = '0px'; //classList.toggle('h-0');
     } else {
-      topBar.addClass("rot45deg");
-      middleBar.addClass("rot-45deg");
+      document.getElementById('menu').style.height = '184px'; //classList.toggle('h-0');
+    } #}
+
+    var menu = document.getElementById('menu');
+    
+    menu.classList.toggle('scale-y-100');
+    menu.style.top = document.getElementById('headerMenu').offsetHeight + 'px';
+
+    open = !open;
+
+    if (middleBar.classList.contains("rot-45deg")) {
+      topBar.classList.remove("rot45deg");
+      middleBar.classList.remove("rot-45deg");
+    } else {
+      topBar.classList.add("rot45deg");
+      middleBar.classList.add("rot-45deg");
     }
   });
 });

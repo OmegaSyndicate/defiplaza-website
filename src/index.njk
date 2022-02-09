@@ -124,7 +124,7 @@ pagination:
 
 		{# Support pillar #}
 		<div class="md:container mx-4 md:mx-auto flex flex-wrap items-center mt-15 text-white" id="supportSection">
-			<div class="w-full md:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence@1x.png') 1x, url('/assets/images/home/pillar-sequence@2x.png') 2x, url('/assets/images/home/pillar-sequence@3x.png') 3x ); background-size: cover;" id="pillarSequence">&nbsp;</div>
+			<div class="w-full md:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence@1x.png') 1x, url('/assets/images/home/pillar-sequence@2x.png') 2x); background-size: cover;" id="pillarSequence">&nbsp;</div>
 			<div class="mx-auto mt-8 md:mt-0 md:ml-32">
 				<h3 class="text-2xl">Are you feeling lost?</h3>
 				<p class="mt-2">Make sure to check out our support section.</p>
@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function() {
-		if(jQuery("#tvl").length > 0) {
+
 			const queryBody = JSON.stringify({
 			query: `{
 				factories(first: 1) {
@@ -373,10 +373,11 @@ document.addEventListener("DOMContentLoaded", function() {
 					}
 				
 					var formattedTvl = "$" + ("" + printableTVL).substring(0, 4);
-				
-					jQuery("#tvl").text(formattedTvl);
-					jQuery("#tvl").removeClass('text-primary-500');
-					jQuery("#tvlSuffix").text(size);
+
+					const tvlEl = document.getElementById("tvl");
+					tvlEl.innerText = formattedTvl;
+					tvlEl.classList.remove('text-primary-500');
+					document.getElementById("tvlSuffix").innerText = size;
 			
 					const decimals = 2;
 					const ten = BigNumber(10);	
@@ -406,12 +407,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 					const apr = Math.round(aprPermyriad.toNumber() / divider);
 
-					jQuery("#apr").text(apr);
-					jQuery("#apr").removeClass('text-primary-500');
+					const aprEl = document.getElementById("apr");
+					aprEl.innerText = apr;
+					aprEl.classList.remove('text-primary-500');
 
-					jQuery("#aprUSP").text(apr + '%');
+					document.getElementById("aprUSP").innerText = apr + '%';
 				});
-		}
 	});
 </script>
 

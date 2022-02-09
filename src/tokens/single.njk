@@ -55,7 +55,7 @@ permalink: '/token/{{ token.slug }}/'
 <script src="https://unpkg.com/dayjs@1.8.21/plugin/relativeTime.js"></script>
 
 <script type="text/javascript">
-jQuery(document).ready(function () { 
+document.addEventListener("DOMContentLoaded", function() {
     
   const address = "{{ token.acf.contract_address }}";
     

@@ -115,7 +115,7 @@ permalink: '/stats/'
 <script src="https://unpkg.com/dayjs@1.8.21/plugin/relativeTime.js"></script>
 
 <script type="text/javascript">
-jQuery(document).ready(function () { 
+document.addEventListener("DOMContentLoaded", function() {
     dayjs.extend(window.dayjs_plugin_relativeTime)
     
 	const queryBody = JSON.stringify({
@@ -407,7 +407,7 @@ function tokensTable(tokens) {
         
         table += `</tbody></table>`;
             
-        jQuery("#tokens").html(table);
+        document.getElementById("tokens").innerHtml = table;
     });
 }
 
@@ -437,7 +437,7 @@ function transactionsTable(swaps) {
     
     table += `</tbody></table>`;
         
-    jQuery("#transactions").html(table);
+    document.getElementById("transactions").innerHtml = table;
     
 }
 
@@ -453,7 +453,7 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 		data.push(point[dataPoint]);
 	}
 
-	jQuery(`#${id} h3`).text(prettyDollar(data[data.length - 1]));
+	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
 
 	labels[labels.length - 1] = 'Today';
 	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
@@ -512,8 +512,8 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 						var raw = context.tooltip.dataPoints[0].raw;
 						var title = context.tooltip.title[0];
 						
-						jQuery(`#${id} h3`).text(prettyDollar(raw));
-						jQuery(`#${id} p`).text(title);
+						document.querySelector(`#${id} h3`).innerText = prettyDollar(raw);
+						document.querySelector(`#${id} p`).innerText = title;
 
 					}
 				}			
@@ -539,7 +539,7 @@ function barChart(id, label, dataPoints, dataPoint) {
 	labels[labels.length - 1] = 'Today';
 	backgroundColors[backgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
 
-	jQuery(`#${id} h3`).text(prettyDollar(data[data.length - 1]));
+	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
 
 	const ctx = document.getElementById(id + 'Chart').getContext('2d');
 	const myChart = new Chart(ctx, {
@@ -571,8 +571,8 @@ function barChart(id, label, dataPoints, dataPoint) {
 						var raw = context.tooltip.dataPoints[0].raw;
 						var title = context.tooltip.title[0];
 						
-						jQuery(`#${id} h3`).text(prettyDollar(raw));
-						jQuery(`#${id} p`).text(title);
+						document.querySelector(`#${id} h3`).innerText = prettyDollar(raw);
+						document.querySelector(`#${id} p`).innerText = title;
 
 					}
 				}	
@@ -627,12 +627,12 @@ function healthCheck(lastestBlockNumber) {
 	       var diff = lastestTheGraphBlock - lastestBlockNumber;
 	       
 	       // Display last block synced
-	       jQuery("#lastBlock").html(`<a href="https://etherscan.io/block/${lastestBlockNumber}" target="_blank">${lastestBlockNumber}</a>`);
+	       document.getElementById("lastBlock").innerHtml = `<a href="https://etherscan.io/block/${lastestBlockNumber}" target="_blank">${lastestBlockNumber}</a>`;
 	       
 	       // Display warning banner, when more than 1 block difference
 	       if(diff > 4) {
-	          jQuery("#blockDiff").html(diff);
-	          jQuery("#warning-banner").show();
+	          document.getElementById("blockDiff").html(diff);
+	          document.getElementById("warning-banner").show();
 	       }
 	    });
 }
