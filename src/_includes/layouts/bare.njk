@@ -24,7 +24,9 @@
 					{{ site.title }} · {{ site.description }}
 				{%- endif -%}
 			</title>
-			<meta name="description" content="{{ description if description else site.description }}">
+			{%- if description -%}
+			<meta name="description" content="{{ description }}">
+			{%- endif -%}
 
 			<!--Twitter Card-->
 			<meta name="twitter:site" content="{{ site.twitter }}">

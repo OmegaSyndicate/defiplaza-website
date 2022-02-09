@@ -219,8 +219,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	// Load Hercules sequence
 	document.getElementById('heroSequence').classList.add('hero-sequence');
 
-	console.log(document.getElementById('heroSequence').classList);
-
 	ScrollTrigger.matchMedia({	
 	// desktop
 	"(min-width: 800px)": function() {
@@ -257,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	var pillar_frame_count  = 23,
 		pillar_offset_value = document.querySelector('#pillarSequence').offsetHeight;
 
-		console.log('pillar height', pillar_offset_value);
+	console.log('pillar height', pillar_offset_value);
 
 	gsap.to("#pillarSequence", {
 		backgroundPosition: "50% " + (-pillar_offset_value * pillar_frame_count) + "px",
