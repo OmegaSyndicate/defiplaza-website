@@ -7,7 +7,7 @@ permalink: '/stats/'
 ---
 
 <section class="md:container mx-4 md:mx-auto">
-	<h1 class="text-center text-3xl md:text-6xl font-light"><strong class="font-bold text-primary-500">DefiPlaza's</strong> Analytics</h1>
+	<h1 class="fluid text-center dark:text-primary-100"><strong class="font-bold text-primary-500 dark:text-white">DefiPlaza's</strong> Analytics</h1>
 	<p class="text-center text-base font-bold">Last synced block <span id="lastBlock" class="font-normal">{% include "partials/loading-indicator.njk" %}</span><span id="lastBlockTime"></span></p>
 
 	<div class="relative mt-16 space-y-4 p-4 md:p-8 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
@@ -15,20 +15,20 @@ permalink: '/stats/'
 
 		{# TVL and DFP2 MC #}
 		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
-			<div class="z-10 py-8 px-4 flex flex-col justify-between rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
-				<div id="tvl">
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="tvl">
 					<h2 class="text-2xl">Total Value Locked</h2>
-					<h3 class="text-2xl text-primary-700">{% include "partials/loading-indicator.njk" %}</h3>
-					<p class="text-base text-black/70">Today</p>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100">Today</p>
 				</div>
 				<canvas id="tvlChart" width="400" height="250"></canvas>
 			</div>
 
-			<div class="z-10 py-8 px-4 flex flex-col justify-between rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
-				<div id="marketCap">
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="marketCap">
 					<h2 class="text-2xl text-right">DFP2 Market Cap</h2>
-					<h3 class="text-2xl text-primary-700 text-right">{% include "partials/loading-indicator.njk" %}</h3>
-					<p class="text-base text-black/70 text-right">Today</p>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 text-right">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100 text-right">Today</p>
 				</div>
 				<canvas id="marketCapChart" width="400" height="250"></canvas>
 			</div>
@@ -36,20 +36,20 @@ permalink: '/stats/'
 
 		{# XDP2 and DFP2 prices #}
 		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
-			<div class="z-10 py-8 px-4 flex flex-col justify-between rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
-				<div id="xdp2Price">
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="xdp2Price">
 					<h2 class="text-2xl">XDP2 Price</h2>
-					<h3 class="text-2xl text-primary-700">{% include "partials/loading-indicator.njk" %}</h3>
-					<p class="text-base text-black/70">Today</p>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700">Today</p>
 				</div>
 				<canvas id="xdp2PriceChart" width="400" height="250"></canvas>
 			</div>
 
-			<div class="z-10 py-8 px-4 flex flex-col justify-between rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
-				<div id="dfp2Price">
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="dfp2Price">
 					<h2 class="text-2xl text-right">DFP2 Price</h2>
-					<h3 class="text-2xl text-primary-700 text-right">{% include "partials/loading-indicator.njk" %}</h3>
-					<p class="text-base text-black/70 text-right">Today</p>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 text-right">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100 text-right">Today</p>
 				</div>
 				<canvas id="dfp2PriceChart" width="400" height="250"></canvas>
 			</div>
@@ -57,11 +57,11 @@ permalink: '/stats/'
 
 		{# Daily Trade Volume #}
 		<div class="relative grid grid-cols-1 gap-4">
-			<div class="z-10 py-16 px-8 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
-				<div id="swap">
+			<div class="z-10 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="swap">
 					<h2 class="text-2xl">Daily Trade Volume</h2>
-					<h3 class="text-2xl text-primary-700">{% include "partials/loading-indicator.njk" %}</h3>
-					<p class="text-base text-black/70">Today</p>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100">Today</p>
 				</div>
 				<canvas id="swapChart" width="800" height="250"></canvas>
 			</div>
@@ -69,11 +69,11 @@ permalink: '/stats/'
 
 		{# Daily Liquidity Change #}
 		<div class="relative grid grid-cols-1 gap-4">
-			<div class="z-10 py-8 px-4 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
+			<div class="z-10 py-8 px-4 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
 				<div id="liquidity">
 					<h2 class="text-2xl">Daily Liquidity Change</h2>
-					<h3 class="text-2xl text-primary-700">{% include "partials/loading-indicator.njk" %}</h3>
-					<p class="text-base text-black/70">Today</p>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100">Today</p>
 				</div>
 				<canvas id="liquidityChart" width="800" height="250"></canvas>
 			</div>
@@ -81,9 +81,9 @@ permalink: '/stats/'
 
 		{# Tokens #}
 		<div class="relative grid grid-cols-1 gap-4">
-			<div class="z-10 py-8 px-4 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
+			<div class="z-10 py-8 px-4 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
 				<h2 class="text-2xl">Tokens</h2>
-				<div class="mt-4 relative bg-slate-50 rounded-xl overflow-hidden nodark:bg-slate-800/25">
+				<div class="mt-4 relative bg-slate-50 rounded-xl overflow-hidden dark:bg-primary-800/25">
 					<div class="relative rounded-xl overflow-auto">
 						<div id="tokens" class="shadow-sm overflow-hidden my-8">
 							{% include "partials/loading-indicator.njk" %}
@@ -95,9 +95,9 @@ permalink: '/stats/'
 
 		{# Recent Transactions #}
 		<div class="relative grid grid-cols-1 gap-4">
-			<div class="z-10 py-16 px-8 flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
+			<div class="z-10 py-16 px-8 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
 				<h2 class="text-2xl">Recent Transactions</h2>
-				<div class="mt-4 relative bg-slate-50 rounded-xl overflow-hidden nodark:bg-slate-800/25">
+				<div class="mt-4 relative bg-slate-50 rounded-xl overflow-hidden dark:bg-primary-800/25">
 					<div class="relative rounded-xl overflow-auto">
 						<div id="transactions" class="shadow-sm overflow-hidden my-8">
 							{% include "partials/loading-indicator.njk" %}
@@ -389,25 +389,25 @@ function tokensTable(tokens) {
             <table class="border-collapse table-auto w-full text-sm">
             <thead>
             <tr>
-                <td class="border-b nodark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 nodark:text-slate-200 text-left">Symbol</td>
-                <td class="border-b nodark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 nodark:text-slate-200 text-left">Liquidity</td>
-                <td class="border-b nodark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 nodark:text-slate-200 text-left">Token amount</td>
-                <td class="border-b nodark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 nodark:text-slate-200 text-left">Price</td>
+                <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Symbol</td>
+                <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Liquidity</td>
+                <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Token amount</td>
+                <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Price</td>
             </tr>
-            </thead><tbody class="bg-white nodark:bg-slate-800">`;
+            </thead><tbody class="bg-white dark:bg-primary-800">`;
         
         for(let token of tokens) {
             table += `<tr>
-            	<td class="border-b border-slate-100 nodark:border-slate-700 p-4 pl-8 text-slate-500 nodark:text-slate-400"><a href="/token/${token.symbol.toLowerCase()}">${token.symbol}</a></td>
-            	<td class="border-b border-slate-100 nodark:border-slate-700 p-4 pl-8 text-slate-500 nodark:text-slate-400">${ prettyDollar(token.tokenAmount*getPrice(token)) }</td>
-             	<td class="border-b border-slate-100 nodark:border-slate-700 p-4 pl-8 text-slate-500 nodark:text-slate-400">${ prettyValue(token.tokenAmount) }</td>
-            	<td class="border-b border-slate-100 nodark:border-slate-700 p-4 pl-8 text-slate-500 nodark:text-slate-400">${ prettyDollar(getPrice(token)) }</td>
+            	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><a href="/token/${token.symbol.toLowerCase()}">${token.symbol}</a></td>
+            	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyDollar(token.tokenAmount*getPrice(token)) }</td>
+             	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyValue(token.tokenAmount) }</td>
+            	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyDollar(getPrice(token)) }</td>
             </tr>`;
         }
         
         table += `</tbody></table>`;
             
-        document.getElementById("tokens").innerHtml = table;
+        document.getElementById("tokens").innerHTML = table;
     });
 }
 
@@ -416,29 +416,48 @@ function transactionsTable(swaps) {
         <table class="border-collapse table-auto w-full text-sm">
         <thead>
         <tr>
-            <td class="border-b nodark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 nodark:text-slate-200 text-left"></td>
-            <td class="border-b nodark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 nodark:text-slate-200 text-left">Total Value</td>
-            <td class="border-b nodark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 nodark:text-slate-200 text-left">Token amount</td>
-            <td class="border-b nodark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 nodark:text-slate-200 text-left">Token amount</td>
-            <td class="border-b nodark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 nodark:text-slate-200 text-left">Date</td>
+            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left"></td>
+            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Total Value</td>
+            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Token amount</td>
+            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Token amount</td>
+            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Date</td>
         </tr>
         </thead>
-		  <tbody class="bg-white nodark:bg-slate-800">`;
+		  <tbody class="bg-white dark:bg-primary-800">`;
     
     for(let swap of swaps) {
         table += `<tr>
-      	<td class="border-b border-slate-100 nodark:border-slate-700 p-4 pl-8 text-slate-500 nodark:text-slate-400"><a href="https://etherscan.io/tx/${ swap.id }" target="_blank">From ${swap.inputToken.symbol} to ${swap.outputToken.symbol}</a></td>
-      	<td class="border-b border-slate-100 nodark:border-slate-700 p-4 pl-8 text-slate-500 nodark:text-slate-400">${ prettyDollar(swap.swapUSD) }</td>
-      	<td class="border-b border-slate-100 nodark:border-slate-700 p-4 pl-8 text-slate-500 nodark:text-slate-400">${ prettyValue(swap.inputAmount) } ${swap.inputToken.symbol}</td>
-        	<td class="border-b border-slate-100 nodark:border-slate-700 p-4 pl-8 text-slate-500 nodark:text-slate-400">${ prettyValue(swap.outputAmount) } ${swap.outputToken.symbol}</td>
-         <td class="border-b border-slate-100 nodark:border-slate-700 p-4 pl-8 text-slate-500 nodark:text-slate-400">${ dayjs(swap.timestamp*1000).fromNow() } </td>
+      	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><a href="https://etherscan.io/tx/${ swap.id }" target="_blank">From ${swap.inputToken.symbol} to ${swap.outputToken.symbol}</a></td>
+      	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyDollar(swap.swapUSD) }</td>
+      	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyValue(swap.inputAmount) } ${swap.inputToken.symbol}</td>
+        	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyValue(swap.outputAmount) } ${swap.outputToken.symbol}</td>
+         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ dayjs(swap.timestamp*1000).fromNow() } </td>
         </tr>`;
     }
     
     table += `</tbody></table>`;
         
-    document.getElementById("transactions").innerHtml = table;
+    document.getElementById("transactions").innerHTML = table;
     
+}
+
+let width, height, gradient;
+function getGradient(ctx, chartArea, from, to) {
+  const chartWidth = chartArea.right - chartArea.left;
+  const chartHeight = chartArea.bottom - chartArea.top;
+  if (!gradient || width !== chartWidth || height !== chartHeight) {
+    // Create the gradient because this is either the first render
+    // or the size of the chart has changed
+    width = chartWidth;
+    height = chartHeight;
+    gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(0, to);
+    gradient.addColorStop(0.75, from);
+    gradient.addColorStop(1, from);
+
+  }
+
+  return gradient;
 }
 
 function lineChart(id, label, dataPoints, dataPoint, fill) {
@@ -459,6 +478,14 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
 	pointBackgroundColors[pointBackgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
 
+	let primaryColor = '#3d0283';
+	let backgroundColor = '#fff';
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		// dark mode
+		primaryColor = '#dcceee';
+		backgroundColor = '#32036a';
+	}
+
 	const ctx = document.getElementById(id + 'Chart').getContext('2d');
 	const myChart = new Chart(ctx, {
 		type: 'line',
@@ -468,23 +495,32 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 				{
 					label: label,
 					data: data,
-					backgroundColor: '#3d028380',
+					backgroundColor: function(context) {
+						const chart = context.chart;
+						const {ctx, chartArea} = chart;
+
+						if (!chartArea) {
+							// This case happens on initial chart load
+							return;
+						}
+						return getGradient(ctx, chartArea, primaryColor + '80', backgroundColor);
+					},
 					borderWidth: 3,
 					fill: fill,
-					borderColor: '#3d0283',
+					borderColor: primaryColor,
 					pointRadius: 0,
 					pointHoverRadius: 6,
 					pointHoverBorderWidth: 2,
-					pointHoverBorderColor: '#3d0283',
+					pointHoverBorderColor: primaryColor,
 					pointHoverBackgroundColor: '#ffffff80',
 					lineTension: 0.05,
 					segment: {
-						backgroundColor: function (ctx) {
+						/*backgroundColor: function (ctx) {
 							if (ctx.p0DataIndex == data.length - 2) {
 								return 'rgba(47, 79, 126, 0.2)';
 							}
 							return undefined;
-						},
+						},*/
 						borderDash: function (ctx) {
 							if (ctx.p0DataIndex == data.length - 2) {
 								return [2, 2];
@@ -533,13 +569,19 @@ function barChart(id, label, dataPoints, dataPoint) {
 		labels.push(weekdays[date.getDay()] + ' ' + date.getDate() + '/' + (date.getMonth() + 1));
 		data.push(point[dataPoint]);
 
-		backgroundColors.push('#3d028380');
+		backgroundColors.push('#3d0283');
 	}
 
 	labels[labels.length - 1] = 'Today';
 	backgroundColors[backgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
 
 	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+
+	let primaryColor = '#3d0283';
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		// dark mode
+		primaryColor = '#dcceee';
+	}
 
 	const ctx = document.getElementById(id + 'Chart').getContext('2d');
 	const myChart = new Chart(ctx, {
@@ -550,9 +592,10 @@ function barChart(id, label, dataPoints, dataPoint) {
 				{
 					label: label,
 					data: data,
-					backgroundColor: backgroundColors,
+					backgroundColor: primaryColor,
 					borderColor: ['#3d0283'],
 					borderWidth: 0,
+					borderRadius: 2,
 					fill: true,
 					pointStyle: 'circle'
 				},
@@ -627,7 +670,7 @@ function healthCheck(lastestBlockNumber) {
 	       var diff = lastestTheGraphBlock - lastestBlockNumber;
 	       
 	       // Display last block synced
-	       document.getElementById("lastBlock").innerHtml = `<a href="https://etherscan.io/block/${lastestBlockNumber}" target="_blank">${lastestBlockNumber}</a>`;
+	       document.getElementById("lastBlock").innerHTML = `<a href="https://etherscan.io/block/${lastestBlockNumber}" target="_blank">${lastestBlockNumber}</a>`;
 	       
 	       // Display warning banner, when more than 1 block difference
 	       if(diff > 4) {

@@ -12,11 +12,10 @@ permalink: '/token/{{ token.slug }}/'
 
 {% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
 
-<section class="container mx-auto">
-	<h1 class="text-4xl font-light">{{ token.title.rendered | safe }} ({{ token.acf.symbol | upper }})</h1>
+<section class="md:container mx-4 md:mx-auto">
+	<h1 class="fluid text-center dark:text-primary-100">{{ token.title.rendered | safe }} ({{ token.acf.symbol | upper }})</h1>
 
-  <p>Launch date: {{ token.date | wpDateToString }}</p>
-  <div class="flex mt-4 space-x-2">
+  <div class="flex justify-center mt-4 space-x-2">
     <a class="btn-outline rounded-full" href="https://etherscan.io/address/{{ token.acf.contract_address }}" target="_blank">Etherscan</a>
     
     {% if token.acf.website %}
@@ -33,19 +32,32 @@ permalink: '/token/{{ token.slug }}/'
     {% endif %}
   </div>
 
-  <div class="mt-8">
-    <canvas id="priceChart" width="800" height="250"></canvas>
-  </div>
+  <div class="relative mt-16 space-y-4 p-4 md:p-8 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
+		<div class="oval-gradient -top-80 -left-80"></div>
 
-  <article class="prose nodark:prose-invert mx-auto mt-10">
+		{# TVL and DFP2 MC #}
+		<div class="relative grid grid-cols-1">
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="price">
+					<h2 class="text-2xl">{{ token.acf.symbol }} price</h2>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100">Today</p>
+				</div>
+				<canvas id="priceChart" width="800" height="250"></canvas>
+			</div>
+		</div>
+	</div>
+
+{# <p>Launch date: {{ token.date | wpDateToString }}</p> #}
+  <article class="prose dark:prose-invert mx-auto mt-10">
     {{ token.content.rendered | wpUrls | safe }}
   </article>
 
-  <div class="mx-auto mt-10">
-    <h2 class="text-4xl font-light text-center">Swap <strong class="text-primary-500">{{ token.title.rendered }}</strong> for only 0.1% fee on DefiPlaza</h2>
+  <div class="md:max-w-[65ch] mx-auto mt-16">
+    <h2 class="text-4xl font-light text-center dark:text-primary-100">Swap <strong class="text-primary-500 dark:text-white">{{ token.title.rendered }}</strong> for only 0.1% fee on DefiPlaza</h2>
     <div class="max-w-[65ch] mx-auto mt-4">
       <p>Trade {{ token.acf.symbol | upper }} for one of the other 15 most popular DeFI tokens on DefiPlaza. DefiPlaza offers 120 direct trading pairs and you can swap for a 0,1% fee. That is 65% less fee then on UniSwap!</p>
-      <a class="btn-primary mt-2" href="https://app.defiplaza.net/swap?from={{ token.acf.symbol }}" target="_blank">Swap ${{ token.acf.symbol | upper }}</a>
+      <a class="btn-primary text-center mt-4" href="https://app.defiplaza.net/swap?from={{ token.acf.symbol }}" target="_blank">Swap ${{ token.acf.symbol | upper }}</a>
     </div>
   </div>
 </section>
@@ -95,24 +107,47 @@ let chartScales = {
 		beginAtZero: true,
 		position: 'right',
 		ticks: {
-			// Include a dollar sign in the ticks
+			color: "#23211f",
+			font: {
+				size: 12
+			},
+      	// Include a dollar sign in the ticks
 			callback: function (value, index, values) {
 				return prettyDollar(parseFloat(value));
 			},
 		},
-		grid: {
+		/*grid: {
 			borderColor: 'rgb(236, 198, 168)',
 			color: 'rgba(47, 79, 126, 0.1)',
+		},*/
+		grid: {
+			display: false,
+			drawBorder: false,
 		},
+		display: false
 	},
 	x: {
-		grid: {
+		/*grid: {
 			borderColor: 'rgb(236, 198, 168)',
 			color: 'rgba(47, 79, 126, 0.1)',
+		},*/
+		ticks: {
+			color: "#23211f",
+			font: {
+				size: 12
+			},
+			/*callback: function(val, index) {
+            // Hide every 2nd tick label
+            return index % 7 === 0 ? this.getLabelForValue(val) : '';
+          }*/
 		},
+		grid: {
+			display: false,
+			drawBorder: false,
+		},
+		display: false
 	},
 };
-
 
 function prettyDollar(value) {
     return "$" + prettyValue(value);
@@ -144,11 +179,30 @@ function prettyValue(value) {
 }
 
 function priceChart(dailies) {
-	lineChart('priceChart', 'Price in USD', dailies, 'tokenPriceUSD', false);
+	lineChart('price', 'Price in USD', dailies, 'tokenPriceUSD', false);
 }
 
+let width, height, gradient;
+function getGradient(ctx, chartArea, from, to) {
+  const chartWidth = chartArea.right - chartArea.left;
+  const chartHeight = chartArea.bottom - chartArea.top;
+  if (!gradient || width !== chartWidth || height !== chartHeight) {
+    // Create the gradient because this is either the first render
+    // or the size of the chart has changed
+    width = chartWidth;
+    height = chartHeight;
+    gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(0, to);
+    gradient.addColorStop(0.75, from);
+    gradient.addColorStop(1, from);
 
-function lineChart(chartId, label, dataPoints, dataPoint, fill) {
+  }
+
+  return gradient;
+}
+let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+function lineChart(id, label, dataPoints, dataPoint, fill) {
 	let labels = [];
 	let data = [];
 	let pointBorderColors = [];
@@ -156,18 +210,25 @@ function lineChart(chartId, label, dataPoints, dataPoint, fill) {
 
 	for (let point of dataPoints) {
 		let date = new Date(point.date * 1000);
-		labels.push(date.getDate() + '/' + (date.getMonth() + 1));
+		labels.push(weekdays[date.getDay()] + ' ' + date.getDate() + '/' + (date.getMonth() + 1));
 		data.push(point[dataPoint]);
-		
-		pointBorderColors.push('rgb(47, 79, 126)');
-		pointBackgroundColors.push('rgba(47, 79, 126, 0.5)');
 	}
+
+	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
 
 	labels[labels.length - 1] = 'Today';
 	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
 	pointBackgroundColors[pointBackgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
 
-	const ctx = document.getElementById(chartId).getContext('2d');
+	let primaryColor = '#3d0283';
+	let backgroundColor = '#fff';
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		// dark mode
+		primaryColor = '#dcceee';
+		backgroundColor = '#32036a';
+	}
+
+	const ctx = document.getElementById(id + 'Chart').getContext('2d');
 	const myChart = new Chart(ctx, {
 		type: 'line',
 		data: {
@@ -176,20 +237,26 @@ function lineChart(chartId, label, dataPoints, dataPoint, fill) {
 				{
 					label: label,
 					data: data,
-					backgroundColor: 'rgba(47, 79, 126, 0.5)',
-					borderColor: 'rgb(47, 79, 126)',
-					borderWidth: 1,
+					backgroundColor: function(context) {
+						const chart = context.chart;
+						const {ctx, chartArea} = chart;
+
+						if (!chartArea) {
+							// This case happens on initial chart load
+							return;
+						}
+						return getGradient(ctx, chartArea, primaryColor + '80', backgroundColor);
+					},
+					borderWidth: 3,
 					fill: fill,
-					pointBorderColor: pointBorderColors,
-					pointBackgroundColor: pointBackgroundColors,
-					tension: 0.3,
+					borderColor: primaryColor,
+					pointRadius: 0,
+					pointHoverRadius: 6,
+					pointHoverBorderWidth: 2,
+					pointHoverBorderColor: primaryColor,
+					pointHoverBackgroundColor: '#ffffff80',
+					lineTension: 0.05,
 					segment: {
-						backgroundColor: function (ctx) {
-							if (ctx.p0DataIndex == data.length - 2) {
-								return 'rgba(47, 79, 126, 0.2)';
-							}
-							return undefined;
-						},
 						borderDash: function (ctx) {
 							if (ctx.p0DataIndex == data.length - 2) {
 								return [2, 2];
@@ -201,12 +268,29 @@ function lineChart(chartId, label, dataPoints, dataPoint, fill) {
 			],
 		},
 		options: {
+			interaction: {
+				mode: 'index',
+				intersect: false,
+			},
 			plugins: {
 				legend: {
 					display: false,
 				},
+				tooltip: {
+					enabled: false,
+					position: 'nearest',
+					usePointStyle: true,
+					external: function(context) {
+						var raw = context.tooltip.dataPoints[0].raw;
+						var title = context.tooltip.title[0];
+						
+						document.querySelector(`#${id} h3`).innerText = prettyDollar(raw);
+						document.querySelector(`#${id} p`).innerText = title;
+
+					}
+				}			
 			},
-			scales: chartScales,
+			scales: chartScales
 		},
 	});
 }

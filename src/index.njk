@@ -13,15 +13,15 @@ pagination:
 {% block bare %}
 	{% include "partials/header.njk" %}
 
-	<div class="relative -mt-[71px] pt-[71px] bg-background-500 nodark:bg-stone-800" id="heroSection">
+	<div class="relative -mt-[71px] pt-[71px] bg-background-500 dark:bg-primary-600" id="heroSection">
 		{# Sequence #}
-		<div class="fixed top-0 right-0 bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0 hero-preload" style="background-size: auto {{ backgroundSize }}vh;" id="heroSequence">&nbsp;</div>
+		<div class="fixed top-0 right-0 hero-preload bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0 " style="background-size: auto {{ backgroundSize }}vh;" id="heroSequence">&nbsp;</div>
 
 		{# Hero #}
-		<section class="relative container h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10 bg-background-500/50 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75">
-			<h1 class="text-5xl md:text-8xl text-center">The <span class="italic font-serif">lowest fees</span> of any<br> exchange on Ethereum.</h1>
+		<section class="relative container h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10 bg-background-500/50 dark:bg-primary-600/70 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75 md:dark:from-background-900/75 ">
+			<h1 class="hero-fluid text-center dark:text-white">The <span class="italic font-serif">lowest fees</span> of any<br> exchange on Ethereum.</h1>
 			<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
-			<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8 text-primary-500">
+			<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8">
 				<a href="https://app.defiplaza.net/swap" class="btn-primary inline-flex items-center">
 					<span class="mt-px whitespace-nowrap">Get started</span>
 					{% include "partials/arrow-right.njk" %}
@@ -30,7 +30,7 @@ pagination:
 					<span class="mt-px whitespace-nowrap">More information</span>
 				</a>
 
-				<div class="flex justify-center items-center w-full md:w-min mt-8 md:mt-0 md:ml-8 space-x-4">
+				<div class="flex justify-center items-center w-full md:w-min mt-8 md:mt-0 md:ml-8 space-x-4 text-primary-500 dark:text-white">
 					<p><a href="https://discord.gg/GjEPsst58D" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
 					<p><a href="https://twitter.com/defiplaza" target="_blank">{% include 'svg/socials/twitter.svg' %}</a></p>
 					<p><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p>
@@ -40,9 +40,9 @@ pagination:
 
 		{# USPs #}
 		<section class="relative container mx-auto flex flex-col-reverse md:flex-row">
-			<div class="md:w-1/2 z-10 bg-white nodark:bg-slate-900 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20">
-				<h2 class="text-3xl md:text-4xl">
-					<strong class="font-bold text-primary-500">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
+			<div class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20  overflow-hidden">
+				<h2 class="text-3xl md:text-4xl dark:text-primary-100">
+					<strong class="font-bold text-primary-500 dark:text-white">DefiPlaza</strong> is a decentralized exchange on Ethereum.</h2>
 				<p class="mt-4">Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
 				<p class="mt-4">What makes DefiPlaza special is a <i>single-contract</i>, <i>highly optimized DEX</i>, designed to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
 				<a href="/blog/making-defi-on-ethereum-affordable-again" class="btn-primary rounded-full inline-flex items-center mt-4">
@@ -53,44 +53,44 @@ pagination:
 				<hr class="mt-16 border-background-700">
 
 				<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-					<h3 class="text-3xl font-bold text-primary-500">Swap 65% cheaper</h3>
-					<p class="text-3xl font-light">than any other DEX.</p>
+					<h3 class="text-3xl font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
+					<p class="text-3xl font-light dark:text-primary-100">than any other DEX.</p>
 				</div>
 
 				<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-					<h3 class="text-3xl font-bold text-primary-500">Invest in a basket of 16 tokens</h3>
-					<p class="text-3xl font-light">like an ETF fund.</p>
+					<h3 class="text-3xl font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
+					<p class="text-3xl font-light dark:text-primary-100">like an ETF fund.</p>
 				</div>
 
 				<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-					<h3 class="text-3xl font-bold text-primary-500">Stake your tokens</h3>
-					<p class="text-3xl font-light">and receive a <span id="aprUSP"></span> APR.</p>
+					<h3 class="text-3xl font-bold text-primary-500 dark:text-white">Stake your tokens</h3>
+					<p class="text-3xl font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
 				</div>
 			</div>
 
 			{# Stats #}
 			<div class="relative w-full md:w-1/2 z-10">
-				<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-8 bg-primary-500 text-white md:rounded-lg text-center" id="stats">
+				<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-8 bg-primary-500 dark:bg-primary-800 text-white md:rounded-lg text-center" id="stats">
 					<li>
 						<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 							<span id="tvl" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
 							<span id="tvlSuffix" class="text-base font-light align-middle">&nbsp;</span>
 						</p>
-						<h3 class="text-sm whitespace-nowrap">Liquidity</h3>
+						<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Liquidity</h3>
 					</li>
 					<li>
 						<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">120</p>
-						<h3 class="text-sm whitespace-nowrap">Trading pairs</h3>
+						<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trading pairs</h3>
 					</li>
 					<li>
 						<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">0.1<span class="text-base font-light align-middle">%</span></p>
-						<h3 class="text-sm whitespace-nowrap">Swapping fee</h3>
+						<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Swapping fee</h3>
 					</li>
 					<li>
 						<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 							<span id="apr" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
 							<span class="text-base font-light align-middle">%</span></p>
-						<h3 class="text-sm whitespace-nowrap">APR</h3>
+						<h3 class="text-sm whitespace-nowrap dark:text-primary-100">APR</h3>
 					</li>
 				</ul>
 			</div>
@@ -115,8 +115,8 @@ pagination:
 				<div class="flex items-stretch snap-x snap-mandatory overflow-x-auto ml-4 md:ml-0 py-8 scrollable">
 					<div class="flex flex-nowrap">
 						{% for section in helpsections %}
-							<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white nodark:bg-slate-900 hover:shadow-xl transition-shadow duration-300 ease-in-out">
-								<h3 class="text-3xl font-bold text-primary-500">{{ section.name }}</h3>
+							<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white dark:bg-primary-800 hover:shadow-xl transition-shadow duration-300 ease-in-out">
+								<h3 class="text-3xl font-bold text-primary-500 dark:text-primary-100">{{ section.name }}</h3>
 								<p class="mt-4 text-lg">{{ section.description }}</p>
 								<a href="/help/{{ section.slug }}/" class="mt-16 btn-primary rounded-full w-min">
 									{% include "partials/arrow-right.njk" %}
@@ -168,16 +168,16 @@ pagination:
 									<p class="md:absolute md:top-1/3 md:-transform-y-1/2 md:left-16 md:text-9xl text-4xl ml-6 md:ml-0 mt-6 md:mt-0 font-light text-primary-500 z-0">Future</p>
 								{% endif %}
 
-								<div class="relative z-10 bg-white nodark:bg-slate-900 rounded-lg md:w-80 min-h-40 mt-4 {{ margin }} ml-8 p-6 pr-8">
-									<div class="absolute top-5 -left-8 rounded-full w-4 h-4 bg-white nodark:bg-slate-900"></div>
+								<div class="relative z-10 bg-white dark:bg-primary-800 rounded-lg md:w-80 min-h-40 mt-4 {{ margin }} ml-8 p-6 pr-8">
+									<div class="absolute top-5 -left-8 rounded-full w-4 h-4 bg-white dark:bg-primary-100"></div>
 
 									{% if loop.index0 % 4 == 2 %}
-										<div class="hidden md:block absolute w-0.5 h-16 bg-white nodark:bg-slate-900 -top-16 left-[100px]"></div>
-										<div class="hidden md:block absolute w-0.5 h-24 bg-white nodark:bg-slate-900 -bottom-24 left-[100px]"></div>
+										<div class="hidden md:block absolute w-0.5 h-16 bg-white dark:bg-primary-100 -top-16 left-[100px]"></div>
+										<div class="hidden md:block absolute w-0.5 h-24 bg-white dark:bg-primary-100 -bottom-24 left-[100px]"></div>
 									{% endif %}
 
-									<h3 class="text-lg text-primary-500">
-										<strong>{{ roadmap.acf.roadmap_item_date }}</strong>
+									<h3 class="text-lg text-primary-500 dark:text-white">
+										<strong class="dark:text-primary-100">{{ roadmap.acf.roadmap_item_date }}</strong>
 										{{ roadmap.title.rendered | safe }}</h3>
 									<p class="text-xs mt-4">{{ roadmap.excerpt.rendered | striptags }}</p>
 								</div>
@@ -197,18 +197,18 @@ pagination:
 		<section class="relative w-screen mx-auto pt-32">
 			<div class="flex justify-center space-x-8">
 				<h2 class="text-4xl text-white text-center">Latest news from <strong>DefiPlaza</strong>.</h2>
-				<a href="/update/" class="btn-primary bg-primary-300 rounded-full hidden md:inline-flex items-center">
+				<a href="/update/" class="btn-primary bg-primary-300 dark:bg-white rounded-full hidden md:inline-flex items-center">
 					<span class="mt-px whitespace-nowrap">All updates</span>
 					{% include "partials/arrow-right.njk" %}
 				</a>
 			</div>
-			<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white nodark:bg-slate-900 rounded-lg divide-y divide-primary">
+			<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white dark:bg-primary-800 rounded-lg divide-y divide-primary">
 				{% for post in latest_updates %}
 					<li class="py-8">
-						<h3 class="text-primary-500 font-bold text-2xl">
+						<h3 class="text-primary-500 dark:text-white font-bold text-2xl">
 							<a href="/update/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
 						</h3>
-						<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
+						<p class="text-primary-500 dark:text-primary-100 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
 						<div class="mt-2 line-clamp-3">{{ post.content.rendered | striptags }}</div>
 					</li>
 				{% endfor %}

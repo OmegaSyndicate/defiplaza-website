@@ -12,7 +12,7 @@ module.exports = {
 		fontFamily: {
 			sans: ['NB_International_Pro', ...defaultConfig.theme.fontFamily.sans],
 			serif: ['ivypresto-display', ...defaultConfig.theme.fontFamily.serif],
-			...defaultConfig.theme.fontFamily.mono
+			...defaultConfig.theme.fontFamily.mono,
 		},
 		extend: {
 			colors: {
@@ -20,13 +20,14 @@ module.exports = {
 					500: '#f7f5f0',
 					700: '#ebe7de',
 				},
-				backgroundDark: {
-					500: '#615C55',
-				},
 				primary: {
+					100: '#dcceee',
+					200: '#b47bf8',
 					300: '#7c32db',
 					500: '#5d0fc0',
+					600: '#642ea8',
 					700: '#3d0283',
+					800: '#32036a',
 				},
 			},
 		},

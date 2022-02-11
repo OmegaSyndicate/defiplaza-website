@@ -11,7 +11,7 @@ permalink: '/update/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber +
 ---
 
 <section class="md:container mx-4 md:mx-auto">
-	<h1 class="text-center text-3xl md:text-6xl font-light">Latest updates from <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>
+	<h1 class="fluid text-center dark:text-primary-100">Latest updates from <strong>DefiPlaza</strong></h1>
 
 	<div class="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-16 p-4 md:p-20 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
 		<div class="oval-gradient -top-80 -left-80"></div>
@@ -43,15 +43,15 @@ permalink: '/update/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber +
 <section class="mt-32">
 	<h2 class="text-4xl font-light text-center">Latest blog posts</h2>
 
-	<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white nodark:bg-slate-800 rounded-lg divide-y divide-primary">
+	<ul class="md:w-3/5 mx-4 md:mx-auto mt-10 px-4 md:px-8 bg-white dark:bg-primary-800 rounded-lg divide-y divide-primary">
 			{# {% set latest_updates = updates | slice(3) %} #}
 			{# {% for post in latest_updates[0] %} #}
 			{% for post in posts %}
 				<li class="py-8">
-					<h3 class="text-primary-500 font-bold text-2xl">
+					<h3 class="text-primary-500 dark:text-white font-bold text-2xl">
 						<a href="/blog/{{ post.slug }}">{{ post.title.rendered | safe }}</a>
 					</h3>
-					<p class="text-primary-500 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
+					<p class="text-primary-500 dark:text-primary-100 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
 					<div class="mt-2 line-clamp-3">{{ post.content.rendered | striptags }}</div>
 				</li>
 			{% endfor %}

@@ -5,9 +5,9 @@
 {% block content %}
 <section class="md:container mx-4 md:mx-auto">
 	<h1 class="text-center text-3xl md:text-6xl font-light">{{ post.title.rendered }}</h1>
-	<p class="mt-4 text-center text-base text-primary-500">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
+	<p class="mt-4 text-center text-base text-primary-500 dark:text-primary-100">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
 
-	<article class="prose nodark:prose-invert mx-auto mt-10">
+	<article class="prose dark:prose-invert dark:text-white mx-auto mt-10">
 		{% if post.feature_image %}
 			<figure class="post-feature-image">
 				<img src="{{ post.feature_image }}" alt="{{ title }}">

@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+	* {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: geometricPrecision;
+	}
+
 	h1,
 	h2,
 	h3,
@@ -11,8 +17,22 @@
 		@apply font-light;
 	}
 
+	h1 strong {
+		@apply font-bold text-primary-500 dark:text-white;
+	}
+
+	.fluid {
+		font-size: max(min(4.16vw, 60px), 1.875rem); /*1vw = 14.4px */
+		letter-spacing: -.05em; /*max(-0.208vw, -3px);*/
+	}
+	.hero-fluid {
+		font-size: max(min(6.94vw, 100px), 60px); /*1vw = 14.4px */
+		letter-spacing: -.05em; /*max(-0.208vw, -3px);*/
+		line-height: 1;
+	}
+
 	.prose a {
-		@apply text-primary-500;
+		@apply text-primary-500 dark:text-primary-100;
 	}
 	.prose figcaption {
 		@apply text-center;
@@ -46,25 +66,25 @@
 
 @layer components {
 	.btn-primary {
-		@apply bg-primary-500 text-white /*dark:text-slate-200*/ text-sm font-medium leading-none uppercase tracking-wider rounded py-3 px-4 inline-flex items-center;
+		@apply bg-primary-500 dark:bg-white text-white dark:text-primary-500 text-sm font-medium leading-none uppercase tracking-wider rounded py-3 px-4 inline-flex items-center;
 	}
 
 	.btn-outline {
-		@apply btn-primary bg-transparent text-primary-500 border-2 border-primary-500;
+		@apply btn-primary bg-transparent text-primary-500 dark:text-white border-2 border-primary-500 dark:border-white;
 	}
 
 	.btn-white {
-		@apply btn-primary bg-white /*dark:bg-slate-200*/ text-primary-700;
+		@apply btn-primary bg-white dark:bg-primary-800 text-primary-700 dark:text-white;
 	}
 
 	.oval-gradient {
 		position: absolute;
 		width: 40rem;
 		height: 40rem;
-		opacity: 0.5;
 		-webkit-filter: blur(50px);
 		filter: blur(50px);
 		background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.75), #5d0fc0 41%, #5d0fc0 91%);
+		@apply opacity-50 dark:opacity-25
 	}
 
 	.scrollable::-webkit-scrollbar {
@@ -72,10 +92,10 @@
 		width: 0.4rem;
 	}
 	.scrollable::-webkit-scrollbar-track {
-		background: #5d0fc0;
+		@apply bg-primary-500;
 	}
 	.scrollable::-webkit-scrollbar-thumb {
-		background-color: #fff;
+		@apply bg-white dark:bg-primary-100;
 		border-radius: 20px;
 	}
 
@@ -115,11 +135,13 @@
 	}
 
 	.hero-preload {
-		background-image: url('/assets/images/home/hero-preload.png'); 
+		background-image: #642ea850, url('/assets/images/home/hero-preload.png');
 	}
 
 	.hero-sequence {
-		background-image: -webkit-image-set( url('/assets/images/home/hero-sequence@1x.png') 1x, url('/assets/images/home/hero-sequence@2x.png') 2x );
+		
+		background-image: -webkit-image-set(url('/assets/images/home/hero-sequence@1x.png') 1x, url('/assets/images/home/hero-sequence@2x.png') 2x);
+		background-blend-mode: overlay;
 	}
 }
 
@@ -164,7 +186,7 @@
 		src: url('https://use.typekit.net/af/6a6cae/00000000000000007735e5b2/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i1&v=3') format('woff2'),
 			url('https://use.typekit.net/af/6a6cae/00000000000000007735e5b2/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i1&v=3') format('woff'),
 			url('https://use.typekit.net/af/6a6cae/00000000000000007735e5b2/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i1&v=3') format('opentype');
-		font-display:swap;
+		font-display: swap;
 		font-style: italic;
 		font-weight: 100;
 	}

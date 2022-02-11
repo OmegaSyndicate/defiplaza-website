@@ -12,13 +12,13 @@ permalink: '/tokens/'
 {% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
 
 <section class="container mx-auto">
-  <h1 class="text-center text-6xl font-light">Tokens listed on <strong class="font-bold text-primary-500">DefiPlaza</strong></h1>
+  <h1 class="fluid text-center text-6xl dark:text-primary-100">Tokens listed on <strong>DefiPlaza</strong></h1>
 
   <div class="relative grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 p-4 md:p-20 bg-primary-700 md:rounded-3xl overflow-hidden">
     <div class="oval-gradient -top-80 -left-80"></div>
 
     {% for token in tokens %}
-      <div class="z-10 py-16 px-8 flex flex-col justify-between rounded-lg shadow-md bg-white nodark:bg-slate-800 hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
+      <div class="z-10 py-16 px-8 flex flex-col justify-between rounded-lg shadow-md bg-white dark:bg-slate-800 hover:shadow-xl transition-shadow duration-300 ease-in-out content-between">
         <a href="/token/{{ token.slug | lower }}/">
           <img class="w-16 h-16 mx-auto" src="/assets/images/tokens/{{ token.acf.symbol | lower }}.svg">
           <p class="text-base text-center mt-2">{{ token.title.rendered }}</p>
