@@ -5,7 +5,7 @@ module.exports = {
 	description: 'The low-cost exchange on Ethereum',
 	url: process.env.SITE_URL,
 	icon: process.env.SITE_URL + '/assets/images/logo/icon-dark@3x.png',
-	cover_image: process.env.SITE_URL + '/assets/images/logo/logo@3x.png',
+	cover_image: process.env.SITE_URL + '/assets/images/logo/social-media.png',
 	lang: 'en_US',
 	twitter: '@defiplaza',
 };
