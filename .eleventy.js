@@ -1,17 +1,9 @@
 require('dotenv').config();
 
 const fs = require('fs');
-// const localImages = require('./.eleventy-local.js');
-const lazyImages = require('eleventy-plugin-lazyimages');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 
-// Strip Ghost domain from urls
-const stripDomain = (url) => {
-   return url.replace(process.env.GHOST_API_URL, '');
-};
-
 module.exports = function (eleventyConfig) {
-
 	eleventyConfig.addWatchTarget('./tailwind.config.js');
 	eleventyConfig.addWatchTarget('./src/assets/css/_tailwind.css');
 
@@ -20,16 +12,8 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addLayoutAlias('default', 'layouts/default.njk');
 	eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
 
-	// Minify HTML
-	//   config.addTransform('htmlmin', htmlMinTransform);
-
 	// Add RSS plugin for sitemap
 	eleventyConfig.addPlugin(pluginRss);
-
-	//  Apply performance attributes to images
-	// config.addPlugin(lazyImages, {
-	//    cacheFile: '',
-	// });
 
 	eleventyConfig.addNunjucksGlobal('version', () => {
 		return process.env.CF_PAGES_COMMIT_SHA || Date.now();
@@ -86,8 +70,6 @@ module.exports = function (eleventyConfig) {
 
 		return posts;
 	});
-
-	
 
 	// Display 404 page in BrowserSnyc
 	eleventyConfig.setBrowserSyncConfig({
