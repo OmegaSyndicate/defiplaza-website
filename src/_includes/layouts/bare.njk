@@ -22,7 +22,8 @@
 		{% endif %}
 
 		{% if site.icon %}
-			<link rel="shortcut icon" type="image/png" href="{{ site.icon }}"/>
+			<link rel="shortcut icon" type="image/svg+xml" href="{{ site.icon }}"/>
+			<link rel="mask-icon" sizes="any" href="{{ site.icon }}" color="#5D0FC0">
 		{% endif %}
 
 		{%- block seo -%}
