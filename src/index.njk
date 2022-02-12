@@ -116,7 +116,7 @@ pagination:
 					<div class="flex flex-nowrap">
 						{% for section in helpsections %}
 							<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white dark:bg-primary-800 hover:shadow-xl transition-shadow duration-300 ease-in-out">
-								<h3 class="fluid-30 font-bold text-primary-500 dark:text-primary-100">{{ section.name }}</h3>
+								<h3 class="fluid-30 font-bold text-primary-500 dark:text-primary-100"><a href="/help/{{ section.slug }}/">{{ section.name }}</a></h3>
 								<p class="mt-4 text-lg">{{ section.description }}</p>
 								<a href="/help/{{ section.slug }}/" class="mt-16 btn-primary rounded-full w-min">
 									{% include "partials/arrow-right.njk" %}

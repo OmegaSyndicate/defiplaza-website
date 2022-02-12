@@ -70,15 +70,15 @@
 
 @layer components {
 	.btn-primary {
-		@apply bg-primary-500 dark:bg-white text-white dark:text-primary-500 text-sm font-medium leading-none uppercase tracking-wider rounded py-3 px-4 inline-flex items-center;
+		@apply bg-primary-500 hover:bg-primary-300 dark:bg-white dark:hover:bg-primary-100 text-white dark:text-primary-500 text-sm font-medium leading-none uppercase tracking-wider rounded py-3 px-4 inline-flex items-center;
 	}
 
 	.btn-outline {
-		@apply btn-primary bg-transparent text-primary-500 dark:text-white border-2 border-primary-500 dark:border-white;
-	}
+		@apply btn-primary bg-transparent hover:bg-transparent text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100 border-2 border-primary-500 hover:border-primary-300 dark:border-white dark:hover:border-primary-100;
+	} 
 
 	.btn-white {
-		@apply btn-primary bg-white dark:bg-primary-800 text-primary-700 dark:text-white;
+		@apply btn-primary bg-white hover:bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-white;
 	}
 
 	.oval-gradient {
