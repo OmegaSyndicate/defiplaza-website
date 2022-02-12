@@ -14,21 +14,25 @@
 	h3,
 	h4,
 	h5 {
-		@apply font-light;
+		@apply font-light tracking-tighter;
 	}
 
 	h1 strong {
 		@apply font-bold text-primary-500 dark:text-white;
 	}
 
-	.fluid {
-		font-size: max(min(4.16vw, 60px), 1.875rem); /*1vw = 14.4px */
-		letter-spacing: -.05em; /*max(-0.208vw, -3px);*/
-	}
-	.hero-fluid {
-		font-size: max(min(6.94vw, 100px), 60px); /*1vw = 14.4px */
-		letter-spacing: -.05em; /*max(-0.208vw, -3px);*/
+	.fluid-100 {
+		font-size: max(min(6.94vw, 6.25rem), 3.75rem); /*1vw = 14.4px */
 		line-height: 1;
+	}
+	.fluid-60 {
+		font-size: max(min(4.16vw, 3.75rem), 1.875rem); /*1vw = 14.4px */
+	}
+	.fluid-40 {
+		font-size: max(min(2.78vw, 2.5rem), 1.875rem); /*1vw = 14.4px */
+	}
+	.fluid-30 {
+		font-size: max(min(2.08vw, 1.875rem), 1.5rem); /*1vw = 14.4px */
 	}
 
 	.prose a {
