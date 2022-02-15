@@ -57,7 +57,7 @@ permalink: '/token/{{ token.slug }}/'
     <h2 class="text-4xl font-light text-center dark:text-primary-100">Swap <strong class="text-primary-500 dark:text-white">{{ token.title.rendered }}</strong> for only 0.1% fee on DefiPlaza</h2>
     <div class="max-w-[65ch] mx-auto mt-4">
       <p>Trade {{ token.acf.symbol | upper }} for one of the other 15 most popular DeFI tokens on DefiPlaza. DefiPlaza offers 120 direct trading pairs and you can swap for a 0,1% fee. That is 65% less fee then on UniSwap!</p>
-      <a class="btn-primary text-center mt-4" href="https://app.defiplaza.net/swap?from={{ token.acf.symbol }}" target="_blank">Swap ${{ token.acf.symbol | upper }}</a>
+      <a class="btn-primary text-center mt-4" href="https://app.defiplaza.net/swap?from={{ token.acf.symbol }}" id="token-swap-button" target="_blank">Swap ${{ token.acf.symbol | upper }}</a>
     </div>
   </div>
 </section>
