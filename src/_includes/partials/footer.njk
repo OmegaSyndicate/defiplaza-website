@@ -19,10 +19,10 @@
 		</ul>
 
 		<div class="flex justify-center items-center w-full lg:w-min mt-8 lg:mt-0 lg:ml-8 space-x-4">
-			<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://discord.gg/GjEPsst58D" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
-			<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://t.me/defiplaza" target="_blank">{% include 'svg/socials/telegram.svg' %}</a></p>
-			<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p>
-			<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://twitter.com/defiplaza" target="_blank">{% include 'svg/socials/twitter.svg' %}</a></p>
+			<p class="{% if page.url == "/" %}text-white hover:text-primary-200 dark:text-white{% else %}text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100{% endif %}"><a href="https://discord.gg/GjEPsst58D" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
+			<p class="{% if page.url == "/" %}text-white hover:text-primary-200 dark:text-white{% else %}text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100{% endif %}"><a href="https://t.me/defiplaza" target="_blank">{% include 'svg/socials/telegram.svg' %}</a></p>
+			<p class="{% if page.url == "/" %}text-white hover:text-primary-200 dark:text-white{% else %}text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100{% endif %}"><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p>
+			<p class="{% if page.url == "/" %}text-white hover:text-primary-200 dark:text-white{% else %}text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100{% endif %}"><a href="https://twitter.com/defiplaza" target="_blank">{% include 'svg/socials/twitter.svg' %}</a></p>
 		</div>
 	</section>
 
