@@ -81,12 +81,14 @@ permalink: '/stats/'
 
 		{# Tokens #}
 		<div class="relative grid grid-cols-1 gap-4">
-			<div class="z-10 py-8 px-4 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
+			<div class="z-10 py-16 px-8 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
 				<h2 class="text-2xl">Tokens</h2>
-				<div class="mt-4 relative bg-slate-50 rounded-xl overflow-hidden dark:bg-primary-800/25">
-					<div class="relative rounded-xl overflow-auto">
-						<div id="tokens" class="shadow-sm overflow-hidden my-8">
-							{% include "partials/loading-indicator.njk" %}
+				<div class="flex flex-col mt-4">
+					<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+						<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+							<div class="shadow overflow-hidden border-b dark:border border-gray-200 dark:border-primary-200 sm:rounded-lg" id="tokens">
+								{% include "partials/loading-indicator.njk" %}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -97,10 +99,12 @@ permalink: '/stats/'
 		<div class="relative grid grid-cols-1 gap-4">
 			<div class="z-10 py-16 px-8 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
 				<h2 class="text-2xl">Recent Transactions</h2>
-				<div class="mt-4 relative bg-slate-50 rounded-xl overflow-hidden dark:bg-primary-800/25">
-					<div class="relative rounded-xl overflow-auto">
-						<div id="transactions" class="shadow-sm overflow-hidden my-8">
-							{% include "partials/loading-indicator.njk" %}
+				<div class="flex flex-col mt-4">
+					<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+						<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+							<div class="shadow overflow-hidden border-b dark:border border-gray-200 dark:border-primary-200 sm:rounded-lg" id="transactions">
+								{% include "partials/loading-indicator.njk" %}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -283,6 +287,19 @@ let chartScales = {
 };
 let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+let lightPrimaryColor = '#3d0283';
+	let darkPrimaryColor = '#dcceee';
+	let lightBackgroundColor = '#fff';
+	let darkBackgroundColor = '#32036a';
+
+	let primaryColor = lightPrimaryColor;
+	let backgroundColor = lightBackgroundColor;
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		// dark mode
+		primaryColor = darkPrimaryColor;
+		backgroundColor = darkBackgroundColor;
+	}
+
 function getCoinGeckoPrices() {
     let tokens = [];
     
@@ -388,22 +405,23 @@ function tokensTable(tokens) {
         });
     
         let table = `
-            <table class="border-collapse table-auto w-full text-sm">
-            <thead>
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-white">
+          <thead class="bg-gray-50 dark:bg-primary-700">
             <tr>
-                <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Symbol</td>
-                <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Liquidity</td>
-                <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Token amount</td>
-                <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Price</td>
-            </tr>
-            </thead><tbody class="bg-white dark:bg-primary-800">`;
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Symbol</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Liquidity</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Token amount</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Price</td>
+				</tr>
+         </thead>
+         <tbody class="bg-white dark:bg-primary-800 divide-y divide-gray-200">`;
         
         for(let token of tokens) {
             table += `<tr>
-            	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><a href="/token/${token.symbol.toLowerCase()}">${token.symbol}</a></td>
-            	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyDollar(token.tokenAmount*getPrice(token)) }</td>
-             	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyValue(token.tokenAmount) }</td>
-            	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyDollar(getPrice(token)) }</td>
+            	<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white"><a href="/token/${token.symbol.toLowerCase()}">${token.symbol}</a></td>
+            	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(token.tokenAmount*getPrice(token)) }</td>
+             	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyValue(token.tokenAmount) }</td>
+            	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(getPrice(token)) }</td>
             </tr>`;
         }
         
@@ -415,25 +433,25 @@ function tokensTable(tokens) {
 
 function transactionsTable(swaps) {
     let table = `
-        <table class="border-collapse table-auto w-full text-sm">
-        <thead>
-        <tr>
-            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left"></td>
-            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Total Value</td>
-            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Token amount</td>
-            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Token amount</td>
-            <td class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Date</td>
-        </tr>
-        </thead>
-		  <tbody class="bg-white dark:bg-primary-800">`;
+        <table class="min-w-full divide-y divide-gray-200">
+			<thead class="bg-gray-50 dark:bg-primary-700">
+			<tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Transaction</td>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Total Value</td>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Token amount</td>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Token amount</td>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Date</td>
+        	</tr>
+         </thead>
+         <tbody class="bg-white dark:bg-primary-800 divide-y divide-gray-200">`;
     
     for(let swap of swaps) {
         table += `<tr>
-      	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><a href="https://etherscan.io/tx/${ swap.id }" target="_blank">From ${swap.inputToken.symbol} to ${swap.outputToken.symbol}</a></td>
-      	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyDollar(swap.swapUSD) }</td>
-      	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyValue(swap.inputAmount) } ${swap.inputToken.symbol}</td>
-        	<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ prettyValue(swap.outputAmount) } ${swap.outputToken.symbol}</td>
-         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">${ dayjs(swap.timestamp*1000).fromNow() } </td>
+      	<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white"><a href="https://etherscan.io/tx/${ swap.id }" target="_blank">From ${swap.inputToken.symbol} to ${swap.outputToken.symbol}</a></td>
+      	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(swap.swapUSD) }</td>
+      	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyValue(swap.inputAmount) } ${swap.inputToken.symbol}</td>
+        	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyValue(swap.outputAmount) } ${swap.outputToken.symbol}</td>
+         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ dayjs(swap.timestamp*1000).fromNow() } </td>
         </tr>`;
     }
     
@@ -480,16 +498,8 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
 	pointBackgroundColors[pointBackgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
 
-	let primaryColor = '#3d0283';
-	let backgroundColor = '#fff';
-	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-		// dark mode
-		primaryColor = '#dcceee';
-		backgroundColor = '#32036a';
-	}
-
 	const ctx = document.getElementById(id + 'Chart').getContext('2d');
-	const myChart = new Chart(ctx, {
+	const chart = new Chart(ctx, {
 		type: 'line',
 		data: {
 			labels: labels,
@@ -559,6 +569,23 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 			scales: chartScales
 		},
 	});
+
+	window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', event => {
+		console.log(event.matches);
+
+   	if(event.matches) {
+			primaryColor = lightPrimaryColor;
+			backgroundColor = lightBackgroundColor;
+		} else {
+			primaryColor = darkPrimaryColor;
+			backgroundColor = darkBackgroundColor;
+		}
+
+
+		chart.data.datasets[0].borderColor = primaryColor;
+
+		chart.update();
+	});
 }
 
 function barChart(id, label, dataPoints, dataPoint) {
@@ -579,14 +606,8 @@ function barChart(id, label, dataPoints, dataPoint) {
 
 	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
 
-	let primaryColor = '#3d0283';
-	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-		// dark mode
-		primaryColor = '#dcceee';
-	}
-
 	const ctx = document.getElementById(id + 'Chart').getContext('2d');
-	const myChart = new Chart(ctx, {
+	const chart = new Chart(ctx, {
 		type: 'bar',
 		data: {
 			labels: labels,
@@ -624,6 +645,12 @@ function barChart(id, label, dataPoints, dataPoint) {
 			},
 			scales: chartScales,
 		},
+	});
+
+	window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', event => {
+		chart.data.datasets[0].backgroundColor = primaryColor;
+
+		chart.update();
 	});
 }
 
