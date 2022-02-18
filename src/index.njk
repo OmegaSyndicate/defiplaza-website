@@ -18,10 +18,10 @@ pagination:
 		<div class="fixed top-0 right-0 hero-preload bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0 " style="background-size: auto {{ backgroundSize }}vh;" id="heroSequence">&nbsp;</div>
 
 		{# Hero #}
-		<section class="relative h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 flex flex-col justify-center items-center z-10 bg-background-500/50 dark:bg-primary-600/70 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75 dark:md:from-primary-600/75">
-			<h1 class="fluid-100 text-center dark:text-white">The <span class="italic font-serif">lowest gas fees</span> of any<br> exchange on Ethereum</h1>
+		<section class="relative h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 pb-20 md:pb-0 flex flex-col justify-center items-center z-10 bg-background-500/75 dark:bg-primary-600/70 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75 dark:md:from-primary-600/75">
+			<h1 class="fluid-100 text-center dark:text-white">The <span class="italic font-serif">lowest gas fees</span> of any<br class="hidden md:block"> exchange on Ethereum</h1>
 			<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap.</h2>
-			<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-8">
+			<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-16 md:mt-8">
 				<a href="https://app.defiplaza.net/swap" id="launch-app-home-button" class="btn-primary inline-flex items-center">
 					<span class="mt-px whitespace-nowrap">Get started</span>
 					{% include "partials/arrow-right.njk" %}
@@ -127,7 +127,7 @@ pagination:
 			</div>
 
 			{# Support pillar #}
-			<div class="md:container mx-4 md:mx-auto flex flex-wrap items-center mt-16 text-white" id="supportSection">
+			<div class="md:container mx-4 md:mx-auto flex flex-wrap items-center mt-16 md:mt-0 text-white" id="supportSection">
 				<div class="w-full lg:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence@1x.png') 1x, url('/assets/images/home/pillar-sequence@2x.png') 2x); background-size: cover;" id="pillarSequence">&nbsp;</div>
 				<div class="mx-auto mt-0 lg:ml-32">
 					<h3 class="text-2xl">Are you feeling lost?</h3>
