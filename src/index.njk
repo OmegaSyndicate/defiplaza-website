@@ -217,12 +217,12 @@ pagination:
 		{% include "partials/footer.njk" %}
 	</div>
 
-	<script async src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" onload="setupGsap()"></script>
-	<script async src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" onload="setupScrollTrigger()"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.min.js" integrity="sha512-7UzDjRNKHpQnkh1Wf1l6i/OPINS9P2DDzTwQNX79JxfbInCXGpgI1RPb3ZD+uTP3O5X7Ke4e0+cxt2TxV7n0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 	<script>
-		var gsapLoaded = false;
+		{# var gsapLoaded = false;
 		var scrollTriggerLoaded = false;
 
 		function setupGsap() {
@@ -237,13 +237,13 @@ pagination:
 			setupAnimations();
 		}
 
-		function setupAnimations() {
-			if(!gsapLoaded) {
+		function setupAnimations() { #}
+			{# if(!gsapLoaded) {
 				return;
 			}
 			if(!scrollTriggerLoaded) {
 				return;
-			}
+			} #}
 
 			// Load Hercules sequence
 			document.getElementById('heroSequence').classList.add('hero-sequence');
@@ -366,23 +366,23 @@ pagination:
 					});
 				})();
 			}
-		};
+		{# }; #}
 	</script>
 
 	{# Fetch stats from TheGraph #}
 	<script type="text/javascript">
 		document.addEventListener("DOMContentLoaded", function () {
 			const queryBody = JSON.stringify({query: `{
-			factories(first: 1) {
-				totalValueLockedUSD
-				xdp2TotalSupply
-				xdp2Staked
-			}
-			
-				token(id: "0x2f57430a6ceda85a67121757785877b4a71b8e6d") {
-					tokenAmount
-				} 
-		}`});
+				factories(first: 1) {
+					totalValueLockedUSD
+					xdp2TotalSupply
+					xdp2Staked
+				}
+				
+					token(id: "0x2f57430a6ceda85a67121757785877b4a71b8e6d") {
+						tokenAmount
+					} 
+			}`});
 
 			fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
 				method: 'post',
@@ -467,5 +467,6 @@ pagination:
 				});
 		});
 	</script>
+	
 
 {% endblock %}
