@@ -21,16 +21,16 @@ pagination:
 		<section class="relative h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 pb-20 md:pb-0 flex flex-col justify-center items-center z-10 bg-background-500/75 dark:bg-primary-600/70 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75 dark:md:from-primary-600/75">
 			<h1 class="fluid-100 text-center dark:text-white">The <span class="italic font-serif">lowest fees</span> of any<br class="hidden md:block"> exchange on Ethereum</h1>
 			<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <br class="block md:hidden"><span class="font-bold">65% less costs</span> than UniSwap.</h2>
-			<div class="flex flex-row flex-wrap md:flex-nowrap justify-center mt-16 md:mt-8">
-				<a href="https://app.defiplaza.net/swap" id="launch-app-home-button" class="btn-primary inline-flex items-center">
+			<div class="flex flex-row flex-wrap md:flex-nowrap justify-center space-x-4 mt-12 sm:mt-16 md:mt-8">
+				<a href="https://app.defiplaza.net/swap" id="launch-app-home-button" class="btn-primary inline-flex items-center mt-4 sm:mt-0">
 					<span class="mt-px whitespace-nowrap">Get started</span>
-					{% include "partials/arrow-right.njk" %}
+					<span class="hidden sm:inline-block">{% include "partials/arrow-right.njk" %}</span>
 				</a>
-				<a href="/help/" class="btn-outline ml-4">
+				<a href="/help/" class="btn-outline mt-4 sm:mt-0">
 					<span class="mt-px whitespace-nowrap">More information</span>
 				</a>
 
-				<div class="flex justify-center items-center w-full md:w-min mt-8 md:mt-0 md:ml-8 space-x-4">
+				<div class="flex justify-center items-center w-full md:w-min mt-4 sm:mt-8 md:mt-0 md:ml-8 space-x-4">
 					<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://discord.gg/GjEPsst58D" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
 					<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://twitter.com/defiplaza" target="_blank">{% include 'svg/socials/twitter.svg' %}</a></p>
 					<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p>
@@ -127,7 +127,7 @@ pagination:
 			</div>
 
 			{# Support pillar #}
-			<div class="xl:container mx-4 xl:mx-auto flex flex-wrap items-center mt-16 md:mt-0 text-white" id="supportSection">
+			<div class="xl:container mx-4 xl:mx-auto flex flex-wrap items-center mt-0 md:mt-0 text-white" id="supportSection">
 				<div class="w-full md:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence@1x.png') 1x, url('/assets/images/home/pillar-sequence@2x.png') 2x); background-size: cover;" id="pillarSequence">&nbsp;</div>
 				<div class="w-full md:w-1/2 mx-auto mt-0 pl-auto md:pl-10 lg:pl-32">
 					<h3 class="text-2xl text-center md:text-left">Are you feeling lost?</h3>
@@ -265,34 +265,43 @@ pagination:
 			document.getElementById('heroSequence').classList.add('hero-sequence');
 
 			// Hercules looking up
-			var hero_frame_count = 23,
-				hero_offset_value = document.getElementById('heroSequence').offsetHeight //'{{ backgroundSize }}';
+			var frame_count = 23,
+				hero_offset_value = document.getElementById('heroSequence').offsetHeight,
+				pillar_offset_value = document.getElementById('pillarSequence').offsetHeight;
 
+			ScrollTrigger.addEventListener("refreshInit", function(evt) {
+				console.log('refreshInit', evt)
+				hero_offset_value = document.getElementById('heroSequence').offsetHeight;
+				pillar_offset_value = document.getElementById('pillarSequence').offsetHeight;
+
+				console.log(pillar_offset_value);
+			});
+
+			// Hercules
 			gsap.to("#heroSequence", {
-				backgroundPosition:  "0% " + (-hero_offset_value * hero_frame_count) + "px",
-				ease: "steps(" + hero_frame_count + ")", // use a stepped ease for the sprite sheet
+				backgroundPosition:  "0% " + (-hero_offset_value * frame_count) + "px",
+				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
 					trigger: "#heroSection",
 					start: "top top",
 					end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
 					pin: false,
-					scrub: true
+					scrub: true,
+					invalidateOnRefresh: true
 				}
 			});
 
-			// Pillar opening up
-			var pillar_frame_count = 23,
-				pillar_offset_value = document.getElementById('pillarSequence').offsetHeight;
-
+			// Support pillar
 			gsap.to("#pillarSequence", {
-				backgroundPosition: "50% " + (-pillar_offset_value * pillar_frame_count) + "px",
-				ease: "steps(" + pillar_frame_count + ")", // use a stepped ease for the sprite sheet
+				backgroundPosition: "50% " + (-pillar_offset_value * frame_count) + "px",
+				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
 					trigger: "#supportSection",
 					start: "top 75%",
 					end: "center center",
 					pin: false,
-					scrub: true
+					scrub: true,
+					invalidateOnRefresh: true
 				}
 			});
 
