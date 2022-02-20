@@ -270,17 +270,9 @@ pagination:
 			// Hercules looking up
 			var frame_count = 22; // number of frames - 2 (normal -1 because then last frame is in view, but Chrome is acting weird)
 				
-			function heroOffset() {
-				return "0 " + (-document.getElementById('heroSequence').offsetHeight * frame_count) + "px"; ;
-			}
-
-			function pillarOffset() {
-				return "50% " + (-document.getElementById('pillarSequence').offsetHeight * frame_count) + "px";
-			}
-
 			// Hercules
 			gsap.to("#heroSequence", {
-				backgroundPosition: heroOffset(),
+				backgroundPosition: () => "0 " + (-document.getElementById('heroSequence').offsetHeight * frame_count) + "px",
 				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
 					trigger: "#heroSection",
@@ -294,8 +286,8 @@ pagination:
 			});
 
 			// Support pillar
-			gsap.to("#pillarSequence", {
-				backgroundPosition: pillarOffset(),
+			var pS = gsap.to("#pillarSequence", {
+				backgroundPosition: () => "50% " + (-document.getElementById('pillarSequence').offsetHeight * frame_count) + "px",
 				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
 					trigger: "#supportSection",
@@ -307,7 +299,6 @@ pagination:
 					invalidateOnRefresh: true
 				}
 			});
-
 			// USPs
 			function animateFrom(elem, direction) {
 				direction = direction || 1;
