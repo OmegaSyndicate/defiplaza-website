@@ -220,6 +220,9 @@ pagination:
 
 	<script>
 	document.addEventListener("DOMContentLoaded", function () {
+
+		gsap.registerPlugin(ScrollTrigger);
+
 		/*{# var gsapLoaded = false;
 		var scrollTriggerLoaded = false;
 
@@ -265,21 +268,19 @@ pagination:
 			document.getElementById('heroSequence').classList.add('hero-sequence');
 
 			// Hercules looking up
-			var frame_count = 23,
-				hero_offset_value = document.getElementById('heroSequence').offsetHeight,
-				pillar_offset_value = document.getElementById('pillarSequence').offsetHeight;
+			var frame_count = 22; // number of frames - 2 (normal -1 because then last frame is in view, but Chrome is acting weird)
+				
+			function heroOffset() {
+				return "0 " + (-document.getElementById('heroSequence').offsetHeight * frame_count) + "px"; ;
+			}
 
-			ScrollTrigger.addEventListener("refreshInit", function(evt) {
-				console.log('refreshInit', evt)
-				hero_offset_value = document.getElementById('heroSequence').offsetHeight;
-				pillar_offset_value = document.getElementById('pillarSequence').offsetHeight;
-
-				console.log(pillar_offset_value);
-			});
+			function pillarOffset() {
+				return "50% " + (-document.getElementById('pillarSequence').offsetHeight * frame_count) + "px";
+			}
 
 			// Hercules
 			gsap.to("#heroSequence", {
-				backgroundPosition:  "0% " + (-hero_offset_value * frame_count) + "px",
+				backgroundPosition: heroOffset(),
 				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
 					trigger: "#heroSection",
@@ -287,13 +288,14 @@ pagination:
 					end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
 					pin: false,
 					scrub: true,
+					markers: false,
 					invalidateOnRefresh: true
 				}
 			});
 
 			// Support pillar
 			gsap.to("#pillarSequence", {
-				backgroundPosition: "50% " + (-pillar_offset_value * frame_count) + "px",
+				backgroundPosition: pillarOffset(),
 				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
 					trigger: "#supportSection",
@@ -301,6 +303,7 @@ pagination:
 					end: "center center",
 					pin: false,
 					scrub: true,
+					markers: false,
 					invalidateOnRefresh: true
 				}
 			});
