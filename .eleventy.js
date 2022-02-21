@@ -8,6 +8,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget('./src/assets/css/_tailwind.css');
 
 	eleventyConfig.addPassthroughCopy('./src/assets');
+	eleventyConfig.addPassthroughCopy('./src/_redirects');
 
 	eleventyConfig.addLayoutAlias('default', 'layouts/default.njk');
 	eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
