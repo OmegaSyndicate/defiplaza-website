@@ -153,6 +153,15 @@
 		background-image: -webkit-image-set(url('/assets/images/home/hero-sequence-trimmed@1x.png') 1x, url('/assets/images/home/hero-sequence-trimmed@2x.png') 2x);
 		background-image: image-set(url('/assets/images/home/hero-sequence-trimmed@1x.png') 1x, url('/assets/images/home/hero-sequence-trimmed@2x.png') 2x);
 	}
+
+	.webp .pillar-sequence {
+		background-image: url('/assets/images/home/pillar-sprite.webp');
+	}
+	.no-webp .pillar-sequence {
+		background-image: url('/assets/images/home/pillar-sprite@1x.png');
+		background-image: -webkit-image-set( url('/assets/images/home/pillar-sprite@1x.png') 1x, url('/assets/images/home/pillar-sprite@2x.png') 2x); 
+		background-image: image-set( url('/assets/images/home/pillar-sprite@1x.png') 1x, url('/assets/images/home/pillar-sprite@2x.png') 2x); 
+	}
 }
 
 /**

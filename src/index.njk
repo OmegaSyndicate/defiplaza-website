@@ -158,8 +158,8 @@ pagination:
 
 			{# Support pillar #}
 			<div class="xl:container mx-4 xl:mx-auto flex flex-wrap items-center mt-0 md:mt-0 text-white" id="supportSection">
-				<div class="w-full md:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence@1x.png') 1x, url('/assets/images/home/pillar-sequence@2x.png') 2x); background-size: cover;" id="pillarSequence">&nbsp;</div>
-				<div class="w-full md:w-1/2 mx-auto mt-0 pl-auto md:pl-10 lg:pl-32">
+				<div class="w-full md:w-1/2 aspect-video pillar-sequence" id="pillarSequence">&nbsp;</div>
+				<div class="w-full md:w-auto mt-0 pl-auto md:pl-10 lg:pl-32">
 					<h3 class="text-2xl text-center md:text-left">Are you feeling lost?</h3>
 					<p class="mt-2 text-center md:text-left">Make sure to check out our support section.</p>
 					<div class="flex justify-center md:justify-start">
@@ -282,50 +282,47 @@ pagination:
 			const missingImages = 1; // The number of missing images in the last column
 			const frame_count = rows * columns - missingImages - 1;
 
-			const imageWidth = 465; // This is an approximate value
-			const imageHeight = 829; // This is an approximate value
-			const aspectRatio = imageWidth/imageHeight;
+			function calcSizes(id, imageWidth, imageHeight) {
+				let aspectRatio = imageWidth/imageHeight;
 
-			let vertDiff;
-			let horizDiff;
-			let bgHeight;
-			let bgWidth;
-
-			function calcSizes() {
+				console.log(id, aspectRatio);
 			
-				vertDiff = document.getElementById('heroSequence').offsetHeight; //imageHeight / rows;
-				horizDiff = aspectRatio * vertDiff; //imageWidth / columns;
+				let boxHeight = document.getElementById(id).offsetHeight; //imageHeight / rows;
+				let boxWidth = aspectRatio * boxHeight; //imageWidth / columns;
 
-				console.log('container', vertDiff, horizDiff)
+				console.log(id, 'box', boxWidth, boxHeight)
 
-				bgHeight = document.getElementById('heroSequence').offsetHeight * rows;
-				bgWidth = (vertDiff/829) * imageWidth * columns;
+				let bgHeight = document.getElementById(id).offsetHeight * rows;
+				let bgWidth = (boxHeight/imageHeight) * imageWidth * columns;
 
-				console.log('bg', bgHeight, bgWidth)
+				console.log(id, 'bg', bgWidth, bgHeight)
 
-				gsap.set("#heroSequence", {width: horizDiff, height: vertDiff});
-				document.getElementById('heroSequence').style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+
+				gsap.set('#' + id, {width: boxWidth, height: boxHeight});
+				document.getElementById(id).style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+
+				return { boxHeight, boxWidth };
 			}
 			
-			calcSizes();
-			window.addEventListener('resize', calcSizes);
+			heroSizes = calcSizes('heroSequence', 465, 829);
+			pillarSizes = calcSizes('pillarSequence', 1920, 1080);
 
 			const setPos = gsap.quickSetter("#heroSequence", "background-position");
 
-			const obj = {num: 0};
-			gsap.to(obj, {
-			num: frame_count,
-			ease: "steps(" + frame_count + ")",
-			scrollTrigger: {
-				trigger: "#heroSection",
-				start: "top top",
-				end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
-				pin: false,
-				scrub: true,
-				markers: false,
-				invalidateOnRefresh: true
-			},
-			onUpdate: () => setPos(`${-Math.round((obj.num % columns) * horizDiff)}px ${-Math.round(Math.floor(obj.num / columns) * vertDiff)}px`)
+			const heroObj = {num: 0};
+			gsap.to(heroObj, {
+				num: frame_count,
+				ease: "steps(" + frame_count + ")",
+				scrollTrigger: {
+					trigger: "#heroSection",
+					start: "top top",
+					end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
+					pin: false,
+					scrub: true,
+					markers: false,
+					invalidateOnRefresh: true
+				},
+				onUpdate: () => setPos(`${-Math.round((heroObj.num % columns) * heroSizes.boxWidth)}px ${-Math.round(Math.floor(heroObj.num / columns) * heroSizes.boxHeight)}px`)
 			});
 				
 			// Hercules
@@ -343,8 +340,30 @@ pagination:
 				}
 			});*/
 
+			const setPosPillar = gsap.quickSetter("#pillarSequence", "background-position");
+
+			const pillarObj = {num: 0};
+			gsap.to(pillarObj, {
+				num: frame_count,
+				ease: "steps(" + frame_count + ")",
+				scrollTrigger: {
+					trigger: "#supportSection",
+					start: "top 75%",
+					end: "center center",
+					pin: false,
+					scrub: true,
+					markers: false,
+					invalidateOnRefresh: true
+				},
+				onUpdate: () => {
+					setPosPillar(`${-Math.round((pillarObj.num % columns) * pillarSizes.boxWidth)}px ${-Math.round(Math.floor(pillarObj.num / columns) * pillarSizes.boxHeight)}px`)
+					console.log(pillarObj.num);
+					console.log(`${-Math.round((pillarObj.num % columns) * pillarSizes.boxWidth)}px ${-Math.round(Math.floor(pillarObj.num / columns) * pillarSizes.boxHeight)}px`)
+				}
+			});
+
 			// Support pillar
-			var pS = gsap.to("#pillarSequence", {
+			/*var pS = gsap.to("#v", {
 				backgroundPosition: () => "50% " + (-document.getElementById('pillarSequence').offsetHeight * frame_count) + "px",
 				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
@@ -356,7 +375,8 @@ pagination:
 					markers: false,
 					invalidateOnRefresh: true
 				}
-			});
+			});*/
+
 			// USPs
 			function animateFrom(elem, direction) {
 				direction = direction || 1;
