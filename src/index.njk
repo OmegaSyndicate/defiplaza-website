@@ -8,14 +8,44 @@ pagination:
 
 {% set title = "DefiPlaza: The low-cost exchange on Ethereum" %}
 {% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
-{% set backgroundSize = "140" %}
+
+{%- block preload -%}
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" as="script" crossorigin>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" as="script" crossorigin>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.min.js" as="script" crossorigin>
+{%- endblock -%}
 
 {% block bare %}
 	{% include "partials/header.njk" %}
 
+	<script>
+	function check_webp_feature(feature, callback) {
+		var kTestImages = {
+			lossy: "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",
+			lossless: "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",
+			alpha: "UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",
+			animation: "UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"
+		};
+		var img = new Image();
+		img.onload = function () {
+			var result = (img.width > 0) && (img.height > 0);
+			callback(feature, result);
+		};
+		img.onerror = function () {
+			callback(feature, false);
+		};
+		img.src = "data:image/webp;base64," + kTestImages[feature];
+	}
+
+	check_webp_feature('lossy', (feature, result) => {
+		var webPClass = (result ? 'webp' : 'no-webp');
+		document.getElementsByTagName("body")[0].classList.add(webPClass);	
+	});
+	</script>
+
 	<div class="relative -mt-[71px] pt-[71px] bg-background-500 dark:bg-primary-600" id="heroSection">
 		{# Sequence #}
-		<div class="fixed top-0 -right-14 md:right-0 hero-preload bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0" style="background-size: {{ backgroundSize }}vh auto;" id="heroSequence">&nbsp;</div>
+		<div class="fixed top-0 md:top-[10vh] right-0 md:right-4 hero-preload bg-center-top bg-no-repeat bg-static h-[120vh] md:h-[120vh] z-0" id="heroSequence">&nbsp;</div>
 
 		{# Hero #}
 		<section class="relative h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 pb-20 md:pb-0 flex flex-col justify-center items-center z-10 bg-background-500/75 dark:bg-primary-600/70 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75 dark:md:from-primary-600/75">
@@ -223,29 +253,6 @@ pagination:
 
 		gsap.registerPlugin(ScrollTrigger);
 
-		/*{# var gsapLoaded = false;
-		var scrollTriggerLoaded = false;
-
-		function setupGsap() {
-			gsapLoaded = true;
-
-			setupAnimations();
-		}
-
-		function setupScrollTrigger() {
-			scrollTriggerLoaded = true;
-
-			setupAnimations();
-		}
-
-		function setupAnimations() { #}
-			{# if(!gsapLoaded) {
-				return;
-			}
-			if(!scrollTriggerLoaded) {
-				return;
-			} #}*/
-
 			ScrollTrigger.matchMedia({
 				// desktop
 				"(min-width: 800px)": function () {
@@ -257,7 +264,7 @@ pagination:
 							end: "bottom bottom+=100px", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
 							pin: false,
 							scrub: true,
-							pinReparent: true,
+							pinReparent: false,
 							pin: "#stats"
 						}
 					})
@@ -268,10 +275,61 @@ pagination:
 			document.getElementById('heroSequence').classList.add('hero-sequence');
 
 			// Hercules looking up
-			var frame_count = 22; // number of frames - 2 (normal -1 because then last frame is in view, but Chrome is acting weird)
+			//var frame_count = 22; // number of frames - 2 (normal -1 because then last frame is in view, but Chrome is acting weird)
+
+			const rows = 6;
+			const columns = 4;
+			const missingImages = 1; // The number of missing images in the last column
+			const frame_count = rows * columns - missingImages - 1;
+
+			const imageWidth = 465; // This is an approximate value
+			const imageHeight = 829; // This is an approximate value
+			const aspectRatio = imageWidth/imageHeight;
+
+			let vertDiff;
+			let horizDiff;
+			let bgHeight;
+			let bgWidth;
+
+			function calcSizes() {
+			
+				vertDiff = document.getElementById('heroSequence').offsetHeight; //imageHeight / rows;
+				horizDiff = aspectRatio * vertDiff; //imageWidth / columns;
+
+				console.log('container', vertDiff, horizDiff)
+
+				bgHeight = document.getElementById('heroSequence').offsetHeight * rows;
+				bgWidth = (vertDiff/829) * imageWidth * columns;
+
+				console.log('bg', bgHeight, bgWidth)
+
+				gsap.set("#heroSequence", {width: horizDiff, height: vertDiff});
+				document.getElementById('heroSequence').style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+			}
+			
+			calcSizes();
+			window.addEventListener('resize', calcSizes);
+
+			const setPos = gsap.quickSetter("#heroSequence", "background-position");
+
+			const obj = {num: 0};
+			gsap.to(obj, {
+			num: frame_count,
+			ease: "steps(" + frame_count + ")",
+			scrollTrigger: {
+				trigger: "#heroSection",
+				start: "top top",
+				end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
+				pin: false,
+				scrub: true,
+				markers: false,
+				invalidateOnRefresh: true
+			},
+			onUpdate: () => setPos(`${-Math.round((obj.num % columns) * horizDiff)}px ${-Math.round(Math.floor(obj.num / columns) * vertDiff)}px`)
+			});
 				
 			// Hercules
-			gsap.to("#heroSequence", {
+			/*gsap.to("#heroSequence", {
 				backgroundPosition: () => "0 " + (-document.getElementById('heroSequence').offsetHeight * frame_count) + "px",
 				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
@@ -283,7 +341,7 @@ pagination:
 					markers: false,
 					invalidateOnRefresh: true
 				}
-			});
+			});*/
 
 			// Support pillar
 			var pS = gsap.to("#pillarSequence", {

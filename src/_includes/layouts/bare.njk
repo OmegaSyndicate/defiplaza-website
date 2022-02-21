@@ -13,6 +13,9 @@
 		<link rel="preload" href="https://use.typekit.net/af/6a6cae/00000000000000007735e5b2/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i1&v=3" as="font" type="font/woff2" crossorigin>
 		<link rel="preload" href="/styles.css?v={{ version() }}" as="style">
 
+		{%- block preload -%}
+		{%- endblock -%}
+
 		{% if page.url == "/" %}
 		<meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)">
 		<meta name="theme-color" content="#642ea8" media="(prefers-color-scheme: dark)">
