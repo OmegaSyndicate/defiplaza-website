@@ -8,19 +8,49 @@ pagination:
 
 {% set title = "DefiPlaza: The low-cost exchange on Ethereum" %}
 {% set description = "👉 65% cheaper than Uniswap to swap tokens. 👉 Earn a 250% staking APR while passively investing in a basket of 16 ERC-20 tokens!" %}
-{% set backgroundSize = "140" %}
+
+{%- block preload -%}
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" as="script" crossorigin>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" as="script" crossorigin>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.min.js" as="script" crossorigin>
+{%- endblock -%}
 
 {% block bare %}
 	{% include "partials/header.njk" %}
 
+	<script>
+	function check_webp_feature(feature, callback) {
+		var kTestImages = {
+			lossy: "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",
+			lossless: "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",
+			alpha: "UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",
+			animation: "UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"
+		};
+		var img = new Image();
+		img.onload = function () {
+			var result = (img.width > 0) && (img.height > 0);
+			callback(feature, result);
+		};
+		img.onerror = function () {
+			callback(feature, false);
+		};
+		img.src = "data:image/webp;base64," + kTestImages[feature];
+	}
+
+	check_webp_feature('lossy', (feature, result) => {
+		var webPClass = (result ? 'webp' : 'no-webp');
+		document.getElementsByTagName("body")[0].classList.add(webPClass);	
+	});
+	</script>
+
 	<div class="relative -mt-[71px] pt-[71px] bg-background-500 dark:bg-primary-600" id="heroSection">
 		{# Sequence #}
-		<div class="fixed top-0 -right-14 md:right-0 hero-preload bg-center-top bg-no-repeat bg-static h-[140vh] w-[100vh] z-0" style="background-size: {{ backgroundSize }}vh auto;" id="heroSequence">&nbsp;</div>
+		<div class="fixed top-0 md:top-[10vh] right-0 md:right-4 hero-preload bg-center-top bg-no-repeat bg-static h-[120vh] md:h-[120vh] z-0" id="heroSequence">&nbsp;</div>
 
 		{# Hero #}
 		<section class="relative h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 pb-20 md:pb-0 flex flex-col justify-center items-center z-10 bg-background-500/75 dark:bg-primary-600/70 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75 dark:md:from-primary-600/75">
 			<h1 class="fluid-100 text-center dark:text-white">The <span class="italic font-serif">lowest fees</span> of any<br class="hidden md:block"> exchange on Ethereum</h1>
-			<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <br class="block md:hidden"><span class="font-bold">65% less costs</span> than UniSwap.</h2>
+			<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <br class="block md:hidden"><span class="font-bold">65% less costs</span> than UniSwap</h2>
 			<div class="flex flex-row flex-wrap md:flex-nowrap justify-center space-x-4 mt-12 sm:mt-16 md:mt-8">
 				<a href="https://app.defiplaza.net/swap" id="launch-app-home-button" class="btn-primary inline-flex items-center mt-4 sm:mt-0">
 					<span class="mt-px whitespace-nowrap">Get started</span>
@@ -104,17 +134,17 @@ pagination:
 		{# Support #}
 		<section class="xl:container mx-4 xl:mx-auto flex flex-col py-20 mt-20">
 
-			<h2 class="relative md:hidden text-center fluid-40 text-white">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
+			<h2 class="relative md:hidden text-center fluid-40 text-white">Learn how to<br>use <strong>DefiPlaza</strong></h2>
 
 			<div class="flex items-center mt-6 md:mt-0 pb-10">
 				<div class="hidden md:block px-3">
-					<h2 class="mr-32 fluid-40 text-white w-max">Learn how to<br>use <strong>DefiPlaza</strong>.</h2>
+					<h2 class="mr-32 fluid-40 text-white w-max">Learn how to<br>use <strong>DefiPlaza</strong></h2>
 				</div>
 
-				<div class="flex items-stretch snap-x snap-mandatory overflow-x-auto ml-4 md:ml-0 py-8 scrollable">
+				<div class="flex items-stretch snap-x snap-mandatory overflow-x-auto ml-4 md:ml-0 pb-4 md:pb-0 md:py-8 scrollable">
 					<div class="flex flex-nowrap">
 						{% for section in helpsections %}
-							<div class="z-10 snap-start flex flex-col justify-between h-full w-[150rem] py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white dark:bg-primary-800 hover:shadow-xl transition-shadow duration-300 ease-in-out">
+							<div class="z-10 snap-start flex flex-col justify-between h-full w-[70vw] md:w-[150rem] py-8 md:py-16 mx-4 px-8 max-w-xs overflow-hidden rounded-lg shadow-md bg-white dark:bg-primary-800 hover:shadow-xl transition-shadow duration-300 ease-in-out">
 								<h3 class="fluid-30 font-bold text-primary-500 dark:text-primary-100"><a href="/help/{{ section.slug }}/">{{ section.name }}</a></h3>
 								<p class="mt-4 text-lg">{{ section.description }}</p>
 								<a href="/help/{{ section.slug }}/" class="mt-16 btn-primary rounded-full w-min">
@@ -128,11 +158,11 @@ pagination:
 
 			{# Support pillar #}
 			<div class="xl:container mx-4 xl:mx-auto flex flex-wrap items-center mt-0 md:mt-0 text-white" id="supportSection">
-				<div class="w-full md:w-1/2 aspect-video" style="background-image: -webkit-image-set( url('/assets/images/home/pillar-sequence@1x.png') 1x, url('/assets/images/home/pillar-sequence@2x.png') 2x); background-size: cover;" id="pillarSequence">&nbsp;</div>
-				<div class="w-full md:w-1/2 mx-auto mt-0 pl-auto md:pl-10 lg:pl-32">
-					<h3 class="text-2xl text-center md:text-left">Are you feeling lost?</h3>
-					<p class="mt-2 text-center md:text-left">Make sure to check out our support section.</p>
-					<div class="flex justify-center md:justify-start">
+				<div class="w-full md:w-1/2 aspect-video pillar-sequence" id="pillarSequence">&nbsp;</div>
+				<div class="w-full md:w-auto mt-0 pl-auto md:pl-10 lg:pl-32">
+					<h3 class="text-2xl">Are you feeling lost?</h3>
+					<p class="mt-2">Make sure to check out our support section.</p>
+					<div class="flex">
 						<a href="/help/" class="btn-white rounded-full mt-4">
 							<span class="mt-px whitespace-nowrap">Get Support</span>
 							{% include "partials/arrow-right.njk" %}
@@ -144,7 +174,7 @@ pagination:
 
 		{# Roadmap #}
 		<section class="relative xl:container xl:mx-auto mt-20" id="roadmap">
-			<h2 class="fluid-40 mx-4 text-white text-center"><strong>Our roadmap.</strong><br class="block md:hidden"> This is what keeps us busy.</h2>
+			<h2 class="fluid-40 mx-4 text-white text-center"><strong>Our roadmap,</strong><br class="block md:hidden"> this is what keeps us busy</h2>
 
 			<div class="flex snap-x snap-mandatory overflow-x-scroll mt-10 pb-10 md:scrollable" id="roadmap">
 				<div class="relative flex flex-wrap md:flex-nowrap items-stretch" id="roadmapItems">
@@ -192,7 +222,7 @@ pagination:
 		{# Latest Updates #}
 		<section class="relative xl:container mx-4 xl:mx-auto mt-20 lg:mt-40">
 			<div class="flex justify-center space-x-8">
-				<h2 class="fluid-40 text-white text-center">Latest news from <strong>DefiPlaza</strong>.</h2>
+				<h2 class="fluid-40 text-white text-center"><a href="/update/">Latest news from <strong>DefiPlaza</strong></a></h2>
 				<a href="/update/" class="btn-primary bg-primary-300 dark:bg-white rounded-full hidden md:inline-flex items-center">
 					<span class="mt-px whitespace-nowrap">All updates</span>
 					{% include "partials/arrow-right.njk" %}
@@ -223,29 +253,6 @@ pagination:
 
 		gsap.registerPlugin(ScrollTrigger);
 
-		/*{# var gsapLoaded = false;
-		var scrollTriggerLoaded = false;
-
-		function setupGsap() {
-			gsapLoaded = true;
-
-			setupAnimations();
-		}
-
-		function setupScrollTrigger() {
-			scrollTriggerLoaded = true;
-
-			setupAnimations();
-		}
-
-		function setupAnimations() { #}
-			{# if(!gsapLoaded) {
-				return;
-			}
-			if(!scrollTriggerLoaded) {
-				return;
-			} #}*/
-
 			ScrollTrigger.matchMedia({
 				// desktop
 				"(min-width: 800px)": function () {
@@ -257,7 +264,7 @@ pagination:
 							end: "bottom bottom+=100px", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
 							pin: false,
 							scrub: true,
-							pinReparent: true,
+							pinReparent: false,
 							pin: "#stats"
 						}
 					})
@@ -268,10 +275,58 @@ pagination:
 			document.getElementById('heroSequence').classList.add('hero-sequence');
 
 			// Hercules looking up
-			var frame_count = 22; // number of frames - 2 (normal -1 because then last frame is in view, but Chrome is acting weird)
+			//var frame_count = 22; // number of frames - 2 (normal -1 because then last frame is in view, but Chrome is acting weird)
+
+			const rows = 6;
+			const columns = 4;
+			const missingImages = 1; // The number of missing images in the last column
+			const frame_count = rows * columns - missingImages - 1;
+
+			function calcSizes(id, imageWidth, imageHeight) {
+				let aspectRatio = imageWidth/imageHeight;
+
+				console.log(id, aspectRatio);
+			
+				let boxHeight = document.getElementById(id).offsetHeight; //imageHeight / rows;
+				let boxWidth = aspectRatio * boxHeight; //imageWidth / columns;
+
+				console.log(id, 'box', boxWidth, boxHeight)
+
+				let bgHeight = document.getElementById(id).offsetHeight * rows;
+				let bgWidth = (boxHeight/imageHeight) * imageWidth * columns;
+
+				console.log(id, 'bg', bgWidth, bgHeight)
+
+
+				gsap.set('#' + id, {width: boxWidth, height: boxHeight});
+				document.getElementById(id).style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+
+				return { boxHeight, boxWidth };
+			}
+			
+			heroSizes = calcSizes('heroSequence', 465, 829);
+			pillarSizes = calcSizes('pillarSequence', 1920, 1080);
+
+			const setPos = gsap.quickSetter("#heroSequence", "background-position");
+
+			const heroObj = {num: 0};
+			gsap.to(heroObj, {
+				num: frame_count,
+				ease: "steps(" + frame_count + ")",
+				scrollTrigger: {
+					trigger: "#heroSection",
+					start: "top top",
+					end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
+					pin: false,
+					scrub: true,
+					markers: false,
+					invalidateOnRefresh: true
+				},
+				onUpdate: () => setPos(`${-Math.round((heroObj.num % columns) * heroSizes.boxWidth)}px ${-Math.round(Math.floor(heroObj.num / columns) * heroSizes.boxHeight)}px`)
+			});
 				
 			// Hercules
-			gsap.to("#heroSequence", {
+			/*gsap.to("#heroSequence", {
 				backgroundPosition: () => "0 " + (-document.getElementById('heroSequence').offsetHeight * frame_count) + "px",
 				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
@@ -283,10 +338,32 @@ pagination:
 					markers: false,
 					invalidateOnRefresh: true
 				}
+			});*/
+
+			const setPosPillar = gsap.quickSetter("#pillarSequence", "background-position");
+
+			const pillarObj = {num: 0};
+			gsap.to(pillarObj, {
+				num: frame_count,
+				ease: "steps(" + frame_count + ")",
+				scrollTrigger: {
+					trigger: "#supportSection",
+					start: "top 75%",
+					end: "center center",
+					pin: false,
+					scrub: true,
+					markers: false,
+					invalidateOnRefresh: true
+				},
+				onUpdate: () => {
+					setPosPillar(`${-Math.round((pillarObj.num % columns) * pillarSizes.boxWidth)}px ${-Math.round(Math.floor(pillarObj.num / columns) * pillarSizes.boxHeight)}px`)
+					console.log(pillarObj.num);
+					console.log(`${-Math.round((pillarObj.num % columns) * pillarSizes.boxWidth)}px ${-Math.round(Math.floor(pillarObj.num / columns) * pillarSizes.boxHeight)}px`)
+				}
 			});
 
 			// Support pillar
-			var pS = gsap.to("#pillarSequence", {
+			/*var pS = gsap.to("#v", {
 				backgroundPosition: () => "50% " + (-document.getElementById('pillarSequence').offsetHeight * frame_count) + "px",
 				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
 				scrollTrigger: {
@@ -298,7 +375,8 @@ pagination:
 					markers: false,
 					invalidateOnRefresh: true
 				}
-			});
+			});*/
+
 			// USPs
 			function animateFrom(elem, direction) {
 				direction = direction || 1;

@@ -138,13 +138,29 @@
 		transition: max-width 0.5s ease-in;
 	}
 
-	.hero-preload {
-		background-image: #642ea850, url('/assets/images/home/hero-preload.png');
+	.webp .hero-preload {
+		background-image: url('/assets/images/home/hero-sequence.webp');
+	}
+	.no-webp .hero-preload {
+		background-image: url('/assets/images/home/hero-preload-trimmed.png');
 	}
 
-	.hero-sequence {
-		background-image: -webkit-image-set(url('/assets/images/home/hero-sequence@1x.png') 1x, url('/assets/images/home/hero-sequence@2x.png') 2x);
-		background-blend-mode: overlay;
+	.webp .hero-sequence {
+		/* already loaded */
+	}
+	.no-webp .hero-sequence {
+		background-image: url('/assets/images/home/hero-sequence-trimmed@1x.png');
+		background-image: -webkit-image-set(url('/assets/images/home/hero-sequence-trimmed@1x.png') 1x, url('/assets/images/home/hero-sequence-trimmed@2x.png') 2x);
+		background-image: image-set(url('/assets/images/home/hero-sequence-trimmed@1x.png') 1x, url('/assets/images/home/hero-sequence-trimmed@2x.png') 2x);
+	}
+
+	.webp .pillar-sequence {
+		background-image: url('/assets/images/home/pillar-sprite.webp');
+	}
+	.no-webp .pillar-sequence {
+		background-image: url('/assets/images/home/pillar-sprite@1x.png');
+		background-image: -webkit-image-set( url('/assets/images/home/pillar-sprite@1x.png') 1x, url('/assets/images/home/pillar-sprite@2x.png') 2x); 
+		background-image: image-set( url('/assets/images/home/pillar-sprite@1x.png') 1x, url('/assets/images/home/pillar-sprite@2x.png') 2x); 
 	}
 }
 
