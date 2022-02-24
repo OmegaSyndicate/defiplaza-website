@@ -7,6 +7,6 @@ require('dotenv').config();
 // https://developer.wordpress.org/rest-api/using-the-rest-api/pagination/
 
 module.exports = async () => {
-	const res = await fetch(process.env.WORDPRESS_API_URL + process.env.WORDPRESS_API_PATH + 'update?_embed=author');
+	const res = await fetch(process.env.WORDPRESS_API_URL + process.env.WORDPRESS_API_PATH + 'update?per_page=100&_embed=author');
 	return await res.json();
 };
