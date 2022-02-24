@@ -1,40 +1,40 @@
 {
-	"name": "defiplaza-website",
-	"version": "1.0.0",
-	"description": "Static Eleventy and Tailwind CSS website of DefiPlaza",
-	"main": ".eleventy.js",
-	"scripts": {
-		"serve": "concurrently 'eleventy --serve' 'npx tailwindcss -i ./src/_tailwind.css -o ./dist/styles.css --watch'",
-		"start": "eleventy && npx tailwindcss -i ./src/_tailwind.css -o ./dist/styles.css --minify",
-		"lint": "eslint . --ext .js --cache"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/OmegaSyndicate/defiplaza-website"
-	},
-	"author": "Trebel",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/OmegaSyndicate/defiplaza-website/issues"
-	},
-	"homepage": "https://defiplaza.net",
-	"engines": {
-		"npm": "~8.1.2"
-	},
-	"dependencies": {
-		"@11ty/eleventy": "^1.0.0",
-		"@tailwindcss/forms": "^0.4.0",
-		"@tailwindcss/line-clamp": "^0.3.1",
-		"@tailwindcss/typography": "^0.5.0",
-		"tailwindcss": "^3.0.7"
-	},
-	"devDependencies": {
-		"@11ty/eleventy-plugin-rss": "^1.1.2",
-		"concurrently": "^6.5.1",
-		"eslint": "7.32.0",
-		"node-fetch": "^2.0",
-		"cross-env": "^7.0.0",
-		"eslint-utils": "3.0.0",
-		"dotenv": "^8.0.0"
-	}
+  "name": "defiplaza-website",
+  "version": "1.1.0",
+  "description": "Static Eleventy and Tailwind CSS website of DefiPlaza",
+  "main": ".eleventy.js",
+  "scripts": {
+    "serve": "concurrently 'eleventy --serve' 'npx tailwindcss -i ./src/_tailwind.css -o ./dist/styles.css --watch'",
+    "start": "eleventy && npx tailwindcss -i ./src/_tailwind.css -o ./dist/styles.css --minify",
+    "lint": "eslint . --ext .js --cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OmegaSyndicate/defiplaza-website"
+  },
+  "author": "Trebel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OmegaSyndicate/defiplaza-website/issues"
+  },
+  "homepage": "https://defiplaza.net",
+  "engines": {
+    "npm": "~8.1.2"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.0",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/line-clamp": "^0.3.1",
+    "@tailwindcss/typography": "^0.5.0",
+    "tailwindcss": "^3.0.7"
+  },
+  "devDependencies": {
+    "@11ty/eleventy-plugin-rss": "^1.1.2",
+    "concurrently": "^6.5.1",
+    "eslint": "7.32.0",
+    "node-fetch": "^2.0",
+    "cross-env": "^7.0.0",
+    "eslint-utils": "3.0.0",
+    "dotenv": "^8.0.0"
+  }
 }
