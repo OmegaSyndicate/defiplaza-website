@@ -1,0 +1,38 @@
+{% extends 'layouts/bare.njk' %}
+
+{% block bare %}
+	<main class="md:max-w-md md:mx-auto h-screen pt-8 md:pt-16 px-4">
+		<section>
+			<p><a href="https://defiplaza.net/" class="flex justify-center">
+				<span class="text-primary-500 dark:text-slate-200">{% include 'svg/logo/logo.svg' %}</span>
+			</a></p>
+			<h1 class="fluid-60 mt-8 text-center dark:text-white">The <span class="italic font-serif">lowest fees</span> of any exchange on Ethereum</h1>
+			<!-- <h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <span class="font-bold">65% less costs</span> than UniSwap</h2> -->
+			
+		</section>
+		<section class="sm:max-w-sm sm:mx-auto flex flex-col mt-8">
+			<a href="https://defiplaza.net/" id="launch-app-link-button" class="btn-primary w-full inline-flex items-center justify-center">
+				<span class="mt-px whitespace-nowrap">Go to website</span>
+				<span>{% include "partials/arrow-right.njk" %}</span>
+			</a>
+			<a href="https://app.defiplaza.net/swap" id="launch-app-link-button" class="btn-outline w-full inline-flex items-center justify-center mt-2">
+				<span class="mt-px whitespace-nowrap">Launch App</span>
+				<span>{% include "partials/arrow-right.njk" %}</span>
+			</a>
+
+			<a href="https://twitter.com/defiplaza" id="launch-app-link-button" class="btn-primary w-full inline-flex items-center justify-center mt-8">
+				<span>{% include 'svg/socials/twitter.svg' %}</span>
+				<span class="mt-px ml-2 whitespace-nowrap">Twitter</span>
+			</a>
+			<a href="https://defiplaza.net/discord" id="launch-app-link-button" class="btn-primary w-full inline-flex items-center justify-center mt-2">
+				<span>{% include 'svg/socials/discord.svg' %}</span>
+				<span class="mt-px ml-2 whitespace-nowrap">Discord</span>
+			</a>
+			<a href="https://t.me/defiplaza" id="launch-app-link-button" class="btn-primary w-full inline-flex items-center justify-center mt-2">
+				<span>{% include 'svg/socials/telegram.svg' %}</span>
+				<span class="mt-px ml-2 whitespace-nowrap">Telegram</span>
+			</a>
+		</section>
+	</main>
+{% endblock %}
+
