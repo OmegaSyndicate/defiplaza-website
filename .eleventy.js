@@ -37,6 +37,11 @@ module.exports = function (eleventyConfig) {
 
 		return date.toLocaleDateString('default', { year: 'numeric', month: 'long', day: 'numeric' });
 	});
+	eleventyConfig.addFilter('date', (dateString) => {
+		const date = new Date(dateString);
+
+		return date.toISOString();
+	});
 
 	eleventyConfig.addFilter('excerpt', (post) => {
 		const content = post.replace(/(<([^>]+)>)/gi, '');

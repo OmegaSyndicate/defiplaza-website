@@ -3,6 +3,7 @@ layout: default
 eleventyComputed:
   title: Token {{ token.title.rendered | safe }} ({{ token.acf.symbol | upper }})
   description: Swap {{ token.acf.symbol }} for only 0.1% fee on DefiPlaza
+  modified: "{{token.modified_gmt }}"
 pagination:
   data: tokens
   size: 1
