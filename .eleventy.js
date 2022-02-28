@@ -28,7 +28,8 @@ module.exports = function (eleventyConfig) {
 
 	// Replace WordPress CMS urls with frontend urls
 	eleventyConfig.addFilter('wpUrls', (content) => {
-		return content.replace(process.env.WORDPRESS_API_URL, process.env.SITE_URL);
+		const re = new RegExp(process.env.WORDPRESS_API_URL, 'ig');
+		return content.replace(re, process.env.SITE_URL);
 	});
 
 	// Date formatting filter
