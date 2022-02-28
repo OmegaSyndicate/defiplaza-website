@@ -4,3 +4,5 @@
 /liquidity-add https://app.defiplaza.net/liquidity-add 301
 /liquidity-remove https://app.defiplaza.net/liquidity-remove 301
 /discord https://discord.gg/GjEPsst58D 302
+/updates/ /update/
+/howto/* /help/$1
