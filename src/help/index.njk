@@ -21,7 +21,7 @@ permalink: '/help/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
 					{{ card({
 							title: post.title.rendered,
 							description: post.content.rendered,
-							url: ["/help/", post.slug] | join
+							url: ["/help/", post.slug, "/"] | join
 						})
 					}}
 				{% endfor %}

@@ -25,7 +25,7 @@ permalink: '/help/{{ section.slug }}/'
 						title: post.title.rendered,
 						text: [post._embedded.author[0].name, " - ", post.date | wpDateToString] | join,
 						description: post.content.rendered,
-						url: ["/help/", post.slug] | join
+						url: ["/help/", post.slug, "/"] | join
 					})
 				}}
 			{% endfor %}
