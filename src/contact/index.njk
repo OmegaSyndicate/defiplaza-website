@@ -1,0 +1,70 @@
+---
+layout: default
+eleventyComputed:
+  title: "Contact DefiPlaza"
+  description: "Get in touch with the core tam of DefiPlaza."
+permalink: '/contact/'
+---
+
+<section class="xl:container mx-4 xl:mx-auto">
+	<h1 class="fluid-60 text-center dark:text-primary-100">Contact <strong class="font-bold text-primary-500 dark:text-white">DefiPlaza</strong></h1>
+
+	<form action="#" method="POST" id="contactForm" class="md:max-w-[65ch] mx-auto grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+		<div class="sm:col-span-2">
+			<label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+			<div class="mt-1">
+			<input type="text" name="name" id="name" autocomplete="name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+			</div>
+		</div>
+		<div class="sm:col-span-2">
+			<label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+			<div class="mt-1">
+			<input id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+			</div>
+		</div>
+		
+		<div class="sm:col-span-2">
+			<label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+			<div class="mt-1">
+			<textarea id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md"></textarea>
+			</div>
+		</div>
+
+		<div class="sm:col-span-2 text-center hidden" id="confirmMessage">
+			<p>Your message has been sent to DefiPlaza's team.</p>
+		</div>
+		
+		<div class="sm:col-span-2 text-center">
+			<button type="button" id="submitButton" class="btn-primary">Send message</button>
+		</div>
+	</form>
+</section>
+
+<script>
+	document.getElementById('submitButton').addEventListener('click', (evt) => {
+		var myForm = document.getElementById("contactForm");
+		var formValues = {};
+
+		//Extract Each Element Value
+		for (var i = 0; i < myForm.elements.length; i++) {
+			var input = myForm.elements[i]
+			console.log(input.id, input.value);
+
+			formValues[input.id] = input.value;
+		}
+
+		fetch('https://api.defiplaza.net/contact', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: formValues
+		})
+		.then(result => {
+		   console.log(result);
+			document.getElementById('confirmMessage').classList.add('block');
+		}).catch(err => {
+			alert(err.message);
+		})
+	});
+</script>
