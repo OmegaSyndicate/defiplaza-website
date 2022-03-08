@@ -41,29 +41,27 @@ permalink: '/contact/'
 </section>
 
 <script>
-	document.getElementById('submitButton').addEventListener('click', (evt) => {
+	const button = document.getElementById('submitButton');
+	button.addEventListener('click', (evt) => {
+		button.disabled = true;
+		
 		var myForm = document.getElementById("contactForm");
-		var formValues = {};
-
-		//Extract Each Element Value
-		for (var i = 0; i < myForm.elements.length; i++) {
-			var input = myForm.elements[i]
-			console.log(input.id, input.value);
-
-			formValues[input.id] = input.value;
-		}
-
-		fetch('https://api.defiplaza.net/contact', {
+		const formValues = new URLSearchParams(new FormData(myForm));
+		
+		fetch('https://api.defiplaza.workers.dev/contact', {
 			method: 'post',
-			headers: {
-				'Content-Type': 'application/json'
-			},
 			body: formValues
 		})
-		.then(result => {
-		   console.log(result);
-			document.getElementById('confirmMessage').classList.add('block');
+		.then(async result => {
+			const json = await result.json();
+
+			if(json.status !== 200) {
+				throw new Error(json.text);
+			}
+
+			document.getElementById('confirmMessage').classList.remove('hidden');
 		}).catch(err => {
+			button.disabled = false;
 			alert(err.message);
 		})
 	});
