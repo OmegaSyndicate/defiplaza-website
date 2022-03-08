@@ -6,6 +6,6 @@ module.exports = {
 	url: process.env.SITE_URL,
 	icon: process.env.SITE_URL + '/assets/images/logo/icon.svg',
 	cover_image: process.env.SITE_URL + '/assets/images/logo/social-media-share.png',
-	lang: 'en_US',
+	lang: 'en',
 	twitter: '@defiplaza',
 };
