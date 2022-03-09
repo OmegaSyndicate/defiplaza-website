@@ -8,7 +8,9 @@
 /updates/* /update/:splat 301
 /howto/* /help/:splat 301
 /dfp2 /token/dfp2 301
-/developer/subgraph /developer/ 301
+/developer/subgraph/ /developer/ 301
+/token/chain/ /tokens/ 301
+/token/uni/ /tokens/ 301
 /wp-content/uploads/sites/5/2021/10/cropped-defiplaza-logo-square-180x180.png https://static.defiplaza.net/website/uploads/2022/02/23175825/twitter-profile-400x400-1.png 301
 /updates/defiplaza-providing-liquidity /blog/defiplaza-providing-liquidity 301
 /updates/making-defi-on-ethereum-affordable-again /blog/making-defi-on-ethereum-affordable-again 301
