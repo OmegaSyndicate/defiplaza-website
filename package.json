@@ -1,6 +1,6 @@
 {
   "name": "defiplaza-website",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Static Eleventy and Tailwind CSS website of DefiPlaza",
   "main": ".eleventy.js",
   "scripts": {
