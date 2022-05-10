@@ -286,17 +286,17 @@ pagination:
 			function calcSizes(id, imageWidth, imageHeight) {
 				let aspectRatio = imageWidth/imageHeight;
 
-				console.log(id, aspectRatio);
+				//console.log(id, aspectRatio);
 			
 				let boxHeight = document.getElementById(id).offsetHeight; //imageHeight / rows;
 				let boxWidth = aspectRatio * boxHeight; //imageWidth / columns;
 
-				console.log(id, 'box', boxWidth, boxHeight)
+				//console.log(id, 'box', boxWidth, boxHeight)
 
 				let bgHeight = document.getElementById(id).offsetHeight * rows;
 				let bgWidth = (boxHeight/imageHeight) * imageWidth * columns;
 
-				console.log(id, 'bg', bgWidth, bgHeight)
+				//console.log(id, 'bg', bgWidth, bgHeight)
 
 
 				gsap.set('#' + id, {width: boxWidth, height: boxHeight});
@@ -358,8 +358,6 @@ pagination:
 				},
 				onUpdate: () => {
 					setPosPillar(`${-Math.round((pillarObj.num % columns) * pillarSizes.boxWidth)}px ${-Math.round(Math.floor(pillarObj.num / columns) * pillarSizes.boxHeight)}px`)
-					console.log(pillarObj.num);
-					console.log(`${-Math.round((pillarObj.num % columns) * pillarSizes.boxWidth)}px ${-Math.round(Math.floor(pillarObj.num / columns) * pillarSizes.boxHeight)}px`)
 				}
 			});
 
@@ -438,8 +436,6 @@ pagination:
 						onEnter: function () {
 							animateFrom(elem)
 						},
-						//onEnterBack: function() { console.log('onEnterBack', elem); animateFrom(elem, -1) },
-						//onLeave: function() { console.log('onLeave', elem); hide(elem) },  assure that the element is hidden when scrolled into view
 						onLeaveBack: function () {
 							animateFrom(elem, -1)
 						}
