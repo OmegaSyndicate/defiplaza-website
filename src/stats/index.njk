@@ -13,7 +13,7 @@ permalink: '/stats/'
 	<div class="relative mt-16 space-y-4 p-4 md:p-8 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
 		<div class="oval-gradient -top-80 -left-80"></div>
 
-		{# TVL and DFP2 MC #}
+		{# TVL and Trade Volume #}
 		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
 				<div class="py-8 px-4" id="tvl">
@@ -25,45 +25,42 @@ permalink: '/stats/'
 			</div>
 
 			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="flex justify-between items-center">
+					<div class="py-8 px-4 space-x-1">
+						<!--<button class="btn-outline text-xs">D</button>
+						<button class="btn-outline text-xs">W</button>
+						<button class="btn-outline text-xs">M</button>-->
+					</div>
+					<div class="py-8 px-4" id="swap">
+						<h2 class="text-2xl md:text-right">Daily Trade Volume</h2>
+						<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
+						<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
+					</div>
+				</div>
+				<canvas id="swapChart" width="400" height="250"></canvas>
+			</div>
+
+			
+		</div>
+
+		{# DFP2 prices and DFP2 MC #}
+		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="dfp2Price">
+					<h2 class="text-2xl">DFP2 Price</h2>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100">Today</p>
+				</div>
+				<canvas id="dfp2PriceChart" width="400" height="250"></canvas>
+			</div>
+
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
 				<div class="py-8 px-4" id="marketCap">
 					<h2 class="text-2xl md:text-right">DFP2 Market Cap</h2>
 					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
 					<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
 				</div>
 				<canvas id="marketCapChart" width="400" height="250"></canvas>
-			</div>
-		</div>
-
-		{# XDP2 and DFP2 prices #}
-		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
-			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
-				<div class="py-8 px-4" id="xdp2Price">
-					<h2 class="text-2xl">XDP2 Price</h2>
-					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
-					<p class="text-base text-primary-700">Today</p>
-				</div>
-				<canvas id="xdp2PriceChart" width="400" height="250"></canvas>
-			</div>
-
-			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
-				<div class="py-8 px-4" id="dfp2Price">
-					<h2 class="text-2xl md:text-right">DFP2 Price</h2>
-					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
-					<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
-				</div>
-				<canvas id="dfp2PriceChart" width="400" height="250"></canvas>
-			</div>
-		</div>
-
-		{# Daily Trade Volume #}
-		<div class="relative grid grid-cols-1 gap-4">
-			<div class="z-10 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
-				<div class="py-8 px-4" id="swap">
-					<h2 class="text-2xl">Daily Trade Volume</h2>
-					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
-					<p class="text-base text-primary-700 dark:text-primary-100">Today</p>
-				</div>
-				<canvas id="swapChart" width="800" height="250"></canvas>
 			</div>
 		</div>
 
@@ -205,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
  			tvlChart(graphData.dailies);
  			marketCapChart(graphData.dailies);
  			
- 			xdp2Chart(graphData.dailies);
+ 			//xdp2Chart(graphData.dailies);
  			dfp2PriceChart(graphData.dailyTokens);
  			
  			liquidityChart(graphData.dailies);
@@ -244,23 +241,19 @@ let chartScales = {
 		beginAtZero: true,
 		position: 'right',
 		ticks: {
-			color: "#23211f",
-			font: {
-				size: 12
-			},
-      	// Include a dollar sign in the ticks
-			callback: function (value, index, values) {
-				return prettyDollar(parseFloat(value));
-			},
+			display: false
 		},
-		/*grid: {
+		grid: {
 			borderColor: 'rgb(236, 198, 168)',
 			color: 'rgba(47, 79, 126, 0.1)',
-		},*/
-		grid: {
-			display: false,
+			display: true,
 			drawBorder: false,
+			drawOnChartArea: true
 		},
+		/*grid: {
+			display: false,
+			drawBorder: t,
+		},*/
 		display: false
 	},
 	x: {
@@ -371,11 +364,11 @@ function dfp2PriceChart(dailies) {
 }
 
 function swapChart(dailies) {
-	lineChart('swap', 'Daily Trade Volume', dailies, 'tradeVolumeUSD', true);
+	barChart('swap', 'Daily Trade Volume', dailies, 'tradeVolumeUSD', false);
 }
 
 function liquidityChart(dailies) {
-	barChart('liquidity', 'Daily Liquidity Change', dailies, 'liquidityUSD');
+	barChart('liquidity', 'Daily Liquidity Change', dailies, 'liquidityUSD', true);
 }
 
 function xdp2Chart(dataPoints) {
@@ -418,7 +411,10 @@ function tokensTable(tokens) {
         
         for(let token of tokens) {
             table += `<tr>
-            	<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white"><a href="/token/${token.symbol.toLowerCase()}">${token.symbol}</a></td>
+            	<td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white"><a href="/token/${token.symbol.toLowerCase()}" class="flex items-center">
+						<img class="w-8 h-8 mr-4" src="/assets/images/tokens/${token.symbol.toLowerCase()}.svg">
+						${token.symbol}
+					</a></td>
             	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(token.tokenAmount*getPrice(token)) }</td>
              	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyValue(token.tokenAmount) }</td>
             	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(getPrice(token)) }</td>
@@ -588,7 +584,7 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 	});
 }
 
-function barChart(id, label, dataPoints, dataPoint) {
+function barChart(id, label, dataPoints, dataPoint, lines) {
 	let labels = [];
 	let data = [];
 	let backgroundColors = [];
@@ -605,6 +601,14 @@ function barChart(id, label, dataPoints, dataPoint) {
 	backgroundColors[backgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
 
 	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+
+	let barChartScales = chartScales;
+
+	if(lines) {
+		barChartScales.y.display = true;
+	} else {
+		barChartScales.y.display = false;
+	}
 
 	const ctx = document.getElementById(id + 'Chart').getContext('2d');
 	const chart = new Chart(ctx, {
@@ -625,6 +629,7 @@ function barChart(id, label, dataPoints, dataPoint) {
 			],
 		},
 		options: {
+			minBarLength: 1,
 			plugins: {
 				legend: {
 					display: false,
@@ -643,7 +648,7 @@ function barChart(id, label, dataPoints, dataPoint) {
 					}
 				}	
 			},
-			scales: chartScales,
+			scales: barChartScales,
 		},
 	});
 
