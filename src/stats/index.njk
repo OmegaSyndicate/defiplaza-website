@@ -38,9 +38,14 @@ permalink: '/stats/'
 			</div>
 
 			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
+				<dt class='text-sm font-medium text-primary-100 truncate'>Total Value Locked</dt>
+				<dd class='mt-1 text-3xl font-semibold text-white' id="totalTVL">{% include "partials/loading-indicator.njk" %}</dd>
+			</div>
+
+			<!-- <div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
 				<dt class='text-sm font-medium text-primary-100 truncate'>Total Fees</dt>
 				<dd class='mt-1 text-3xl font-semibold text-white' id="totalFees">{% include "partials/loading-indicator.njk" %}</dd>
-			</div>
+			</div>-->
 		</dl>
 	</div>
 
@@ -244,7 +249,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 			document.getElementById("24Volume").innerHTML = prettyDollar(dayVolume);
 			document.getElementById("totalVolume").innerHTML = prettyDollar(graphData.factories[0].totalTradeVolumeUSD);
-			document.getElementById("totalFees").innerHTML = prettyDollar(graphData.factories[0].totalFeesEarnedUSD);
+			document.getElementById("totalTVL").innerHTML = prettyDollar(graphData.factories[0].totalValueLockedUSD);
+			//document.getElementById("totalFees").innerHTML = prettyDollar(graphData.factories[0].totalFeesEarnedUSD);
 		
  			// Make last day, the first day
  			graphData.dailies.reverse();
