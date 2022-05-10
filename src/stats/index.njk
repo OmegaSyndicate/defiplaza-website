@@ -10,7 +10,21 @@ permalink: '/stats/'
 	<h1 class="fluid-60 text-center dark:text-primary-100"><strong class="font-bold text-primary-500 dark:text-white">DefiPlaza's</strong> Analytics</h1>
 	<p class="text-center text-base font-bold">Last synced block <span id="lastBlock" class="font-normal">{% include "partials/loading-indicator.njk" %}</span><span id="lastBlockTime"></span></p>
 
-	
+	<!-- Notification banner when stats are out of sync -->
+	<div class="mt-5 hidden" id="warningBanner">
+		<div class="mx-auto px-2 sm:px-6 lg:px-8 relative">
+			<div class="p-2 rounded-lg bg-red-600 shadow-lg sm:p-3">
+				<div class="flex items-center justify-between flex-wrap">
+					<div class="w-0 flex-1 flex items-center">
+						<p class="ml-3 font-medium text-white text-center truncate">
+							The Analytics page is currently <span class="font-bold" id="blockDiff">0</span> blocks out of sync!
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
 	<div>
 		<dl class='mt-5 md:mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3'>
 			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
@@ -745,11 +759,11 @@ function healthCheck(lastestBlockNumber) {
 	       // Display last block synced
 	       document.getElementById("lastBlock").innerHTML = `<a href="https://etherscan.io/block/${lastestBlockNumber}" target="_blank">${lastestBlockNumber}</a>`;
 	       
-	       // Display warning banner, when more than 1 block difference
-	       if(diff > 4) {
-	          document.getElementById("blockDiff").html(diff);
-	          document.getElementById("warning-banner").show();
-	       }
+	       // Display warning banner, when more than 4 block difference
+	      if(diff > 4) {
+	          document.getElementById("blockDiff").innerHtml = diff;
+	          document.getElementById("warningBanner").classList.toggle("hidden");
+	      }
 	    });
 }
 </script>
