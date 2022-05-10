@@ -10,6 +10,26 @@ permalink: '/stats/'
 	<h1 class="fluid-60 text-center dark:text-primary-100"><strong class="font-bold text-primary-500 dark:text-white">DefiPlaza's</strong> Analytics</h1>
 	<p class="text-center text-base font-bold">Last synced block <span id="lastBlock" class="font-normal">{% include "partials/loading-indicator.njk" %}</span><span id="lastBlockTime"></span></p>
 
+	
+	<div>
+		<dl class='mt-5 md:mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3'>
+			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
+				<dt class='text-sm font-medium text-primary-100 truncate'>Volume (24 hrs)</dt>
+				<dd class='mt-1 text-3xl font-semibold text-white' id="24Volume">{% include "partials/loading-indicator.njk" %}</dd>
+			</div>
+
+			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
+				<dt class='text-sm font-medium text-primary-100 truncate'>Total Volume</dt>
+				<dd class='mt-1 text-3xl font-semibold text-white' id="totalVolume">{% include "partials/loading-indicator.njk" %}</dd>
+			</div>
+
+			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
+				<dt class='text-sm font-medium text-primary-100 truncate'>Total Fees</dt>
+				<dd class='mt-1 text-3xl font-semibold text-white' id="totalFees">{% include "partials/loading-indicator.njk" %}</dd>
+			</div>
+		</dl>
+	</div>
+
 	<div class="relative mt-16 space-y-4 p-4 md:p-8 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
 		<div class="oval-gradient -top-80 -left-80"></div>
 
@@ -32,7 +52,7 @@ permalink: '/stats/'
 						<button class="btn-outline text-xs">M</button>-->
 					</div>
 					<div class="py-8 px-4" id="swap">
-						<h2 class="text-2xl md:text-right">Daily Trade Volume</h2>
+						<h2 class="text-2xl md:text-right">Daily Volume</h2>
 						<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
 						<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
 					</div>
@@ -124,12 +144,17 @@ document.addEventListener("DOMContentLoaded", function() {
 	const queryBody = JSON.stringify({
     	query: `{
     	    factories(first: 1) {
-    	        totalValueLockedUSD
+    	         totalValueLockedUSD
+					totalTradeVolumeUSD
+					totalFeesEarnedUSD
     	    }
     	    transactions(first: 1, orderBy: timestamp, orderDirection: desc) {
                 blockNumber
                 timestamp
               }
+			hourlies(first: 24, orderBy: date, orderDirection: desc) {
+                swapUSD
+            }
     	    dailies(first: 90, orderBy: date, orderDirection: desc) {
                 date
                 liquidityUSD
@@ -193,6 +218,19 @@ document.addEventListener("DOMContentLoaded", function() {
 	        
 	        // Display TVL
 		    var tvl = graphData.factories[0].totalValueLockedUSD;
+
+			// populate stats bar
+			let dayVolume = 0;
+
+			for(let i = 0; i < graphData.hourlies.length; i++) {
+				console.log(graphData.hourlies[i].swapUSD);
+				dayVolume += parseFloat(graphData.hourlies[i].swapUSD);
+			}
+
+
+			document.getElementById("24Volume").innerHTML = prettyDollar(dayVolume);
+			document.getElementById("totalVolume").innerHTML = prettyDollar(graphData.factories[0].totalTradeVolumeUSD);
+			document.getElementById("totalFees").innerHTML = prettyDollar(graphData.factories[0].totalFeesEarnedUSD);
 		
  			// Make last day, the first day
  			graphData.dailies.reverse();
