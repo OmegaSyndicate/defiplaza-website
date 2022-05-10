@@ -6,8 +6,6 @@
 /discord https://discord.gg/GjEPsst58D 302
 /telegram https://t.me/defiplaza 302
 /updates/ /update/ 301
-/updates/* /update/:splat 301
-/howto/* /help/:splat 301
 /dfp2 /token/dfp2 301
 /developer/subgraph/ /developer/ 301
 /token/chain/ /tokens/ 301
@@ -16,3 +14,5 @@
 /updates/defiplaza-providing-liquidity /blog/defiplaza-providing-liquidity 301
 /updates/making-defi-on-ethereum-affordable-again /blog/making-defi-on-ethereum-affordable-again 301
 /updates/defi-plaza-a-low-cost-dex-for-ethereum /blog/defi-plaza-a-low-cost-dex-for-ethereum 301
+/updates/* /update/:splat 301
+/howto/* /help/:splat 301
