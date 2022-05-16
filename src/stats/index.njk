@@ -64,11 +64,13 @@ permalink: '/stats/'
 			</div>
 
 			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
-				<div class="flex justify-between items-center">
-					<div class="py-8 px-4 space-x-1">
-						<!--<button class="btn-outline text-xs">D</button>
-						<button class="btn-outline text-xs">W</button>
-						<button class="btn-outline text-xs">M</button>-->
+				<div class="flex justify-between items-top">
+					<div class="py-10 px-4">
+						<span class="relative z-0 inline-flex shadow-sm rounded-md">
+							<button type="button" class="relative inline-flex items-center px-4 py-1 rounded-l-md border border-gray-300 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">D</button>
+							<button type="button" class="-ml-px relative inline-flex items-center px-4 py-1 border border-gray-300 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">W</button>
+							<button type="button" class="-ml-px relative inline-flex items-center px-4 py-1 rounded-r-md border border-gray-300 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">M</button>
+						</span>
 					</div>
 					<div class="py-8 px-4" id="swap">
 						<h2 class="text-2xl md:text-right">Daily Volume</h2>
@@ -78,8 +80,6 @@ permalink: '/stats/'
 				</div>
 				<canvas id="swapChart" width="400" height="250"></canvas>
 			</div>
-
-			
 		</div>
 
 		{# DFP2 prices and DFP2 MC #}
@@ -555,10 +555,23 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 	}
 
 	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
-
 	labels[labels.length - 1] = 'Today';
+
 	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
 	pointBackgroundColors[pointBackgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
+
+	let active = false;
+
+	document.getElementById(id + 'Chart').addEventListener('mouseenter', e => {
+		active = true;
+	});
+
+	document.getElementById(id + 'Chart').addEventListener('mouseleave', e => {
+		document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+		document.querySelector(`#${id} p`).innerText = labels[labels.length - 1];
+
+		active = false;
+	});
 
 	const ctx = document.getElementById(id + 'Chart').getContext('2d');
 	const chart = new Chart(ctx, {
@@ -619,6 +632,12 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 					position: 'nearest',
 					usePointStyle: true,
 					external: function(context) {
+						// Only update when mouse is over the graph
+						// Otherwise it overrules the `mouseleave` event with a final update
+						if(!active) {
+							return;
+						}
+
 						var raw = context.tooltip.dataPoints[0].raw;
 						var title = context.tooltip.title[0];
 						
@@ -666,6 +685,19 @@ function barChart(id, label, dataPoints, dataPoint, lines) {
 
 	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
 
+	let active = false;
+
+	document.getElementById(id + 'Chart').addEventListener('mouseenter', e => {
+		active = true;
+	});
+
+	document.getElementById(id + 'Chart').addEventListener('mouseleave', e => {
+		document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+		document.querySelector(`#${id} p`).innerText = labels[labels.length - 1];
+
+		active = false;
+	});
+
 	let barChartScales = chartScales;
 
 	if(lines) {
@@ -704,6 +736,12 @@ function barChart(id, label, dataPoints, dataPoint, lines) {
 					position: 'nearest',
 					usePointStyle: true,
 					external: function(context) {
+						// Only update when mouse is over the graph
+						// Otherwise it overrules the `mouseleave` event with a final update
+						if(!active) {
+							return;
+						}
+
 						var raw = context.tooltip.dataPoints[0].raw;
 						var title = context.tooltip.title[0];
 						
