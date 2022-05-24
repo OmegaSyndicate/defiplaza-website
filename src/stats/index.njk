@@ -66,11 +66,11 @@ permalink: '/stats/'
 			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
 				<div class="flex justify-between items-top">
 					<div class="py-10 px-4">
-						<span class="relative z-0 inline-flex shadow-sm rounded-md">
+					<!-- 	<span class="relative z-0 inline-flex shadow-sm rounded-md">
 							<button type="button" class="relative inline-flex items-center px-4 py-1 rounded-l-md border border-gray-300 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">D</button>
 							<button type="button" class="-ml-px relative inline-flex items-center px-4 py-1 border border-gray-300 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">W</button>
 							<button type="button" class="-ml-px relative inline-flex items-center px-4 py-1 rounded-r-md border border-gray-300 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">M</button>
-						</span>
+						</span> -->
 					</div>
 					<div class="py-8 px-4" id="swap">
 						<h2 class="text-2xl md:text-right">Daily Volume</h2>
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function() {
     	}`
 	});
 	
-	fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
+	fetch('https://gateway.thegraph.com/api/97814e28c86a7184f207dad2a234d813/subgraphs/id/DQAdCNpnahGhbMrS514pf6ZUEK39uQwLDaXPMfUa5C2u', {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json'
