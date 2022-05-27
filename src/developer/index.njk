@@ -31,13 +31,18 @@ permalink: '/developer/'
 		<h3>Factory</h3>
 		<p>The factory object contains consolidated information on the DefiPlaza dex, such as the total value locked in USD and the circulating supply of the DFP2 Governance token.</p>
 		<p>You can retrieve the data via the contract's address:</p>
-		<code>{
-  factory(id:"0xe68c1d72340aeefe5be76eda63ae2f4bc7514110") {
+		<pre class="wp-block-code"><code>{
+  factory(id: "0xe68c1d72340aeefe5be76eda63ae2f4bc7514110") {
     swapCount
     totalValueLockedUSD
+    totalTradeVolumeUSD
+    totalFeesEarnedUSD
     dfp2TotalSupply
+    dfp2MarketCap
+    xdp2TotalSupply
+    xdp2Staked
   }
-}</code>
+}</code></pre>
 		<p>
 			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=Factory%20-%20DefiPlaza%20consolidated" target="_blank" rel="noreferrer noopener">
 				<strong>Try</strong>
@@ -57,6 +62,25 @@ permalink: '/developer/'
 }</code></pre>
 		<p>
 			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=Tokens%20on%20DefiPlaza" target="_blank" rel="noreferrer noopener">
+				<strong>Try</strong>
+			</a>
+		</p>
+		<p>To query the price of a token in the last 28 days:</p>
+		<pre class="wp-block-code"><code>{
+  dailyTokens(where: {token: "0x2f57430a6ceda85a67121757785877b4a71b8e6d"}, first: 28, orderBy: date, orderDirection: desc) {
+    date
+    swapUSD
+    token {
+      id
+      symbol
+    }
+    tokenPriceUSD
+    tokenPriceMin
+    tokenPriceMax
+  }
+}</code></pre>
+		<p>
+			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=DFP2%20price%20of%20last%2028%20days" target="_blank" rel="noreferrer noopener">
 				<strong>Try</strong>
 			</a>
 		</p>
@@ -105,9 +129,72 @@ permalink: '/developer/'
 				<strong>Try</strong>
 			</a>
 		</p>
+
+		<p>To retrieve the swaps for token <em>ETH_USDC</em>:</p>
+		<pre class="wp-block-code"><code>{
+  swaps(where: {pair: "ETH_USDC"}, first: 10, orderBy: timestamp, orderDirection: desc) {
+    id
+    pair {
+      id
+    }
+    inputToken {
+      id
+      symbol
+    }
+    inputAmount
+    outputToken {
+      id
+      symbol
+    }
+    outputAmount
+    swapUSD
+  }
+}
+</code></pre>
+		<p>
+			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=Last%2010%20swaps%20on%20DefiPlaza%20for%20pair%20ETH_USDC" target="_blank" rel="noreferrer noopener">
+				<strong>Try</strong>
+			</a>
+		</p>
 		<hr class="wp-block-separator">
 		<h3>Hourly and Daily stats</h3>
 		<p>The subgraphs also feature hourly and daily stats for both the complete dex and per token. You can <a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza" target="_blank" rel="noreferrer noopener">explore these here.</a>
+		</p>
+		<p>To retrieve the stats for the last 28 days:</p>
+		<pre class="wp-block-code"><code>{
+  dailies(first: 28, orderBy: date, orderDirection: desc) {
+    date
+    liquidityUSD
+    liquidityAddedUSD
+    liquidityRemovedUSD
+    tradeVolumeUSD
+    swapUSD
+    totalValueLockedUSD
+  }
+}
+</code></pre>
+		<p>
+			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=Last%2028%20days" target="_blank" rel="noreferrer noopener">
+				<strong>Try</strong>
+			</a>
+		</p>
+		<p>To retrieve the stats for the last 12 hours:</p>
+		<pre class="wp-block-code"><code>{
+  hourlies(first: 12, orderBy: date, orderDirection: desc) {
+    date
+    liquidityUSD
+    liquidityAddedUSD
+    liquidityRemovedUSD
+    tradeVolumeUSD
+    swapUSD
+    totalValueLockedUSD
+  }
+}
+</code></pre>
+		<p>
+			<a href="https://thegraph.com/hosted-service/subgraph/omegasyndicate/defiplaza?query=Last%2024%20hours" target="_blank" rel="noreferrer noopener">
+				<strong>Try</strong>
+			</a>
 		</p>
 	</article>
 </section>
