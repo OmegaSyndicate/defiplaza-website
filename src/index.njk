@@ -462,7 +462,7 @@ pagination:
 					} 
 			}`});
 
-			fetch('https://gateway.thegraph.com/api/97814e28c86a7184f207dad2a234d813/subgraphs/id/DQAdCNpnahGhbMrS514pf6ZUEK39uQwLDaXPMfUa5C2u', {
+			fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
 				method: 'post',
 				headers: {
 					'Content-Type': 'application/json'
@@ -479,20 +479,32 @@ pagination:
 					var tvl = graphData
 						.factories[0]
 						.totalValueLockedUSD;
+					
 					var size = "M";
-					var printableTVL;
-
-					if (tvl < 1000000) {
-						printableTVL = Math
-							.round(tvl / 1000)
-							.toFixed(1);
+					var prettyValue;
+					var sign = tvl < 0 ? '-' : '';
+					var value = Math.abs(tvl);
+							
+					if(value < 1) {
+						prettyValue = parseFloat(value).toFixed(3);
+						size = ""
+					} else if(value < 1000) {
+						prettyValue = parseFloat(value).toFixed(2);
+						size = ""
+					} else if(value < 10000) {
+						prettyValue = Math.round(value);
+						size = ""
+					} else if(value < 100000) {
+						prettyValue = parseFloat(value/1000).toFixed(1);
+						size = "K"
+					} else if(value < 1000000) {
+						prettyValue = Math.round(value/1000);
 						size = "K"
 					} else {
-						printableTVL = (Math.round(tvl / 10000) / 100).toFixed(2);
+						prettyValue = parseFloat(value/1000000).toFixed(2);
 					}
 
-					var formattedTvl = "$" + (
-					"" + printableTVL).substring(0, 4);
+					var formattedTvl = "$" + sign + prettyValue.toLocaleString();
 
 					const tvlEl = document.getElementById("tvl");
 					tvlEl.innerText = formattedTvl;
