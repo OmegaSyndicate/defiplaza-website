@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 require('dotenv').config();
 
-const GRAPH_ENDPOINT = 'https://gateway.thegraph.com/api/97814e28c86a7184f207dad2a234d813/subgraphs/id/DQAdCNpnahGhbMrS514pf6ZUEK39uQwLDaXPMfUa5C2u';
+const GRAPH_ENDPOINT = 'https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza';
 
 const tokensQuery = `
 	query {
