@@ -4,7 +4,7 @@
 
 {% block content %}
 <section class="xl:container mx-4 xl:mx-auto">
-	<h1 class="text-center text-3xl md:text-6xl font-light">{{ post.title.rendered }}</h1>
+	<h1 class="text-center text-3xl md:text-6xl font-light">{{ post.title.rendered | safe }}</h1>
 	<p class="mt-4 text-center text-base text-primary-500 dark:text-primary-100">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
 
 	<article class="prose dark:prose-invert dark:text-white mx-auto mt-10">
