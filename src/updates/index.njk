@@ -20,7 +20,7 @@ permalink: '/update/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber +
 
 			{% for post in updates %}
 			{{ card({
-					title: post.title.rendered,
+					title: post.title.rendered | safe,
 					text: post.date | wpDateToString,
 					description: post.content.rendered,
 					url: ["/update/", post.slug, "/"] | join
