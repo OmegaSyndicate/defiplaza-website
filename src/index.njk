@@ -53,19 +53,19 @@ pagination:
 				<h1 class="fluid-100 text-center dark:text-white">The <span class="italic font-serif">lowest fees</span> of any<br class="hidden md:block"> exchange on Ethereum</h1>
 				<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <br class="block md:hidden"><span class="font-bold">65% less costs</span> than UniSwap</h2>
 				<div class="flex flex-row flex-wrap md:flex-nowrap justify-center space-x-4 mt-12 sm:mt-16 md:mt-8">
-					<a href="https://app.defiplaza.net/swap" id="launch-app-home-button" class="btn-primary inline-flex items-center mt-4 sm:mt-0">
-						<span class="mt-px whitespace-nowrap">Get started</span>
+					<a href="https://app.defiplaza.net/swap" id="launch-app-home-button" class="btn-outline inline-flex items-center mt-4 sm:mt-0">
+						<span class="mt-px whitespace-nowrap">Enter app</span>
 						<span class="hidden sm:inline-block">{% include "partials/arrow-right.njk" %}</span>
 					</a>
-					<a href="/help/" class="btn-outline mt-4 sm:mt-0">
+					{# <a href="/help/" class="btn-outline mt-4 sm:mt-0">
 						<span class="mt-px whitespace-nowrap">More information</span>
-					</a>
+					</a> #}
 
 					<div class="flex justify-center items-center w-full md:w-min mt-8 md:mt-0 md:ml-8 space-x-4">
 						<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://defiplaza.net/discord" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
 						<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://t.me/defiplaza" target="_blank">{% include 'svg/socials/telegram.svg' %}</a></p>
 						<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://twitter.com/defiplaza" target="_blank">{% include 'svg/socials/twitter.svg' %}</a></p>
-						<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p>
+						{# <p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p> #}
 					</div>
 				</div>
 			</section>
@@ -129,6 +129,8 @@ pagination:
 						The <strong class="font-bold text-primary-500 dark:text-white">DefiPlaza pool</strong></h2>
 					<p class="mt-4">The DefiPlaza pool makes swapping blue chip tokens up to 65% cheaper, thanks to a highly-optimized single smart contract and a transaction fee of 0.1% of the value traded.</p>
 
+					<hr class="mt-16 border-background-700">
+					
 					<div class="mt-16 gs_reveal gs_reveal_fromRight">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
