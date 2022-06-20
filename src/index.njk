@@ -70,7 +70,7 @@ pagination:
 				</div>
 			</section>
 
-			{# USPs DefiPlaza #}
+			{# What is DefiPlaza #}
 			<section class="relative xl:container xl:mx-auto flex flex-col-reverse md:flex-row">
 				<div class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20  overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
@@ -79,30 +79,16 @@ pagination:
 					<p class="mt-4">What makes DefiPlaza special are  <i>single-contract</i>, <i>highly optimized DEXs</i>, designed to offer the lowest possible trade cost to the end user. 
 						Gas costs per trade are the lowest in the industry, and thanks to the multi-token set up much more capital efficient.</p>
 					<p class="mt-4">We currently have <strong>two multi-token pools</strong>, focussed on blue chip tokens and stable tokens.</p>
-					<a href="/blog/making-defi-on-ethereum-affordable-again" class="btn-primary rounded-full inline-flex items-center mt-4">
-						<span class="mt-px whitespace-nowrap">Read more</span>
-						{% include "partials/arrow-right.njk" %}
-					</a>
-
-					<hr class="mt-16 border-background-700">
-
-					<h2 class="mt-16 fluid-40 dark:text-primary-100">
-						The <strong class="font-bold text-primary-500 dark:text-white">DefiPlaza pool</strong></h2>
-					<p class="mt-4">The DefiPlaza pool makes swapping blue chip tokens up to 65% cheaper, thanks to a highly-optimized single smart contract and a transaction fee of 0.1% of the value traded.</p>
-
-					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
-					</div>
-
-					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
-					</div>
-
-					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your liquidity tokens</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
+					
+					<div class="flex flex-row flex-wrap md:flex-nowrap justify-center space-x-4 mt-12 sm:mt-16 md:mt-8">
+						<a href="#defiplaza-pool" class="btn-primary rounded-full inline-flex items-center mt-4">
+							<span class="mt-px whitespace-nowrap">DefiPlaza pool</span>
+							{% include "partials/arrow-right.njk" %}
+						</a>
+						<a href="#stableplaza-pool" class="btn-primary rounded-full inline-flex items-center mt-4">
+							<span class="mt-px whitespace-nowrap">StablePlaza pool</span>
+							{% include "partials/arrow-right.njk" %}
+						</a>
 					</div>
 				</div>
 
@@ -136,9 +122,31 @@ pagination:
 		</div>
 
 		<div class="relative pt-16">
-			<section class="relative xl:container xl:mx-auto flex flex-col-reverse md:flex-row">
-				{# USPs StablePlaza #}
-				<div class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 overflow-hidden">
+			{# USPs DefiPlaza - Right #}
+			<section class="relative xl:container xl:mx-auto flex flex-col">
+				<div id="defiplaza-pool" class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 overflow-hidden">
+					<h2 class="fluid-40 dark:text-primary-100">
+						The <strong class="font-bold text-primary-500 dark:text-white">DefiPlaza pool</strong></h2>
+					<p class="mt-4">The DefiPlaza pool makes swapping blue chip tokens up to 65% cheaper, thanks to a highly-optimized single smart contract and a transaction fee of 0.1% of the value traded.</p>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
+					</div>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
+					</div>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your liquidity tokens</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
+					</div>
+				</div>
+
+				{# USPs StablePlaza - Left #}
+				<div id="stableplaza-pool" class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 mt-16 overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
 						The <strong class="font-bold text-primary-500 dark:text-white">StablePlaza pool</strong></h2>
 					<p class="mt-4">The StablePlaza pool takes the same highly optimized approach as the DefiPlaza pool to provide cheaper trades and be much more capital efficient than other stable token DEXs, 
@@ -147,17 +155,17 @@ pagination:
 					
 					<hr class="mt-16 border-background-700">
 
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 30% cheaper</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">than any other stable token DEX.</p>
 					</div>
 
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Add highly effective liquidity</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">thanks to anchored liquidity.</p>
 					</div>
 
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your DFP2</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">and receive 33% of the fees.</p>
 					</div>
@@ -300,7 +308,7 @@ pagination:
 						scrollTrigger: {
 							trigger: "#heroSection",
 							start: "top top",
-							end: "bottom bottom+=100px", //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
+							end: "bottom bottom", //+=50px //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
 							pin: false,
 							scrub: true,
 							pinReparent: false,
