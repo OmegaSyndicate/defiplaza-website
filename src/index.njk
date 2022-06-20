@@ -43,89 +43,127 @@ pagination:
 	});
 	</script>
 
-	<div class="relative -mt-[71px] pt-[71px] bg-background-500 dark:bg-primary-600" id="heroSection">
-		{# Sequence #}
-		<div class="fixed top-0 md:top-[10vh] right-0 md:right-4 hero-preload bg-center-top bg-no-repeat bg-static h-[120vh] md:h-[120vh] z-0" id="heroSequence">&nbsp;</div>
+	<div class="relative -mt-[71px] pt-[71px] bg-background-500 dark:bg-primary-600">
+		<div id="heroSection">
+			{# Sequence #}
+			<div class="fixed top-0 md:top-[10vh] right-0 md:right-4 hero-preload bg-center-top bg-no-repeat bg-static h-[120vh] md:h-[120vh] z-0" id="heroSequence">&nbsp;</div>
 
-		{# Hero #}
-		<section class="relative h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 pb-20 md:pb-0 flex flex-col justify-center items-center z-10 bg-background-500/75 dark:bg-primary-600/70 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75 dark:md:from-primary-600/75">
-			<h1 class="fluid-100 text-center dark:text-white">The <span class="italic font-serif">lowest fees</span> of any<br class="hidden md:block"> exchange on Ethereum</h1>
-			<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <br class="block md:hidden"><span class="font-bold">65% less costs</span> than UniSwap</h2>
-			<div class="flex flex-row flex-wrap md:flex-nowrap justify-center space-x-4 mt-12 sm:mt-16 md:mt-8">
-				<a href="https://app.defiplaza.net/swap" id="launch-app-home-button" class="btn-primary inline-flex items-center mt-4 sm:mt-0">
-					<span class="mt-px whitespace-nowrap">Get started</span>
-					<span class="hidden sm:inline-block">{% include "partials/arrow-right.njk" %}</span>
-				</a>
-				<a href="/help/" class="btn-outline mt-4 sm:mt-0">
-					<span class="mt-px whitespace-nowrap">More information</span>
-				</a>
+			{# Hero #}
+			<section class="relative h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 pb-20 md:pb-0 flex flex-col justify-center items-center z-10 bg-background-500/75 dark:bg-primary-600/70 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75 dark:md:from-primary-600/75">
+				<h1 class="fluid-100 text-center dark:text-white">The <span class="italic font-serif">lowest fees</span> of any<br class="hidden md:block"> exchange on Ethereum</h1>
+				<h2 class="text-xl mt-4 text-center">Swap, earn &amp; stake with up to <br class="block md:hidden"><span class="font-bold">65% less costs</span> than UniSwap</h2>
+				<div class="flex flex-row flex-wrap md:flex-nowrap justify-center space-x-4 mt-12 sm:mt-16 md:mt-8">
+					<a href="https://app.defiplaza.net/swap" id="launch-app-home-button" class="btn-primary inline-flex items-center mt-4 sm:mt-0">
+						<span class="mt-px whitespace-nowrap">Get started</span>
+						<span class="hidden sm:inline-block">{% include "partials/arrow-right.njk" %}</span>
+					</a>
+					<a href="/help/" class="btn-outline mt-4 sm:mt-0">
+						<span class="mt-px whitespace-nowrap">More information</span>
+					</a>
 
-				<div class="flex justify-center items-center w-full md:w-min mt-8 md:mt-0 md:ml-8 space-x-4">
-					<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://defiplaza.net/discord" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
-					<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://t.me/defiplaza" target="_blank">{% include 'svg/socials/telegram.svg' %}</a></p>
-					<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://twitter.com/defiplaza" target="_blank">{% include 'svg/socials/twitter.svg' %}</a></p>
-					<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p>
+					<div class="flex justify-center items-center w-full md:w-min mt-8 md:mt-0 md:ml-8 space-x-4">
+						<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://defiplaza.net/discord" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
+						<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://t.me/defiplaza" target="_blank">{% include 'svg/socials/telegram.svg' %}</a></p>
+						<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://twitter.com/defiplaza" target="_blank">{% include 'svg/socials/twitter.svg' %}</a></p>
+						<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://github.com/OmegaSyndicate" target="_blank">{% include 'svg/socials/github.svg' %}</a></p>
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
-		{# USPs #}
-		<section class="relative xl:container xl:mx-auto flex flex-col-reverse md:flex-row">
-			<div class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20  overflow-hidden">
-				<h2 class="fluid-40 dark:text-primary-100">
-					<strong class="font-bold text-primary-500 dark:text-white">DefiPlaza</strong> is a decentralized exchange on Ethereum</h2>
-				<p class="mt-4">Like other exchanges, it offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
-				<p class="mt-4">What makes DefiPlaza special is a <i>single-contract</i>, <i>highly optimized DEX</i>, designed to offer the lowest possible trade cost to the end user. Gas costs per trade are the lowest in the industry, and the transaction fees are very competitive at 0.1% of value traded.</p>
-				<a href="/blog/making-defi-on-ethereum-affordable-again" class="btn-primary rounded-full inline-flex items-center mt-4">
-					<span class="mt-px whitespace-nowrap">Read more</span>
-					{% include "partials/arrow-right.njk" %}
-				</a>
+			{# USPs DefiPlaza #}
+			<section class="relative xl:container xl:mx-auto flex flex-col-reverse md:flex-row">
+				<div class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20  overflow-hidden">
+					<h2 class="fluid-40 dark:text-primary-100">
+						<strong class="font-bold text-primary-500 dark:text-white">DefiPlaza</strong> is a decentralized exchange on Ethereum</h2>
+					<p class="mt-4">Like other exchanges, DefiPlaza offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
+					<p class="mt-4">What makes DefiPlaza special are  <i>single-contract</i>, <i>highly optimized DEXs</i>, designed to offer the lowest possible trade cost to the end user. 
+						Gas costs per trade are the lowest in the industry, and thanks to the multi-token set up much more capital efficient.</p>
+					<p class="mt-4">We currently have <strong>two multi-token pools</strong>, focussed on blue chip tokens and stable tokens.</p>
+					<a href="/blog/making-defi-on-ethereum-affordable-again" class="btn-primary rounded-full inline-flex items-center mt-4">
+						<span class="mt-px whitespace-nowrap">Read more</span>
+						{% include "partials/arrow-right.njk" %}
+					</a>
 
-				<hr class="mt-16 border-background-700">
+					<hr class="mt-16 border-background-700">
 
-				<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-					<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
-					<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
+					<h2 class="mt-16 fluid-40 dark:text-primary-100">
+						The <strong class="font-bold text-primary-500 dark:text-white">DefiPlaza pool</strong></h2>
+					<p class="mt-4">The DefiPlaza pool makes swapping blue chip tokens up to 65% cheaper, thanks to a highly-optimized single smart contract and a transaction fee of 0.1% of the value traded.</p>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
+					</div>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
+					</div>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your liquidity tokens</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
+					</div>
 				</div>
 
-				<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-					<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
-					<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
+				{# Stats #}
+				<div class="relative w-full md:w-1/2 z-10">
+					<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-8 bg-primary-500 dark:bg-primary-800 text-white md:rounded-lg text-center" id="stats">
+						<li>
+							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
+								<span id="tvl" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
+								<span id="tvlSuffix" class="text-base font-light align-middle">&nbsp;</span>
+							</p>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Liquidity</h3>
+						</li>
+						<li>
+							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">120</p>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trading pairs</h3>
+						</li>
+						<li>
+							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">0.1<span class="text-base font-light align-middle">%</span></p>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Swapping fee</h3>
+						</li>
+						<li>
+							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
+								<span id="apr" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
+								<span class="text-base font-light align-middle">%</span></p>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">APR</h3>
+						</li>
+					</ul>
 				</div>
+			</section>
+		</div>
 
-				<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-					<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your tokens</h3>
-					<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
+		<div class="relative pt-16">
+			<section class="relative xl:container xl:mx-auto flex flex-col-reverse md:flex-row">
+				{# USPs StablePlaza #}
+				<div class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 overflow-hidden">
+					<h2 class="fluid-40 dark:text-primary-100">
+						The <strong class="font-bold text-primary-500 dark:text-white">StablePlaza pool</strong></h2>
+					<p class="mt-4">The StablePlaza pool takes the same highly optimized approach as the DefiPlaza pool to provide cheaper trades and be much more capital efficient than other stable token DEXs, 
+						with an even lower transaction fee of 0.03% of the value traded.</p>
+					<p class="mt-4">Since the prices of stable tokens are very similar we created <i>anchored liquidity</i> which makes the capital efficiency even better. This needs work.</p>
+					
+					<hr class="mt-16 border-background-700">
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 30% cheaper</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">than any other stable token DEX.</p>
+					</div>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Add highly effective liquidity</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">thanks to anchored liquidity.</p>
+					</div>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your DFP2</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">and receive 33% of the fees.</p>
+					</div>
 				</div>
-			</div>
-
-			{# Stats #}
-			<div class="relative w-full md:w-1/2 z-10">
-				<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-8 bg-primary-500 dark:bg-primary-800 text-white md:rounded-lg text-center" id="stats">
-					<li>
-						<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
-							<span id="tvl" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
-							<span id="tvlSuffix" class="text-base font-light align-middle">&nbsp;</span>
-						</p>
-						<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Liquidity</h3>
-					</li>
-					<li>
-						<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">120</p>
-						<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trading pairs</h3>
-					</li>
-					<li>
-						<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">0.1<span class="text-base font-light align-middle">%</span></p>
-						<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Swapping fee</h3>
-					</li>
-					<li>
-						<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
-							<span id="apr" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
-							<span class="text-base font-light align-middle">%</span></p>
-						<h3 class="text-sm whitespace-nowrap dark:text-primary-100">APR</h3>
-					</li>
-				</ul>
-			</div>
-		</section>
+			</section>
+		</div>
 	</div>
 
 	<div class="relative bg-primary-700 w-screen md:-mt-12 overflow-hidden">
