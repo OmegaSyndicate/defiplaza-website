@@ -103,12 +103,15 @@ pagination:
 							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Liquidity</h3>
 						</li>
 						<li>
-							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">120</p>
-							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trading pairs</h3>
+							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
+								<span id="totalVolume" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
+								<span id="totalVolumeSuffix" class="text-base font-light align-middle">&nbsp;</span>
+							</p>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trade Volume</h3>
 						</li>
 						<li>
-							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">0.1<span class="text-base font-light align-middle">%</span></p>
-							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Swapping fee</h3>
+							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">120</p>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trading pairs</h3>
 						</li>
 						<li>
 							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
@@ -501,6 +504,7 @@ pagination:
 			const queryBody = JSON.stringify({query: `{
 				factories(first: 1) {
 					totalValueLockedUSD
+					totalTradeVolumeUSD
 					xdp2TotalSupply
 					xdp2Staked
 				}
@@ -528,41 +532,58 @@ pagination:
 						.factories[0]
 						.totalValueLockedUSD;
 					
-					var size = "M";
-					var prettyValue;
-					var sign = tvl < 0 ? '-' : '';
-					var value = Math.abs(tvl);
-							
-					if(value < 1) {
-						prettyValue = parseFloat(value).toFixed(3);
-						size = ""
-					} else if(value < 1000) {
-						prettyValue = parseFloat(value).toFixed(2);
-						size = ""
-					} else if(value < 10000) {
-						prettyValue = Math.round(value);
-						size = ""
-					} else if(value < 100000) {
-						prettyValue = parseFloat(value/1000).toFixed(1);
-						size = "K"
-					} else if(value < 1000000) {
-						prettyValue = Math.round(value/1000);
-						size = "K"
-					} else {
-						prettyValue = parseFloat(value/1000000).toFixed(2);
+					function prettyValue(value) {
+						var size = "M";
+						var prettyValue;
+						var sign = value < 0 ? '-' : '';
+						var value = Math.abs(value);
+								
+						if(value < 1) {
+							prettyValue = parseFloat(value).toFixed(3);
+							size = ""
+						} else if(value < 1000) {
+							prettyValue = parseFloat(value).toFixed(2);
+							size = ""
+						} else if(value < 10000) {
+							prettyValue = Math.round(value);
+							size = ""
+						} else if(value < 100000) {
+							prettyValue = parseFloat(value/1000).toFixed(1);
+							size = "K"
+						} else if(value < 1000000) {
+							prettyValue = Math.round(value/1000);
+							size = "K"
+						} else  if(value < 10000000) { // 10M
+							prettyValue = parseFloat(value/1000000).toFixed(2);
+						}else {
+							prettyValue = parseFloat(value/1000000).toFixed(1);
+						}
+
+						return {
+							value: prettyValue,
+							size: size
+						}
 					}
 
-					var formattedTvl = "$" + sign + prettyValue.toLocaleString();
+					// TVL
+					const prettyTVL = prettyValue(graphData.factories[0].totalValueLockedUSD);
+					const formattedTvl = "$" + prettyTVL.value.toLocaleString();
 
 					const tvlEl = document.getElementById("tvl");
 					tvlEl.innerText = formattedTvl;
-					tvlEl
-						.classList
-						.remove('text-primary-500');
-					document
-						.getElementById("tvlSuffix")
-						.innerText = size;
+					tvlEl.classList.remove('text-primary-500');
+					document.getElementById("tvlSuffix").innerText = prettyTVL.size;
 
+					// Trade Volume
+					const prettyVolume = prettyValue(graphData.factories[0].totalTradeVolumeUSD);
+					const formattedVolume = "$" + prettyVolume.value.toLocaleString();
+
+					const volumeEl = document.getElementById("totalVolume");
+					volumeEl.innerText = formattedVolume;
+					volumeEl.classList.remove('text-primary-500');
+					document.getElementById("totalVolumeSuffix").innerText = prettyVolume.size;
+
+					// APR
 					const decimals = 2;
 					const ten = BigNumber(10);
 					const multiplier = Math.pow(10, decimals + 2);
