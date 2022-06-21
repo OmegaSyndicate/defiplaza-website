@@ -306,12 +306,9 @@ pagination:
 					gsap.timeline({
 						scrollTrigger: {
 							trigger: "#heroSection",
-							start: "top top",
-							end: "bottom bottom", //+=50px //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
-							pin: false,
-							scrub: true,
-							pinReparent: false,
-							pin: "#stats"
+							pin: "#stats",
+							start: "top top+=73px",
+							end: "bottom bottom-=16px", //+=50px //function() { return "+=" + (gsap.getProperty("#heroSection", "height") - gsap.getProperty("#stats", "height")) },
 						}
 					})
 				}
