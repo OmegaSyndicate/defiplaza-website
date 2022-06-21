@@ -131,8 +131,6 @@ pagination:
 					<h2 class="fluid-40 dark:text-primary-100">
 						The <strong class="font-bold text-primary-500 dark:text-white">DefiPlaza pool</strong></h2>
 					<p class="mt-4">The DefiPlaza pool makes swapping blue chip tokens up to 65% cheaper, thanks to a highly-optimized single smart contract and a transaction fee of 0.1% of the value traded.</p>
-
-					<hr class="mt-16 border-background-700">
 					
 					<div class="mt-16 gs_reveal gs_reveal_fromRight">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
@@ -144,10 +142,10 @@ pagination:
 						<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
 					</div>
 
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+					<!--<div class="mt-16 gs_reveal gs_reveal_fromRight">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your liquidity tokens</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
-					</div>
+					</div>-->
 				</div>
 
 				{# USPs StablePlaza - Left #}
@@ -156,9 +154,6 @@ pagination:
 						The <strong class="font-bold text-primary-500 dark:text-white">StablePlaza pool</strong></h2>
 					<p class="mt-4">The StablePlaza pool takes the same highly optimized approach as the DefiPlaza pool to provide cheaper trades and be much more capital efficient than other stable token DEXs, 
 						with an even lower transaction fee of 0.03% of the value traded.</p>
-					<p class="mt-4">Since the prices of stable tokens are very similar we created <i>anchored liquidity</i> which makes the capital efficiency even better. This needs work.</p>
-					
-					<hr class="mt-16 border-background-700">
 
 					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 30% cheaper</h3>
@@ -170,10 +165,10 @@ pagination:
 						<p class="fluid-30 font-light dark:text-primary-100">thanks to anchored liquidity.</p>
 					</div>
 
-					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
+					<!--<div class="mt-16 gs_reveal gs_reveal_fromLeft">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your DFP2</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">and receive 33% of the fees.</p>
-					</div>
+					</div>-->
 				</div>
 			</section>
 		</div>
@@ -208,7 +203,7 @@ pagination:
 				</div>
 			</div>
 
-			{# Support pillar #}
+			{# Support pillar animation #}
 			<div class="xl:container mx-4 xl:mx-auto flex flex-wrap items-center mt-0 md:mt-0 text-white" id="supportSection">
 				<div class="w-full md:w-1/2 aspect-video pillar-sequence" id="pillarSequence">&nbsp;</div>
 				<div class="w-full md:w-auto mt-0 pl-auto md:pl-10 lg:pl-32">
@@ -301,9 +296,9 @@ pagination:
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.min.js" integrity="sha512-7UzDjRNKHpQnkh1Wf1l6i/OPINS9P2DDzTwQNX79JxfbInCXGpgI1RPb3ZD+uTP3O5X7Ke4e0+cxt2TxV7n0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 	<script>
-	document.addEventListener("DOMContentLoaded", function () {
+		document.addEventListener("DOMContentLoaded", function () {
 
-		gsap.registerPlugin(ScrollTrigger);
+			gsap.registerPlugin(ScrollTrigger);
 
 			ScrollTrigger.matchMedia({
 				// desktop
@@ -336,19 +331,12 @@ pagination:
 
 			function calcSizes(id, imageWidth, imageHeight) {
 				let aspectRatio = imageWidth/imageHeight;
-
-				//console.log(id, aspectRatio);
 			
 				let boxHeight = document.getElementById(id).offsetHeight; //imageHeight / rows;
 				let boxWidth = aspectRatio * boxHeight; //imageWidth / columns;
 
-				//console.log(id, 'box', boxWidth, boxHeight)
-
 				let bgHeight = document.getElementById(id).offsetHeight * rows;
 				let bgWidth = (boxHeight/imageHeight) * imageWidth * columns;
-
-				//console.log(id, 'bg', bgWidth, bgHeight)
-
 
 				gsap.set('#' + id, {width: boxWidth, height: boxHeight});
 				document.getElementById(id).style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
@@ -376,21 +364,6 @@ pagination:
 				},
 				onUpdate: () => setPos(`${-Math.round((heroObj.num % columns) * heroSizes.boxWidth)}px ${-Math.round(Math.floor(heroObj.num / columns) * heroSizes.boxHeight)}px`)
 			});
-				
-			// Hercules
-			/*gsap.to("#heroSequence", {
-				backgroundPosition: () => "0 " + (-document.getElementById('heroSequence').offsetHeight * frame_count) + "px",
-				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
-				scrollTrigger: {
-					trigger: "#heroSection",
-					start: "top top",
-					end: () => innerHeight * 0.5, //"+=" + (frame_count * 0.9 * offset_value),
-					pin: false,
-					scrub: true,
-					markers: false,
-					invalidateOnRefresh: true
-				}
-			});*/
 
 			const setPosPillar = gsap.quickSetter("#pillarSequence", "background-position");
 
@@ -412,21 +385,6 @@ pagination:
 				}
 			});
 
-			// Support pillar
-			/*var pS = gsap.to("#v", {
-				backgroundPosition: () => "50% " + (-document.getElementById('pillarSequence').offsetHeight * frame_count) + "px",
-				ease: "steps(" + frame_count + ")", // use a stepped ease for the sprite sheet
-				scrollTrigger: {
-					trigger: "#supportSection",
-					start: "top 75%",
-					end: "center center",
-					pin: false,
-					scrub: true,
-					markers: false,
-					invalidateOnRefresh: true
-				}
-			});*/
-
 			// USPs
 			function animateFrom(elem, direction) {
 				direction = direction || 1;
@@ -434,9 +392,9 @@ pagination:
 				var startX,
 					endX = 0,
 					startY,
-					endY = 0
-				startAlpha = 0,
-				endAlpha = 1;
+					endY = 0,
+					startAlpha = 0,
+					endAlpha = 1;
 
 				if (elem.classList.contains("gs_reveal_fromLeft")) {
 					startX = -100;
@@ -476,10 +434,11 @@ pagination:
 			}
 
 			var reveals = gsap.utils.toArray(".gs_reveal");
+
 			for (var i = 0; i < reveals.length; i++) {
 				(function () {
 					var elem = reveals[i];
-					hide(elem); // assure that the element is hidden when scrolled into view
+					hide(elem); // make sure that the element is hidden when scrolled into view
 
 					ScrollTrigger.create({
 						trigger: elem,
@@ -493,9 +452,7 @@ pagination:
 					});
 				})();
 			}
-		{# }; #}
-
-	});
+		});
 	</script>
 
 	{# Fetch stats from TheGraph #}
@@ -528,10 +485,6 @@ pagination:
 					return jsonResult.data;
 				})
 				.then(function (graphData) {
-					var tvl = graphData
-						.factories[0]
-						.totalValueLockedUSD;
-					
 					function prettyValue(value) {
 						var size = "M";
 						var prettyValue;
@@ -555,7 +508,7 @@ pagination:
 							size = "K"
 						} else  if(value < 10000000) { // 10M
 							prettyValue = parseFloat(value/1000000).toFixed(2);
-						}else {
+						} else {
 							prettyValue = parseFloat(value/1000000).toFixed(1);
 						}
 
@@ -567,19 +520,15 @@ pagination:
 
 					// TVL
 					const prettyTVL = prettyValue(graphData.factories[0].totalValueLockedUSD);
-					const formattedTvl = "$" + prettyTVL.value.toLocaleString();
-
 					const tvlEl = document.getElementById("tvl");
-					tvlEl.innerText = formattedTvl;
+					tvlEl.innerText = "$" + prettyTVL.value.toLocaleString();
 					tvlEl.classList.remove('text-primary-500');
 					document.getElementById("tvlSuffix").innerText = prettyTVL.size;
 
 					// Trade Volume
 					const prettyVolume = prettyValue(graphData.factories[0].totalTradeVolumeUSD);
-					const formattedVolume = "$" + prettyVolume.value.toLocaleString();
-
 					const volumeEl = document.getElementById("totalVolume");
-					volumeEl.innerText = formattedVolume;
+					volumeEl.innerText = "$" + prettyVolume.value.toLocaleString();
 					volumeEl.classList.remove('text-primary-500');
 					document.getElementById("totalVolumeSuffix").innerText = prettyVolume.size;
 
@@ -593,8 +542,8 @@ pagination:
 					const oneYear = 31536000;
 
 					const xdp2TotalSupply = BigNumber(graphData.factories[0].xdp2TotalSupply).times(ten.pow(18));
-					const xdp2Staked = BigNumber(graphData.factories[0].xdp2Staked).times(ten.pow(18));;
-					const dfp2TokenAmount = BigNumber(graphData.token.tokenAmount).times(ten.pow(18));;
+					const xdp2Staked = BigNumber(graphData.factories[0].xdp2Staked).times(ten.pow(18));
+					const dfp2TokenAmount = BigNumber(graphData.token.tokenAmount).times(ten.pow(18));
 
 					const c1 = BigNumber(100).times(ten.pow(24));
 					const c2 = BigNumber(50).times(ten.pow(24));
@@ -616,16 +565,10 @@ pagination:
 
 					const aprEl = document.getElementById("apr");
 					aprEl.innerText = apr;
-					aprEl
-						.classList
-						.remove('text-primary-500');
+					aprEl.classList.remove('text-primary-500');
 
-					document
-						.getElementById("aprUSP")
-						.innerText = apr + '%';
+					// document.getElementById("aprUSP").innerText = apr + '%';
 				});
 		});
 	</script>
-	
-
 {% endblock %}
