@@ -130,45 +130,45 @@ pagination:
 				<div id="defiplaza-pool" class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
 						The <strong class="font-bold text-primary-500 dark:text-white">DefiPlaza pool</strong></h2>
-					<p class="mt-4">The DefiPlaza pool makes swapping blue chip tokens up to 65% cheaper, thanks to a highly-optimized single smart contract and a transaction fee of 0.1% of the value traded.</p>
+					<p class="mt-4">The DefiPlaza pool is a 16-token pool of blue chip tokens and is 15 times more capital efficient than traditional pair-based DEXs, offering up to 15 times more fees per unit of liquidity at the same trading volume.</p>
 					
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
-					</div>
-
 					<div class="mt-16 gs_reveal gs_reveal_fromRight">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
 					</div>
 
 					<!--<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
+					</div>-->
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your liquidity tokens</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
-					</div>-->
+					</div>
 				</div>
 
 				{# USPs StablePlaza - Left #}
 				<div id="stableplaza-pool" class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 mt-16 overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
 						The <strong class="font-bold text-primary-500 dark:text-white">StablePlaza pool</strong></h2>
-					<p class="mt-4">The StablePlaza pool takes the same highly optimized approach as the DefiPlaza pool to provide cheaper trades and be much more capital efficient than other stable token DEXs, 
-						with an even lower transaction fee of 0.03% of the value traded.</p>
-
-					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 30% cheaper</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">than any other stable token DEX.</p>
-					</div>
-
-					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Add highly effective liquidity</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">thanks to anchored liquidity.</p>
-					</div>
+					<p class="mt-4">The StablePlaza pool takes the same highly optimized approach as the DefiPlaza pool to provide cheaper trades, 
+						with an even lower transaction fee of 0.03% of the value traded. Thanks to the 4-token pool, Impermanent Loss is minimized.</p>
 
 					<!--<div class="mt-16 gs_reveal gs_reveal_fromLeft">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 30% cheaper</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">than any other stable token DEX.</p>
+					</div>-->
+
+					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Add highly concentrated liquidity</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">with minimal Impermanent Loss.</p>
+					</div>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromLeft">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your DFP2</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">and receive 33% of the fees.</p>
-					</div>-->
+					</div>
 				</div>
 			</section>
 		</div>
@@ -567,7 +567,7 @@ pagination:
 					aprEl.innerText = apr;
 					aprEl.classList.remove('text-primary-500');
 
-					// document.getElementById("aprUSP").innerText = apr + '%';
+					document.getElementById("aprUSP").innerText = apr + '%';
 				});
 		});
 	</script>
