@@ -56,9 +56,6 @@ pagination:
 						<span class="mt-px whitespace-nowrap">Enter app</span>
 						<span class="hidden sm:inline-block">{% include "partials/arrow-right.njk" %}</span>
 					</a>
-					{# <a href="/help/" class="btn-outline mt-4 sm:mt-0">
-						<span class="mt-px whitespace-nowrap">More information</span>
-					</a> #}
 
 					<div class="flex justify-center items-center w-full md:w-min mt-8 md:mt-0 md:ml-8 space-x-4">
 						<p class="text-primary-500 hover:text-primary-300 dark:text-white dark:hover:text-primary-100"><a href="https://defiplaza.net/discord" target="_blank">{% include 'svg/socials/discord.svg' %}</a></p>
@@ -76,19 +73,8 @@ pagination:
 						<strong class="font-bold text-primary-500 dark:text-white">DefiPlaza</strong> lets you swap with up to 65% lower fees than UniSwap</h2>
 					<p class="mt-4">Like other exchanges, DefiPlaza offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
 					<p class="mt-4">What makes DefiPlaza special are  <i>single-contract</i>, <i>highly optimized DEXs</i>, designed to offer the lowest possible trade cost to the end user. 
-						Gas costs per trade are the lowest in the industry, and thanks to the multi-token set up much more capital efficient.</p>
-					<p class="mt-4">We currently have <strong>two multi-token pools</strong>, focussed on blue chip tokens and stable tokens.</p>
-					
-					<div class="flex flex-row flex-wrap md:flex-nowrap justify-center space-x-4 mt-12 sm:mt-16 md:mt-8">
-						<a href="#defiplaza-pool" class="btn-primary rounded-full inline-flex items-center mt-4">
-							<span class="mt-px whitespace-nowrap">DefiPlaza pool</span>
-							{% include "partials/arrow-right.njk" %}
-						</a>
-						<a href="#stableplaza-pool" class="btn-primary rounded-full inline-flex items-center mt-4">
-							<span class="mt-px whitespace-nowrap">StablePlaza pool</span>
-							{% include "partials/arrow-right.njk" %}
-						</a>
-					</div>
+						Gas costs per trade are the lowest in the industry, and thanks to the multi-token set up very capital efficient, while Impermanent Loss is minimized.</p>
+					<p class="mt-4">We currently have <strong>two multi-token pools</strong>, focussed on blue chip tokens and stable tokens. For each trade we automatically select the pool that would result in the lowest trade fee.</p>
 				</div>
 
 				{# Stats #}
