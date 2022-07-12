@@ -1,0 +1,21 @@
+---
+layout: default
+eleventyComputed:
+  title: "StablePlaza White paper"
+  description: "StablePlaza: An efficient constant product AMM for stable tokens based on anchored liquidity"
+  social_image: "/assets/images/onepagers/DefiPlaza-One-Pager-Light.jpg"
+---
+
+<section class="md:max-w-[65ch] mx-4 xl:mx-auto">
+  <h1 class="fluid-60 text-center text-6xl dark:text-primary-100"><strong>StablePlaza</strong> White Paper</h1>
+
+	<article class="prose dark:prose-invert mt-10">
+		<p>This paper introduces StablePlaza, which is an efficient distributed exchange for stable tokens. The main innovation used in StablePlaza is the concept of anchored liquidity which is a specific case of con- centrated liquidity using an amount of virtual liquidity tailored specifically for stable coins. The maximum price difference between tokens is set based on historic data for stable token relative prices. Anchored liquidity is generalized to multi-token AMMs and the first deployment of StablePlaza will list the 4 largest USD stable tokens on Ethereum. The result is a stable token exchange which is highly efficient regarding from both the capital deployment and gas consumption perspectives.</p>
+	</article>
+
+	<p class="mt-10 text-center">
+		<a href="/assets/pdf/whitepaper-stableplaza-v1-1.pdf" id="download-whitepaper-button" class="btn-primary inline-flex items-center mt-4 sm:mt-0">
+			<span class="mt-px whitespace-nowrap">Get started</span>
+			<span class="hidden sm:inline-block">{% include "partials/arrow-right.njk" %}</span>
+		</a>
+</section>
