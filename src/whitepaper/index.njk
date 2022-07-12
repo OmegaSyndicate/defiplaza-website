@@ -13,9 +13,13 @@ eleventyComputed:
 		<p>This paper introduces StablePlaza, which is an efficient distributed exchange for stable tokens. The main innovation used in StablePlaza is the concept of anchored liquidity which is a specific case of con- centrated liquidity using an amount of virtual liquidity tailored specifically for stable coins. The maximum price difference between tokens is set based on historic data for stable token relative prices. Anchored liquidity is generalized to multi-token AMMs and the first deployment of StablePlaza will list the 4 largest USD stable tokens on Ethereum. The result is a stable token exchange which is highly efficient regarding from both the capital deployment and gas consumption perspectives.</p>
 	</article>
 
-	<p class="mt-10 text-center">
-		<a href="/assets/pdf/whitepaper-stableplaza-v1-1.pdf" id="download-whitepaper-button" class="btn-primary inline-flex items-center mt-4 sm:mt-0">
+	<div class="flex flex-row flex-wrap md:flex-nowrap justify-center space-x-4 mt-10">
+		<a href="/assets/pdf/whitepaper-stableplaza-v1-1.pdf" id="download-whitepaper-button" target="_blank" class="btn-primary inline-flex items-center mt-4 sm:mt-0">
 			<span class="mt-px whitespace-nowrap">Download White Paper</span>
 			<span class="hidden sm:inline-block">{% include "partials/arrow-right.njk" %}</span>
 		</a>
+		<a href="https://twitter.com/DefiPlaza/status/1546870840620457984" target="_blank" class="btn-outline mt-4 sm:mt-0">
+			<span class="mt-px whitespace-nowrap">Read TLDR; Twitter thread 🧵</span>
+		</a>
+	</div>
 </section>
