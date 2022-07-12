@@ -16,3 +16,4 @@
 /updates/defi-plaza-a-low-cost-dex-for-ethereum /blog/defi-plaza-a-low-cost-dex-for-ethereum 301
 /updates/* /update/:splat 301
 /howto/* /help/:splat 301
+/assets/pdf/whitepaper-stableplaza.pdf /assets/pdf/whitepaper-stableplaza-v1-1.pdf 301
