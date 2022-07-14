@@ -25,6 +25,10 @@
 		font-size: max(min(6.94vw, 6.25rem), 2.75rem); /*1vw = 14.4px */
 		line-height: 1;
 	}
+	.fluid-80 {
+		font-size: max(min(5.56vw, 5rem), 2.5rem); /*1vw = 14.4px */
+		line-height: 1;
+	}
 	.fluid-60 {
 		font-size: max(min(4.16vw, 3.75rem), 1.875rem); /*1vw = 14.4px */
 	}
