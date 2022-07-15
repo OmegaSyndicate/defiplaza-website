@@ -6,7 +6,7 @@ eleventyComputed:
 ---
 
 <section class="xl:container mx-4 xl:mx-auto">
-	<h1 class="fluid-60 text-center dark:text-primary-100"><strong class="font-bold text-primary-500 dark:text-white">DefiPlaza's</strong> Analytics</h1>
+	<h1 class="fluid-60 text-center dark:text-primary-100"><strong class="font-bold text-primary-500 dark:text-white">DefiPlaza Pool</strong> Analytics</h1>
 	<p class="text-center text-base font-bold">Last synced block <span id="lastBlock" class="font-normal">{% include "partials/loading-indicator.njk" %}</span><span id="lastBlockTime"></span></p>
 
 	<!-- Notification banner when stats are out of sync -->
@@ -25,16 +25,16 @@ eleventyComputed:
 		</div>
 
 	<div>
-		<dl class='mt-5 md:mt-8 grid grid-cols-1 gap-5 sm:grid-cols-4'>
+		<dl class='mt-5 md:mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3'>
 			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
 				<dt class='text-sm font-medium text-primary-100 truncate'>Total Value Locked</dt>
 				<dd class='mt-1 text-3xl font-semibold text-white' id="totalTVL">{% include "partials/loading-indicator.njk" %}</dd>
 			</div>
-			
-			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
+
+			<!--<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
 				<dt class='text-sm font-medium text-primary-100 truncate'>24h Volume</dt>
 				<dd class='mt-1 text-3xl font-semibold text-white' id="24Volume">{% include "partials/loading-indicator.njk" %}</dd>
-			</div>
+			</div>-->
 
 			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
 				<dt class='text-sm font-medium text-primary-100 truncate'>Total Volume</dt>
@@ -50,17 +50,6 @@ eleventyComputed:
 
 	<div class="relative mt-16 space-y-4 p-4 md:p-8 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
 		<div class="oval-gradient -top-80 -left-80"></div>
-
-		{# Pools #}
-		<div class="relative grid grid-cols-1 gap-4">
-			<div class=" overflow-x-auto sm:-mx-6 lg:-mx-8">
-				<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-					<div class="shadow overflow-hidden border-b dark:border border-gray-200 dark:border-primary-200 bg-white dark:bg-primary-800 sm:rounded-lg" id="pools">
-						{% include "partials/loading-indicator.njk" %}
-					</div>
-				</div>
-			</div>
-		</div>
 
 		{# TVL and Trade Volume #}
 		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -83,24 +72,40 @@ eleventyComputed:
 			</div>
 		</div>
 
-		{# DFP2 prices and DFP2 MC #}
+		{# XDP2 and Daily Liquidity Change #}
 		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
-				<div class="py-8 px-4" id="dfp2Price">
-					<h2 class="text-2xl">DFP2 Price</h2>
+				<div class="py-8 px-4" id="xdp2Price">
+					<h2 class="text-2xl">XDP2 Price</h2>
 					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
 					<p class="text-base text-primary-700 dark:text-primary-100">Today</p>
 				</div>
-				<canvas id="dfp2PriceChart" width="400" height="250"></canvas>
+				<canvas id="xdp2PriceChart" width="400" height="250"></canvas>
 			</div>
 
 			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
-				<div class="py-8 px-4" id="marketCap">
-					<h2 class="text-2xl md:text-right">DFP2 Market Cap</h2>
+				<div class="py-8 px-4" id="stake">
+					<h2 class="text-2xl md:text-right">XDP2 Staked</h2>
 					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
 					<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
 				</div>
-				<canvas id="marketCapChart" width="400" height="250"></canvas>
+				<canvas id="stakeChart" width="400" height="250"></canvas>
+			</div>
+		</div>
+
+		{# Tokens #}
+		<div class="relative grid grid-cols-1 gap-4">
+			<div class="z-10 py-16 px-8 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
+				<h2 class="text-2xl">Tokens</h2>
+				<div class="flex flex-col mt-4">
+					<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+						<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+							<div class="shadow overflow-hidden border-b dark:border border-gray-200 dark:border-primary-200 sm:rounded-lg" id="tokens">
+								{% include "partials/loading-indicator.njk" %}
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -135,12 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
 	const queryBody = JSON.stringify({
     	query: `{
-    	    factories(first: 1) {
-    	         totalValueLockedUSD
-					totalTradeVolumeUSD
-					totalFeesEarnedUSD
-    	    }
-			 pools(first: 2, orderBy: name) {
+    	    pool(id:"0xe68c1d72340aeefe5be76eda63ae2f4bc7514110") {
 				name
 				totalValueLockedUSD
 				totalTradeVolumeUSD
@@ -150,25 +150,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 blockNumber
                 timestamp
               }
-			hourlies(first: 24, orderBy: date, orderDirection: desc) {
-                swapUSD
-            }
-    	    dailies(first: 90, orderBy: date, orderDirection: desc) {
+			
+    	    dailyPools(first: 90, where: { pool: "0xe68c1d72340aeefe5be76eda63ae2f4bc7514110"}, orderBy: date, orderDirection: desc) {
                 date
                 liquidityUSD
                 tradeVolumeUSD
                 swapUSD
                 totalValueLockedUSD
-                dfp2MarketCap
-                xdp2TotalSupply
+					 totalStaked
+					 totalSupply
             }
-            dailyTokens(first: 90, where: { token:\"0x2f57430a6ceda85a67121757785877b4a71b8e6d\" }, orderBy: date, orderDirection: desc) {
-                date
-                tokenPriceUSD
-                tokenPriceMin
-                tokenPriceMax
-            }
-            swaps(first: 20, orderBy: timestamp, orderDirection: desc) {
+            swaps(first: 20, where: { pool: "0xe68c1d72340aeefe5be76eda63ae2f4bc7514110"}, orderBy: timestamp, orderDirection: desc) {
                 id
                 timestamp
 					 pool {
@@ -202,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
     	}`
 	});
 	
-	fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
+	fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', { // https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json'
@@ -218,32 +210,39 @@ document.addEventListener("DOMContentLoaded", function() {
 	        healthCheck(graphData._meta.block.number);
 	        
 	        // Display TVL
-		    var tvl = graphData.factories[0].totalValueLockedUSD;
+		    var tvl = graphData.pool.totalValueLockedUSD;
 
 			// populate stats bar
-			let dayVolume = 0;
+			/*let dayVolume = 0;
 
 			for(let i = 0; i < graphData.hourlies.length; i++) {
 				dayVolume += parseFloat(graphData.hourlies[i].swapUSD);
-			}
+			}*/
 
-			document.getElementById("24Volume").innerHTML = prettyDollar(dayVolume);
-			document.getElementById("totalVolume").innerHTML = prettyDollar(graphData.factories[0].totalTradeVolumeUSD);
-			document.getElementById("totalTVL").innerHTML = prettyDollar(graphData.factories[0].totalValueLockedUSD);
-			document.getElementById("totalFees").innerHTML = prettyDollar(graphData.factories[0].totalFeesEarnedUSD);
+			// document.getElementById("24Volume").innerHTML = prettyDollar(dayVolume);
+			document.getElementById("totalVolume").innerHTML = prettyDollar(graphData.pool.totalTradeVolumeUSD);
+			document.getElementById("totalTVL").innerHTML = prettyDollar(graphData.pool.totalValueLockedUSD);
+			document.getElementById("totalFees").innerHTML = prettyDollar(graphData.pool.totalFeesEarnedUSD);
 		
  			// Make last day, the first day
- 			graphData.dailies.reverse();
- 			graphData.dailyTokens.reverse();
+ 			graphData.dailyPools.reverse();
  			
  			// Build graphs
- 			poolsTable(graphData.pools);
-			
-			tvlChart(graphData.dailies);
- 			liquidityChart(graphData.dailies);
- 			
- 			dfp2PriceChart(graphData.dailyTokens);
- 			marketCapChart(graphData.dailies);
+ 			lineChart('tvl', 'Total Value Locked', graphData.dailyPools, 'totalValueLockedUSD', true, true); 
+ 			barChart('liquidity', 'Daily Liquidity Change', graphData.dailyPools, 'liquidityUSD', true, true);
+
+			let xdp2Price = [];
+ 			for (let point of graphData.dailyPools) {
+				point.tokenPriceUSD = point['totalValueLockedUSD']/point['totalSupply'];
+				
+				xdp2Price.push(point);
+			}
+
+			lineChart('xdp2Price', 'XDP2 price in USD', xdp2Price, 'tokenPriceUSD', false, true);
+			lineChart('stake', 'XDP2 Staked', graphData.dailyPools, 'totalStaked', true, false);
+
+ 			// Build tables
+ 			tokensTable(graphData.tokens);
  			
  			transactionsTable(graphData.swaps);
  		});
@@ -384,69 +383,49 @@ function prettyValue(v) {
     return sign + prettyValue.toLocaleString() + size;
 }
 
-function tvlChart(dailies) {
-   lineChart('tvl', 'Total Value Locked', dailies, 'totalValueLockedUSD', true); 
-}
-
-function marketCapChart(dailies) {
-	lineChart('marketCap', 'DFP2 Market Cap', dailies, 'dfp2MarketCap', true); 
-}
-
-function dfp2PriceChart(dailies) {
-	lineChart('dfp2Price', 'DFP2 price in USD', dailies, 'tokenPriceUSD', false);
-}
-
 function swapChart(dailies) {
 	barChart('swap', 'Daily Trade Volume', dailies, 'tradeVolumeUSD', false);
 }
 
-function liquidityChart(dailies) {
-	barChart('liquidity', 'Daily Liquidity Change', dailies, 'liquidityUSD', true);
-}
-
-function xdp2Chart(dataPoints) {
-	let labels = [];
-	let data = [];
-	let pointBorderColors = [];
-	let pointBackgroundColors = [];
-
-	for (let point of dataPoints) {
-		point.tokenPriceUSD = point['totalValueLockedUSD']/point['xdp2TotalSupply'];
-		
-		data.push(point);
-	}
-
-	lineChart('xdp2Price', 'XDP2 price in USD', data, 'tokenPriceUSD', false);
-}
-
-function poolsTable(pools) {
-        
+function tokensTable(tokens) {
+    
+    getCoinGeckoPrices().then(function(coingeckoPrices) {
+        tokens.sort(function(a,b) {
+            if(a.tokenAmount*getPrice(a) < b.tokenAmount*getPrice(b)) {
+                return 1;
+            }
+            
+            return -1;
+        });
+    
         let table = `
           <table class="min-w-full divide-y divide-gray-200 dark:divide-white">
           <thead class="bg-gray-50 dark:bg-primary-700">
             <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Pool</td>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Total Value Locked</td>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Total Trade Volume</td>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Total Fees</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Symbol</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Liquidity</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Token amount</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Price</td>
 				</tr>
          </thead>
          <tbody class="bg-white dark:bg-primary-800 divide-y divide-gray-200">`;
         
-        for(let pool of pools) {
+        for(let token of tokens) {
             table += `<tr>
-            	<td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white"><a href="/stats/${pool.name.toLowerCase()}" class="flex items-center">
-						${pool.name} Pool &raquo;
+            	<td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white"><a href="/token/${token.symbol.toLowerCase()}" class="flex items-center">
+						<img class="w-8 h-8 mr-4" src="/assets/images/tokens/${token.symbol.toLowerCase()}.svg">
+						${token.symbol}
 					</a></td>
-            	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(pool.totalValueLockedUSD) }</td>
-             	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(pool.totalTradeVolumeUSD) }</td>
-            	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(pool.totalFeesEarnedUSD) }</td>
+            	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(token.tokenAmount*getPrice(token)) }</td>
+             	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyValue(token.tokenAmount) }</td>
+            	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(getPrice(token)) }</td>
             </tr>`;
         }
         
         table += `</tbody></table>`;
             
-        document.getElementById("pools").innerHTML = table;
+        document.getElementById("tokens").innerHTML = table;
+    });
 }
 
 function transactionsTable(swaps) {
@@ -467,7 +446,7 @@ function transactionsTable(swaps) {
     for(let swap of swaps) {
         table += `<tr>
       	<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white"><a href="https://etherscan.io/tx/${ swap.id }" target="_blank">From ${swap.inputToken.symbol} to ${swap.outputToken.symbol}</a></td>
-      	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white"><a href="/stats/${swap.pool.name.toLowerCase()}">${ swap.pool.name }</a></td>
+      	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ swap.pool.name }</td>
       	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(swap.swapUSD) }</td>
       	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyValue(swap.inputAmount) } ${swap.inputToken.symbol}</td>
         	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyValue(swap.outputAmount) } ${swap.outputToken.symbol}</td>
@@ -500,7 +479,7 @@ function getGradient(ctx, chartArea, from, to) {
   return gradient;
 }
 
-function lineChart(id, label, dataPoints, dataPoint, fill) {
+function lineChart(id, label, dataPoints, dataPoint, fill, valueInUSD) {
 	let labels = [];
 	let data = [];
 	let pointBorderColors = [];
@@ -512,7 +491,7 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 		data.push(point[dataPoint]);
 	}
 
-	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+	document.querySelector(`#${id} h3`).innerText = valueInUSD ? prettyDollar(data[data.length - 1]) : prettyValue(data[data.length - 1]);
 	labels[labels.length - 1] = 'Today';
 
 	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
@@ -525,7 +504,7 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 	});
 
 	document.getElementById(id + 'Chart').addEventListener('mouseleave', e => {
-		document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+		document.querySelector(`#${id} h3`).innerText = valueInUSD ? prettyDollar(data[data.length - 1]) : prettyValue(data[data.length - 1]);
 		document.querySelector(`#${id} p`).innerText = labels[labels.length - 1];
 
 		active = false;
@@ -599,7 +578,7 @@ function lineChart(id, label, dataPoints, dataPoint, fill) {
 						var raw = context.tooltip.dataPoints[0].raw;
 						var title = context.tooltip.title[0];
 						
-						document.querySelector(`#${id} h3`).innerText = prettyDollar(raw);
+						document.querySelector(`#${id} h3`).innerText = valueInUSD ? prettyDollar(raw) : prettyValue(raw);
 						document.querySelector(`#${id} p`).innerText = title;
 
 					}
