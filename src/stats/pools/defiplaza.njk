@@ -63,12 +63,12 @@ eleventyComputed:
 			</div>
 
 			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
-				<div class="py-8 px-4" id="liquidity">
-					<h2 class="text-2xl md:text-right">Daily Liquidity Change</h2>
+				<div class="py-8 px-4" id="swap">
+					<h2 class="text-2xl md:text-right">Daily Trade Volume</h2>
 					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
 					<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
 				</div>
-				<canvas id="liquidityChart" width="400" height="250"></canvas>
+				<canvas id="swapChart" width="400" height="250"></canvas>
 			</div>
 		</div>
 
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function() {
  			
  			// Build graphs
  			lineChart('tvl', 'Total Value Locked', graphData.dailyPools, 'totalValueLockedUSD', true, true); 
- 			barChart('liquidity', 'Daily Liquidity Change', graphData.dailyPools, 'liquidityUSD', true, true);
+ 			barChart('swap', 'Daily Trade Volume', graphData.dailyPools, 'swapUSD', true, true);
 
 			let xdp2Price = [];
  			for (let point of graphData.dailyPools) {

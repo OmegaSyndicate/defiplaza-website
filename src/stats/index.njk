@@ -73,13 +73,22 @@ eleventyComputed:
 				<canvas id="tvlChart" width="400" height="250"></canvas>
 			</div>
 
-			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+			{#<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
 				<div class="py-8 px-4" id="liquidity">
 					<h2 class="text-2xl md:text-right">Daily Liquidity Change</h2>
 					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
 					<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
 				</div>
 				<canvas id="liquidityChart" width="400" height="250"></canvas>
+			</div>#}
+
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="swap">
+					<h2 class="text-2xl md:text-right">Daily Trade Volume</h2>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
+				</div>
+				<canvas id="swapChart" width="400" height="250"></canvas>
 			</div>
 		</div>
 
@@ -240,7 +249,8 @@ document.addEventListener("DOMContentLoaded", function() {
  			poolsTable(graphData.pools);
 			
 			tvlChart(graphData.dailies);
- 			liquidityChart(graphData.dailies);
+ 			//liquidityChart(graphData.dailies);
+			barChart('swap', 'Daily Trade Volume', graphData.dailies, 'tradeVolumeUSD', false);
  			
  			dfp2PriceChart(graphData.dailyTokens);
  			marketCapChart(graphData.dailies);
