@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 timestamp
           }
 			
-    	    dailyPools(first: 90, where: { pool: "0x3A2b8cC91aF8bf45F3Ec61E779ee1c2ba6b7E694"}, orderBy: date, orderDirection: desc) {
+    	    dailyPools(first: 90, where: { pool: "0x3A2b8cC91aF8bf45F3Ec61E779ee1c2ba6b7E694", date_gt: 1657670400}, orderBy: date, orderDirection: desc) {
                 date
                 liquidityUSD
                 tradeVolumeUSD
