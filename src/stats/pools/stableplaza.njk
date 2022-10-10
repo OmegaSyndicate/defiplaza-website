@@ -1,8 +1,8 @@
 ---
 layout: default
 eleventyComputed:
-  title: "DefiPlaza Analytics"
-  description: "See what DefiPlaza's TVL is, the DFP2 price and market cap, the daily trade volume, and more."
+  title: "StablePlaza Pool Analytics"
+  description: "See what the StablePlaza pool's TVL is, the daily trade volume, and more."
 ---
 
 <section class="xl:container mx-4 xl:mx-auto">
@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 swapUSD
                 totalValueLockedUSD
 					 totalStaked
+					 totalSupply
             }
 			 swaps(first: 20, where: { pool: "0x3A2b8cC91aF8bf45F3Ec61E779ee1c2ba6b7E694"}, orderBy: timestamp, orderDirection: desc) {
                 id
