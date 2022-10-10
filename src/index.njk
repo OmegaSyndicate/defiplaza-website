@@ -96,15 +96,16 @@ pagination:
 							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trade Volume</h3>
 						</li>
 						<li>
-							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">120</p>
-							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trading pairs</h3>
+							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
+								<span id="totalFees" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
+								<span id="totalFeesSuffix" class="text-base font-light align-middle">&nbsp;</span></p>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Fees</h3>
 						</li>
 						<li>
-							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
-								<span id="apr" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
-								<span class="text-base font-light align-middle">%</span></p>
-							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">APR</h3>
+							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">124</p>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trading pairs</h3>
 						</li>
+						
 					</ul>
 				</div>
 			</section>
@@ -445,6 +446,7 @@ pagination:
 				factories(first: 1) {
 					totalValueLockedUSD
 					totalTradeVolumeUSD
+					totalFeesEarnedUSD
 					xdp2TotalSupply
 					xdp2Staked
 				}
@@ -515,42 +517,12 @@ pagination:
 					volumeEl.classList.remove('text-primary-500');
 					document.getElementById("totalVolumeSuffix").innerText = prettyVolume.size;
 
-					// APR
-					const decimals = 2;
-					const ten = BigNumber(10);
-					const multiplier = Math.pow(10, decimals + 2);
-					const divider = Math.pow(10, decimals);
-					const startTime = 1633514400;
-					const tsNow = Math.ceil(+ new Date() / 1000);
-					const oneYear = 31536000;
-
-					const xdp2TotalSupply = BigNumber(graphData.factories[0].xdp2TotalSupply).times(ten.pow(18));
-					const xdp2Staked = BigNumber(graphData.factories[0].xdp2Staked).times(ten.pow(18));
-					const dfp2TokenAmount = BigNumber(graphData.token.tokenAmount).times(ten.pow(18));
-
-					const c1 = BigNumber(100).times(ten.pow(24));
-					const c2 = BigNumber(50).times(ten.pow(24));
-					const c3 = BigNumber(994519296000000);
-
-					const t1 = BigNumber(Math.min(Math.max(tsNow - startTime, 0), oneYear));
-					const dR = c1
-						.div(oneYear)
-						.minus(c2.div(c3).times(2).times(t1));
-
-					const aprPermyriad = xdp2TotalSupply
-						.times(dR)
-						.times(oneYear)
-						.times(multiplier)
-						.div(dfp2TokenAmount.times(16))
-						.div(xdp2Staked);
-
-					const apr = Math.round(aprPermyriad.toNumber() / divider);
-
-					const aprEl = document.getElementById("apr");
-					aprEl.innerText = apr;
-					aprEl.classList.remove('text-primary-500');
-
-					document.getElementById("aprUSP").innerText = apr + '%';
+					// Fees
+					const prettyFees = prettyValue(graphData.factories[0].totalFeesEarnedUSD);
+					const feesEl = document.getElementById("totalFees");
+					feesEl.innerText = "$" + prettyFees.value.toLocaleString();
+					feesEl.classList.remove('text-primary-500');
+					document.getElementById("totalFeesSuffix").innerText = prettyFees.size;
 				});
 		});
 	</script>
