@@ -25,7 +25,7 @@ permalink: '/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
           <a href="/blog/{{ post.slug }}/">{{ post.title.rendered | safe }}</a>
         </h3>
         <p class="text-primary-500 dark:text-primary-100 text-xs mt-2">{{ post._embedded.author[0].name }} - {{ post.date | wpDateToString }}</p>
-        <div class="mt-2 line-clamp-3">{{ post.excerpt.rendered | striptags }}</div>
+        <div class="mt-2 line-clamp-3">{{ post.excerpt.rendered | safe }}</div>
       </li>
     {% endfor %}
   </ul>
