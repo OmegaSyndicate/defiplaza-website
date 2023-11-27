@@ -230,37 +230,37 @@ document.addEventListener("DOMContentLoaded", function() {
 
 				const latestRadix = radixAnalytics[0];
 
+				// Make last day, the first day
+ 				graphData.dailies.reverse();
+ 				graphData.dailyTokens.reverse();
+
 			
-			const dailies = [];
+				const dailies = [];
 
-			for(let daily of graphData.dailies) {
-				let radDaily;
+				for(let daily of graphData.dailies) {
+					let radDaily;
 
-				for(let day of radixAnalytics) {
-					if(day.date == daily.date) {
-						console.log('match!',daily, day)
-						radDaily = day;
+					for(let day of radixAnalytics) {
+						if(day.date == daily.date) {
+							console.log('match!',daily, day)
+							radDaily = day;
+						}
 					}
+
+					let totalValueLockedUSD = +daily.totalValueLockedUSD;
+					let dailyTradeVolumeUSD = +daily.tradeVolumeUSD;
+
+					if(radDaily) {
+						totalValueLockedUSD += radDaily.totalValueLockedUSD;
+						dailyTradeVolumeUSD += radDaily.volumeUSD;
+					}
+
+					dailies.push({
+						date: daily.date,
+						totalValueLockedUSD,
+						tradeVolumeUSD: dailyTradeVolumeUSD,
+					});
 				}
-
-				let totalValueLockedUSD = +daily.totalValueLockedUSD;
-				let dailyTradeVolumeUSD = +daily.tradeVolumeUSD;
-
-				if(radDaily) {
-					totalValueLockedUSD += radDaily.totalValueLockedUSD;
-					dailyTradeVolumeUSD += radDaily.volumeUSD;
-				}
-
-				dailies.push({
-					date: daily.date,
-					totalValueLockedUSD,
-					tradeVolumeUSD: dailyTradeVolumeUSD,
-				});
-			}
-
-			// Make last day, the first day
- 			dailies.reverse();
- 			graphData.dailyTokens.reverse();
 
 	        // Do a health check on subgraph synced
 	        healthCheck(graphData._meta.block.number);
