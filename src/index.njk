@@ -6,7 +6,7 @@ pagination:
 ---
 {% extends 'layouts/bare.njk' %}
 
-{% set title = "DefiPlaza: The low-cost exchange on Ethereum and Radix (soon)" %}
+{% set title = "DefiPlaza: The low-cost exchange on Ethereum and Radix" %}
 {% set description = "👉 The best deal to swap tokens. 👉 Earn fees while passively investing in a basket of 16 ERC-20 tokens!" %}
 
 {%- block preload -%}
@@ -70,41 +70,41 @@ pagination:
 			<section class="relative xl:container xl:mx-auto flex flex-col-reverse md:flex-row">
 				<div class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20  overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
-						<strong class="font-bold text-primary-500 dark:text-white">DefiPlaza</strong> lets you swap with up to 65% lower fees than UniSwap</h2>
+						<strong class="font-bold text-primary-500 dark:text-white">DefiPlaza</strong> makes DeFi sustainably profitable.</h2>
 					<p class="mt-4">Like other exchanges, DefiPlaza offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
-					<p class="mt-4">What makes DefiPlaza special are  <i>single-contract</i>, <i>highly optimized DEXs</i>, designed to offer the lowest possible trade cost to the end user. 
+					<p class="mt-4">What makes DefiPlaza special are <i>highly optimized DEXs</i>, designed to offer the lowest possible trade cost to the end user. 
 						Gas costs per trade are the lowest in the industry, and thanks to the multi-token set up very capital efficient, while Impermanent Loss is minimized.</p>
-					<p class="mt-4">We currently have <strong>two multi-token pools</strong>, focussed on blue chip tokens and stable tokens. For each trade we automatically select the pool that would result in the lowest trade fee.</p>
-					<p class="mt-4">When the <strong>Radix Babylon</strong> network becomes available, DefiPlaza will be one of the first DEXs. On Radix we will aim to have the most capital efficient multi-token AMM that we can build, adding more advanced features since gas costs are no longer a concern.</p>
+					<p class="mt-4">We currently have <strong>two multi-token pools on Ethereum</strong>, focussed on blue chip tokens and stable tokens. For each trade we automatically select the pool that would result in the lowest trade fee.</p>
+					<p class="mt-4">On <strong>Radix</strong> we launched a DEX specifically designed to <strong>reduce the risk of Impermanent Loss</strong> and help make DeFi sustainably profitable.</p>
 				</div>
 
 				{# Stats #}
 				<div class="relative w-full md:w-1/2 z-10">
-					<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-8 bg-primary-500 dark:bg-primary-800 text-white md:rounded-lg text-center" id="stats">
+					<ul class="absolute z-10 bottom-0 md:top-24 md:right-0 w-full md:w-fit max-h-min p-4 md:px-8 grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-16 bg-primary-500 dark:bg-primary-800 text-white md:rounded-lg text-center" id="stats">
 						<li>
 							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 								<span id="tvl" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
 								<span id="tvlSuffix" class="text-base font-light align-middle">&nbsp;</span>
 							</p>
-							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Liquidity</h3>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Total Liquidity Locked</h3>
 						</li>
 						<li>
 							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 								<span id="totalVolume" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
 								<span id="totalVolumeSuffix" class="text-base font-light align-middle">&nbsp;</span>
 							</p>
-							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trade Volume</h3>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Total Trade Volume</h3>
 						</li>
 						<li>
 							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">
 								<span id="totalFees" class="text-primary-500">{% include "partials/loading-indicator.njk" %}</span>
 								<span id="totalFeesSuffix" class="text-base font-light align-middle">&nbsp;</span></p>
-							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Fees</h3>
+							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Fees earned</h3>
 						</li>
-						<li>
+						<!--<li>
 							<p class="text-2xl md:text-3xl font-bold whitespace-nowrap">124</p>
 							<h3 class="text-sm whitespace-nowrap dark:text-primary-100">Trading pairs</h3>
-						</li>
+						</li>-->
 						
 					</ul>
 				</div>
@@ -116,30 +116,30 @@ pagination:
 			<section class="relative xl:container xl:mx-auto flex flex-col">
 				<div id="defiplaza-pool" class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
-						The <strong class="font-bold text-primary-500 dark:text-white">DefiPlaza pool</strong></h2>
-					<p class="mt-4">The DefiPlaza pool is a 16-token pool of blue chip tokens and is 15 times more capital efficient than traditional pair-based DEXs, offering up to 15 times more fees per unit of liquidity at the same trading volume.</p>
+						The <strong class="font-bold text-primary-500 dark:text-white">MultiPlaza pool</strong></h2>
+					<p class="mt-4">The MultiPlaza pool is a 16-token pool of blue chip tokens on Ethereum and is 15 times more capital efficient than traditional pair-based DEXs, offering up to 15 times more fees per unit of liquidity at the same trading volume.</p>
 					
 					<div class="mt-16 gs_reveal gs_reveal_fromRight">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
 					</div>
 
-					<!--<div class="mt-16 gs_reveal gs_reveal_fromRight">
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
-					</div>-->
+					</div>
 
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+					<!--<div class="mt-16 gs_reveal gs_reveal_fromRight">
 						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your liquidity tokens</h3>
 						<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
-					</div>
+					</div>-->
 				</div>
 
 				{# USPs StablePlaza - Left #}
 				<div id="stableplaza-pool" class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 mt-16 overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
 						The <strong class="font-bold text-primary-500 dark:text-white">StablePlaza pool</strong></h2>
-					<p class="mt-4">The StablePlaza pool is a 4-token pool of stable tokens and takes the same highly optimized approach as the DefiPlaza pool to provide cheaper trades, 
+					<p class="mt-4">The StablePlaza pool is a 4-token pool of stable tokens on Ethereum and takes the same highly optimized approach as the DefiPlaza pool to provide cheaper trades, 
 						with an even lower transaction fee of 0.03% of the value traded. Thanks to the stablecoins, Impermanent Loss is minimized.</p>
 
 					<!--<div class="mt-16 gs_reveal gs_reveal_fromLeft">
@@ -158,6 +158,31 @@ pagination:
 					</div>
 				</div>
 			</section>
+
+			{# USPs RadixPlaza - Right #}
+			<section class="relative xl:container xl:mx-auto flex flex-col">
+				<div id="radixplaza-pool" class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 mt-16 overflow-hidden">
+					<h2 class="fluid-40 dark:text-primary-100">
+						The <strong class="font-bold text-primary-500 dark:text-white">RadixPlaza pool</strong></h2>
+					<p class="mt-4">The RadixPlaza DEX is specifically designed to reduce the risk of Impermanent Loss and help make DeFi sustainably profitable, 
+						by treating trades that increase Impermanent Loss differently from trades that reduce Impermanent Loss.</p>
+					
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Experience reduced Impermanent Loss risk</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">with our innovative CALM algorithm.</p>
+					</div>
+
+					<!--<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
+					</div>-->
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Add single-sided liquidity</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">or create your own pair on Radix.</p>
+					</div>
+				</div>
+
 		</div>
 	</div>
 
@@ -197,7 +222,7 @@ pagination:
 					<h3 class="text-2xl">Are you feeling lost?</h3>
 					<p class="mt-2">Make sure to check out our support section.</p>
 					<div class="flex">
-						<a href="/help/" class="btn-white rounded-full mt-4">
+						<a href="https://docs.defiplaza.net" target="_blank" class="btn-white rounded-full mt-4">
 							<span class="mt-px whitespace-nowrap">Get Support</span>
 							{% include "partials/arrow-right.njk" %}
 						</a>
@@ -470,59 +495,67 @@ pagination:
 					return jsonResult.data;
 				})
 				.then(function (graphData) {
-					function prettyValue(value) {
-						var size = "M";
-						var prettyValue;
-						var sign = value < 0 ? '-' : '';
-						var value = Math.abs(value);
-								
-						if(value < 1) {
-							prettyValue = parseFloat(value).toFixed(3);
-							size = ""
-						} else if(value < 1000) {
-							prettyValue = parseFloat(value).toFixed(2);
-							size = ""
-						} else if(value < 10000) {
-							prettyValue = Math.round(value);
-							size = ""
-						} else if(value < 100000) {
-							prettyValue = parseFloat(value/1000).toFixed(1);
-							size = "K"
-						} else if(value < 1000000) {
-							prettyValue = Math.round(value/1000);
-							size = "K"
-						} else  if(value < 10000000) { // 10M
-							prettyValue = parseFloat(value/1000000).toFixed(2);
-						} else {
-							prettyValue = parseFloat(value/1000000).toFixed(1);
-						}
+					
+					fetch('https://radix.defiplaza.net/api/analytics')
+						.then(function (result) {
+							return result.json()
+						})
+						.then(function (radixData) {
 
-						return {
-							value: prettyValue,
-							size: size
-						}
-					}
+							function prettyValue(value) {
+								var size = "M";
+								var prettyValue;
+								var sign = value < 0 ? '-' : '';
+								var value = Math.abs(value);
+										
+								if(value < 1) {
+									prettyValue = parseFloat(value).toFixed(3);
+									size = ""
+								} else if(value < 1000) {
+									prettyValue = parseFloat(value).toFixed(2);
+									size = ""
+								} else if(value < 10000) {
+									prettyValue = Math.round(value);
+									size = ""
+								} else if(value < 100000) {
+									prettyValue = parseFloat(value/1000).toFixed(1);
+									size = "K"
+								} else if(value < 1000000) {
+									prettyValue = Math.round(value/1000);
+									size = "K"
+								} else  if(value < 10000000) { // 10M
+									prettyValue = parseFloat(value/1000000).toFixed(2);
+								} else {
+									prettyValue = parseFloat(value/1000000).toFixed(1);
+								}
 
-					// TVL
-					const prettyTVL = prettyValue(graphData.factories[0].totalValueLockedUSD);
-					const tvlEl = document.getElementById("tvl");
-					tvlEl.innerText = "$" + prettyTVL.value.toLocaleString();
-					tvlEl.classList.remove('text-primary-500');
-					document.getElementById("tvlSuffix").innerText = prettyTVL.size;
+								return {
+									value: prettyValue,
+									size: size
+								}
+							}
 
-					// Trade Volume
-					const prettyVolume = prettyValue(graphData.factories[0].totalTradeVolumeUSD);
-					const volumeEl = document.getElementById("totalVolume");
-					volumeEl.innerText = "$" + prettyVolume.value.toLocaleString();
-					volumeEl.classList.remove('text-primary-500');
-					document.getElementById("totalVolumeSuffix").innerText = prettyVolume.size;
+							// TVL
+							const prettyTVL = prettyValue(+graphData.factories[0].totalValueLockedUSD + +radixData[0].totalValueLockedUSD);
+							const tvlEl = document.getElementById("tvl");
+							tvlEl.innerText = "$" + prettyTVL.value.toLocaleString();
+							tvlEl.classList.remove('text-primary-500');
+							document.getElementById("tvlSuffix").innerText = prettyTVL.size;
 
-					// Fees
-					const prettyFees = prettyValue(graphData.factories[0].totalFeesEarnedUSD);
-					const feesEl = document.getElementById("totalFees");
-					feesEl.innerText = "$" + prettyFees.value.toLocaleString();
-					feesEl.classList.remove('text-primary-500');
-					document.getElementById("totalFeesSuffix").innerText = prettyFees.size;
+							// Trade Volume
+							const prettyVolume = prettyValue(graphData.factories[0].totalTradeVolumeUSD);
+							const volumeEl = document.getElementById("totalVolume");
+							volumeEl.innerText = "$" + prettyVolume.value.toLocaleString();
+							volumeEl.classList.remove('text-primary-500');
+							document.getElementById("totalVolumeSuffix").innerText = prettyVolume.size;
+
+							// Fees
+							const prettyFees = prettyValue(graphData.factories[0].totalFeesEarnedUSD);
+							const feesEl = document.getElementById("totalFees");
+							feesEl.innerText = "$" + prettyFees.value.toLocaleString();
+							feesEl.classList.remove('text-primary-500');
+							document.getElementById("totalFeesSuffix").innerText = prettyFees.size;
+					});
 				});
 		});
 	</script>
