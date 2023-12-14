@@ -17,7 +17,7 @@
 /updates/* /update/:splat 301
 /howto/* /help/:splat 301
 /assets/pdf/whitepaper-stableplaza.pdf /assets/pdf/whitepaper-stableplaza-v1-1.pdf 301
-/stats https://stats.defiplaza.net 302
-/stats/pools/defiplaza https://stats.defiplaza.net/pools/defiplaza 302
-/stats/pools/stableplaza https://stats.defiplaza.net/pools/stableplaza 302
-/stats/pools/radixplaza https://stats.defiplaza.net/pools/radixplaza 302
+/stats/ https://stats.defiplaza.net 302
+/stats/pools/defiplaza/ https://stats.defiplaza.net/pools/defiplaza 302
+/stats/pools/stableplaza/ https://stats.defiplaza.net/pools/stableplaza 302
+/stats/pools/radixplaza/ https://stats.defiplaza.net/pools/radixplaza 302
