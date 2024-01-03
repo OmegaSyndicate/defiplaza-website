@@ -1,0 +1,817 @@
+---
+layout: default
+eleventyComputed:
+  title: "DefiPlaza Analytics"
+  description: "See what DefiPlaza's TVL is, the DFP2 price and market cap, the daily trade volume, and more."
+---
+
+<section class="xl:container mx-4 xl:mx-auto">
+	<h1 class="fluid-60 text-center dark:text-primary-100"><strong class="font-bold text-primary-500 dark:text-white">DefiPlaza's</strong> Analytics</h1>
+	<p class="text-center text-base font-bold">Last synced block <span id="lastBlock" class="font-normal">{% include "partials/loading-indicator.njk" %}</span><span id="lastBlockTime"></span></p>
+
+	<!-- Notification banner when stats are out of sync -->
+	<div class="mt-5 hidden" id="warningBanner">
+		<div class="mx-auto px-2 sm:px-6 lg:px-8 relative">
+			<div class="p-2 rounded-lg bg-red-600 shadow-lg sm:p-3">
+				<div class="flex items-center justify-between flex-wrap">
+					<div class="w-0 flex-1 flex items-center">
+						<p class="ml-3 font-medium text-white text-center truncate">
+							The Analytics page is currently <span class="font-bold" id="blockDiff">0</span> blocks out of sync!
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+	<div>
+		<dl class='mt-5 md:mt-8 grid grid-cols-1 gap-5 sm:grid-cols-4'>
+			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
+				<dt class='text-sm font-medium text-primary-100 truncate'>Total Value Locked</dt>
+				<dd class='mt-1 text-3xl font-semibold text-white' id="totalTVL">{% include "partials/loading-indicator.njk" %}</dd>
+			</div>
+			
+			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
+				<dt class='text-sm font-medium text-primary-100 truncate'>24h Volume</dt>
+				<dd class='mt-1 text-3xl font-semibold text-white' id="24Volume">{% include "partials/loading-indicator.njk" %}</dd>
+			</div>
+
+			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
+				<dt class='text-sm font-medium text-primary-100 truncate'>Total Volume</dt>
+				<dd class='mt-1 text-3xl font-semibold text-white' id="totalVolume">{% include "partials/loading-indicator.njk" %}</dd>
+			</div>
+
+			<div class='px-4 py-5 bg-primary-700 shadow rounded-lg overflow-hidden sm:p-6'>
+				<dt class='text-sm font-medium text-primary-100 truncate'>Total Fees</dt>
+				<dd class='mt-1 text-3xl font-semibold text-white' id="totalFees">{% include "partials/loading-indicator.njk" %}</dd>
+			</div>
+		</dl>
+	</div>
+
+	<div class="relative mt-16 space-y-4 p-4 md:p-8 pt-4 bg-primary-700 rounded-lg md:rounded-3xl overflow-hidden">
+		<div class="oval-gradient -top-80 -left-80"></div>
+
+		{# Pools #}
+		<div class="relative grid grid-cols-1 gap-4">
+			<div class=" overflow-x-auto sm:-mx-6 lg:-mx-8">
+				<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+					<div class="shadow overflow-hidden border-b dark:border border-gray-200 dark:border-primary-200 bg-white dark:bg-primary-800 sm:rounded-lg" id="pools">
+						{% include "partials/loading-indicator.njk" %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# TVL and Trade Volume #}
+		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="tvl">
+					<h2 class="text-2xl">Total Value Locked</h2>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100">Today</p>
+				</div>
+				<canvas id="tvlChart" width="400" height="250"></canvas>
+			</div>
+
+			{#<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="liquidity">
+					<h2 class="text-2xl md:text-right">Daily Liquidity Change</h2>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
+				</div>
+				<canvas id="liquidityChart" width="400" height="250"></canvas>
+			</div>#}
+
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="swap">
+					<h2 class="text-2xl md:text-right">Daily Trade Volume</h2>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
+				</div>
+				<canvas id="swapChart" width="400" height="250"></canvas>
+			</div>
+		</div>
+
+		{# DFP2 prices and DFP2 MC #}
+		<div class="relative grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="dfp2Price">
+					<h2 class="text-2xl">DFP2 Price</h2>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100">Today</p>
+				</div>
+				<canvas id="dfp2PriceChart" width="400" height="250"></canvas>
+			</div>
+
+			<div class="z-10 flex flex-col justify-between rounded-lg bg-white dark:bg-primary-800 content-between">
+				<div class="py-8 px-4" id="marketCap">
+					<h2 class="text-2xl md:text-right">DFP2 Market Cap</h2>
+					<h3 class="text-2xl font-bold text-primary-700 dark:text-primary-100 md:text-right">{% include "partials/loading-indicator.njk" %}</h3>
+					<p class="text-base text-primary-700 dark:text-primary-100 md:text-right">Today</p>
+				</div>
+				<canvas id="marketCapChart" width="400" height="250"></canvas>
+			</div>
+		</div>
+
+		{# Recent Transactions #}
+		<div class="relative grid grid-cols-1 gap-4">
+			<div class="z-10 py-16 px-8 flex flex-col rounded-lg bg-white dark:bg-primary-800 content-between">
+				<h2 class="text-2xl">Recent Transactions</h2>
+				<div class="flex flex-col mt-4">
+					<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+						<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+							<div class="shadow overflow-hidden border-b dark:border border-gray-200 dark:border-primary-200 sm:rounded-lg" id="transactions">
+								{% include "partials/loading-indicator.njk" %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js" integrity="sha256-bC3LCZCwKeehY6T4fFi9VfOU0gztUa+S4cnkIhVPZ5E=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+<script src="https://unpkg.com/dayjs@1.8.21/plugin/relativeTime.js"></script>
+{# Support older browsers #}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver"></script>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+    dayjs.extend(window.dayjs_plugin_relativeTime)
+    
+	const queryBody = JSON.stringify({
+    	query: `{
+    	    factories(first: 1) {
+    	         totalValueLockedUSD
+					totalTradeVolumeUSD
+					totalFeesEarnedUSD
+    	    }
+			 pools(first: 2, orderBy: name) {
+				name
+				totalValueLockedUSD
+				totalTradeVolumeUSD
+				totalFeesEarnedUSD
+			 }
+    	    transactions(first: 1, orderBy: timestamp, orderDirection: desc) {
+                blockNumber
+                timestamp
+              }
+			hourlies(first: 24, orderBy: date, orderDirection: desc) {
+                swapUSD
+            }
+    	    dailies(first: 90, orderBy: date, orderDirection: desc) {
+                date
+                liquidityUSD
+                tradeVolumeUSD
+                swapUSD
+                totalValueLockedUSD
+                dfp2MarketCap
+                xdp2TotalSupply
+            }
+            dailyTokens(first: 90, where: { token:\"0x2f57430a6ceda85a67121757785877b4a71b8e6d\" }, orderBy: date, orderDirection: desc) {
+                date
+                tokenPriceUSD
+                tokenPriceMin
+                tokenPriceMax
+            }
+            swaps(first: 20, orderBy: timestamp, orderDirection: desc) {
+                id
+                timestamp
+					 pool {
+						name
+					 }
+                inputToken {
+                  symbol
+                  tokenPriceUSD
+                }
+                inputAmount
+                outputToken {
+                  symbol
+                  tokenPriceUSD
+                }
+                outputAmount
+                swapUSD
+            }
+            tokens(first: 16, orderBy: tokenAmount, orderDirection: desc) {
+                id
+                symbol
+                tokenAmount
+                tokenPriceUSD
+            } 
+            _meta(id:null) {
+                block {
+                  number
+                }
+                deployment
+                hasIndexingErrors
+              }
+    	}`
+	});
+	
+	fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: queryBody
+		})
+		.then(function(result) { return result.json() })
+		.then(function(jsonResult) {
+		    return jsonResult.data;
+		})
+	    .then(function(graphData) {
+
+			fetch('https://radix.defiplaza.net/api/analytics')
+			.then(function(result) { return result.json() })
+			.then(function(radixAnalytics) {
+
+				const latestRadix = radixAnalytics[0];
+
+				// Make last day, the first day
+ 				graphData.dailies.reverse();
+ 				graphData.dailyTokens.reverse();
+
+			
+				const dailies = [];
+
+				for(let daily of graphData.dailies) {
+					let radDaily;
+
+					for(let day of radixAnalytics) {
+						if(day.date == daily.date) {
+							console.log('match!',daily, day)
+							radDaily = day;
+						}
+					}
+
+					let totalValueLockedUSD = +daily.totalValueLockedUSD;
+					let dailyTradeVolumeUSD = +daily.tradeVolumeUSD;
+
+					if(radDaily) {
+						totalValueLockedUSD += radDaily.totalValueLockedUSD;
+						dailyTradeVolumeUSD += radDaily.volumeUSD;
+					}
+
+					dailies.push({
+						date: daily.date,
+						totalValueLockedUSD,
+						tradeVolumeUSD: dailyTradeVolumeUSD,
+					});
+				}
+
+	        // Do a health check on subgraph synced
+	        healthCheck(graphData._meta.block.number);
+	        
+	        // Display TVL
+		    var tvl = +graphData.factories[0].totalValueLockedUSD + latestRadix.totalValueLockedUSD;
+
+			// populate stats bar
+			let dayVolume = 0;
+
+			for(let i = 0; i < graphData.hourlies.length; i++) {
+				dayVolume += parseFloat(graphData.hourlies[i].swapUSD);
+			}
+
+			document.getElementById("24Volume").innerHTML = prettyDollar(dayVolume);
+			document.getElementById("totalVolume").innerHTML = prettyDollar(graphData.factories[0].totalTradeVolumeUSD);
+			document.getElementById("totalTVL").innerHTML = prettyDollar(tvl);
+			document.getElementById("totalFees").innerHTML = prettyDollar(graphData.factories[0].totalFeesEarnedUSD);
+ 			
+ 			// Build graphs
+			let pools = graphData.pools;
+			pools.push({
+				name: 'RadixPlaza',
+				totalValueLockedUSD: latestRadix.totalValueLockedUSD,
+				totalTradeVolumeUSD: latestRadix.totalTradeVolumeUSD,
+				totalFeesEarnedUSD: latestRadix.totalFeesEarnedUSD
+			})
+ 			poolsTable(pools);
+			
+			tvlChart(dailies);
+ 			//liquidityChart(graphData.dailies);
+			barChart('swap', 'Daily Trade Volume', dailies, 'tradeVolumeUSD', false);
+ 			
+ 			dfp2PriceChart(graphData.dailyTokens);
+ 			marketCapChart(graphData.dailies);
+ 			
+ 			transactionsTable(graphData.swaps);
+			});
+ 		});
+
+});
+
+let coingeckoPrices;
+let coingeckoTokens = {
+	"AAVE": "aave",
+	"COMP": "compound-governance-token",
+	"CRV": "curve-dao-token",
+	"DAI": "dai",
+	"ETH": "ethereum",
+	"eXRD": "e-radix",
+	"LINK": "chainlink",
+	"MATIC": "matic-network",
+	"MKR": "maker",
+	"SPELL": "spell-token",
+	"SUSHI": "sushi",
+	"UNI": "uniswap",
+	"USDC": "usd-coin",
+	"USDT": "tether",
+	"WBTC": "wrapped-bitcoin",
+	"YFI": "yearn-finance"
+};
+let chartScales = {
+	y: {
+		beginAtZero: true,
+		position: 'right',
+		ticks: {
+			display: false
+		},
+		grid: {
+			borderColor: 'rgb(236, 198, 168)',
+			color: 'rgba(47, 79, 126, 0.1)',
+			display: true,
+			drawBorder: false,
+			drawOnChartArea: true
+		},
+		/*grid: {
+			display: false,
+			drawBorder: t,
+		},*/
+		display: false
+	},
+	x: {
+		/*grid: {
+			borderColor: 'rgb(236, 198, 168)',
+			color: 'rgba(47, 79, 126, 0.1)',
+		},*/
+		ticks: {
+			color: "#23211f",
+			font: {
+				size: 12
+			},
+			/*callback: function(val, index) {
+            // Hide every 2nd tick label
+            return index % 7 === 0 ? this.getLabelForValue(val) : '';
+          }*/
+		},
+		grid: {
+			display: false,
+			drawBorder: false,
+		},
+		display: false
+	},
+};
+let weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+let lightPrimaryColor = '#3d0283';
+	let darkPrimaryColor = '#dcceee';
+	let lightBackgroundColor = '#fff';
+	let darkBackgroundColor = '#32036a';
+
+	let primaryColor = lightPrimaryColor;
+	let backgroundColor = lightBackgroundColor;
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		// dark mode
+		primaryColor = darkPrimaryColor;
+		backgroundColor = darkBackgroundColor;
+	}
+
+function getCoinGeckoPrices() {
+    let tokens = [];
+    
+    for(let symbol in coingeckoTokens) {
+        tokens.push(coingeckoTokens[symbol]);
+    }
+    
+    return fetch(`https://api.coingecko.com/api/v3/simple/price/?` + new URLSearchParams({
+    	    ids: tokens.join(','),
+    		vs_currencies: 'USD',
+	    }), {
+		method: 'GET', 
+	})
+	.then(response => response.json())
+	.then((data) => {
+	    coingeckoPrices = data;
+	});
+}
+
+function getPrice(token) {
+   if(coingeckoPrices[coingeckoTokens[token.symbol]]) {
+        return coingeckoPrices[coingeckoTokens[token.symbol]].usd
+    }
+    
+    return token.tokenPriceUSD;
+}
+
+function prettyDollar(value) {
+    return "$" + prettyValue(value);
+}
+function prettyValue(v) {
+    var size = "M";
+	var prettyValue;
+	var sign = v < 0 ? '-' : '';
+	var value = Math.abs(v);
+			
+	if(value < 1) {
+		prettyValue = parseFloat(value).toFixed(3);
+		size = ""
+	} else if(value < 1000) {
+		prettyValue = parseFloat(value).toFixed(2);
+		size = ""
+	} else if(value < 10000) {
+		prettyValue = Math.round(value);
+		size = ""
+	} else if(value < 100000) {
+		prettyValue = parseFloat(value/1000).toFixed(1);
+		size = "K"
+	} else if(value < 1000000) {
+		prettyValue = Math.round(value/1000);
+		size = "K"
+	} else {
+		prettyValue = parseFloat(value/1000000).toFixed(2);
+	}
+
+    return sign + prettyValue.toLocaleString() + size;
+}
+
+function tvlChart(dailies) {
+   lineChart('tvl', 'Total Value Locked', dailies, 'totalValueLockedUSD', true); 
+}
+
+function marketCapChart(dailies) {
+	lineChart('marketCap', 'DFP2 Market Cap', dailies, 'dfp2MarketCap', true); 
+}
+
+function dfp2PriceChart(dailies) {
+	lineChart('dfp2Price', 'DFP2 price in USD', dailies, 'tokenPriceUSD', false);
+}
+
+function swapChart(dailies) {
+	barChart('swap', 'Daily Trade Volume', dailies, 'tradeVolumeUSD', false);
+}
+
+function liquidityChart(dailies) {
+	barChart('liquidity', 'Daily Liquidity Change', dailies, 'liquidityUSD', true);
+}
+
+function xdp2Chart(dataPoints) {
+	let labels = [];
+	let data = [];
+	let pointBorderColors = [];
+	let pointBackgroundColors = [];
+
+	for (let point of dataPoints) {
+		point.tokenPriceUSD = point['totalValueLockedUSD']/point['xdp2TotalSupply'];
+		
+		data.push(point);
+	}
+
+	lineChart('xdp2Price', 'XDP2 price in USD', data, 'tokenPriceUSD', false);
+}
+
+function poolsTable(pools) {
+        
+        let table = `
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-white">
+          <thead class="bg-gray-50 dark:bg-primary-700">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Pool</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Total Value Locked</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Total Trade Volume</td>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Total Fees</td>
+				</tr>
+         </thead>
+         <tbody class="bg-white dark:bg-primary-800 divide-y divide-gray-200">`;
+        
+        for(let pool of pools) {
+            table += `<tr>
+            	<td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white"><a href="/stats/pools/${pool.name.toLowerCase()}" class="flex items-center">
+						${pool.name} Pool &raquo;
+					</a></td>
+            	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(pool.totalValueLockedUSD) }</td>
+             	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(pool.totalTradeVolumeUSD) }</td>
+            	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(pool.totalFeesEarnedUSD) }</td>
+            </tr>`;
+        }
+        
+        table += `</tbody></table>`;
+            
+        document.getElementById("pools").innerHTML = table;
+}
+
+function transactionsTable(swaps) {
+    let table = `
+        <table class="min-w-full divide-y divide-gray-200">
+			<thead class="bg-gray-50 dark:bg-primary-700">
+			<tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Transaction</td>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Pool</td>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Total Value</td>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Token amount</td>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Token amount</td>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-primary-200 uppercase tracking-wider">Date</td>
+        	</tr>
+         </thead>
+         <tbody class="bg-white dark:bg-primary-800 divide-y divide-gray-200">`;
+    
+    for(let swap of swaps) {
+        table += `<tr>
+      	<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white"><a href="https://etherscan.io/tx/${ swap.id }" target="_blank">From ${swap.inputToken.symbol} to ${swap.outputToken.symbol}</a></td>
+      	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white"><a href="/stats/${swap.pool.name.toLowerCase()}">${ swap.pool.name }</a></td>
+      	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyDollar(swap.swapUSD) }</td>
+      	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyValue(swap.inputAmount) } ${swap.inputToken.symbol}</td>
+        	<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ prettyValue(swap.outputAmount) } ${swap.outputToken.symbol}</td>
+         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">${ dayjs(swap.timestamp*1000).fromNow() } </td>
+        </tr>`;
+    }
+    
+    table += `</tbody></table>`;
+        
+    document.getElementById("transactions").innerHTML = table;
+    
+}
+
+let width, height, gradient;
+function getGradient(ctx, chartArea, from, to) {
+  const chartWidth = chartArea.right - chartArea.left;
+  const chartHeight = chartArea.bottom - chartArea.top;
+  if (!gradient || width !== chartWidth || height !== chartHeight) {
+    // Create the gradient because this is either the first render
+    // or the size of the chart has changed
+    width = chartWidth;
+    height = chartHeight;
+    gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(0, to);
+    gradient.addColorStop(0.75, from);
+    gradient.addColorStop(1, from);
+
+  }
+
+  return gradient;
+}
+
+function lineChart(id, label, dataPoints, dataPoint, fill) {
+	let labels = [];
+	let data = [];
+	let pointBorderColors = [];
+	let pointBackgroundColors = [];
+
+	for (let point of dataPoints) {
+		let date = new Date(point.date * 1000);
+		labels.push(weekdays[date.getDay()] + ' ' + date.getDate() + '/' + (date.getMonth() + 1));
+		data.push(point[dataPoint]);
+	}
+
+	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+	labels[labels.length - 1] = 'Today';
+
+	pointBorderColors[pointBorderColors.length - 1] = 'rgba(47, 79, 126, 0.5)';
+	pointBackgroundColors[pointBackgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
+
+	let active = false;
+
+	document.getElementById(id + 'Chart').addEventListener('mouseenter', e => {
+		active = true;
+	});
+
+	document.getElementById(id + 'Chart').addEventListener('mouseleave', e => {
+		document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+		document.querySelector(`#${id} p`).innerText = labels[labels.length - 1];
+
+		active = false;
+	});
+
+	const ctx = document.getElementById(id + 'Chart').getContext('2d');
+	const chart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: labels,
+			datasets: [
+				{
+					label: label,
+					data: data,
+					backgroundColor: function(context) {
+						const chart = context.chart;
+						const {ctx, chartArea} = chart;
+
+						if (!chartArea) {
+							// This case happens on initial chart load
+							return;
+						}
+						return getGradient(ctx, chartArea, primaryColor + '80', backgroundColor);
+					},
+					borderWidth: 3,
+					fill: fill,
+					borderColor: primaryColor,
+					pointRadius: 0,
+					pointHoverRadius: 6,
+					pointHoverBorderWidth: 2,
+					pointHoverBorderColor: primaryColor,
+					pointHoverBackgroundColor: '#ffffff80',
+					lineTension: 0.05,
+					segment: {
+						/*backgroundColor: function (ctx) {
+							if (ctx.p0DataIndex == data.length - 2) {
+								return 'rgba(47, 79, 126, 0.2)';
+							}
+							return undefined;
+						},*/
+						borderDash: function (ctx) {
+							if (ctx.p0DataIndex == data.length - 2) {
+								return [2, 2];
+							}
+							return undefined;
+						},
+					},
+				},
+			],
+		},
+		options: {
+			interaction: {
+				mode: 'index',
+				intersect: false,
+			},
+			plugins: {
+				legend: {
+					display: false,
+				},
+				tooltip: {
+					enabled: false,
+					position: 'nearest',
+					usePointStyle: true,
+					external: function(context) {
+						// Only update when mouse is over the graph
+						// Otherwise it overrules the `mouseleave` event with a final update
+						if(!active) {
+							return;
+						}
+
+						var raw = context.tooltip.dataPoints[0].raw;
+						var title = context.tooltip.title[0];
+						
+						document.querySelector(`#${id} h3`).innerText = prettyDollar(raw);
+						document.querySelector(`#${id} p`).innerText = title;
+
+					}
+				}			
+			},
+			scales: chartScales
+		},
+	});
+
+	window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', event => {
+		if(event.matches) {
+			primaryColor = lightPrimaryColor;
+			backgroundColor = lightBackgroundColor;
+		} else {
+			primaryColor = darkPrimaryColor;
+			backgroundColor = darkBackgroundColor;
+		}
+
+
+		chart.data.datasets[0].borderColor = primaryColor;
+
+		chart.update();
+	});
+}
+
+function barChart(id, label, dataPoints, dataPoint, lines) {
+	let labels = [];
+	let data = [];
+	let backgroundColors = [];
+
+	for (let point of dataPoints) {
+		let date = new Date(point.date * 1000);
+		labels.push(weekdays[date.getDay()] + ' ' + date.getDate() + '/' + (date.getMonth() + 1));
+		data.push(point[dataPoint]);
+
+		backgroundColors.push('#3d0283');
+	}
+
+	labels[labels.length - 1] = 'Today';
+	backgroundColors[backgroundColors.length - 1] = 'rgba(47, 79, 126, 0.2)';
+
+	document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+
+	let active = false;
+
+	document.getElementById(id + 'Chart').addEventListener('mouseenter', e => {
+		active = true;
+	});
+
+	document.getElementById(id + 'Chart').addEventListener('mouseleave', e => {
+		document.querySelector(`#${id} h3`).innerText = prettyDollar(data[data.length - 1]);
+		document.querySelector(`#${id} p`).innerText = labels[labels.length - 1];
+
+		active = false;
+	});
+
+	let barChartScales = chartScales;
+
+	if(lines) {
+		barChartScales.y.display = true;
+	} else {
+		barChartScales.y.display = false;
+	}
+
+	const ctx = document.getElementById(id + 'Chart').getContext('2d');
+	const chart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: labels,
+			datasets: [
+				{
+					label: label,
+					data: data,
+					backgroundColor: primaryColor,
+					hoverBackgroundColor: primaryColor + '80',
+					borderColor: ['#3d0283'],
+					borderWidth: 0,
+					borderRadius: 2,
+					fill: true,
+					pointStyle: 'circle'
+				},
+			],
+		},
+		options: {
+			minBarLength: 1,
+			plugins: {
+				legend: {
+					display: false,
+				},
+				tooltip: {
+					enabled: false,
+					position: 'nearest',
+					usePointStyle: true,
+					external: function(context) {
+						// Only update when mouse is over the graph
+						// Otherwise it overrules the `mouseleave` event with a final update
+						if(!active) {
+							return;
+						}
+
+						var raw = context.tooltip.dataPoints[0].raw;
+						var title = context.tooltip.title[0];
+						
+						document.querySelector(`#${id} h3`).innerText = prettyDollar(raw);
+						document.querySelector(`#${id} p`).innerText = title;
+
+					}
+				}	
+			},
+			scales: barChartScales,
+		},
+	});
+
+	window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', event => {
+		chart.data.datasets[0].backgroundColor = primaryColor;
+
+		chart.update();
+	});
+}
+
+function healthCheck(lastestBlockNumber) {
+    const healthBody = JSON.stringify({
+    	query: `{
+          indexingStatusForCurrentVersion(subgraphName: "omegasyndicate/defiplaza") {
+             chains {
+              latestBlock {
+                number
+              }
+            }
+          }
+        }`
+    });
+    
+    fetch('https://api.thegraph.com/index-node/graphql', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: healthBody
+		})
+		.then(function(result) { return result.json() })
+		.then(function(jsonResult) {
+		    return jsonResult.data;
+		})
+	    .then(function(graphData) {
+	       
+	       
+	       // Latest TheGraph block
+	       var lastestTheGraphBlock = graphData.indexingStatusForCurrentVersion.chains[0].latestBlock.number;
+	       var diff = lastestTheGraphBlock - lastestBlockNumber;
+	       
+	       // Display last block synced
+	       document.getElementById("lastBlock").innerHTML = `<a href="https://etherscan.io/block/${lastestBlockNumber}" target="_blank">${lastestBlockNumber}</a>`;
+	       
+	       // Display warning banner, when more than 4 block difference
+	      if(diff > 4) {
+	          document.getElementById("blockDiff").innerHtml = diff;
+	          document.getElementById("warningBanner").classList.toggle("hidden");
+	      }
+	    });
+}
+</script>
