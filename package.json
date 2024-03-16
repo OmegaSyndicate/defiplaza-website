@@ -4,7 +4,7 @@
   "description": "Static Eleventy and Tailwind CSS website of DefiPlaza",
   "main": ".eleventy.js",
   "scripts": {
-    "serve": "concurrently 'eleventy --serve' 'npx tailwindcss -i ./src/_tailwind.css -o ./dist/styles.css --watch'",
+    "dev": "concurrently 'eleventy --serve' 'npx tailwindcss -i ./src/_tailwind.css -o ./dist/styles.css --watch'",
     "start": "eleventy && npx tailwindcss -i ./src/_tailwind.css -o ./dist/styles.css --minify",
     "lint": "eslint . --ext .js --cache"
   },

@@ -50,7 +50,7 @@ pagination:
 
 			{# Hero #}
 			<section class="relative h-[90vh] md:h-[65vh] mx-auto px-4 md:px-0 pb-20 md:pb-0 flex flex-col justify-center items-center z-10 bg-background-500/75 dark:bg-primary-600/70 md:bg-transparent md:bg-gradient-to-b md:from-background-500/75 dark:md:from-primary-600/75">
-				<h1 class="fluid-80 text-center dark:text-white">The <span class="italic font-serif">best deal</span> for swapping<br class="hidden md:block"> tokens on Ethereum <br class="block md:hidden">&amp; Radix</h1>
+				<h1 class="fluid-80 text-center dark:text-white">Stay <span class="italic font-serif">CALM</span> and reduce&nbsp<br class="hidden md:block">Impermanent Loss</h1>
 				<div class="flex flex-row flex-wrap md:flex-nowrap justify-center space-x-4 mt-12 sm:mt-16 md:mt-8">
 					<a href="https://radix.defiplaza.net/swap" id="launch-app-home-button" class="btn-primary inline-flex items-center mt-4 sm:mt-0">
 						<span class="mt-px whitespace-nowrap">Start swapping tokens</span>
@@ -70,12 +70,18 @@ pagination:
 			<section class="relative xl:container xl:mx-auto flex flex-col-reverse md:flex-row">
 				<div class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20  overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
-						<strong class="font-bold text-primary-500 dark:text-white">DefiPlaza</strong> makes DeFi sustainably profitable.</h2>
-					<p class="mt-4">Like other exchanges, DefiPlaza offers trades between tokens by functioning as an Automated Market Maker (AMM).</p>
-					<p class="mt-4">What makes DefiPlaza special are <i>highly optimized DEXs</i>, designed to offer the lowest possible trade cost to the end user. 
+					<strong class="font-bold text-primary-500 dark:text-white">DefiPlaza</strong> makes DeFi sustainably profitable.</h2>
+
+					<p class="mt-4">Impermanent Loss is the scourge of liquidity providers and must be dealt with to make decentralized finance a sustainable solution.</p>
+					<p class="mt-4">The <i>Concentration-Asymmetric Liquidity Model</i> (CALM) is designed to make providing liquidity sustainably profitable. </p>
+					<p class="mt-4">The main innovation is that CALM treats trades that increase impermanent loss differently from those that reduce it, thereby reducing the negative impact of impermanent loss. </p>
+					<p class="mt-4">The result is an algorithm that is efficient to implement, and (most importantly) vastly outperforms traditional methods in terms of bottom-line performance for liquidity providers.</p></p>
+
+					<p class="mt-4">DefiPlaza's CALM algorithm is live on Radix.</p>
+
+					<p class="mt-4">On Ethereum, we currently have <strong>two multi-token pools</strong>, focussed on blue chip tokens and stablecoins.</p>
+					<p class="mt-4">What makes DefiPlaza on Ethereum special are <i>highly optimized DEXs</i>, designed to offer the lowest possible trade cost to the end user. 
 						Gas costs per trade are the lowest in the industry, and thanks to the multi-token set up very capital efficient, while Impermanent Loss is minimized.</p>
-					<p class="mt-4">We currently have <strong>two multi-token pools on Ethereum</strong>, focussed on blue chip tokens and stable tokens. For each trade we automatically select the pool that would result in the lowest trade fee.</p>
-					<p class="mt-4">On <strong>Radix</strong> we launched a DEX specifically designed to <strong>reduce the risk of Impermanent Loss</strong> and help make DeFi sustainably profitable.</p>
 				</div>
 
 				{# Stats #}
@@ -112,29 +118,31 @@ pagination:
 		</div>
 
 		<div class="relative pt-16">
-			{# USPs DefiPlaza - Right #}
+			{# USPs RadixPlaza - Right #}
 			<section class="relative xl:container xl:mx-auto flex flex-col">
-				<div id="defiplaza-pool" class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 overflow-hidden">
+				<div id="radixplaza-pool" class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20  overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
-						The <strong class="font-bold text-primary-500 dark:text-white">MultiPlaza pool</strong></h2>
-					<p class="mt-4">The MultiPlaza pool is a 16-token pool of blue chip tokens on Ethereum and is 15 times more capital efficient than traditional pair-based DEXs, offering up to 15 times more fees per unit of liquidity at the same trading volume.</p>
+						The <strong class="font-bold text-primary-500 dark:text-white">RadixPlaza pool</strong></h2>
+					<p class="mt-4">DefiPlaza on Radix is specifically designed to reduce the risk of Impermanent Loss and help make DeFi sustainably profitable, 
+						by treating trades that increase Impermanent Loss differently from trades that reduce Impermanent Loss.</p>
 					
 					<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
-					</div>
-
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Experience reduced Impermanent Loss risk</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">with our innovative CALM algorithm.</p>
 					</div>
 
 					<!--<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your liquidity tokens</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
 					</div>-->
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Add single-sided liquidity</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">or create your own pair on Radix.</p>
+					</div>
 				</div>
 
+			{# USPs DefiPlaza - Right #}
 				{# USPs StablePlaza - Left #}
 				<div id="stableplaza-pool" class="md:w-1/2 z-10 bg-white dark:bg-primary-800 md:rounded-tr-3xl md:rounded-br-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 mt-16 overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
@@ -157,32 +165,32 @@ pagination:
 						<p class="fluid-30 font-light dark:text-primary-100">and receive 33% of the fees.</p>
 					</div>
 				</div>
-			</section>
 
-			{# USPs RadixPlaza - Right #}
-			<section class="relative xl:container xl:mx-auto flex flex-col">
-				<div id="radixplaza-pool" class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 mt-16 overflow-hidden">
+				<div id="defiplaza-pool" class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 mt-16 overflow-hidden">
 					<h2 class="fluid-40 dark:text-primary-100">
-						The <strong class="font-bold text-primary-500 dark:text-white">RadixPlaza pool</strong></h2>
-					<p class="mt-4">The RadixPlaza DEX is specifically designed to reduce the risk of Impermanent Loss and help make DeFi sustainably profitable, 
-						by treating trades that increase Impermanent Loss differently from trades that reduce Impermanent Loss.</p>
+						The <strong class="font-bold text-primary-500 dark:text-white">MultiPlaza pool</strong></h2>
+					<p class="mt-4">The MultiPlaza pool is a 16-token pool of blue chip tokens on Ethereum and is 15 times more capital efficient than traditional pair-based DEXs, offering up to 15 times more fees per unit of liquidity at the same trading volume.</p>
 					
 					<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Experience reduced Impermanent Loss risk</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">with our innovative CALM algorithm.</p>
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
+					</div>
+
+					<div class="mt-16 gs_reveal gs_reveal_fromRight">
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
 					</div>
 
 					<!--<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
+						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your liquidity tokens</h3>
+						<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
 					</div>-->
-
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Add single-sided liquidity</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">or create your own pair on Radix.</p>
-					</div>
 				</div>
 
+				
+			</section>
+
+			
 		</div>
 	</div>
 
@@ -193,7 +201,7 @@ pagination:
 		{# Support #}
 		<section class="xl:container mx-4 xl:mx-auto flex flex-col py-20 mt-20">
 
-			<h2 class="relative md:hidden text-center fluid-40 text-white">Learn how to<br>use <strong>DefiPlaza</strong></h2>
+			<!-- <h2 class="relative md:hidden text-center fluid-40 text-white">Learn how to<br>use <strong>DefiPlaza</strong></h2>
 
 			<div class="flex items-center mt-6 md:mt-0 pb-10">
 				<div class="hidden md:block px-3">
@@ -213,7 +221,7 @@ pagination:
 						{% endfor %}
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			{# Support pillar animation #}
 			<div class="xl:container mx-4 xl:mx-auto flex flex-wrap items-center mt-0 md:mt-0 text-white" id="supportSection">
