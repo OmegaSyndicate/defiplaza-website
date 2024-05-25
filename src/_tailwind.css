@@ -15,10 +15,15 @@
 	h4,
 	h5 {
 		@apply font-light tracking-tighter;
+  		text-wrap: balance;
 	}
 
 	h1 strong {
 		@apply font-bold text-primary-500 dark:text-white;
+	}
+
+	p {
+		text-wrap: pretty;
 	}
 
 	.fluid-100 {
