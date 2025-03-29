@@ -170,26 +170,7 @@ pagination:
 					</div>
 				</div>
 
-				<div id="defiplaza-pool" class="md:w-1/2 ml-auto z-10 bg-white dark:bg-primary-800 md:rounded-tl-3xl md:rounded-bl-3xl pt-11 pb-24 md:pt-24 px-4 md:px-20 mt-16 overflow-hidden">
-					<h2 class="fluid-40 dark:text-primary-100">
-						The <strong class="font-bold text-primary-500 dark:text-white">MultiPlaza pool</strong></h2>
-					<p class="mt-4">The MultiPlaza pool is a 16-token pool of blue chip tokens on Ethereum and is 15 times more capital efficient than traditional pair-based DEXs, offering up to 15 times more fees per unit of liquidity at the same trading volume.</p>
-					
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Invest in a basket of 16 tokens</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">like an ETF fund.</p>
-					</div>
-
-					<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Swap 65% cheaper</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">than any other DEX.</p>
-					</div>
-
-					<!--<div class="mt-16 gs_reveal gs_reveal_fromRight">
-						<h3 class="fluid-30 font-bold text-primary-500 dark:text-white">Stake your liquidity tokens</h3>
-						<p class="fluid-30 font-light dark:text-primary-100">and receive a <span id="aprUSP"></span> APR.</p>
-					</div>-->
-				</div>
+				
 
 				
 			</section>
@@ -479,34 +460,9 @@ pagination:
 	{# Fetch stats from TheGraph #}
 	<script type="text/javascript">
 		document.addEventListener("DOMContentLoaded", function () {
-			const queryBody = JSON.stringify({query: `{
-				factories(first: 1) {
-					totalValueLockedUSD
-					totalTradeVolumeUSD
-					totalFeesEarnedUSD
-					xdp2TotalSupply
-					xdp2Staked
-				}
-				
-					token(id: "0x2f57430a6ceda85a67121757785877b4a71b8e6d") {
-						tokenAmount
-					} 
-			}`});
+			
 
-			fetch('https://api.thegraph.com/subgraphs/name/omegasyndicate/defiplaza', {
-				method: 'post',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: queryBody
-			})
-				.then(function (result) {
-					return result.json()
-				})
-				.then(function (jsonResult) {
-					return jsonResult.data;
-				})
-				.then(function (graphData) {
+
 					
 					fetch('https://radix.defiplaza.net/api/analytics')
 						.then(function (result) {
@@ -548,27 +504,26 @@ pagination:
 							}
 
 							// TVL
-							const prettyTVL = prettyValue(+graphData.factories[0].totalValueLockedUSD + +radixData[0].totalValueLockedUSD);
+							const prettyTVL = prettyValue(+radixData.dailies[0].totalValueLockedUSD);
 							const tvlEl = document.getElementById("tvl");
 							tvlEl.innerText = "$" + prettyTVL.value.toLocaleString();
 							tvlEl.classList.remove('text-primary-500');
 							document.getElementById("tvlSuffix").innerText = prettyTVL.size;
 
 							// Trade Volume
-							const prettyVolume = prettyValue(graphData.factories[0].totalTradeVolumeUSD);
+							const prettyVolume = prettyValue(+radixData.totals[0].totalVolumeUSD);
 							const volumeEl = document.getElementById("totalVolume");
 							volumeEl.innerText = "$" + prettyVolume.value.toLocaleString();
 							volumeEl.classList.remove('text-primary-500');
 							document.getElementById("totalVolumeSuffix").innerText = prettyVolume.size;
 
 							// Fees
-							const prettyFees = prettyValue(graphData.factories[0].totalFeesEarnedUSD);
+							const prettyFees = prettyValue(+radixData.totals[0].totalFeesUSD);
 							const feesEl = document.getElementById("totalFees");
 							feesEl.innerText = "$" + prettyFees.value.toLocaleString();
 							feesEl.classList.remove('text-primary-500');
 							document.getElementById("totalFeesSuffix").innerText = prettyFees.size;
 					});
-				});
 		});
 	</script>
 {% endblock %}
