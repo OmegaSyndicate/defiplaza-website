@@ -5,7 +5,7 @@ module.exports = {
 	description: 'Reducing the risk of Impermament Loss.',
 	url: process.env.SITE_URL,
 	icon: process.env.SITE_URL + '/assets/images/logo/icon.svg',
-	cover_image: process.env.SITE_URL + '/assets/images/logo/social-media-share-calm.png',
+	cover_image: process.env.SITE_URL + '/assets/images/logo/social-media-calm.png',
 	lang: 'en',
 	twitter: '@defiplaza',
 };
