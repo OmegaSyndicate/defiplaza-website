@@ -2,10 +2,10 @@ require("dotenv").config();
 
 module.exports = {
 	title: 'DefiPlaza',
-	description: 'The lowest fees of any exchange on Ethereum',
+	description: 'Reducing the risk of Impermament Loss.',
 	url: process.env.SITE_URL,
 	icon: process.env.SITE_URL + '/assets/images/logo/icon.svg',
-	cover_image: process.env.SITE_URL + '/assets/images/logo/social-media-share.png',
+	cover_image: process.env.SITE_URL + '/assets/images/logo/social-media-share-calm.png',
 	lang: 'en',
 	twitter: '@defiplaza',
 };
